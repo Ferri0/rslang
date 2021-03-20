@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  background-color: gray;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
