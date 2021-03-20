@@ -9,7 +9,7 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
-  "parser": "@babel/eslint-parser",
+  "parser": "./node_modules/@babel/eslint-parser/lib/index.js",
   "parserOptions": {
     "ecmaFeatures": {
       "globalReturn": false,
