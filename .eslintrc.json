@@ -9,12 +9,18 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaFeatures": {
+      "globalReturn": false,
       "jsx": true
     },
+    "babelOptions": {
+      "configFile": "./babel.config.json"
+    },
     "ecmaVersion": 12,
-    "sourceType": "module"
+    "sourceType": "module",
+    "allowImportExportEverywhere": false
   },
   "plugins": ["react"],
   "rules": {}
