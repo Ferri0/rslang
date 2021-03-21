@@ -1,0 +1,17 @@
+@import '../../scss/abstracts.scss';
+
+.mainPage {
+  padding-top: 90px;
+  @include flex(column, center, flex-start);
+}
+
+.greeting,
+.dictionary,
+.games,
+.stats {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 40px;
+  background-color: #fff;
+  @include flex(column, center, center);
+}

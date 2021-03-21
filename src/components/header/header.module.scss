@@ -1,0 +1,10 @@
+@import '../../scss/abstracts.scss';
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background: rgb(91, 154, 170);
+  @include flex(row, space-around, center);
+}

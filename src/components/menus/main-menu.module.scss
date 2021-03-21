@@ -1,0 +1,12 @@
+.menu {
+  display: flex;
+}
+
+.menuItem {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menuItem:not(:last-child) {
+  margin-right: 10px;
+}
