@@ -1,9 +1,0 @@
-@import '../../scss/abstracts.scss';
-
-.block {
-  width: 40rem;
-  height: 40rem;
-  font-size: 4rem;
-  background-color: $color-red;
-  @include flex(column, center, center);
-}

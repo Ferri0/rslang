@@ -23,5 +23,7 @@
     "allowImportExportEverywhere": false
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {
+    "import/prefer-default-export": "off"
+  }
 }
