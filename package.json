@@ -77,7 +77,7 @@
     "*.{js,jsx}": "eslint --fix",
     "*.css": "stylelint",
     "*.scss": "stylelint --syntax=scss",
-    "*.{js,jsx,ts,tsx,md,html,css,scss}": "prettier --write"
+    "*.{js,jsx,ts,tsx,md,html,css,scss,ts}": "prettier --write"
   },
   "dependencies": {
     "concurrently": "^6.0.0",
