@@ -5,13 +5,15 @@
 }
 
 html {
-  font-size: 10px;
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
-  background-color: gray;
+  font-size: 16px;
+  font-family: 'Nunito', 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  background-color: rgb(199, 199, 199);
 }
 
 #root {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100vw;
+  max-width: 100%;
 }

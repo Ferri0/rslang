@@ -1,0 +1,14 @@
+@import '../../scss/abstracts.scss';
+
+.menu {
+  background-color: rgb(91, 154, 170);
+  @include flex(column, flex-start, flex-start);
+}
+
+.menuItem {
+  text-decoration: none;
+}
+
+.menuItem:not(:last-child) {
+  margin-right: 10px;
+}
