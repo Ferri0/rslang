@@ -2,9 +2,11 @@
   "name": "rslang",
   "version": "1.0.0",
   "description": "Study project RSSchool 2021Q1 React",
-  "main": "index.jsx",
+  "main": "backend/server.js",
   "private": true,
   "scripts": {
+    "start": "node backend/server.js",
+    "node": "concurrently \"npm run build:watch\" \"nodemon\"",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "eslint": "eslint **/*{.js,.jsx}",
@@ -15,7 +17,8 @@
     "build:watch": "webpack --watch --mode development",
     "build:prod": "webpack --mode production",
     "open:dev": "webpack serve --mode development",
-    "open:prod": "webpack serve --mode production"
+    "open:prod": "webpack serve --mode production",
+    "postinstall": "npx husky install"
   },
   "repository": {
     "type": "git",
@@ -75,9 +78,12 @@
     "*.{js,jsx}": "eslint --fix",
     "*.css": "stylelint",
     "*.scss": "stylelint --syntax=scss",
-    "*.{js,jsx,ts,tsx,md,html,css,scss}": "prettier --write"
+    "*.{js,jsx,ts,tsx,md,html,css,scss,ts}": "prettier --write"
   },
   "dependencies": {
+    "concurrently": "^6.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
