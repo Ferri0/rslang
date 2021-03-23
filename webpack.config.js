@@ -34,7 +34,9 @@ const config = {
       template: path.resolve(__dirname, './src/index.html'),
       filename: 'index.html',
     }),
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+    }),
     new CopyPlugin({
       patterns: [
         {
@@ -61,6 +63,11 @@ const config = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
   optimization: {
@@ -78,7 +85,7 @@ const config = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', 'ts', 'tsx'],
   },
 };
 
