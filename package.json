@@ -83,17 +83,19 @@
     "*.{js,jsx,ts,tsx,md,html,css,scss,ts}": "prettier --write"
   },
   "dependencies": {
-    "concurrently": "^6.0.0",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.7",
     "@types/jest": "^26.0.21",
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
+    "concurrently": "^6.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
-    "react-router-hash-link": "^2.4.0"
+    "react-router-hash-link": "^2.4.0",
+    "redux": "^4.0.5"
   }
 }
