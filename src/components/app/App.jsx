@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { MainPage, Dashboard } from '../pages';
-import style from './app.module.scss';
+import style from './App.module.scss';
 
 export default function App() {
   return (
