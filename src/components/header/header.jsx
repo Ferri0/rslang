@@ -1,7 +1,7 @@
 import React from 'react';
 // temporally commented because of eslint error
 // import { HashLink as Link } from 'react-router-hash-link';
-import { MainMenu } from '../menus';
+import { MainMenu } from '../menus/Main-menu';
 import style from './Header.module.scss';
 
 function Header() {

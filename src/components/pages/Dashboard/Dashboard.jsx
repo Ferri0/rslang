@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { DashboardMenu } from '../menus';
-import { Textbook } from '../Textbook';
-import { Games } from '../Games';
-import { Stats } from '../Stats';
+import { DashboardMenu } from '../../menus/Dashboard-menu';
+import { Textbook } from '../../Textbook';
+import { Games } from '../../Games';
+import { Stats } from '../../Stats';
 import style from './dashboard.module.scss';
 
 function Dashboard() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
-import { MainPage, Dashboard } from '../pages';
+import { MainPage } from '../pages/Main';
+import { Dashboard } from '../pages/Dashboard';
 import style from './App.module.scss';
 
 export default function App() {
