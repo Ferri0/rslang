@@ -1,14 +1,31 @@
 const reducer = (state, action) => {
+  if (!state) {
+    return {
+      isShowAuth: true,
+      isAuthorized: false,
+      currentUser: null,
+    };
+  }
+
   switch (action.type) {
-    case 'SOME_ACTION': {
+    case 'SET_SHOW_AUTH': {
       return {
         ...state,
+        isShowAuth: action.payload,
       };
     }
 
-    case 'ANOTHER_ACTION': {
+    case 'SET_AUTHORIZED': {
       return {
         ...state,
+        isAuthorized: action.payload,
+      };
+    }
+
+    case 'SET_CURRENT_USER': {
+      return {
+        ...state,
+        currentUser: action.payload,
       };
     }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { MainPage, Dashboard } from '../pages';
+import RegistrationPage from '../registration-page';
 import style from './app.module.scss';
 
 export default function App() {
@@ -9,6 +10,7 @@ export default function App() {
       <div className={style.wrapper}>
         <Switch>
           <Route exact path="/">
+            <RegistrationPage />
             <MainPage />
           </Route>
           <Route path="/dashboard">
