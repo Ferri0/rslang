@@ -1,3 +1,4 @@
+// @ts-ignore
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -57,6 +58,11 @@ const config = {
         type: 'asset',
       },
       {
+        test: /\.(js|jsx|ts|tsx)$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
@@ -85,12 +91,13 @@ const config = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'ts', 'tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 };
 
-module.exports = (env, argv) => {
+module.exports = (env: any, argv: { mode: string }) => {
   if (argv.mode === 'production') {
+    // @ts-ignore
     config.devtool = 'source-map';
     config.plugins.push(
       new MiniCssExtractPlugin({
@@ -107,6 +114,7 @@ module.exports = (env, argv) => {
         test: /\.(sa|sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
+          // @ts-ignore
           {
             loader: 'css-loader',
             options: {
@@ -132,12 +140,14 @@ module.exports = (env, argv) => {
       }
     );
   } else {
+    // @ts-ignore
     config.devtool = 'eval-source-map';
     config.module.rules.push(
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
           'style-loader',
+          // @ts-ignore
           {
             loader: 'css-loader',
             options: {
