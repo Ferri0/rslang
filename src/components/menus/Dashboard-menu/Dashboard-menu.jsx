@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import style from './dashboard-menu.module.scss';
+import style from './Dashboard-menu.module.scss';
 
 function DashboardMenu() {
   return (

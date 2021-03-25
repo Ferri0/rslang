@@ -1,7 +1,8 @@
 import React from 'react';
-import { HashLink as Link } from 'react-router-hash-link';
-import { MainMenu } from '../menus';
-import style from './header.module.scss';
+// temporally
+// import { HashLink as Link } from 'react-router-hash-link';
+import { MainMenu } from '../menus/Main-menu';
+import style from './Header.module.scss';
 
 function Header() {
   return (
