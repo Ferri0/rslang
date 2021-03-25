@@ -1,4 +1,4 @@
-// @ts-ignore
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -95,7 +95,8 @@ const config = {
   },
 };
 
-module.exports = (env: any, argv: { mode: string }) => {
+// @ts-ignore
+module.exports = (env, argv) => {
   if (argv.mode === 'production') {
     // @ts-ignore
     config.devtool = 'source-map';
