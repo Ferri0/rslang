@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../../Header';
 import { Footer } from '../../Footer';
-import style from './main.module.scss';
+import style from './Main.module.scss';
 
 function MainPage() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
-import style from './main-menu.module.scss';
+import style from './Main-menu.module.scss';
 
 function MainMenu() {
   return (

@@ -4,7 +4,7 @@ import { DashboardMenu } from '../../menus/Dashboard-menu';
 import { Textbook } from '../../Textbook';
 import { Games } from '../../Games';
 import { Stats } from '../../Stats';
-import style from './dashboard.module.scss';
+import style from './Dashboard.module.scss';
 
 function Dashboard() {
   return (
