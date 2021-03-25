@@ -15,7 +15,7 @@ const config = {
   stats: 'minimal',
   mode: 'development',
   entry: {
-    main: path.resolve(__dirname, './src/index.jsx'),
+    main: path.resolve(__dirname, './src/index.tsx'),
   },
   output: {
     path: path.resolve(__dirname, './dist'),
