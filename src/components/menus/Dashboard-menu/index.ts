@@ -1,3 +1,1 @@
-import { DashboardMenu } from './Dashboard-menu';
-
-export { DashboardMenu };
+export * from './Dashboard-menu';

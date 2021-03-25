@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import style from './Dashboard-menu.module.scss';
 
-function DashboardMenu() {
+export function DashboardMenu() {
   return (
     <nav className={style.menu}>
       <Link className={style.menuItem} to="/">
@@ -20,5 +20,3 @@ function DashboardMenu() {
     </nav>
   );
 }
-
-export { DashboardMenu };

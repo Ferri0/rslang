@@ -4,7 +4,7 @@ import React from 'react';
 import { MainMenu } from '../menus/Main-menu';
 import style from './Header.module.scss';
 
-function Header() {
+export function Header() {
   return (
     <div className={style.header}>
       <button
@@ -20,5 +20,3 @@ function Header() {
     </div>
   );
 }
-
-export { Header };

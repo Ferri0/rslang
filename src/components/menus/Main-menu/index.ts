@@ -1,3 +1,1 @@
-import { MainMenu } from './Main-menu';
-
-export { MainMenu };
+export * from './Main-menu';
