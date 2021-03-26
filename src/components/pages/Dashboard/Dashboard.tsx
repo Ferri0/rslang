@@ -6,7 +6,7 @@ import { Games } from '../../Games';
 import { Stats } from '../../Stats';
 import style from './Dashboard.module.scss';
 
-function Dashboard() {
+export function Dashboard() {
   return (
     <div className={style.dashboardPage}>
       <DashboardMenu />
@@ -27,5 +27,3 @@ function Dashboard() {
     </div>
   );
 }
-
-export { Dashboard };

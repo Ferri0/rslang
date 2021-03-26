@@ -12,6 +12,9 @@
   "parser": "./node_modules/@babel/eslint-parser/lib/index.js",
   "parserOptions": {
     "ecmaFeatures": {
+      "project": "./tsconfig.json",
+      "ecmaVersion": 6,
+      "sourceType": "module",
       "globalReturn": false,
       "jsx": true
     },
@@ -25,6 +28,24 @@
   "plugins": ["react"],
   "rules": {
     "import/prefer-default-export": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
+    "import/extensions": ["off", "never", {"ignorePackages": true}]
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

@@ -3,7 +3,7 @@ import { Header } from '../../Header';
 import { Footer } from '../../Footer';
 import style from './Main.module.scss';
 
-function MainPage() {
+export function MainPage() {
   return (
     <div className={style.mainPage}>
       <Header />
@@ -23,5 +23,3 @@ function MainPage() {
     </div>
   );
 }
-
-export { MainPage };
