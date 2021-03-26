@@ -1,7 +1,7 @@
 @import '../../../scss/abstracts.scss';
 
 .mainPage {
-  padding-top: 90px;
+  padding-top: $main_page-padding;
   @include flex(column, center, flex-start);
 }
 
