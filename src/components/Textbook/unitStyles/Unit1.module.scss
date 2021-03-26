@@ -1,3 +1,8 @@
 .bg {
-  background-color: red;
+  background: url('../../../assets/images/textbookUnits/unit1/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit1/lower-left-bg.svg');
+  background-color: rgb(229, 255, 251);
+  background-repeat: no-repeat;
+  background-position: top right, left bottom;
+  background-size: contain, contain;
 }

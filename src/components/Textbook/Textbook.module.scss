@@ -1,6 +1,18 @@
 @import '../../scss/abstracts.scss';
 
 .textbook {
+  position: relative;
   width: 100%;
   min-height: 100vh;
+  @include flex(column, center, flex-end);
+}
+
+.unitTitle {
+  position: absolute;
+  top: 3rem;
+  right: 3.5rem;
+  height: 4rem;
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 4rem;
 }

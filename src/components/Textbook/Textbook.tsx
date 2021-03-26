@@ -11,7 +11,7 @@ export function Textbook({ unit }: textbookProps) {
   const unitStyle = getUnitStyle(unit);
   return (
     <div className={[style.textbook, unitStyle.bg].join(' ')}>
-      Textbook unit {unit}
+      <div className={style.unitTitle}>{`Раздел ${unit}`}</div>
     </div>
   );
 }
