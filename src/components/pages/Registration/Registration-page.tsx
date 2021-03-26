@@ -11,11 +11,11 @@ import style from './registration-page.module.scss';
 
 function RegistrationPage(props) {
   const {
-    isShowAuth,
     setShowAuthAction,
     setAuthorizedAction,
     setCurrentUserAction,
   } = props;
+  const { isShowAuth } = useTypedSelector((state) => state.auth);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
