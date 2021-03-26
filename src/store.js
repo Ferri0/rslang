@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import reducer from './reducers';
+import reducer from './store/reducers';
 
 const stringMiddleWare = () => (next) => (action) => {
   if (typeof action === 'string') {
