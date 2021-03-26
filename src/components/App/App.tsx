@@ -4,7 +4,7 @@ import { MainPage } from '../pages/Main';
 import { Dashboard } from '../pages/Dashboard';
 import style from './App.module.scss';
 
-export default function App() {
+export function App() {
   return (
     <Router>
       <div className={style.wrapper}>
