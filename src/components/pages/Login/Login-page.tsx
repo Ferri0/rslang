@@ -12,17 +12,18 @@ export function LoginPage() {
   const [errorText, setErrorText] = useState('');
 
   function loginHandler() {
-    login(email, password).then((res) => {
-      console.log(res);
-      setErrorText('Некорректные данные');
-      if (res === 'ok') {
-        setErrorText('');
-        // setCurrentUser(username);
-        // localStorage.setItem('travel-app-current-user', user);
-        // localStorage.setItem('travel-app-isAuth', true);
-        setAuthorized(true);
-        setShowLogin(false);
-      }
+    login(email, password).then((res: any) => {
+      res.json().then((data: any) => {
+        setErrorText('Некорректные данные');
+        if (data.message === 'Authenticated') {
+          setErrorText('');
+          setCurrentUser(data.name);
+          // localStorage.setItem('travel-app-current-user', user);
+          // localStorage.setItem('travel-app-isAuth', true);
+          setAuthorized(true);
+          setShowLogin(false);
+        }
+      });
     });
   }
 

@@ -45,8 +45,9 @@ const login = async (email: string, password: string) => {
   // if (response.ok) {
   //   result = await response.text();
   // }
-  result = await response.text();
-  return result;
+  //result = await response.text();
+  //return result;
+  return response;
 };
 
 export { register, login };
