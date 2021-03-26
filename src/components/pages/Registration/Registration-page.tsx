@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import {
-  setShowAuth,
-  setAuthorized,
-  setCurrentUser,
-} from '../../../store/actions';
 import { register } from '../../../service';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import style from './registration-page.module.scss';
+import { useAction } from '../../../hooks/useAction';
+import style from './Registration-page.module.scss';
 
-function RegistrationPage(props) {
-  const {
-    setShowAuthAction,
-    setAuthorizedAction,
-    setCurrentUserAction,
-  } = props;
-  const { isShowAuth } = useTypedSelector((state) => state.auth);
+function RegistrationPage() {
+  const { setShowRegister, setAuthorized, setCurrentUser } = useAction();
+  const { isShowRegister } = useTypedSelector((state) => state.auth);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,11 +32,11 @@ function RegistrationPage(props) {
       register(username, email, password).then((res) => {
         if (res === 'ok') {
           setErrorText('');
-          setCurrentUserAction(username);
+          setCurrentUser(username);
           // localStorage.setItem('travel-app-current-user', user);
           // localStorage.setItem('travel-app-isAuth', true);
-          setAuthorizedAction(true);
-          setShowAuthAction(false);
+          setAuthorized(true);
+          setShowRegister(false);
         }
         setErrorText('Некорректные данные');
       });
@@ -57,7 +48,7 @@ function RegistrationPage(props) {
   return (
     <div
       className={
-        isShowAuth
+        isShowRegister
           ? style.registrationPageWrapper
           : style.registrationPageWrapperHidden
       }
@@ -95,7 +86,7 @@ function RegistrationPage(props) {
           type="button"
           className={style.registrationPageButton}
           onClick={() => {
-            registerHandler(username, email, password, repeatPassword);
+            registerHandler();
           }}
         >
           Зарегистрироваться
@@ -103,7 +94,7 @@ function RegistrationPage(props) {
         <button
           type="button"
           className={`${style.registrationPageButton} ${style.closeButton}`}
-          onClick={() => setShowAuthAction(false)}
+          onClick={() => setShowRegister(false)}
         >
           <i className="fas fa-times" />
         </button>
@@ -112,16 +103,4 @@ function RegistrationPage(props) {
   );
 }
 
-const mapStateToProps = ({ isShowAuth, isAuthorized, currentUser }) => ({
-  isShowAuth,
-  isAuthorized,
-  currentUser,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setShowAuthAction: (value) => dispatch(setShowAuth(value)), // [1]
-  setAuthorizedAction: (value) => dispatch(setAuthorized(value)),
-  setCurrentUserAction: (value) => dispatch(setCurrentUser(value)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(RegistrationPage);
+export default RegistrationPage;

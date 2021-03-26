@@ -1,4 +1,4 @@
-const register = async (name, email, pass) => {
+const register = async (name: string, email: string, pass: string) => {
   const data = {
     name,
     email,
