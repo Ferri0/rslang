@@ -3,6 +3,7 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { MainPage } from '../pages/Main';
 import { Dashboard } from '../pages/Dashboard';
 import { RegistrationPage } from '../pages/Registration';
+import { LoginPage } from '../pages/Login';
 import style from './App.module.scss';
 
 export function App() {
@@ -12,6 +13,7 @@ export function App() {
         <Switch>
           <Route exact path="/">
             <RegistrationPage />
+            <LoginPage />
             <MainPage />
           </Route>
           <Route path="/dashboard">

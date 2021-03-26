@@ -1,3 +1,1 @@
-import { register } from './Service';
-
-export { register };
+export * from './Service';

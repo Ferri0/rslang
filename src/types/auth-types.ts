@@ -1,11 +1,11 @@
 export enum AuthActionTypes {
-  SET_SHOW_AUTH = 'SET_SHOW_AUTH',
+  SET_SHOW_LOGIN = 'SET_SHOW_LOGIN',
   SET_SHOW_REGISTER = 'SET_SHOW_REGISTER',
   SET_AUTHORIZED = 'SET_AUTHORIZED',
   SET_CURRENT_USER = 'SET_CURRENT_USER',
 }
 export interface AuthState {
-  isShowAuth: boolean;
+  isShowLogin: boolean;
   isShowRegister: boolean;
   isAuthorized: boolean;
   currentUser: null | string;
@@ -14,13 +14,13 @@ export interface AuthState {
 }
 
 export type AuthAction =
-  | SetShowAuthAction
+  | SetShowLoginAction
   | SetAuthorizedAction
   | SetRegisterAuthAction
   | SetCurrentUserAction;
 
-interface SetShowAuthAction {
-  type: AuthActionTypes.SET_SHOW_AUTH;
+interface SetShowLoginAction {
+  type: AuthActionTypes.SET_SHOW_LOGIN;
   payload: boolean;
 }
 

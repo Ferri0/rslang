@@ -1,3 +1,1 @@
-import RegistrationPage from './Registration-page';
-
-export { RegistrationPage };
+export * from './Registration-page';

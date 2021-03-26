@@ -26,4 +26,27 @@ const register = async (name: string, email: string, pass: string) => {
   return result;
 };
 
-export { register };
+const login = async (email: string, password: string) => {
+  const data = {
+    email,
+    password,
+  };
+  let result = 'error';
+  const response = await fetch(
+    'https://yaia-team-rslang-api.herokuapp.com/signin',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }
+  );
+  // if (response.ok) {
+  //   result = await response.text();
+  // }
+  result = await response.text();
+  return result;
+};
+
+export { register, login };

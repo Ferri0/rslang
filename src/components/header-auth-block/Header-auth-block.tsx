@@ -3,43 +3,25 @@ import { useAction } from '../../hooks/useAction';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import style from './Header-auth-block.module.scss';
 
-const authorizeText = {
-  ru: 'Авторизация',
-  en: 'Authorize',
-  ua: 'Авторизація',
-};
-
-const exitText = {
-  ru: 'Выйти',
-  en: 'Log out',
-  ua: 'Вийти',
-};
-
-const welcomeText = {
-  ru: 'Добро пожаловать',
-  en: 'Welcome',
-  ua: 'Вітаємо',
-};
-
 export function HeaderAuthBlock() {
   const {
-    setShowAuth,
+    setShowLogin,
     setAuthorized,
     setCurrentUser,
     setShowRegister,
   } = useAction();
   const { isAuthorized, currentUser } = useTypedSelector((state) => state.auth);
 
-  useEffect(() => {
-    if (localStorage.getItem('yaia-team-rslang-current-user')) {
-      setCurrentUser(localStorage.getItem('yaia-team-rslang-current-user'));
-    }
-    if (localStorage.getItem('yaia-team-rslang-isAuth')) {
-      setAuthorized(
-        JSON.parse(localStorage.getItem('yaia-team-rslang-isAuth'))
-      );
-    }
-  });
+  // useEffect(() => {
+  //   if (localStorage.getItem('yaia-team-rslang-current-user')) {
+  //     setCurrentUser(localStorage.getItem('yaia-team-rslang-current-user'));
+  //   }
+  //   if (localStorage.getItem('yaia-team-rslang-isAuth')) {
+  //     setAuthorized(
+  //       JSON.parse(localStorage.getItem('yaia-team-rslang-isAuth'))
+  //     );
+  //   }
+  // });
 
   if (isAuthorized === false) {
     return (
@@ -47,7 +29,7 @@ export function HeaderAuthBlock() {
         <button
           type="button"
           className={style.headerAuthBlockButton}
-          onClick={() => setShowAuth(true)}
+          onClick={() => setShowLogin(true)}
         >
           Войти
         </button>

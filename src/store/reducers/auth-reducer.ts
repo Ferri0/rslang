@@ -1,7 +1,7 @@
 import { AuthActionTypes, AuthState, AuthAction } from '../../types/auth-types';
 
 const initialState: AuthState = {
-  isShowAuth: false,
+  isShowLogin: false,
   isShowRegister: false,
   isAuthorized: false,
   currentUser: null,
@@ -14,10 +14,10 @@ export const authReducer = (
   action: AuthAction
 ) => {
   switch (action.type) {
-    case AuthActionTypes.SET_SHOW_AUTH: {
+    case AuthActionTypes.SET_SHOW_LOGIN: {
       return {
         ...state,
-        isShowAuth: action.payload,
+        isShowLogin: action.payload,
       };
     }
 

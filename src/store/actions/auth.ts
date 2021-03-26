@@ -1,7 +1,7 @@
 import { AuthActionTypes, AuthAction } from '../../types/auth-types';
 
-const setShowAuth = (value: boolean): AuthAction => ({
-  type: AuthActionTypes.SET_SHOW_AUTH,
+const setShowLogin = (value: boolean): AuthAction => ({
+  type: AuthActionTypes.SET_SHOW_LOGIN,
   payload: value,
 });
 
@@ -20,4 +20,4 @@ const setCurrentUser = (value: null | string) => ({
   payload: value,
 });
 
-export { setShowAuth, setShowRegister, setAuthorized, setCurrentUser };
+export { setShowLogin, setShowRegister, setAuthorized, setCurrentUser };

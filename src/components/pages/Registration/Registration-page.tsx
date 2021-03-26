@@ -4,7 +4,7 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
 import style from './Registration-page.module.scss';
 
-function RegistrationPage() {
+export function RegistrationPage() {
   const { setShowRegister, setAuthorized, setCurrentUser } = useAction();
   const { isShowRegister } = useTypedSelector((state) => state.auth);
   const [username, setUsername] = useState('');
@@ -30,6 +30,7 @@ function RegistrationPage() {
   function registerHandler() {
     if (password === repeatPassword) {
       register(username, email, password).then((res) => {
+        setErrorText('Некорректные данные');
         if (res === 'ok') {
           setErrorText('');
           setCurrentUser(username);
@@ -38,7 +39,6 @@ function RegistrationPage() {
           setAuthorized(true);
           setShowRegister(false);
         }
-        setErrorText('Некорректные данные');
       });
     } else {
       setErrorText('Введённые пароли не совпадают');
@@ -102,5 +102,3 @@ function RegistrationPage() {
     </div>
   );
 }
-
-export default RegistrationPage;
