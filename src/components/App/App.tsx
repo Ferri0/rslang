@@ -5,7 +5,7 @@ import { Dashboard } from '../pages/Dashboard';
 import { RegistrationPage } from '../pages/Registration';
 import style from './App.module.scss';
 
-export default function App() {
+export function App() {
   return (
     <Router>
       <div className={style.wrapper}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Footer.module.scss';
 
-function Footer() {
+export function Footer() {
   return (
     <div className={style.footer}>
       2021
@@ -23,5 +23,3 @@ function Footer() {
     </div>
   );
 }
-
-export { Footer };

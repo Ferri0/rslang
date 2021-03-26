@@ -2,7 +2,7 @@ import React from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import style from './Main-menu.module.scss';
 
-function MainMenu() {
+export function MainMenu() {
   return (
     <nav className={style.menu}>
       <Link className={style.menuItem} to="#textbook">
@@ -21,5 +21,3 @@ function MainMenu() {
     </nav>
   );
 }
-
-export { MainMenu };
