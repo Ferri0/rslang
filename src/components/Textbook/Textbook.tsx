@@ -1,6 +1,17 @@
+import { number } from 'prop-types';
 import React from 'react';
 import style from './Textbook.module.scss';
+import { getUnitStyle } from './util/getUnitStyle';
 
-export function Textbook() {
-  return <div className={style.textbook}>Textbook</div>;
+type textbookProps = {
+  unit: number;
+};
+
+export function Textbook({ unit }: textbookProps) {
+  const unitStyle = getUnitStyle(unit);
+  return (
+    <div className={[style.textbook, unitStyle.bg].join(' ')}>
+      Textbook unit {unit}
+    </div>
+  );
 }

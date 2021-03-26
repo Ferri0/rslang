@@ -11,10 +11,12 @@ export function Dashboard() {
     <div className={style.dashboardPage}>
       <DashboardMenu />
       <div>
-        Dashboard Page
         <Switch>
-          <Route exact path="/dashboard/textbook">
-            <Textbook />
+          <Route exact path="/dashboard/textbook/unit1">
+            <Textbook unit={1} />
+          </Route>
+          <Route exact path="/dashboard/textbook/unit2">
+            <Textbook unit={2} />
           </Route>
           <Route path="/dashboard/games">
             <Games />
