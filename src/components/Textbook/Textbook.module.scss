@@ -24,11 +24,10 @@
   padding: 4%;
   background-color: rgba(255, 255, 255, 0.55);
   border-radius: 5%;
-  @include flex(row, space-between, center);
+  @include flex(row, space-between, flex-start);
 }
 
 .wordsBlock {
   width: 47%;
-  min-height: 80vh;
-  background-color: red;
+  height: 100%;
 }

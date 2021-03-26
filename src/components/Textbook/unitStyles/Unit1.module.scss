@@ -4,5 +4,15 @@
   background-color: rgb(229, 255, 251);
   background-repeat: no-repeat;
   background-position: top right, left bottom;
-  background-size: contain, contain;
+  background-size: 100%, 100%;
+}
+
+.tab {
+  border: 0.1rem solid #a2f2ea;
+  border-left: 1.2rem solid #a2f2ea;
+}
+
+.input:checked + label {
+  background-color: #a2f2ea;
+  border-radius: 0 0.8rem 0 0;
 }

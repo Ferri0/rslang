@@ -1,0 +1,40 @@
+@import '../../scss/abstracts.scss';
+
+.hidden {
+  display: none;
+}
+.tabContent {
+  max-height: 0;
+  overflow: hidden;
+}
+.tab {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #848994;
+  font: 2rem/1.2 Arial, sans-serif;
+  background-color: rgba(229, 255, 251, 0.55);
+  border-radius: 1rem;
+}
+.tabTitle {
+  display: block;
+  margin: -0.1rem; // hotfix 1px empty line which apperas on some res
+  padding: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.tabTitle::after {
+  float: right;
+  content: '+';
+}
+.tabContent {
+  padding: 0 2rem;
+  transition: 0.5s ease-in-out;
+}
+.tab :checked + .tabTitle::after {
+  content: '−';
+}
+.tab :checked ~ .tabContent {
+  max-height: 30rem;
+}
