@@ -1,8 +1,8 @@
 import { AuthActionTypes, AuthState, AuthAction } from '../../types/auth-types';
 
 const initialState: AuthState = {
-  isShowAuth: true,
-  isShowRegister: true,
+  isShowAuth: false,
+  isShowRegister: false,
   isAuthorized: false,
   currentUser: null,
   loading: false,

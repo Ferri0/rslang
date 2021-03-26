@@ -1,6 +1,7 @@
 import React from 'react';
 // temporally
 // import { HashLink as Link } from 'react-router-hash-link';
+import { HeaderAuthBlock } from '../header-auth-block';
 import { MainMenu } from '../menus/Main-menu';
 import style from './Header.module.scss';
 
@@ -16,7 +17,7 @@ export function Header() {
         Logo
       </button>
       <MainMenu />
-      <button type="button">Войти</button>
+      <HeaderAuthBlock />
     </div>
   );
 }
