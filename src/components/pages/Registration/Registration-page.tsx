@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import {
   setShowAuth,
   setAuthorized,
   setCurrentUser,
 } from '../../../store/actions';
 import { register } from '../../../service';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import style from './registration-page.module.scss';
 
 function RegistrationPage(props) {
@@ -125,10 +125,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegistrationPage);
-
-RegistrationPage.propTypes = {
-  setShowAuthAction: PropTypes.func.isRequired,
-  isShowAuth: PropTypes.bool.isRequired,
-  setAuthorizedAction: PropTypes.func.isRequired,
-  setCurrentUserAction: PropTypes.func.isRequired,
-};
