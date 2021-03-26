@@ -1,15 +1,17 @@
+import { AuthActionTypes } from '../../types/auth-types';
+
 const setShowAuth = (value) => ({
-  type: 'SET_SHOW_AUTH',
+  type: AuthActionTypes.SET_SHOW_AUTH,
   payload: value,
 });
 
 const setAuthorized = (value) => ({
-  type: 'SET_AUTHORIZED',
+  type: AuthActionTypes.SET_AUTHORIZED,
   payload: value,
 });
 
 const setCurrentUser = (value) => ({
-  type: 'SET_CURRENT_USER',
+  type: AuthActionTypes.SET_CURRENT_USER,
   payload: value,
 });
 
