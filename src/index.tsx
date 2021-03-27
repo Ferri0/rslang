@@ -14,6 +14,7 @@ wordsService
   .getWords()
   .then((result) => {
     console.log(result[5].audio);
+    console.log(result);
   })
   .catch((err) => {
     console.error(err);

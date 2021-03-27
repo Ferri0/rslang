@@ -2,6 +2,7 @@ interface ServiceWords {
   apiWordsBase: string;
   getResource(url: string): Promise<any>;
   getWords(): Promise<any>;
+  getSound(path: string): Promise<any>;
   getWord(id: string): Promise<any>;
 }
 
@@ -10,7 +11,7 @@ interface Item {
 }
 
 export class WordsService implements ServiceWords {
-  apiWordsBase = 'https://yaia-team-rslang-api.herokuapp.com/words';
+  apiWordsBase = 'https://yaia-team-rslang-api.herokuapp.com/';
 
   getResource = async (url: string) => {
     const res = await fetch(this.apiWordsBase);
@@ -25,7 +26,11 @@ export class WordsService implements ServiceWords {
   };
 
   getWords = async () => {
-    return await this.getResource(this.apiWordsBase);
+    return await this.getResource(`${this.apiWordsBase}words`);
+  };
+
+  getSound = async (path: string) => {
+    return await this.getResource(`${this.apiWordsBase}${path}`);
   };
 
   getWord = async (id: string) => {
