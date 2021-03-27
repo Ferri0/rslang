@@ -36,5 +36,9 @@
   content: '−';
 }
 .tab :checked ~ .tabContent {
-  max-height: 30rem;
+  max-height: 50rem;
+}
+
+audio {
+  width: 10rem;
 }

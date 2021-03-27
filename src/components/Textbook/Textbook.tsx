@@ -30,11 +30,7 @@ export function Textbook({ unit }: TextbookProps) {
       const wordsElements: any[] = [];
       fetchedPage.forEach((element: any, i: number) => {
         wordsElements.push(
-          <WordCard
-            word={element.word}
-            unitStyle={unitStyle}
-            key={element.word}
-          />
+          <WordCard wordInfo={element} unitStyle={unitStyle} key={element.id} />
         );
       });
       setWords(wordsElements);
