@@ -1,5 +1,3 @@
 import React from 'react';
 
-const Context = React.createContext({});
-
-export { Context };
+export const Context = React.createContext({});

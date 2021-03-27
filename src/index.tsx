@@ -10,15 +10,7 @@ import { ErrorBoundry } from './components/Error-boundry';
 import './scss/base.scss';
 
 const wordsService = new WordsService();
-wordsService
-  .getWords()
-  .then((result) => {
-    console.log(result[5].audio);
-    console.log(result);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+
 ReactDOM.render(
   <StrictMode>
     <Provider store={store}>

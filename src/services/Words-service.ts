@@ -1,20 +1,13 @@
-interface ServiceWords {
-  apiWordsBase: string;
-  getResource(url: string): Promise<any>;
-  getWords(): Promise<any>;
-  getSound(path: string): Promise<any>;
-  getWord(id: string): Promise<any>;
-}
+import { ServiceWordsType } from '../types';
 
-interface Item {
-  id: string;
-}
+export class WordsService implements ServiceWordsType {
+  apiBaseUrl = 'https://yaia-team-rslang-api.herokuapp.com/';
 
-export class WordsService implements ServiceWords {
-  apiWordsBase = 'https://yaia-team-rslang-api.herokuapp.com/';
+  apiWords = (group = 0, page = 0): string =>
+    `https://yaia-team-rslang-api.herokuapp.com/words?group=${group}&page=${page}`;
 
   getResource = async (url: string) => {
-    const res = await fetch(this.apiWordsBase);
+    const res = await fetch(url);
 
     if (!res.ok) {
       throw new Error(
@@ -22,20 +15,14 @@ export class WordsService implements ServiceWords {
       );
     }
 
-    return await res.json();
+    return res;
   };
 
   getWords = async () => {
-    return await this.getResource(`${this.apiWordsBase}words`);
+    return (await this.getResource(this.apiWords())).json();
   };
 
   getSound = async (path: string) => {
-    return await this.getResource(`${this.apiWordsBase}${path}`);
-  };
-
-  getWord = async (id: string) => {
-    const data = await this.getResource(this.apiWordsBase);
-    const res = data.find((item: Item) => item.id === id);
-    return res;
+    return await this.getResource(`${this.apiBaseUrl}${path}`);
   };
 }
