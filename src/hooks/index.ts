@@ -1,2 +1,2 @@
-export { useActions } from './useActions';
+export { useAction } from './useAction';
 export { useTypedSelector } from './useTypedSelector';
