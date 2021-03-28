@@ -6,6 +6,8 @@ import { Savanna } from '../Games/Savanna';
 import { Sprint } from '../Games/Sprint';
 import { AudioCall } from '../Games/Audio-call';
 import { OwnGame } from '../Games/Own-game';
+import { RegistrationPage } from '../pages/Registration';
+import { LoginPage } from '../pages/Login';
 import style from './App.module.scss';
 
 export function App() {
@@ -14,6 +16,8 @@ export function App() {
       <div className={style.wrapper}>
         <Switch>
           <Route exact path="/">
+            <RegistrationPage />
+            <LoginPage />
             <MainPage />
           </Route>
           <Route path="/dashboard">
