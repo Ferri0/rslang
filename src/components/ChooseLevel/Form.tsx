@@ -17,7 +17,9 @@ export const Form = ({ setter }: Setter) => {
   const [group, setGroup] = useState('');
   const wordsService: ServiceWordsType = useContext(Context);
 
-  const { error, loading, words } = useTypedSelector((state) => state.words);
+  const { error, loading, words } = useTypedSelector(
+    (state) => state.groupOfWords
+  );
   const dispatch = useDispatch();
 
   const handleSubmit = async (

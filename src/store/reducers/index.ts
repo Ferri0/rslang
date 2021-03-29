@@ -4,7 +4,7 @@ import { wordsReducer } from './words-reducer';
 
 export const rootReducer = combineReducers({
   auth: authReducer,
-  words: wordsReducer,
+  groupOfWords: wordsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
