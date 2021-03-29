@@ -15,8 +15,6 @@ export const wordsReducer = (
   state: WordState = initialState,
   action: WordsAction
 ) => {
-  console.log(state);
-
   switch (action.type) {
     case WordsActionTypes.FETCH_WORDS_REQUEST: {
       return {
