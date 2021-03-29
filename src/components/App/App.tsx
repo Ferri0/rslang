@@ -35,9 +35,9 @@ export function App() {
           <Route exact path="/owngame">
             <OwnGame />
           </Route>
-          <Route
-            render={() => <h2>Error, you made a mistake in the url path</h2>}
-          />
+          <Route>
+            <h2>Error, you made a mistake in the url path</h2>
+          </Route>
         </Switch>
       </div>
     </Router>
