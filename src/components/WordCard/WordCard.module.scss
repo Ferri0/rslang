@@ -4,11 +4,29 @@
   display: none;
 }
 .tabContent {
+  position: relative;
   max-height: 0;
   overflow: hidden;
+
+  &_header {
+    width: 100%;
+    @include flex(row, space-between, center);
+
+    &___btnsBlock {
+      position: relative;
+      width: 12rem;
+      height: 3rem;
+      @include flex(row, space-between, center);
+    }
+  }
+}
+.lastLine {
+  margin-bottom: 1rem;
 }
 .tab {
+  position: relative;
   width: 100%;
+  min-width: 402px;
   margin-bottom: 1rem;
   color: #848994;
   font: 2rem/1.2 Arial, sans-serif;
@@ -31,14 +49,29 @@
 .tabContent {
   padding: 0 2rem;
   transition: 0.5s ease-in-out;
+  @include flex(column, flex-start, flex-start);
 }
 .tab :checked + .tabTitle::after {
   content: '−';
 }
 .tab :checked ~ .tabContent {
-  max-height: 50rem;
+  max-height: 70rem;
 }
 
-audio {
-  width: 10rem;
+.wordImg {
+  align-self: left;
+  width: 350px;
+}
+
+.wordTitle {
+  font-size: 2.2rem;
+}
+
+.playSoundBtn {
+  width: 3rem;
+  height: 3rem;
+}
+
+h4 {
+  margin: 0.5rem 0 0 0;
 }

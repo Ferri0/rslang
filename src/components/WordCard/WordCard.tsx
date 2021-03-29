@@ -1,15 +1,34 @@
-import { number } from 'prop-types';
 import React from 'react';
 import style from './WordCard.module.scss';
+import { wait } from './util/wait';
 
 type WordCardProps = { wordInfo: any; unitStyle: any };
 
 export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
   const apiUrl: string = 'https://yaia-team-rslang-api.herokuapp.com/';
 
-  const playAudio = (audioId: string) => {
+  const playAudio = (e: any) => {
     const audio: any = document.getElementById(`${wordInfo.id}-audio`);
+    const audioMeaning: any = document.getElementById(
+      `${wordInfo.id}-audioMeaning`
+    );
+    const audioExample: any = document.getElementById(
+      `${wordInfo.id}-audioExample`
+    );
+
+    e.target.disabled = true;
     audio.play();
+    wait(audio.duration).then(() => {
+      audioMeaning.play();
+    });
+    wait(audioMeaning.duration + audio.duration).then(() => {
+      audioExample.play();
+    });
+    wait(audioExample.duration + audioMeaning.duration + audio.duration).then(
+      () => {
+        e.target.disabled = false;
+      }
+    );
   };
 
   return (
@@ -24,21 +43,51 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
         {wordInfo.word}
       </label>
       <section className={style.tabContent}>
-        <img src={apiUrl + wordInfo.image} alt="word-img" />
+        <div className={style.tabContent_header}>
+          <p className={style.wordTitle}>
+            {wordInfo.word} - {wordInfo.transcription} -{' '}
+            {wordInfo.wordTranslate}
+          </p>
+          <div className={style.tabContent_header___btnsBlock}>
+            <button
+              className={style.playSoundBtn}
+              type="button"
+              onClick={(e: any) => playAudio(e)}
+            />
+            <button
+              className={style.playSoundBtn}
+              type="button"
+              onClick={(e: any) => playAudio(e)}
+            />
+            <button
+              className={style.playSoundBtn}
+              type="button"
+              onClick={(e: any) => playAudio(e)}
+            />
+          </div>
+        </div>
+        <img
+          src={apiUrl + wordInfo.image}
+          className={style.wordImg}
+          alt="word-img"
+        />
+        <h4>Meaning:</h4>
+        <div className={unitStyle.separator}></div>
+        <span dangerouslySetInnerHTML={{ __html: wordInfo.textMeaning }}></span>
+        <span>{wordInfo.textMeaningTranslate}</span>
+        <h4>Example:</h4>
+        <div className={unitStyle.separator}></div>
+        <span dangerouslySetInnerHTML={{ __html: wordInfo.textExample }}></span>
+        <span className={style.lastLine}>{wordInfo.textExampleTranslate}</span>
         <audio src={apiUrl + wordInfo.audio} id={`${wordInfo.id}-audio`} />
-        <button type="button" onClick={() => playAudio(wordInfo.id)}>
-          Play
-        </button>
-        <p>Под HTML5 обычно подразумевают два разных понятия:</p>
-        <ul>
-          <li>
-            Это язык разметки документа, пришедший на смену HTML4 и XHTML.
-          </li>
-          <li>
-            Это набор веб-технологий, позволяющий делать на сайте всякие
-            интересные штуки.
-          </li>
-        </ul>
+        <audio
+          src={apiUrl + wordInfo.audioMeaning}
+          id={`${wordInfo.id}-audioMeaning`}
+        />
+        <audio
+          src={apiUrl + wordInfo.audioExample}
+          id={`${wordInfo.id}-audioExample`}
+        />
       </section>
     </div>
   );

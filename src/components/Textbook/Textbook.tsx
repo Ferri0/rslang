@@ -25,7 +25,6 @@ export function Textbook({ unit }: TextbookProps) {
   }, []);
 
   useEffect(() => {
-    console.log(fetchedPage);
     if (fetchedPage !== null) {
       const wordsElements: any[] = [];
       fetchedPage.forEach((element: any, i: number) => {
