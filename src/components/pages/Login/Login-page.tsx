@@ -5,7 +5,14 @@ import { useAction } from '../../../hooks/useAction';
 import style from './Login-page.module.scss';
 
 export function LoginPage() {
-  const { setShowLogin, setAuthorized, setCurrentUser } = useAction();
+  const {
+    setShowLogin,
+    setAuthorized,
+    setCurrentUser,
+    setCurrentUserID,
+    setToken,
+    setRefreshToken,
+  } = useAction();
   const { isShowLogin } = useTypedSelector((state) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,6 +32,9 @@ export function LoginPage() {
           localStorage.setItem('yaia-team-rslang-isAuth', JSON.stringify(true));
           setAuthorized(true);
           setShowLogin(false);
+          setCurrentUserID(data.userID);
+          setToken(data.token);
+          setRefreshToken(data.refreshToken);
         }
       });
     });

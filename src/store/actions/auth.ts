@@ -20,4 +20,27 @@ const setCurrentUser = (value: null | string) => ({
   payload: value,
 });
 
-export { setShowLogin, setShowRegister, setAuthorized, setCurrentUser };
+const setCurrentUserID = (value: null | string) => ({
+  type: AuthActionTypes.SET_CURRENT_USERID,
+  payload: value,
+});
+
+const setToken = (value: null | string) => ({
+  type: AuthActionTypes.SET_TOKEN,
+  payload: value,
+});
+
+const setRefreshToken = (value: null | string) => ({
+  type: AuthActionTypes.SET_REFRESH_TOKEN,
+  payload: value,
+});
+
+export {
+  setShowLogin,
+  setShowRegister,
+  setAuthorized,
+  setCurrentUser,
+  setCurrentUserID,
+  setToken,
+  setRefreshToken,
+};
