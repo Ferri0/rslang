@@ -12,20 +12,6 @@ export function RegistrationPage() {
   const [password, setPassword] = useState('');
   const [repeatPassword, setrepeatPassword] = useState('');
   const [errorText, setErrorText] = useState('');
-  // const [errorType, setErrorType] = useState('ok');
-
-  // function loginHandler(user, pass) {
-  //   showplaceService.login(user, pass).then(res => {
-  //     if (res === 'ok') {
-  //       setCurrentUserAction(user);
-  //       localStorage.setItem('travel-app-current-user', user);
-  //       localStorage.setItem('travel-app-isAuth', true);
-  //       setAuthorizedAction(true);
-  //       setShowAuthAction(false)
-  //     }
-  //     setErrorType(res);
-  //   });
-  // }
 
   function registerHandler() {
     if (password === repeatPassword) {
@@ -34,8 +20,11 @@ export function RegistrationPage() {
         if (res === 'ok') {
           setErrorText('');
           setCurrentUser(username);
-          // localStorage.setItem('travel-app-current-user', user);
-          // localStorage.setItem('travel-app-isAuth', true);
+          localStorage.setItem(
+            'yaia-team-rslang-current-user',
+            JSON.stringify(username)
+          );
+          localStorage.setItem('yaia-team-rslang-isAuth', JSON.stringify(true));
           setAuthorized(true);
           setShowRegister(false);
         }

@@ -12,16 +12,18 @@ export function HeaderAuthBlock() {
   } = useAction();
   const { isAuthorized, currentUser } = useTypedSelector((state) => state.auth);
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('yaia-team-rslang-current-user')) {
-  //     setCurrentUser(localStorage.getItem('yaia-team-rslang-current-user'));
-  //   }
-  //   if (localStorage.getItem('yaia-team-rslang-isAuth')) {
-  //     setAuthorized(
-  //       JSON.parse(localStorage.getItem('yaia-team-rslang-isAuth'))
-  //     );
-  //   }
-  // });
+  useEffect(() => {
+    if (localStorage.getItem('yaia-team-rslang-current-user')) {
+      setCurrentUser(
+        JSON.parse(localStorage.getItem('yaia-team-rslang-current-user'))
+      );
+    }
+    if (localStorage.getItem('yaia-team-rslang-isAuth')) {
+      setAuthorized(
+        JSON.parse(localStorage.getItem('yaia-team-rslang-isAuth'))
+      );
+    }
+  }, [currentUser]);
 
   if (isAuthorized === false) {
     return (
@@ -52,7 +54,10 @@ export function HeaderAuthBlock() {
         type="button"
         className={style.headerAuthBlockButton}
         onClick={() => {
-          localStorage.setItem('yaia-team-rslang-current-user', null);
+          localStorage.setItem(
+            'yaia-team-rslang-current-user',
+            JSON.stringify(null)
+          );
           localStorage.setItem(
             'yaia-team-rslang-isAuth',
             JSON.stringify(false)

@@ -18,8 +18,11 @@ export function LoginPage() {
         if (data.message === 'Authenticated') {
           setErrorText('');
           setCurrentUser(data.name);
-          // localStorage.setItem('travel-app-current-user', user);
-          // localStorage.setItem('travel-app-isAuth', true);
+          localStorage.setItem(
+            'yaia-team-rslang-current-user',
+            JSON.stringify(data.name)
+          );
+          localStorage.setItem('yaia-team-rslang-isAuth', JSON.stringify(true));
           setAuthorized(true);
           setShowLogin(false);
         }
