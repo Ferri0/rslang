@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header } from '../../Header';
+import { Games } from '../../Games';
 import { Footer } from '../../Footer';
 import style from './Main.module.scss';
 
@@ -14,7 +15,7 @@ export function MainPage() {
         English textbook description
       </div>
       <div className={style.games} id="games">
-        games description
+        <Games />
       </div>
       <div className={style.stats} id="stats">
         stats description
