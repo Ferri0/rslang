@@ -88,7 +88,7 @@
   "lint-staged": {
     "*.{js,jsx}": "eslint --fix",
     "*.css": "stylelint",
-    "*.scss": "stylelint --syntax=scss",
+    "*.scss": "stylelint --syntax=scss stylelint **/*{.css,.scss} --fix",
     "*.{js,jsx,ts,tsx,md,html,css,scss,ts}": "prettier --write"
   },
   "dependencies": {
