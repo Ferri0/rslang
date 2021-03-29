@@ -28,7 +28,7 @@ export function HeaderAuthBlock() {
       <div className={style.headerAuthBlockWrapper}>
         <button
           type="button"
-          className={style.headerAuthBlockButton}
+          className={`${style.headerAuthBlockButton} ${style.headerAuthBlockLoginButton}`}
           onClick={() => setShowLogin(true)}
         >
           Войти
@@ -38,7 +38,7 @@ export function HeaderAuthBlock() {
           className={style.headerAuthBlockButton}
           onClick={() => setShowRegister(true)}
         >
-          Зарегистрироваться
+          Регистрация
         </button>
       </div>
     );

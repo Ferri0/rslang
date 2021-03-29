@@ -9,13 +9,12 @@ export function Header() {
   return (
     <div className={style.header}>
       <button
+        className={style.logo}
         type="button"
         onClick={() => {
           window.scrollTo(0, 0);
         }}
-      >
-        Logo
-      </button>
+      />
       <MainMenu />
       <HeaderAuthBlock />
     </div>

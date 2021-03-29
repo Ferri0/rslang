@@ -14,10 +14,6 @@ export function MainMenu() {
       <Link className={style.menuItem} to="#stats">
         Статистика
       </Link>
-      {/* Temp menu item */}
-      <Link className={style.menuItem} to="/dashboard">
-        Dashboard
-      </Link>
     </nav>
   );
 }
