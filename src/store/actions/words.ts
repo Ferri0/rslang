@@ -1,8 +1,10 @@
-import { WordsActionTypes, Words, WordsAction } from '../../types';
-
-const wordsRequested = (): WordsAction => ({
-  type: WordsActionTypes.FETCH_WORDS_REQUEST,
-});
+import { Dispatch } from 'react';
+import {
+  WordsActionTypes,
+  Words,
+  WordsAction,
+  ServiceWordsType,
+} from '../../types';
 
 const wordsLoaded = (words: Words): WordsAction => ({
   type: WordsActionTypes.FETCH_WORDS_SUCCESS,
@@ -14,4 +16,17 @@ const wordsFetchError = (error: Error): WordsAction => ({
   payload: error,
 });
 
-export { wordsRequested, wordsLoaded, wordsFetchError };
+export const fetchWords = (
+  wordsService: ServiceWordsType,
+  group: string
+) => async (dispatch: Dispatch<WordsAction>) => {
+  try {
+    dispatch({ type: WordsActionTypes.FETCH_WORDS_REQUEST });
+    const response = await wordsService.getWords(group);
+    dispatch(wordsLoaded(response));
+  } catch (error) {
+    dispatch(wordsFetchError(error));
+  }
+};
+
+export { wordsLoaded, wordsFetchError };

@@ -1,15 +1,33 @@
-.bg {
+.savannah {
+  width: 100%;
+  height: 100%;
+}
+
+.game_wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
+
+.game_image {
   position: absolute;
   top: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('./images/savannah.jpg');
+    url('../../../assets/images/savannah.jpg');
   background-repeat: no-repeat;
   background-position-x: left;
   background-position-y: 100%;
   transition: background 1.5s;
+}
+
+.game_main {
+  justify-content: space-between;
+  height: calc(100% - 80px);
+  padding: 20px;
 }
 
 .scrollBtn {
@@ -20,98 +38,4 @@
   background-color: tomato;
   outline: none;
   cursor: pointer;
-}
-
-.dialog_modal {
-  position: fixed;
-  top: 50%;
-  width: 350px;
-  color: wheat;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  transform: translateY(-50%);
-}
-
-.title {
-  padding: 10px;
-  border: 2px solid #f4b609d1;
-  user-select: none;
-}
-
-.container {
-  position: relative;
-  display: block;
-  width: 125px;
-  margin: auto;
-  margin-bottom: 12px;
-  padding-left: 35px;
-  color: #2ea27b;
-  font-size: 22px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  cursor: pointer;
-  user-select: none;
-
-  &:hover {
-    input + .checkmark {
-      background-color: #ccc;
-      transition: 0.3s;
-    }
-  }
-}
-
-.container input {
-  opacity: 0;
-}
-
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 25px;
-  height: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-
-  &:hover {
-    box-shadow: 0px 2px 6px 2px rgb(240 24 24 / 50%);
-  }
-
-  &:active {
-    transition: padding 0.5s;
-  }
-}
-
-.container input:checked + .checkmark {
-  background-color: tomato;
-  transition: 0.5s;
-}
-
-.container input:checked + .checkmark::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  padding: 15px;
-  background-image: url('./images/fire-icon.webp');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  content: '';
-}
-
-input[type='submit'] {
-  width: 150px;
-  font-size: 20px;
-  font-family: cursive;
-  background-color: burlywood;
-  border-color: black;
-  border-radius: 15px;
-  outline: none;
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: 0px 2px 6px 2px rgb(255 255 255 / 50%);
-    transition: 0.3s;
-  }
 }

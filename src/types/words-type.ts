@@ -42,7 +42,7 @@ type WordsFetchError = {
 export type WordState = {
   words: Words;
   loading: boolean;
-  error: null | boolean;
+  error: null | Error;
 };
 
 export interface RootState {

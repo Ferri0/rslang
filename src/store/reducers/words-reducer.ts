@@ -14,7 +14,7 @@ const initialState: WordState = {
 export const wordsReducer = (
   state: WordState = initialState,
   action: WordsAction
-) => {
+): WordState => {
   switch (action.type) {
     case WordsActionTypes.FETCH_WORDS_REQUEST: {
       return {
@@ -28,7 +28,6 @@ export const wordsReducer = (
         ...state,
         words: action.payload,
         loading: false,
-        error: false,
       };
     }
 
