@@ -8,20 +8,38 @@ export function HeaderAuthBlock() {
     setShowLogin,
     setAuthorized,
     setCurrentUser,
+    setCurrentUserID,
     setShowRegister,
+    setToken,
+    setRefreshToken,
   } = useAction();
   const { isAuthorized, currentUser } = useTypedSelector((state) => state.auth);
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('yaia-team-rslang-current-user')) {
-  //     setCurrentUser(localStorage.getItem('yaia-team-rslang-current-user'));
-  //   }
-  //   if (localStorage.getItem('yaia-team-rslang-isAuth')) {
-  //     setAuthorized(
-  //       JSON.parse(localStorage.getItem('yaia-team-rslang-isAuth'))
-  //     );
-  //   }
-  // });
+  useEffect(() => {
+    if (localStorage.getItem('yaia-team-rslang-current-user')) {
+      setCurrentUser(
+        JSON.parse(localStorage.getItem('yaia-team-rslang-current-user'))
+      );
+    }
+    if (localStorage.getItem('yaia-team-rslang-isAuth')) {
+      setAuthorized(
+        JSON.parse(localStorage.getItem('yaia-team-rslang-isAuth'))
+      );
+    }
+    if (localStorage.getItem('yaia-team-rslang-userID')) {
+      setCurrentUserID(
+        JSON.parse(localStorage.getItem('yaia-team-rslang-userID'))
+      );
+    }
+    if (localStorage.getItem('yaia-team-rslang-token')) {
+      setToken(JSON.parse(localStorage.getItem('yaia-team-rslang-token')));
+    }
+    if (localStorage.getItem('yaia-team-rslang-refresh-token')) {
+      setRefreshToken(
+        JSON.parse(localStorage.getItem('yaia-team-rslang-refresh-token'))
+      );
+    }
+  }, [currentUser]);
 
   if (isAuthorized === false) {
     return (
@@ -52,10 +70,19 @@ export function HeaderAuthBlock() {
         type="button"
         className={style.headerAuthBlockButton}
         onClick={() => {
-          localStorage.setItem('yaia-team-rslang-current-user', null);
+          localStorage.setItem(
+            'yaia-team-rslang-current-user',
+            JSON.stringify(null)
+          );
           localStorage.setItem(
             'yaia-team-rslang-isAuth',
             JSON.stringify(false)
+          );
+          localStorage.setItem('yaia-team-rslang-userID', JSON.stringify(null));
+          localStorage.setItem('yaia-team-rslang-token', JSON.stringify(null));
+          localStorage.setItem(
+            'yaia-team-rslang-refresh-token',
+            JSON.stringify(null)
           );
           setAuthorized(false);
           setCurrentUser(null);
