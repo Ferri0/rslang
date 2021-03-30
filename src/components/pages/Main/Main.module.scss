@@ -5,9 +5,11 @@
 }
 
 .greeting,
-.dictionary,
+.textbook,
 .games,
-.stats {
+.stats,
+.promo,
+.info {
   position: relative;
   width: 100%;
   height: 300px;
@@ -37,7 +39,7 @@
 
 .greetingImg {
   background: url('../../../assets/images/greeting-img.png') no-repeat right,
-    rgba(255, 255, 255, 0.2);
+    rgba(255, 255, 255, 0.6);
   background-size: auto 100%;
   border-radius: 10px;
   box-shadow: 2px 2px 5px -3px #1c2542;
@@ -74,12 +76,13 @@
   border: 1px solid #297ab9;
   border-radius: 8px;
   outline: none;
+  transition: font-weight 0.5s ease;
   @include size(150px, 35px);
   @include flex(row, center, center);
 }
 
 .greetingButton:hover {
-  box-shadow: -1px -1px 2px 0px #1c2542 inset;
+  font-weight: 800;
 }
 
 .overlay {
@@ -88,4 +91,78 @@
   opacity: 0.1;
   @include absolute-center;
   @include size(100%, 100%);
+}
+
+.games {
+  height: auto;
+  padding: 30px 50px;
+  text-align: center;
+  @include flex(column, center, center);
+}
+
+.promo {
+  height: auto;
+  padding: 30px 50px;
+}
+
+.promoTip {
+  font-size: 10px;
+}
+
+.promoWrapper {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px -3px #1c2542;
+}
+
+.title {
+  color: #297ab9;
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+.textbook {
+  height: auto;
+  padding: 30px 50px;
+}
+
+.textbookWrapper {
+  width: 100%;
+  padding: 10px 20px 50px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px -3px #1c2542;
+}
+
+.textbookFeatures {
+  flex-wrap: wrap;
+  width: 100%;
+  @include flex(row, space-around, center);
+}
+
+.textbookFeaturesItem {
+  padding: 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid #297ab9;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px -3px #1c2542;
+  @include size(120px, 110px);
+  @include flex(column, space-between, center);
+}
+
+.textbookFeaturesItem span {
+  display: block;
+}
+
+.textbookFeaturesItem .icon {
+  width: 100%;
+  color: #297ab9;
+  font-size: 30px;
+  text-align: center;
 }
