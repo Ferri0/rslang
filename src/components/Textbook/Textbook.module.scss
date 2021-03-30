@@ -16,6 +16,67 @@
   font-size: 5rem;
   line-height: 5rem;
 }
+
+.btnsBlock {
+  position: absolute;
+  top: 25px;
+  left: 5%;
+  width: 210px;
+  height: 50px;
+  @include flex(row, space-between, center);
+}
+
+.btn {
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  outline: none;
+  cursor: pointer;
+
+  &_home {
+    width: 50px;
+    height: 50px;
+    background-image: url('../../assets//icons/home.svg');
+    background-position: center;
+    background-size: contain;
+
+    &:hover {
+      background-image: url('../../assets//icons/homeHover.svg');
+      transform: scale(1.05);
+      transition: all 0.5s;
+    }
+  }
+}
+
+.settingsBlock {
+  width: 50px;
+  height: 50px;
+  background-image: url('../../assets//icons/settings.svg');
+  background-position: center;
+  background-size: contain;
+
+  &:hover {
+    background-image: url('../../assets//icons/settingsHover.svg');
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+}
+
+.gamesBlock {
+  width: 50px;
+  height: 50px;
+  background-image: url('../../assets//icons/games.svg');
+  background-position: center;
+  background-size: contain;
+
+  &:hover {
+    background-image: url('../../assets//icons/gamesHover.svg');
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+}
+
 .wordsWrapper {
   width: 90%;
   min-height: 85vh;

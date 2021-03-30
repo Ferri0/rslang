@@ -47,6 +47,14 @@ export function Textbook({ unit }: TextbookProps) {
   }
   return (
     <div className={[style.textbook, unitStyle.bg].join(' ')}>
+      <div className={style.btnsBlock}>
+        <button
+          className={[style.btn, style.btn_home].join(' ')}
+          type="button"
+        />
+        <div className={style.settingsBlock} />
+        <div className={style.gamesBlock} />
+      </div>
       <div className={style.unitTitle}>{`Раздел ${unit}`}</div>
       <div className={style.wordsWrapper}>
         <div className={style.wordsBlock}>
