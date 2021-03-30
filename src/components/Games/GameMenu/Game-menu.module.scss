@@ -2,10 +2,16 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 40px 40px 0 40px;
 }
 
-.my_span {
-  font-size: 28px;
+.heart_wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.heart {
+  width: 25px;
 }

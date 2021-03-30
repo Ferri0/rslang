@@ -1,3 +1,8 @@
+.background {
+  height: 100vh;
+  background-image: url('../../assets//images/afrika-savanna-zhirafy.jpg');
+}
+
 .dialog_modal {
   position: fixed;
   top: 50%;
@@ -14,68 +19,6 @@
   user-select: none;
 }
 
-.container {
-  position: relative;
-  display: block;
-  max-width: 140px;
-  margin: auto;
-  margin-bottom: 12px;
-  padding-left: 35px;
-  color: #2ea27b;
-  font-size: 22px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  cursor: pointer;
-  user-select: none;
-
-  &:hover {
-    input + .checkmark {
-      background-color: #ccc;
-      transition: 0.3s;
-    }
-  }
-}
-
-.container input {
-  opacity: 0;
-}
-
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 25px;
-  height: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-
-  &:hover {
-    box-shadow: 0px 2px 6px 2px rgb(240 24 24 / 50%);
-  }
-
-  &:active {
-    transition: padding 0.5s;
-  }
-}
-
-.container input:checked + .checkmark {
-  background-color: tomato;
-  transition: 0.5s;
-}
-
-.container input:checked + .checkmark::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  padding: 15px;
-  background-image: url('../../assets/images/fire-icon.webp');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  content: '';
-}
-
 input[type='submit'] {
   width: 150px;
   font-size: 20px;
@@ -90,4 +33,28 @@ input[type='submit'] {
     box-shadow: 0px 2px 6px 2px rgb(255 255 255 / 50%);
     transition: 0.3s;
   }
+}
+
+@keyframes load {
+  0% {
+    background-color: rgb(8, 100, 238);
+  }
+  25% {
+    background-color: rgb(100, 146, 247);
+  }
+  50% {
+    background-color: rgb(8, 100, 238);
+  }
+  100% {
+    background-color: rgb(100, 146, 247);
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  animation: 3s linear infinite alternate load;
 }
