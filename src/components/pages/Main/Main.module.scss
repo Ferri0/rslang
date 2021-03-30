@@ -63,8 +63,11 @@
 .greetingTextTitle {
   margin-bottom: 15px;
   color: #297ab9;
-  font-weight: 800;
   font-size: 2em;
+}
+
+.greetingText span {
+  font-weight: 800;
 }
 
 .greetingButton {
@@ -113,7 +116,7 @@
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr;
-  padding: 10px 20px;
+  padding: 10px 20px 20px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
   box-shadow: 2px 2px 5px -3px #1c2542;
@@ -137,12 +140,16 @@
   background: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
   box-shadow: 2px 2px 5px -3px #1c2542;
+  @include flex(column, center, center);
 }
 
 .textbookFeatures {
-  flex-wrap: wrap;
-  width: 100%;
-  @include flex(row, space-around, center);
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  width: 60%;
 }
 
 .textbookFeaturesItem {
@@ -152,8 +159,8 @@
   border: 1px solid #297ab9;
   border-radius: 10px;
   box-shadow: 2px 2px 5px -3px #1c2542;
-  @include size(120px, 110px);
-  @include flex(column, space-between, center);
+  @include size(130px, 120px);
+  @include flex(column, space-around, center);
 }
 
 .textbookFeaturesItem span {
@@ -165,4 +172,21 @@
   color: #297ab9;
   font-size: 30px;
   text-align: center;
+}
+
+.stats,
+.info {
+  height: auto;
+  padding: 30px 50px;
+}
+
+.statsWrapper,
+.infoWrapper {
+  width: 100%;
+  padding: 10px 20px 50px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px -3px #1c2542;
+  @include flex(column, center, center);
 }

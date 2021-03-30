@@ -14,9 +14,13 @@ export function MainPage() {
           <span className={style.greetingTextTitle}>
             Easy English - учи новые слова каждый день!
           </span>
+          <p>
+            Изучаешь английский язык? Запоминай английские слова эффективно с
+            приложением Easy English! Наша учебная платформа поможет тебе быстро
+            и легко изучить более 3000 английских слов!
+          </p>
           <span>
-            Наша учебная платформа поможет тебе быстро и легко изучить более
-            3000 английских слов!
+            Учить английский язык - просто! Начни обучение прямо сейчас!
           </span>
           <Link to="/dashboard" className={style.greetingButton}>
             Начать обучение
@@ -29,10 +33,6 @@ export function MainPage() {
         <div className={style.promoWrapper}>
           <div>Video</div>
           <div className={style.promoText}>
-            <p>
-              Изучаешь английский язык? Запоминай английские слова эффективно с
-              приложением Easy English!
-            </p>
             <p>
               Представляем лучшее приложение для запоминания английских слов!*
             </p>
@@ -60,7 +60,6 @@ export function MainPage() {
               Easy English - действительно нужное приложение для тех, кто учит
               английский язык.
             </p>
-            <p>Учить английский язык - просто! Начни обучение прямо сейчас!</p>
             <span className={style.promoTip}>
               *По мнению разработчиков Easy English :)
             </span>
@@ -127,10 +126,35 @@ export function MainPage() {
         <div className={style.overlay} />
       </div>
       <div className={style.stats} id="stats">
-        stats description
+        <div className={style.statsWrapper}>
+          <h2 className={style.title}>Статистика</h2>
+          <div className={style.statsInfo}>
+            <span>
+              Отслеживай динамику своего обучения на странице статистики.
+              Ежедневные результаты и статистика за весь период изучения
+              отображаются в удобном для восприятия виде. Можно подробно
+              отследить количество изученных слов, процент правильных ответов и
+              самую длинную серию правильных ответов по каждой мини-игре
+              отдельно, а также общее количество изученных слов и процент
+              правильных ответов за день. В общей статистике отображается
+              количество изученных слов за каждый день изучения, увеличение
+              общего количества изученных слов за весь период изучения по дням.
+            </span>
+          </div>
+        </div>
+        <div className={style.overlay} />
       </div>
       <div className={style.info} id="info">
-        Info about our team
+        <div className={style.infoWrapper}>
+          <h2 className={style.title}>Наша команда</h2>
+          <div className={style.infoTxt}>
+            <span>
+              раздел "О команде" с фото и ссылками на гитхабы всех участников
+              команды, описанием вклада в разработку приложения каждого из них.{' '}
+            </span>
+            <div className={style.overlay} />
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
