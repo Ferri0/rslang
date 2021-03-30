@@ -15,14 +15,16 @@ export function Textbook({ unit }: TextbookProps) {
   const unitStyle = getUnitStyle(unit);
 
   useEffect(() => {
-    fetch('https://yaia-team-rslang-api.herokuapp.com/words')
+    setLoading(true);
+    fetch(`https://yaia-team-rslang-api.herokuapp.com/words?group=${unit}`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setFetchedPage(data);
+        setLoading(false);
       });
-  }, []);
+  }, [unit]);
 
   useEffect(() => {
     if (fetchedPage !== null) {
