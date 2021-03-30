@@ -1,4 +1,5 @@
 export enum AuthActionTypes {
+  SET_LOADING = 'SET_LOADING',
   SET_SHOW_LOGIN = 'SET_SHOW_LOGIN',
   SET_SHOW_REGISTER = 'SET_SHOW_REGISTER',
   SET_AUTHORIZED = 'SET_AUTHORIZED',
@@ -26,6 +27,7 @@ export type AuthAction =
   | SetCurrentUserAction
   | SetCurrentUserIdAction
   | SetTokenAction
+  | SetLoadingAction
   | SetRefreshTokenAction;
 
 interface SetShowLoginAction {
@@ -57,7 +59,13 @@ interface SetTokenAction {
   type: AuthActionTypes.SET_TOKEN;
   payload: string;
 }
+
 interface SetRefreshTokenAction {
   type: AuthActionTypes.SET_REFRESH_TOKEN;
+  payload: string;
+}
+
+interface SetLoadingAction {
+  type: AuthActionTypes.SET_LOADING;
   payload: string;
 }

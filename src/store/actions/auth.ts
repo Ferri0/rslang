@@ -35,6 +35,11 @@ const setRefreshToken = (value: null | string) => ({
   payload: value,
 });
 
+const setLoading = (value: boolean) => ({
+  type: AuthActionTypes.SET_LOADING,
+  payload: value,
+});
+
 export {
   setShowLogin,
   setShowRegister,
@@ -43,4 +48,5 @@ export {
   setCurrentUserID,
   setToken,
   setRefreshToken,
+  setLoading,
 };

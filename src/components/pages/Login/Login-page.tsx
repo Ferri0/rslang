@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Spinner } from '../../Spinner';
 import { login } from '../../../service';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
@@ -12,31 +13,52 @@ export function LoginPage() {
     setCurrentUserID,
     setToken,
     setRefreshToken,
+    setLoading,
   } = useAction();
-  const { isShowLogin } = useTypedSelector((state) => state.auth);
+  const { isShowLogin, loading } = useTypedSelector((state) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorText, setErrorText] = useState('');
 
+  let spinnerDiv;
+  if (loading) {
+    spinnerDiv = <Spinner />;
+  } else {
+    spinnerDiv = '';
+  }
+
   function loginHandler() {
+    setLoading(true);
     login(email, password).then((res: any) => {
-      res.json().then((data: any) => {
-        setErrorText('Некорректные данные');
-        if (data.message === 'Authenticated') {
-          setErrorText('');
-          setCurrentUser(data.name);
-          localStorage.setItem(
-            'yaia-team-rslang-current-user',
-            JSON.stringify(data.name)
-          );
-          localStorage.setItem('yaia-team-rslang-isAuth', JSON.stringify(true));
-          setAuthorized(true);
-          setShowLogin(false);
-          setCurrentUserID(data.userID);
-          setToken(data.token);
-          setRefreshToken(data.refreshToken);
-        }
-      });
+      setLoading(false);
+      const error = res.statusText;
+      if (error === 'Not Found') {
+        setErrorText('Пользователь не найден');
+      }
+      if (error === 'Forbidden') {
+        setErrorText('Неправильный пароль');
+      }
+      if (res.ok) {
+        res.json().then((data: any) => {
+          if (data.message === 'Authenticated') {
+            setErrorText('');
+            setCurrentUser(data.name);
+            localStorage.setItem(
+              'yaia-team-rslang-current-user',
+              JSON.stringify(data.name)
+            );
+            localStorage.setItem(
+              'yaia-team-rslang-isAuth',
+              JSON.stringify(true)
+            );
+            setAuthorized(true);
+            setShowLogin(false);
+            setCurrentUserID(data.userID);
+            setToken(data.token);
+            setRefreshToken(data.refreshToken);
+          }
+        });
+      }
     });
   }
 
@@ -50,6 +72,7 @@ export function LoginPage() {
         <span className={style.loginPageHeader}>
           Введите адрес электронной почты и пароль
         </span>
+        {spinnerDiv}
         <span className={style.loginPageError}>{errorText}</span>
         <div>
           <input

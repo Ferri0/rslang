@@ -66,6 +66,13 @@ export const authReducer = (
       };
     }
 
+    case AuthActionTypes.SET_LOADING: {
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    }
+
     default: {
       return {
         ...state,

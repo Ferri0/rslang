@@ -42,11 +42,6 @@ const login = async (email: string, password: string) => {
       body: JSON.stringify(data),
     }
   );
-  // if (response.ok) {
-  //   result = await response.text();
-  // }
-  //result = await response.text();
-  //return result;
   return response;
 };
 
