@@ -40,7 +40,8 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
         className={[style.hidden, unitStyle.input].join(' ')}
       />
       <label htmlFor={wordInfo.id} className={style.tabTitle}>
-        {wordInfo.word}
+        <span>{wordInfo.word}</span>
+        <div className={style.starImg}></div>
       </label>
       <section className={style.tabContent}>
         <div className={style.tabContent_header}>
@@ -50,14 +51,9 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
           </p>
           <div className={style.tabContent_header___btnsBlock}>
             <button
-              className={style.playSoundBtn}
+              className={style.deleteWordBtn}
               type="button"
-              onClick={(e: any) => playAudio(e)}
-            />
-            <button
-              className={style.playSoundBtn}
-              type="button"
-              onClick={(e: any) => playAudio(e)}
+              onClick={() => console.log('delete word function')}
             />
             <button
               className={style.playSoundBtn}

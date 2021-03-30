@@ -6,7 +6,14 @@
 .tabContent {
   position: relative;
   max-height: 0;
+  padding: 0 2rem;
   overflow: hidden;
+  transition: 0.5s ease-in-out;
+  @include flex(column, flex-start, flex-start);
+
+  h4 {
+    margin: 0.5rem 0 0 0;
+  }
 
   &_header {
     width: 100%;
@@ -14,8 +21,8 @@
 
     &___btnsBlock {
       position: relative;
-      width: 12rem;
-      height: 3rem;
+      width: 70px;
+      height: 30px;
       @include flex(row, space-between, center);
     }
   }
@@ -35,21 +42,24 @@
 }
 .tabTitle {
   display: block;
+  height: 50px;
   margin: -0.1rem; // hotfix 1px empty line which apperas on some res
-  padding: 1.5rem;
+  padding: 0 40px 0 10px;
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
   transition: 0.5s ease-in-out;
+  @include flex(row, space-between, center);
+
+  & span {
+    font-size: 20px;
+    line-height: 25px;
+  }
 }
 .tabTitle::after {
-  float: right;
+  position: absolute;
+  right: 10px;
   content: '+';
-}
-.tabContent {
-  padding: 0 2rem;
-  transition: 0.5s ease-in-out;
-  @include flex(column, flex-start, flex-start);
 }
 .tab :checked + .tabTitle::after {
   content: '−';
@@ -67,11 +77,55 @@
   font-size: 2.2rem;
 }
 
-.playSoundBtn {
-  width: 3rem;
-  height: 3rem;
+.deleteWordBtn {
+  width: 20px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url('../../assets/icons/delete.svg');
+  background-position: center;
+  background-size: contain;
+  border: 0;
+  outline: none;
+
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
 }
 
-h4 {
-  margin: 0.5rem 0 0 0;
+.playSoundBtn {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 6px;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url('../../assets/icons/speakingBlack.svg');
+  background-position: center;
+  background-size: contain;
+  border: 0;
+  outline: none;
+
+  &:hover {
+    background-image: url('../../assets/icons/speakingBlue.svg');
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
+}
+
+.starImg {
+  width: 25px;
+  height: 25px;
+  background-image: url('../../assets/icons/starFalse.svg');
+  background-position: center;
+  background-size: contain;
+
+  &_active {
+    background-image: url('../../assets/icons/starTrue.svg');
+  }
+
+  &:hover {
+    background-image: url('../../assets/icons/starTrue.svg');
+    cursor: pointer;
+  }
 }
