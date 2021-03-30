@@ -1,0 +1,51 @@
+.Intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('../../../../assets//images/intro.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  color: white;
+}
+
+.title {
+  font-size: 45px;
+}
+
+.subtitle {
+  line-height: 140%;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 40px;
+  margin-top: 20px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.8s;
+
+  &:hover {
+    background-color: #407df4;
+  }
+}
