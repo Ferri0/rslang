@@ -81,7 +81,7 @@
   width: 20px;
   height: 20px;
   background-color: rgba(0, 0, 0, 0);
-  background-image: url('../../assets/icons/delete.svg');
+  background-image: url('../../assets/icons/textBook/delete.svg');
   background-position: center;
   background-size: contain;
   border: 0;
@@ -99,14 +99,14 @@
   height: 30px;
   margin-bottom: 6px;
   background-color: rgba(0, 0, 0, 0);
-  background-image: url('../../assets/icons/speakingBlack.svg');
+  background-image: url('../../assets/icons/textBook/speakingBlack.svg');
   background-position: center;
   background-size: contain;
   border: 0;
   outline: none;
 
   &:hover {
-    background-image: url('../../assets/icons/speakingBlue.svg');
+    background-image: url('../../assets/icons/textBook/speakingBlue.svg');
     transform: scale(1.05);
     cursor: pointer;
     transition: transform 0.5s;
@@ -116,16 +116,16 @@
 .starImg {
   width: 25px;
   height: 25px;
-  background-image: url('../../assets/icons/starFalse.svg');
+  background-image: url('../../assets/icons/textBook/starFalse.svg');
   background-position: center;
   background-size: contain;
 
   &_active {
-    background-image: url('../../assets/icons/starTrue.svg');
+    background-image: url('../../assets/icons/textBook/starTrue.svg');
   }
 
   &:hover {
-    background-image: url('../../assets/icons/starTrue.svg');
+    background-image: url('../../assets/icons/textBook/starTrue.svg');
     cursor: pointer;
   }
 }

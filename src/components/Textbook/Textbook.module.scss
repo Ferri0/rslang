@@ -27,7 +27,11 @@
 }
 
 .btn {
+  width: 40px;
+  height: 40px;
   background-color: rgba(0, 0, 0, 0);
+  background-position: center;
+  background-size: contain;
   border: 0;
   outline: none;
   cursor: pointer;
@@ -35,12 +39,50 @@
   &_home {
     width: 50px;
     height: 50px;
-    background-image: url('../../assets//icons/home.svg');
-    background-position: center;
-    background-size: contain;
+    background-image: url('../../assets/icons/textBook/home.svg');
 
     &:hover {
-      background-image: url('../../assets//icons/homeHover.svg');
+      background-image: url('../../assets/icons/textBook/homeHover.svg');
+      transform: scale(1.05);
+      transition: all 0.5s;
+    }
+  }
+
+  &_firstPage {
+    background-image: url('../../assets/icons/textBook/arrowFirstPage.svg');
+
+    &:hover {
+      background-image: url('../../assets/icons/textBook/arrowFirstPageHover.svg');
+      transform: scale(1.05);
+      transition: all 0.5s;
+    }
+  }
+
+  &_prevPage {
+    background-image: url('../../assets/icons/textBook/arrowPrevPage.svg');
+
+    &:hover {
+      background-image: url('../../assets/icons/textBook/arrowPrevPageHover.svg');
+      transform: scale(1.05);
+      transition: all 0.5s;
+    }
+  }
+
+  &_nextPage {
+    background-image: url('../../assets/icons/textBook/arrowNextPage.svg');
+
+    &:hover {
+      background-image: url('../../assets/icons/textBook/arrowNextPageHover.svg');
+      transform: scale(1.05);
+      transition: all 0.5s;
+    }
+  }
+
+  &_lastPage {
+    background-image: url('../../assets/icons/textBook/arrowLastPage.svg');
+
+    &:hover {
+      background-image: url('../../assets/icons/textBook/arrowLastPageHover.svg');
       transform: scale(1.05);
       transition: all 0.5s;
     }
@@ -50,12 +92,12 @@
 .settingsBlock {
   width: 50px;
   height: 50px;
-  background-image: url('../../assets//icons/settings.svg');
+  background-image: url('../../assets/icons/textBook/settings.svg');
   background-position: center;
   background-size: contain;
 
   &:hover {
-    background-image: url('../../assets//icons/settingsHover.svg');
+    background-image: url('../../assets/icons/textBook/settingsHover.svg');
     transform: scale(1.05);
     cursor: pointer;
     transition: all 0.5s;
@@ -65,12 +107,12 @@
 .gamesBlock {
   width: 50px;
   height: 50px;
-  background-image: url('../../assets//icons/games.svg');
+  background-image: url('../../assets/icons/textBook/games.svg');
   background-position: center;
   background-size: contain;
 
   &:hover {
-    background-image: url('../../assets//icons/gamesHover.svg');
+    background-image: url('../../assets/icons/textBook/gamesHover.svg');
     transform: scale(1.05);
     cursor: pointer;
     transition: all 0.5s;
@@ -78,11 +120,12 @@
 }
 
 .wordsWrapper {
+  position: relative;
   width: 90%;
   min-height: 85vh;
   margin-top: 10rem;
   margin-bottom: 3%;
-  padding: 4%;
+  padding: 60px;
   background-color: rgba(255, 255, 255, 0.55);
   border-radius: 30px;
   @include flex(row, space-between, flex-start);
@@ -91,4 +134,19 @@
 .wordsBlock {
   width: 47%;
   height: 100%;
+}
+
+.pageControls {
+  position: absolute;
+  right: 50%;
+  bottom: 15px;
+  width: 300px;
+  height: 40px;
+  transform: translate(50%, 0);
+  @include flex(row, space-between, center);
+}
+
+.pageBlock {
+  color: #848994;
+  font-size: 25px;
 }
