@@ -18,6 +18,18 @@ export function Dashboard() {
           <Route exact path="/dashboard/textbook/unit2">
             <Textbook unit={2} />
           </Route>
+          <Route exact path="/dashboard/textbook/unit3">
+            <Textbook unit={3} />
+          </Route>
+          <Route exact path="/dashboard/textbook/unit4">
+            <Textbook unit={4} />
+          </Route>
+          <Route exact path="/dashboard/textbook/unit5">
+            <Textbook unit={5} />
+          </Route>
+          <Route exact path="/dashboard/textbook/unit6">
+            <Textbook unit={6} />
+          </Route>
           <Route path="/dashboard/games">
             <Games />
           </Route>

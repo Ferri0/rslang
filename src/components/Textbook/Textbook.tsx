@@ -16,7 +16,7 @@ export function Textbook({ unit }: TextbookProps) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://yaia-team-rslang-api.herokuapp.com/words?group=${unit}`)
+    fetch(`https://yaia-team-rslang-api.herokuapp.com/words?group=${unit - 1}`)
       .then((response) => {
         return response.json();
       })
