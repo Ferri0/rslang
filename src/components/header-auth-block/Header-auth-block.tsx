@@ -8,7 +8,10 @@ export function HeaderAuthBlock() {
     setShowLogin,
     setAuthorized,
     setCurrentUser,
+    setCurrentUserID,
     setShowRegister,
+    setToken,
+    setRefreshToken,
   } = useAction();
   const { isAuthorized, currentUser } = useTypedSelector((state) => state.auth);
 
@@ -21,6 +24,19 @@ export function HeaderAuthBlock() {
     if (localStorage.getItem('yaia-team-rslang-isAuth')) {
       setAuthorized(
         JSON.parse(localStorage.getItem('yaia-team-rslang-isAuth'))
+      );
+    }
+    if (localStorage.getItem('yaia-team-rslang-userID')) {
+      setCurrentUserID(
+        JSON.parse(localStorage.getItem('yaia-team-rslang-userID'))
+      );
+    }
+    if (localStorage.getItem('yaia-team-rslang-token')) {
+      setToken(JSON.parse(localStorage.getItem('yaia-team-rslang-token')));
+    }
+    if (localStorage.getItem('yaia-team-rslang-refresh-token')) {
+      setRefreshToken(
+        JSON.parse(localStorage.getItem('yaia-team-rslang-refresh-token'))
       );
     }
   }, [currentUser]);
@@ -61,6 +77,12 @@ export function HeaderAuthBlock() {
           localStorage.setItem(
             'yaia-team-rslang-isAuth',
             JSON.stringify(false)
+          );
+          localStorage.setItem('yaia-team-rslang-userID', JSON.stringify(null));
+          localStorage.setItem('yaia-team-rslang-token', JSON.stringify(null));
+          localStorage.setItem(
+            'yaia-team-rslang-refresh-token',
+            JSON.stringify(null)
           );
           setAuthorized(false);
           setCurrentUser(null);

@@ -53,9 +53,21 @@ export function LoginPage() {
             );
             setAuthorized(true);
             setShowLogin(false);
-            setCurrentUserID(data.userID);
+            setCurrentUserID(data.userId);
+            localStorage.setItem(
+              'yaia-team-rslang-userID',
+              JSON.stringify(data.userId)
+            );
             setToken(data.token);
+            localStorage.setItem(
+              'yaia-team-rslang-token',
+              JSON.stringify(data.token)
+            );
             setRefreshToken(data.refreshToken);
+            localStorage.setItem(
+              'yaia-team-rslang-refresh-token',
+              JSON.stringify(data.refreshToken)
+            );
           }
         });
       }
