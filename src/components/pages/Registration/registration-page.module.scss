@@ -20,7 +20,7 @@
   padding: 60px 40px;
   background-color: #fff;
   border-radius: 10px;
-  @include size(270px, 450px);
+  @include size(350px, 500px);
 }
 
 .registrationPageWrapperHidden {
@@ -36,6 +36,13 @@
 .registrationPageError {
   color: rgb(201, 10, 4);
   font-size: 14px;
+  text-align: center;
+}
+
+.registrationPageInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .registrationPageInput {

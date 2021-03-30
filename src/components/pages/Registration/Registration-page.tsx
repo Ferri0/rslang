@@ -1,43 +1,47 @@
 import React, { useState } from 'react';
 import { register } from '../../../service';
+import { Spinner } from '../../Spinner';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
 import style from './Registration-page.module.scss';
 
 export function RegistrationPage() {
-  const { setShowRegister, setAuthorized, setCurrentUser } = useAction();
-  const { isShowRegister } = useTypedSelector((state) => state.auth);
+  const {
+    setShowRegister,
+    setAuthorized,
+    setCurrentUser,
+    setLoading,
+  } = useAction();
+  const { isShowRegister, loading } = useTypedSelector((state) => state.auth);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setrepeatPassword] = useState('');
   const [errorText, setErrorText] = useState('');
-  // const [errorType, setErrorType] = useState('ok');
 
-  // function loginHandler(user, pass) {
-  //   showplaceService.login(user, pass).then(res => {
-  //     if (res === 'ok') {
-  //       setCurrentUserAction(user);
-  //       localStorage.setItem('travel-app-current-user', user);
-  //       localStorage.setItem('travel-app-isAuth', true);
-  //       setAuthorizedAction(true);
-  //       setShowAuthAction(false)
-  //     }
-  //     setErrorType(res);
-  //   });
-  // }
+  let spinnerDiv;
+  if (loading) {
+    spinnerDiv = <Spinner />;
+  } else {
+    spinnerDiv = '';
+  }
 
   function registerHandler() {
     if (password === repeatPassword) {
+      setErrorText('');
+      setLoading(true);
       register(username, email, password).then((res) => {
-        setErrorText('Некорректные данные');
-        if (res === 'ok') {
-          setErrorText('');
-          setCurrentUser(username);
-          // localStorage.setItem('travel-app-current-user', user);
-          // localStorage.setItem('travel-app-isAuth', true);
-          setAuthorized(true);
-          setShowRegister(false);
+        setLoading(false);
+        const error = res.statusText;
+        if (error === 'Unprocessable Entity') {
+          setErrorText('Некорректный адрес электронной почты или пароль');
+        }
+        if (error === 'Expectation Failed') {
+          setErrorText('Такой пользователь существует');
+        }
+        console.log(error);
+        if (res.ok) {
+          setErrorText('Пользователь успешно зарегистрирован');
         }
       });
     } else {
@@ -55,10 +59,12 @@ export function RegistrationPage() {
     >
       <div className={style.registrationPageContainer}>
         <span className={style.registrationPageHeader}>
-          Введите имя пользователя и пароль
+          Введите имя пользователя, адрес электронной почты и пароль(не менее
+          8-ми символов)
         </span>
+        {spinnerDiv}
         <span className={style.registrationPageError}>{errorText}</span>
-        <div>
+        <div className={style.registrationPageInputContainer}>
           <input
             className={style.registrationPageInput}
             placeholder="Имя"
