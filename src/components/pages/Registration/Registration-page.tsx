@@ -28,20 +28,20 @@ export function RegistrationPage() {
 
   function registerHandler() {
     if (password === repeatPassword) {
+      setErrorText('');
       setLoading(true);
       register(username, email, password).then((res) => {
         setLoading(false);
-        setErrorText('Некорректные данные');
-        if (res === 'ok') {
-          setErrorText('');
-          setCurrentUser(username);
-          localStorage.setItem(
-            'yaia-team-rslang-current-user',
-            JSON.stringify(username)
-          );
-          localStorage.setItem('yaia-team-rslang-isAuth', JSON.stringify(true));
-          setAuthorized(true);
-          setShowRegister(false);
+        const error = res.statusText;
+        if (error === 'Unprocessable Entity') {
+          setErrorText('Некорректный адрес электронной почты или пароль');
+        }
+        if (error === 'Expectation Failed') {
+          setErrorText('Такой пользователь существует');
+        }
+        console.log(error);
+        if (res.ok) {
+          setErrorText('Пользователь успешно зарегистрирован');
         }
       });
     } else {
@@ -59,11 +59,12 @@ export function RegistrationPage() {
     >
       <div className={style.registrationPageContainer}>
         <span className={style.registrationPageHeader}>
-          Введите имя пользователя и пароль
+          Введите имя пользователя, адрес электронной почты и пароль(не менее
+          8-ми символов)
         </span>
         {spinnerDiv}
         <span className={style.registrationPageError}>{errorText}</span>
-        <div>
+        <div className={style.registrationPageInputContainer}>
           <input
             className={style.registrationPageInput}
             placeholder="Имя"
