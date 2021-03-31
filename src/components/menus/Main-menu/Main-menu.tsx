@@ -5,6 +5,9 @@ import style from './Main-menu.module.scss';
 export function MainMenu() {
   return (
     <nav className={style.menu}>
+      <Link className={style.menuItem} to="#promo">
+        Промо
+      </Link>
       <Link className={style.menuItem} to="#textbook">
         Учебник
       </Link>
@@ -14,9 +17,8 @@ export function MainMenu() {
       <Link className={style.menuItem} to="#stats">
         Статистика
       </Link>
-      {/* Temp menu item */}
-      <Link className={style.menuItem} to="/dashboard">
-        Dashboard
+      <Link className={style.menuItem} to="#info">
+        Команда
       </Link>
     </nav>
   );

@@ -2,8 +2,9 @@
 
 .footer {
   width: 100%;
-  height: 30px;
+  height: 40px;
   color: #fff;
+  background: rgba(59, 80, 107, 0.5);
   @include flex(row, space-around, center);
 }
 
