@@ -4,7 +4,7 @@
   width: 100%;
   height: 40px;
   color: #fff;
-  background: #297ab9;
+  background: rgba(59, 80, 107, 0.5);
   @include flex(row, space-around, center);
 }
 

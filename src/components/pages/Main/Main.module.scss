@@ -190,3 +190,23 @@
   box-shadow: 2px 2px 5px -3px #1c2542;
   @include flex(column, center, center);
 }
+
+.statsInfo {
+  width: 95%;
+  text-align: left;
+  @include flex(row, space-between, center);
+}
+
+.statsInfo img {
+  margin-left: 20px;
+  border-radius: 10px;
+  @include size(40%, auto);
+}
+
+.statsInfo span {
+  display: block;
+}
+
+.statsInfo span:not(:last-child) {
+  margin-bottom: 10px;
+}

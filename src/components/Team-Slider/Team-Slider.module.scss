@@ -1,0 +1,130 @@
+@import '../../scss/abstracts.scss';
+
+.sliderWrapper {
+  display: grid;
+  grid-gap: 150px;
+  grid-template-columns: 300px 1fr;
+  width: 95%;
+}
+
+.sliderRightBar,
+.circleSlider {
+  position: relative;
+}
+
+.circleSlider {
+  transition: all 1s ease;
+}
+
+.circle {
+  border: 2px dashed rgb(172, 171, 171);
+  border-radius: 50%;
+  @include size(300px, 300px);
+}
+
+.miniPhoto {
+  position: absolute;
+  background-size: cover !important;
+  border: 0;
+  border-radius: 50%;
+  transition: opacity 0.8s ease;
+  @include size(50px, 50px);
+}
+
+.miniPhoto.active {
+  opacity: 0;
+}
+
+.miniPhoto:hover {
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 5px -2px #1c2542;
+  cursor: pointer;
+}
+
+.photo {
+  background-size: cover !important;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  @include size(70%, 70%);
+  @include absolute-center;
+}
+
+.photo.active {
+  opacity: 1;
+}
+
+.name {
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  z-index: 1;
+  width: 0px;
+  overflow: hidden;
+  color: #297ab9;
+  font-weight: 800;
+  font-size: 26px;
+  text-align: left;
+  background: #eff1f3;
+  transform: translateY(-50%);
+}
+
+.name:last-child {
+  white-space: nowrap;
+}
+
+.name.active {
+  width: 155px;
+  animation: changing-name 1s ease forwards;
+}
+
+@keyframes changing-name {
+  0% {
+    width: 0px;
+  }
+
+  100% {
+    width: 155px;
+  }
+}
+
+.infoBlock {
+  display: none;
+}
+
+.infoBlock.active {
+  @include flex(column, center, flex-start);
+}
+
+.infoBlock .infoFirstLine {
+  @include flex(row, flex-start, center);
+}
+
+.infoBlock .infoName {
+  color: #1c2541;
+  font-weight: 800;
+}
+
+.infoBlock .status {
+  margin-bottom: 40px;
+  margin-left: 36px;
+  color: rgb(88, 88, 88);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.infoBlock .url {
+  margin-right: 10px;
+  color: #1c2541;
+  font-size: 26px;
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+
+.infoBlock .url:hover {
+  color: #297ab9;
+}
+
+.infoBlock .desc {
+  text-align: left;
+}
