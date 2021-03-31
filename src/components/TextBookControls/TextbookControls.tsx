@@ -14,6 +14,7 @@ export function TextbookControls() {
             : style.settingsBlock
         }
         onClick={() => {
+          if (gamesActive) setGamesActive(!gamesActive);
           setSettingsActive(!settingsActive);
         }}
       />
@@ -24,9 +25,27 @@ export function TextbookControls() {
             : style.gamesBlock
         }
         onClick={() => {
+          if (settingsActive) setSettingsActive(!settingsActive);
           setGamesActive(!gamesActive);
         }}
-      />
+      >
+        <div
+          className={[style.gameIcon, style.gameIcon_game1].join(' ')}
+          onClick={() => console.log(`Game 1, array: ${[]}`)}
+        />
+        <div
+          className={[style.gameIcon, style.gameIcon_game2].join(' ')}
+          onClick={() => console.log(`Game 2, array: ${[]}`)}
+        />
+        <div
+          className={[style.gameIcon, style.gameIcon_game3].join(' ')}
+          onClick={() => console.log(`Game 3, array: ${[]}`)}
+        />
+        <div
+          className={[style.gameIcon, style.gameIcon_game4].join(' ')}
+          onClick={() => console.log(`Game 4, array: ${[]}`)}
+        />
+      </div>
     </div>
   );
 }

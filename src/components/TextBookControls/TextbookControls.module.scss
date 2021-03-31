@@ -57,12 +57,14 @@
 .gamesBlock {
   width: 50px;
   height: 50px;
+  padding-left: 55px;
   background-image: url('../../assets/icons/textBook/games.svg');
   background-repeat: no-repeat;
   background-position: left top;
   background-size: contain;
   border-radius: 10px;
   transition: all 0.5s;
+  @include flex(row, space-around, center);
 
   &_active {
     width: 300px;
@@ -73,5 +75,35 @@
   &:hover {
     background-image: url('../../assets/icons/textBook/gamesHover.svg');
     cursor: pointer;
+  }
+}
+
+.gameIcon {
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+
+  &_game1 {
+    background-image: url('../../assets/icons/textBook/number1.svg');
+  }
+
+  &_game2 {
+    background-image: url('../../assets/icons/textBook/number2.svg');
+  }
+
+  &_game3 {
+    background-image: url('../../assets/icons/textBook/number3.svg');
+  }
+
+  &_game4 {
+    background-image: url('../../assets/icons/textBook/number4.svg');
   }
 }
