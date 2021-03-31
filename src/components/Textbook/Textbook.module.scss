@@ -9,18 +9,18 @@
 
 .unitTitle {
   position: absolute;
-  top: 2.5rem;
-  right: 4.5%;
-  height: 5rem;
+  top: 25px;
+  right: 2.5%;
+  height: 50px;
   font-weight: 700;
-  font-size: 5rem;
-  line-height: 5rem;
+  font-size: 50px;
+  line-height: 50px;
 }
 
 .btnsBlock {
   position: absolute;
   top: 25px;
-  left: 5%;
+  left: 2.5%;
   width: 210px;
   height: 50px;
   @include flex(row, space-between, center);
@@ -30,6 +30,7 @@
   width: 40px;
   height: 40px;
   background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   border: 0;
@@ -53,6 +54,7 @@
   width: 50px;
   height: 50px;
   background-image: url('../../assets/icons/textBook/settings.svg');
+  background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 
@@ -68,6 +70,7 @@
   width: 50px;
   height: 50px;
   background-image: url('../../assets/icons/textBook/games.svg');
+  background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 
@@ -81,30 +84,36 @@
 
 .wordsWrapper {
   position: relative;
-  width: 90%;
+  width: 95%;
   min-height: 85vh;
-  margin-top: 10rem;
+  margin-top: 100px;
   margin-bottom: 3%;
-  padding: 60px;
+  padding: 20px;
+  padding-bottom: 60px;
   background-color: rgba(255, 255, 255, 0.55);
   border-radius: 30px;
   @include flex(row, space-between, flex-start);
+
+  @media (max-width: 1024px) {
+    @include flex(column, flex-start, center);
+  }
 }
 
 .wordsBlock {
-  width: 47%;
+  min-width: 402px;
+  max-width: 50%;
   height: 100%;
-}
 
-// .pageControls {
-//   position: absolute;
-//   right: 50%;
-//   bottom: 15px;
-//   width: 300px;
-//   height: 40px;
-//   transform: translate(50%, 0);
-//   @include flex(row, space-between, center);
-// }
+  @media (max-width: 1024px) {
+    max-width: 100%;
+  }
+
+  @media (min-width: 1025px) {
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+}
 
 .pageBlock {
   color: #848994;
