@@ -32,12 +32,12 @@
 .wordsWrapper {
   position: relative;
   width: 95%;
-  min-height: 85vh;
+  min-height: calc(100vh - 130px);
   margin-top: 100px;
   margin-bottom: 3%;
   padding: 20px;
   padding-bottom: 60px;
-  background-color: rgba(255, 255, 255, 0.55);
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 30px;
   @include flex(row, space-between, flex-start);
 

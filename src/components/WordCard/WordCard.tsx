@@ -39,7 +39,10 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
         name="tab-group"
         className={[style.hidden, unitStyle.input].join(' ')}
       />
-      <label htmlFor={wordInfo.id} className={style.tabTitle}>
+      <label
+        htmlFor={wordInfo.id}
+        className={[style.tabTitle, unitStyle.tabTitleHover].join(' ')}
+      >
         <span>{wordInfo.word}</span>
         <div className={style.starImg}></div>
       </label>

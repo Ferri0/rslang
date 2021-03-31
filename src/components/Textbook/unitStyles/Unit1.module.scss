@@ -8,13 +8,13 @@
 }
 
 .tab {
-  border: 0.1rem solid #a2f2ea;
-  border-left: 1.2rem solid #a2f2ea;
+  border: 1px solid #a2f2ea;
+  border-left: 12px solid #a2f2ea;
 }
 
 .input:checked + label {
   background-color: #a2f2ea;
-  border-radius: 0 0.8rem 0 0;
+  border-radius: 0 8px 0 0;
 }
 
 .separator {
@@ -22,4 +22,9 @@
   width: 100%;
   min-height: 2px;
   background-color: #a2f2ea;
+}
+
+.tabTitleHover:hover {
+  background-color: #a2f2ea;
+  cursor: pointer;
 }
