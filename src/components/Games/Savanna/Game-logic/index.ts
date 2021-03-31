@@ -1,1 +1,1 @@
-export * from '../../GameMenu/Game-menu';
+export * from '../GameMenu/Game-menu';

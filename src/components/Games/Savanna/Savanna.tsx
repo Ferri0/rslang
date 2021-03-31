@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTypedSelector } from '../../../hooks';
-import { Words } from '../../../types';
 import { DialogModal } from '../../ChooseLevel';
 import { Intro } from './Intro';
 

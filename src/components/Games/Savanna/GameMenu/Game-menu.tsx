@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './Game-menu.module.scss';
-import heart from '../../../assets/icons/heart.svg';
+import heart from '../../../../assets/icons/heart.svg';
 
 interface heart {
   heartsLeft: number;
