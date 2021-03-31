@@ -7,22 +7,22 @@ import u6s from '../unitStyles/Unit6.module.scss';
 
 export function getUnitStyle(unit: number) {
   switch (unit) {
-    case 1:
+    case 0:
       return u1s;
       break;
-    case 2:
+    case 1:
       return u2s;
       break;
-    case 3:
+    case 2:
       return u3s;
       break;
-    case 4:
+    case 3:
       return u4s;
       break;
-    case 5:
+    case 4:
       return u5s;
       break;
-    case 6:
+    case 5:
       return u6s;
       break;
 

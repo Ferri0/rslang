@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import style from './Textbook.module.scss';
 import { getUnitStyle } from './util/getUnitStyle';
+import { getFetchUrl } from './util/getFetchUrl';
 import { WordCard } from '../WordCard';
 
 type TextbookProps = {
@@ -8,33 +9,41 @@ type TextbookProps = {
 };
 
 export function Textbook({ unit }: TextbookProps) {
-  const [fetchedPage, setFetchedPage] = useState(null);
+  const [group, setGroup] = useState(unit);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [words, setWords] = useState([]);
+  const [fetchedPage, setFetchedPage] = useState(null);
+  const [wordCards, setWordCards] = useState(null);
 
   const unitStyle = getUnitStyle(unit);
 
   useEffect(() => {
+    console.log('first use effect');
     setLoading(true);
-    fetch(`https://yaia-team-rslang-api.herokuapp.com/words?group=${unit - 1}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setFetchedPage(data);
-        setLoading(false);
-      });
-  }, [unit]);
+    setGroup(unit);
+    setPage(0);
+  }, [group, unit]);
 
   useEffect(() => {
+    console.log('use effect fetching');
+    const fetchPage = async () => {
+      const resolve = await fetch(getFetchUrl(group, page));
+      const response = await resolve.json();
+      setFetchedPage(response);
+    };
+    fetchPage();
+  }, [page, group]);
+
+  useEffect(() => {
+    console.log('use effect set elements');
     if (fetchedPage !== null) {
-      const wordsElements: any[] = [];
+      const wordCards: any[] = [];
       fetchedPage.forEach((element: any, i: number) => {
-        wordsElements.push(
+        wordCards.push(
           <WordCard wordInfo={element} unitStyle={unitStyle} key={element.id} />
         );
       });
-      setWords(wordsElements);
+      setWordCards(wordCards);
       setLoading(false);
     }
   }, [fetchedPage]);
@@ -42,11 +51,12 @@ export function Textbook({ unit }: TextbookProps) {
   if (loading) {
     return (
       <div className={[style.textbook, unitStyle.bg].join(' ')}>
-        <div className={style.unitTitle}>{`Раздел ${unit}`}</div>
-        <div className={style.wordsWrapper}>{'LOADING'}</div>
+        <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
+        <div className={style.wordsWrapper}>{'Загрузка...'}</div>
       </div>
     );
   }
+
   return (
     <div className={[style.textbook, unitStyle.bg].join(' ')}>
       <div className={style.btnsBlock}>
@@ -57,13 +67,13 @@ export function Textbook({ unit }: TextbookProps) {
         <div className={style.settingsBlock} />
         <div className={style.gamesBlock} />
       </div>
-      <div className={style.unitTitle}>{`Раздел ${unit}`}</div>
+      <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
       <div className={style.wordsWrapper}>
         <div className={style.wordsBlock}>
-          {words.filter((e: any, i: number) => i % 2 !== 0)}
+          {wordCards.filter((e: any, i: number) => i % 2 !== 0)}
         </div>
         <div className={style.wordsBlock}>
-          {words.filter((e: any, i: number) => i % 2 === 0)}
+          {wordCards.filter((e: any, i: number) => i % 2 === 0)}
         </div>
         <div className={style.pageControls}>
           <button
