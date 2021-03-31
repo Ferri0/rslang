@@ -6,6 +6,8 @@
   bottom: 15px;
   width: 300px;
   height: 40px;
+  color: #848994;
+  font-size: 25px;
   transform: translate(50%, 0);
   @include flex(row, space-between, center);
 }
@@ -28,6 +30,12 @@
       transform: scale(1.05);
       transition: all 0.5s;
     }
+
+    &:disabled {
+      background-image: url('../../assets/icons/textBook/arrowFirstPage.svg');
+      transform: none;
+      cursor: default;
+    }
   }
 
   &_prevPage {
@@ -37,6 +45,12 @@
       background-image: url('../../assets/icons/textBook/arrowPrevPageHover.svg');
       transform: scale(1.05);
       transition: all 0.5s;
+    }
+
+    &:disabled {
+      background-image: url('../../assets/icons/textBook/arrowPrevPage.svg');
+      transform: none;
+      cursor: default;
     }
   }
 
@@ -48,6 +62,12 @@
       transform: scale(1.05);
       transition: all 0.5s;
     }
+
+    &:disabled {
+      background-image: url('../../assets/icons/textBook/arrowNextPageHover.svg');
+      transform: none;
+      cursor: default;
+    }
   }
 
   &_lastPage {
@@ -57,6 +77,12 @@
       background-image: url('../../assets/icons/textBook/arrowLastPageHover.svg');
       transform: scale(1.05);
       transition: all 0.5s;
+    }
+
+    &:disabled {
+      background-image: url('../../assets/icons/textBook/arrowLastPageHover.svg');
+      transform: none;
+      cursor: default;
     }
   }
 }

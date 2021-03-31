@@ -26,6 +26,7 @@ export function Textbook({ unit }: TextbookProps) {
 
   useEffect(() => {
     const fetchPage = async () => {
+      setLoading(true);
       const resolve = await fetch(getFetchUrl(group, page));
       const response = await resolve.json();
       setFetchedPage(response);
@@ -49,8 +50,19 @@ export function Textbook({ unit }: TextbookProps) {
   if (loading) {
     return (
       <div className={[style.textbook, unitStyle.bg].join(' ')}>
+        <div className={style.btnsBlock}>
+          <button
+            className={[style.btn, style.btn_home].join(' ')}
+            type="button"
+          />
+          <div className={style.settingsBlock} />
+          <div className={style.gamesBlock} />
+        </div>
         <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
-        <div className={style.wordsWrapper}>{'Загрузка...'}</div>
+        <div className={style.wordsWrapper}>
+          {'Загрузка...'}
+          <PageControls currentPage={page} setCurrentPage={setPage} />
+        </div>
       </div>
     );
   }
@@ -73,7 +85,7 @@ export function Textbook({ unit }: TextbookProps) {
         <div className={style.wordsBlock}>
           {wordCards.filter((e: any, i: number) => i % 2 === 0)}
         </div>
-        <PageControls />
+        <PageControls currentPage={page} setCurrentPage={setPage} />
       </div>
     </div>
   );
