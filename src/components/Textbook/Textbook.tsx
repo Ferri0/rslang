@@ -4,6 +4,7 @@ import { getUnitStyle } from './util/getUnitStyle';
 import { getFetchUrl } from './util/getFetchUrl';
 import { WordCard } from '../WordCard';
 import { PageControls } from '../PageControls';
+import { TextbookControls } from '../TextBookControls';
 
 type TextbookProps = {
   unit: number;
@@ -50,14 +51,7 @@ export function Textbook({ unit }: TextbookProps) {
   if (loading) {
     return (
       <div className={[style.textbook, unitStyle.bg].join(' ')}>
-        <div className={style.btnsBlock}>
-          <button
-            className={[style.btn, style.btn_home].join(' ')}
-            type="button"
-          />
-          <div className={style.settingsBlock} />
-          <div className={style.gamesBlock} />
-        </div>
+        <TextbookControls />
         <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
         <div className={style.wordsWrapper}>
           {'Загрузка...'}
@@ -69,14 +63,7 @@ export function Textbook({ unit }: TextbookProps) {
 
   return (
     <div className={[style.textbook, unitStyle.bg].join(' ')}>
-      <div className={style.btnsBlock}>
-        <button
-          className={[style.btn, style.btn_home].join(' ')}
-          type="button"
-        />
-        <div className={style.settingsBlock} />
-        <div className={style.gamesBlock} />
-      </div>
+      <TextbookControls />
       <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
       <div className={style.wordsWrapper}>
         <div className={style.wordsBlock}>
