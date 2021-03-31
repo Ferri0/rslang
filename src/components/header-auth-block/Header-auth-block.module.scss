@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  height: 50px;
 }
 
 .headerAuthBlockText {
@@ -13,26 +11,23 @@
 
 .headerAuthBlockButton {
   width: 130px;
-  height: 25px;
+  height: 35px;
   min-height: 25px;
   margin-left: 5px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 0;
-  border-radius: 5px;
+  color: #297ab9;
+  background: rgba(41, 122, 185, 0.2);
+  border: 1px solid #297ab9;
+  border-radius: 8px;
   outline: none;
 }
 
-@media (max-width: 739px) {
-  .headerAuthBlockWrapper {
-    justify-self: end;
-    // padding-right: 50px;
-  }
+.headerAuthBlockButton:hover {
+  font-weight: 800;
 }
 
-@media (max-width: 480px) {
-  .headerAuthBlockWrapper {
-    justify-self: start;
-    // padding-right: 0;
-    // padding-left: 50px;
-  }
+.headerAuthBlockLoginButton {
+  width: 60px;
+  margin-right: 25px;
+  background: none;
+  border: 0;
 }
