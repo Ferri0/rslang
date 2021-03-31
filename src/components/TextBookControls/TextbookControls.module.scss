@@ -4,7 +4,6 @@
   position: absolute;
   top: 25px;
   left: 2.5%;
-  width: 210px;
   height: 50px;
   @include flex(row, space-between, center);
 }
@@ -14,21 +13,20 @@
   height: 40px;
   background-color: rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
-  background-position: center;
   background-size: contain;
   border: 0;
   outline: none;
   cursor: pointer;
+  transition: all 0.5s;
 
   &_home {
     width: 50px;
     height: 50px;
+    margin-right: 20px;
     background-image: url('../../assets/icons/textBook/home.svg');
 
     &:hover {
       background-image: url('../../assets/icons/textBook/homeHover.svg');
-      transform: scale(1.05);
-      transition: all 0.5s;
     }
   }
 }
@@ -36,16 +34,23 @@
 .settingsBlock {
   width: 50px;
   height: 50px;
+  margin-right: 20px;
   background-image: url('../../assets/icons/textBook/settings.svg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left top;
   background-size: contain;
+  border-radius: 10px;
+  transition: all 0.5s;
+
+  &_active {
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.75);
+    background-image: url('../../assets/icons/textBook/settingsHover.svg');
+  }
 
   &:hover {
     background-image: url('../../assets/icons/textBook/settingsHover.svg');
-    transform: scale(1.05);
     cursor: pointer;
-    transition: all 0.5s;
   }
 }
 
@@ -54,13 +59,19 @@
   height: 50px;
   background-image: url('../../assets/icons/textBook/games.svg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left top;
   background-size: contain;
+  border-radius: 10px;
+  transition: all 0.5s;
+
+  &_active {
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.75);
+    background-image: url('../../assets/icons/textBook/gamesHover.svg');
+  }
 
   &:hover {
     background-image: url('../../assets/icons/textBook/gamesHover.svg');
-    transform: scale(1.05);
     cursor: pointer;
-    transition: all 0.5s;
   }
 }
