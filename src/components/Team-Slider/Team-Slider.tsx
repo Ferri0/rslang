@@ -8,7 +8,7 @@ export function TeamSlider() {
   const [angle, setAngle] = useState(0);
 
   const memberClick = (i: number) => {
-    const newArr = arr.map((el, ind) => {
+    const newArr = arr.map((_el, ind) => {
       if (ind === i) return 'active';
       return '';
     });
@@ -69,9 +69,20 @@ export function TeamSlider() {
         {/* generate team members status, desc */}
         {teamInfo.map((member, i) => {
           return (
-            <div className={`${style.infoBlock} ${style[cls[i]]}`}>
-              <div className={style.infoFirstLine}>
-                <a href={member.url} target="blank" className={style.url}>
+            <div
+              key={`${member.id}-info-block`}
+              className={`${style.infoBlock} ${style[cls[i]]}`}
+            >
+              <div
+                key={`${member.id}-info-line`}
+                className={style.infoFirstLine}
+              >
+                <a
+                  key={`${member.id}-url`}
+                  href={member.url}
+                  target="blank"
+                  className={style.url}
+                >
                   <i className="fab fa-github" />
                 </a>
                 <span key={`${member.id}-info-name`} className={style.infoName}>
