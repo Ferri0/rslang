@@ -3,6 +3,7 @@ import style from './Textbook.module.scss';
 import { getUnitStyle } from './util/getUnitStyle';
 import { getFetchUrl } from './util/getFetchUrl';
 import { WordCard } from '../WordCard';
+import { PageControls } from '../PageControls';
 
 type TextbookProps = {
   unit: number;
@@ -18,14 +19,12 @@ export function Textbook({ unit }: TextbookProps) {
   const unitStyle = getUnitStyle(unit);
 
   useEffect(() => {
-    console.log('first use effect');
     setLoading(true);
     setGroup(unit);
     setPage(0);
   }, [group, unit]);
 
   useEffect(() => {
-    console.log('use effect fetching');
     const fetchPage = async () => {
       const resolve = await fetch(getFetchUrl(group, page));
       const response = await resolve.json();
@@ -35,7 +34,6 @@ export function Textbook({ unit }: TextbookProps) {
   }, [page, group]);
 
   useEffect(() => {
-    console.log('use effect set elements');
     if (fetchedPage !== null) {
       const wordCards: any[] = [];
       fetchedPage.forEach((element: any, i: number) => {
@@ -75,21 +73,7 @@ export function Textbook({ unit }: TextbookProps) {
         <div className={style.wordsBlock}>
           {wordCards.filter((e: any, i: number) => i % 2 === 0)}
         </div>
-        <div className={style.pageControls}>
-          <button
-            className={[style.btn, style.btn_firstPage].join(' ')}
-          ></button>
-          <button
-            className={[style.btn, style.btn_prevPage].join(' ')}
-          ></button>
-          <div className={style.pageBlock}>1/30</div>
-          <button
-            className={[style.btn, style.btn_nextPage].join(' ')}
-          ></button>
-          <button
-            className={[style.btn, style.btn_lastPage].join(' ')}
-          ></button>
-        </div>
+        <PageControls />
       </div>
     </div>
   );

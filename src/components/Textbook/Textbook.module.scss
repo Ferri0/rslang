@@ -47,46 +47,6 @@
       transition: all 0.5s;
     }
   }
-
-  &_firstPage {
-    background-image: url('../../assets/icons/textBook/arrowFirstPage.svg');
-
-    &:hover {
-      background-image: url('../../assets/icons/textBook/arrowFirstPageHover.svg');
-      transform: scale(1.05);
-      transition: all 0.5s;
-    }
-  }
-
-  &_prevPage {
-    background-image: url('../../assets/icons/textBook/arrowPrevPage.svg');
-
-    &:hover {
-      background-image: url('../../assets/icons/textBook/arrowPrevPageHover.svg');
-      transform: scale(1.05);
-      transition: all 0.5s;
-    }
-  }
-
-  &_nextPage {
-    background-image: url('../../assets/icons/textBook/arrowNextPage.svg');
-
-    &:hover {
-      background-image: url('../../assets/icons/textBook/arrowNextPageHover.svg');
-      transform: scale(1.05);
-      transition: all 0.5s;
-    }
-  }
-
-  &_lastPage {
-    background-image: url('../../assets/icons/textBook/arrowLastPage.svg');
-
-    &:hover {
-      background-image: url('../../assets/icons/textBook/arrowLastPageHover.svg');
-      transform: scale(1.05);
-      transition: all 0.5s;
-    }
-  }
 }
 
 .settingsBlock {
@@ -136,15 +96,15 @@
   height: 100%;
 }
 
-.pageControls {
-  position: absolute;
-  right: 50%;
-  bottom: 15px;
-  width: 300px;
-  height: 40px;
-  transform: translate(50%, 0);
-  @include flex(row, space-between, center);
-}
+// .pageControls {
+//   position: absolute;
+//   right: 50%;
+//   bottom: 15px;
+//   width: 300px;
+//   height: 40px;
+//   transform: translate(50%, 0);
+//   @include flex(row, space-between, center);
+// }
 
 .pageBlock {
   color: #848994;
