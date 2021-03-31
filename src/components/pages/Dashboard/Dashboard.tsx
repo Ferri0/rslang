@@ -15,7 +15,6 @@ export function Dashboard() {
     <div className={style.dashboardPage}>
       <DashboardMenu />
       <div>
-        Dashboard Page
         <Switch>
           <Route exact path="/dashboard/textbook">
             <Textbook />
