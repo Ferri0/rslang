@@ -4,7 +4,7 @@ import { getUnitStyle } from './util/getUnitStyle';
 import { getFetchUrl } from './util/getFetchUrl';
 import { WordCard } from '../WordCard';
 import { PageControls } from '../PageControls';
-import { TextbookControls } from '../TextBookControls';
+import { TextbookControls } from '../TextbookControls';
 
 type TextbookProps = {
   unit: number;
@@ -16,8 +16,8 @@ export function Textbook({ unit }: TextbookProps) {
   const [loading, setLoading] = useState(true);
   const [fetchedPage, setFetchedPage] = useState(null);
   const [wordCards, setWordCards] = useState(null);
-  // const [displayBtns, setDisplayBtns] = useState(true);
-  //const [displayTranslate, setDisplayTranslate] = useState(true);
+  const [displayBtns, setDisplayBtns] = useState(true);
+  const [displayTranslate, setDisplayTranslate] = useState(true);
 
   const unitStyle = getUnitStyle(unit);
 
@@ -42,18 +42,30 @@ export function Textbook({ unit }: TextbookProps) {
       const wordCards: any[] = [];
       fetchedPage.forEach((element: any, i: number) => {
         wordCards.push(
-          <WordCard wordInfo={element} unitStyle={unitStyle} key={element.id} />
+          <WordCard
+            wordInfo={element}
+            unitStyle={unitStyle}
+            displayBtns={displayBtns}
+            displayTranslate={displayTranslate}
+            key={element.id}
+          />
         );
       });
       setWordCards(wordCards);
       setLoading(false);
     }
-  }, [fetchedPage]);
+  }, [fetchedPage, displayBtns, displayTranslate]);
 
   if (loading) {
     return (
       <div className={[style.textbook, unitStyle.bg].join(' ')}>
-        <TextbookControls />
+        <TextbookControls
+          displayBtns={{ value: displayBtns, set: setDisplayBtns }}
+          displayTranslate={{
+            value: displayTranslate,
+            set: setDisplayTranslate,
+          }}
+        />
         <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
         <div className={style.wordsWrapper}>
           {'Загрузка...'}
@@ -65,7 +77,13 @@ export function Textbook({ unit }: TextbookProps) {
 
   return (
     <div className={[style.textbook, unitStyle.bg].join(' ')}>
-      <TextbookControls />
+      <TextbookControls
+        displayBtns={{ value: displayBtns, set: setDisplayBtns }}
+        displayTranslate={{
+          value: displayTranslate,
+          set: setDisplayTranslate,
+        }}
+      />
       <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
       <div className={style.wordsWrapper}>
         <div className={style.wordsBlock}>

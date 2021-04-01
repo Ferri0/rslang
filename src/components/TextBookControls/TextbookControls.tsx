@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
 import style from './TextbookControls.module.scss';
 
-export function TextbookControls() {
+type TextbookControlsProps = {
+  displayBtns: any;
+  displayTranslate: any;
+};
+
+export function TextbookControls({
+  displayBtns,
+  displayTranslate,
+}: TextbookControlsProps) {
   const [settingsActive, setSettingsActive] = useState(false);
   const [gamesActive, setGamesActive] = useState(false);
+
+  const handleBtnsClick = () => {
+    displayBtns.set(!displayBtns.value);
+  };
+
+  const handleTranslateClick = () => {
+    displayTranslate.set(!displayTranslate.value);
+  };
+
   return (
     <div className={style.btnsBlock}>
       <button className={[style.btn, style.btn_home].join(' ')} type="button" />
@@ -23,7 +40,12 @@ export function TextbookControls() {
         />
         <div className={style.settingWrapper}>
           <label className={style.container}>
-            <input type="checkbox" id="translate" />
+            <input
+              type="checkbox"
+              id="translate"
+              checked={displayBtns.value}
+              onClick={handleBtnsClick}
+            />
             <span className={style.checkmark}></span>
           </label>
           <div className={style.settingWrapperIcons}>
@@ -34,7 +56,12 @@ export function TextbookControls() {
         </div>
         <div className={style.settingWrapper}>
           <label className={style.container}>
-            <input type="checkbox" id="translate" />
+            <input
+              type="checkbox"
+              id="translate"
+              checked={displayTranslate.value}
+              onClick={handleTranslateClick}
+            />
             <span className={style.checkmark}></span>
           </label>
           {'Перевод слов'}

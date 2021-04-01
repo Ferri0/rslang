@@ -2,9 +2,19 @@ import React from 'react';
 import style from './WordCard.module.scss';
 import { wait } from './util/wait';
 
-type WordCardProps = { wordInfo: any; unitStyle: any };
+type WordCardProps = {
+  wordInfo: any;
+  unitStyle: any;
+  displayBtns: boolean;
+  displayTranslate: boolean;
+};
 
-export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
+export function WordCard({
+  wordInfo,
+  unitStyle,
+  displayBtns,
+  displayTranslate,
+}: WordCardProps) {
   const apiUrl: string = 'https://yaia-team-rslang-api.herokuapp.com/';
 
   const playAudio = (e: any) => {
@@ -44,20 +54,23 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
         className={[style.tabTitle, unitStyle.tabTitleHover].join(' ')}
       >
         <span>{wordInfo.word}</span>
-        <div className={style.starImg}></div>
+        {displayBtns ? <div className={style.starImg}></div> : null}
       </label>
       <section className={style.tabContent}>
         <div className={style.tabContent_header}>
           <p className={style.wordTitle}>
-            {wordInfo.word} - {wordInfo.transcription} -{' '}
-            {wordInfo.wordTranslate}
+            {wordInfo.word} - {wordInfo.transcription}
+            {displayTranslate ? ` - ${wordInfo.wordTranslate}` : null}
           </p>
           <div className={style.tabContent_header___btnsBlock}>
-            <button
-              className={style.deleteWordBtn}
-              type="button"
-              onClick={() => console.log('delete word function')}
-            />
+            {displayBtns ? (
+              <button
+                className={style.deleteWordBtn}
+                type="button"
+                onClick={() => console.log('delete word function')}
+              />
+            ) : null}
+
             <button
               className={style.playSoundBtn}
               type="button"
@@ -73,11 +86,15 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
         <h4>Meaning:</h4>
         <div className={unitStyle.separator}></div>
         <span dangerouslySetInnerHTML={{ __html: wordInfo.textMeaning }}></span>
-        <span>{wordInfo.textMeaningTranslate}</span>
+        {displayTranslate ? <span>{wordInfo.textMeaningTranslate}</span> : null}
         <h4>Example:</h4>
         <div className={unitStyle.separator}></div>
         <span dangerouslySetInnerHTML={{ __html: wordInfo.textExample }}></span>
-        <span className={style.lastLine}>{wordInfo.textExampleTranslate}</span>
+        {displayTranslate ? (
+          <span className={style.lastLine}>
+            {wordInfo.textExampleTranslate}
+          </span>
+        ) : null}
         <audio src={apiUrl + wordInfo.audio} id={`${wordInfo.id}-audio`} />
         <audio
           src={apiUrl + wordInfo.audioMeaning}

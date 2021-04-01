@@ -15,6 +15,10 @@
     margin: 0.5rem 0 0 0;
   }
 
+  &:last-child span {
+    margin-bottom: 10px;
+  }
+
   &_header {
     width: 100%;
     @include flex(row, space-between, center);
@@ -27,9 +31,7 @@
     }
   }
 }
-.lastLine {
-  margin-bottom: 1rem;
-}
+
 .tab {
   position: relative;
   min-width: 402px;
@@ -40,6 +42,7 @@
   border-radius: 10px;
   box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.25);
 }
+
 .tabTitle {
   display: block;
   height: 50px;
@@ -56,14 +59,17 @@
     line-height: 25px;
   }
 }
+
 .tabTitle::after {
   position: absolute;
   right: 10px;
   content: '+';
 }
+
 .tab :checked + .tabTitle::after {
   content: '−';
 }
+
 .tab :checked ~ .tabContent {
   max-height: 70rem;
 }
@@ -79,6 +85,8 @@
 }
 
 .deleteWordBtn {
+  position: absolute;
+  left: 0;
   width: 20px;
   height: 20px;
   background-color: rgba(0, 0, 0, 0);
@@ -97,6 +105,8 @@
 }
 
 .playSoundBtn {
+  position: absolute;
+  right: 0;
   width: 30px;
   height: 30px;
   margin-bottom: 6px;
