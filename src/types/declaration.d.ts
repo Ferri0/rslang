@@ -3,7 +3,6 @@ declare module '*.scss' {
   export = content;
 }
 
-declare module '*.tsx' {
-  const content: { [className: string]: string };
-  export = content;
-}
+declare module '*.tsx';
+declare module '*.jpg';
+declare module '*.png';

@@ -1,10 +1,17 @@
 .menu {
   display: flex;
+  justify-content: space-evenly;
+  width: calc(100% - 500px);
 }
 
 .menuItem {
-  color: #fff;
+  color: #0b122c;
   text-decoration: none;
+  transition: font-weight 0.5s ease;
+}
+
+.menuItem:hover {
+  font-weight: 800;
 }
 
 .menuItem:not(:last-child) {

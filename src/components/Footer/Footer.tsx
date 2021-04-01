@@ -17,6 +17,9 @@ export function Footer() {
       <a href="https://github.com/IgorAleks88" target="blank">
         Igor Alekseyenko
       </a>
+      <a href="https://github.com/buiiz" target="blank">
+        Ivan Tur
+      </a>
       <a href="https://rs.school/react/" target="blank">
         <img alt="rsschool" src="../../assets/images/rs-logo.png" />
       </a>
