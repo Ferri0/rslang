@@ -1,0 +1,30 @@
+.bg {
+  background: url('../../../assets/images/textbookUnits/unit2/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit2/lower-left-bg.svg');
+  background-color: #ebebeb;
+  background-repeat: no-repeat;
+  background-position: top right, left bottom;
+  background-size: 100%, 100%;
+}
+
+.tab {
+  border: 1px solid #bbb3eb;
+  border-left: 12px solid #bbb3eb;
+}
+
+.input:checked + label {
+  background-color: #bbb3eb;
+  border-radius: 0 8px 0 0;
+}
+
+.separator {
+  position: relative;
+  width: 100%;
+  min-height: 2px;
+  background-color: #bbb3eb;
+}
+
+.tabTitleHover:hover {
+  background-color: #bbb3eb;
+  cursor: pointer;
+}
