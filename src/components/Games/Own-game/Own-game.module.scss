@@ -1,0 +1,6 @@
+@import '../../../scss/abstracts.scss';
+
+.ownGameWrapper {
+  background-color: aqua;
+  @include size(100%, 100%);
+}
