@@ -86,7 +86,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "lint-staged": {
-    "*.{js,jsx}": "eslint --fix",
+    "*.{js,jsx,ts}": "eslint --fix",
     "*.css": "stylelint",
     "*.scss": "stylelint --syntax=scss",
     "*.{js,jsx,ts,tsx,md,html,css,scss,ts}": "prettier --write"
