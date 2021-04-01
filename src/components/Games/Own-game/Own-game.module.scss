@@ -19,6 +19,7 @@
 }
 
 .mainFieldWrapper {
+  display: flex;
   min-height: 25px;
   color: aliceblue;
   background-color: chartreuse;
@@ -33,8 +34,21 @@
 }
 
 .taskBlocksWrapper {
+  display: flex;
   min-height: 25px;
   color: aliceblue;
   background-color: darkorange;
   @include size(100%, 30%);
+}
+
+.taskBlock {
+  min-width: 50px;
+  min-height: 25px;
+  max-height: 30px;
+  color:steelblue;
+  font-size: 20px;
+  text-align: center;
+  background-color: yellow;
+  border: 2px solid whitesmoke;
+  @include size(auto, auto);
 }
