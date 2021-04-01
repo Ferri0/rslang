@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Words } from '../../../../types';
 import { GameLogic } from '../Game-logic/Game-logic';
 
 import style from './Intro.module.scss';
 
-export const Intro = () => {
+export const Intro = (): JSX.Element => {
   const [startGame, setStartGame] = useState(false);
 
   const onStartGame = () => {
@@ -26,7 +25,7 @@ export const Intro = () => {
         </h3>
         <p>1. Кликните по нему мышью;</p>
         <p>2. Используйте клавиши 1, 2, 3, 4.</p>
-        <button className={style.btn} onClick={onStartGame}>
+        <button type="button" className={style.btn} onClick={onStartGame}>
           Начать
         </button>
       </div>

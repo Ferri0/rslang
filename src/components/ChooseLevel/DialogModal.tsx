@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Form } from './Form';
 
 import style from './ChooseLevel.module.scss';
@@ -7,7 +8,6 @@ import { Spinner } from '../Spinner';
 import { ErrorIndicator } from '../Error-indicator';
 import { Context } from '../word-service-context';
 import { ServiceWordsType } from '../../types';
-import { useDispatch } from 'react-redux';
 import { fetchWords } from '../../store/actions';
 
 export const DialogModal = () => {

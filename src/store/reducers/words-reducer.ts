@@ -1,9 +1,4 @@
-import {
-  WordsActionTypes,
-  WordState,
-  WordsAction,
-  RootState,
-} from '../../types';
+import { WordsActionTypes, WordState, WordsAction } from '../../types';
 
 const initialState: WordState = {
   words: [],

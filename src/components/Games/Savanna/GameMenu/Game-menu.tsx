@@ -7,10 +7,10 @@ interface heart {
   heartsLeft: number;
 }
 
-export const GameMenu = ({ heartsLeft }: heart) => {
+export const GameMenu = ({ heartsLeft }: heart): JSX.Element => {
   const headrtRender = (): JSX.Element[] => {
     const headrts = [];
-    for (let i = 0; i < heartsLeft; i++) {
+    for (let i = 0; i < heartsLeft; i += 1) {
       headrts.push(
         <img key={i} className={style.heart} src={heart} alt="heart" />
       );

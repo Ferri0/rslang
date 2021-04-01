@@ -12,11 +12,11 @@ const audioBuffer = async (url: string): Promise<void> => {
     const decodeAudio = await ctx.decodeAudioData(arrayBuffer);
     audio = decodeAudio;
   } catch (error) {
-    console.error(error);
+    throw Error(error);
   }
 };
 
-export const playback = async (url: string) => {
+export const playback = async (url: string): Promise<void> => {
   audioBuffer(url);
   const ps = ctx.createBufferSource();
   ps.buffer = audio;

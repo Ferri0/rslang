@@ -6,7 +6,7 @@ export enum WordsActionTypes {
   FETCH_WORDS_FAILUR = 'FETCH_WORDS_FAILUR',
 }
 
-interface Word {
+export interface Word {
   audio: string;
   audioExample: string;
   audioMeaning: string;

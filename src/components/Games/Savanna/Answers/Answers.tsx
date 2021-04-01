@@ -3,24 +3,27 @@ import React from 'react';
 import style from './Answers.module.scss';
 
 interface ArrayOfWords {
-  threeRandomWord: string[];
+  answersWords: string[];
+  question: string;
+  setRightAnswer: (is: boolean) => void;
 }
 
-export const Answers = ({ threeRandomWord }: ArrayOfWords) => {
-  return (
-    <div className={style.attempt_words}>
-      {threeRandomWord.map((str: string, idx: number) => {
-        return (
-          <button
-            key={idx}
-            className={style.answer}
-            onKeyUp={() => {}}
-            onClick={() => {}}
-          >
-            {idx + 1}.{str}
-          </button>
-        );
-      })}
-    </div>
-  );
-};
+export const Answers = ({
+  answersWords,
+  question,
+  setRightAnswer,
+}: ArrayOfWords): JSX.Element => (
+  <div className={style.attempt_words}>
+    {answersWords.map((str: string, idx: number) => (
+      <button
+        type="button"
+        // eslint-disable-next-line react/no-array-index-key
+        key={idx}
+        className={style.answer}
+        onClick={() => setRightAnswer(str === question)}
+      >
+        {idx + 1}.{str}
+      </button>
+    ))}
+  </div>
+);

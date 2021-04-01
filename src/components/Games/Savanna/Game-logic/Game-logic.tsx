@@ -1,39 +1,39 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Words } from '../../../../types';
 import { GameMenu } from '.';
 import { Answers } from '../Answers';
-import style from './Game-logic.module.scss';
-import errorMp3 from '../../../../assets/sounds/erro.mp3';
 import { useTypedSelector } from '../../../../hooks';
+import { shuffle } from '../../../../utils';
 
-const shuffle = (arr: Words): Words => [...arr.sort(() => Math.random() - 0.5)];
+import style from './Game-logic.module.scss';
+import rightAnswerSound from '../../../../assets/sounds/right_answer.mp3';
 
-const getThreeRandomWord = (arr: Words): string[] => {
-  return shuffle(arr)
-    .slice(0, 3)
-    .map((item) => item.wordTranslate);
-};
-
-export const GameLogic = () => {
-  const [heartsLeft, setHeartsLeft] = useState(5);
+export const GameLogic = (): JSX.Element => {
   const [scrollBg, setScrollBg] = useState({ backgroundPositionY: '100%' });
+  const [heartsLeft, setHeartsLeft] = useState(5);
+  const [rightAnswer, setRightAnswer] = useState(false);
 
   const { words } = useTypedSelector((state) => state.groupOfWords);
 
-  const arrayWords = shuffle(words);
+  const getThreeRandomWord = (arr: Words): string[] =>
+    shuffle(arr)
+      .slice(0, 3)
+      .map((item) => item.wordTranslate);
 
-  const [answers, setAnswers] = useState(() => shuffle(words));
+  const [wordsToPlay, setWordsToPlay] = useState(shuffle(words));
 
-  const [question, setQuestion] = useState(answers.pop().word);
-
-  const threeRandomWord = [
+  const [question, setQuestion] = useState(wordsToPlay[wordsToPlay.length - 1]);
+  const [answersWords, setAnswersWords] = useState([
     ...getThreeRandomWord(words),
-    answers.pop().wordTranslate,
-  ];
+    wordsToPlay[wordsToPlay.length - 1].wordTranslate,
+  ]);
 
-  console.log(threeRandomWord);
-  const sound = new Audio(errorMp3);
-  console.log(answers);
+  useEffect(() => {
+    setAnswersWords([
+      ...getThreeRandomWord(words),
+      wordsToPlay[wordsToPlay.length - 1].wordTranslate,
+    ]);
+  }, [words, wordsToPlay]);
 
   useEffect(() => {
     const timeId = setTimeout(() => console.log('Playing sound'), 2000);
@@ -44,12 +44,12 @@ export const GameLogic = () => {
 
   const onscrollToTop = () => {
     setScrollBg(({ backgroundPositionY }) => ({
-      backgroundPositionY: parseInt(backgroundPositionY) - 10 + '%',
+      backgroundPositionY: `${parseInt(backgroundPositionY, 10) - 5}%`,
     }));
   };
 
   const setQuestionWord = () => {
-    setQuestion(answers.pop().word);
+    setQuestion(wordsToPlay.pop());
   };
 
   const styles: React.CSSProperties = {
@@ -60,25 +60,44 @@ export const GameLogic = () => {
     top: '50%',
   };
 
+  if (rightAnswer) {
+    const sound = new Audio(rightAnswerSound);
+    sound.play();
+    setQuestion(wordsToPlay.pop());
+    setRightAnswer(false);
+  }
+
   return (
     <div className={style.game_wrapper}>
       <GameMenu heartsLeft={heartsLeft} />
       <div className={style.game_main}>
         <div style={scrollBg} className={style.game_image} />
         <div className={style.game_words}>
-          <div className={style.question}>{question}</div>
-          <Answers threeRandomWord={threeRandomWord} />
+          <div className={style.question}>{question.word}</div>
+          <Answers
+            setRightAnswer={setRightAnswer}
+            question={question.wordTranslate}
+            answersWords={answersWords}
+          />
         </div>
-        <button onClick={onscrollToTop} className={style.scrollBtn}>
+        <button
+          type="button"
+          onClick={onscrollToTop}
+          className={style.scrollBtn}
+        >
           Scroll
         </button>
-        <button onClick={setQuestionWord} className={style.play_word}>
+        <button
+          type="button"
+          onClick={setQuestionWord}
+          className={style.play_word}
+        >
           Play word
         </button>
         <div style={styles}>
-          {answers.map(({ wordTranslate }) => {
-            return <span key={wordTranslate}>{wordTranslate}</span>;
-          })}
+          {wordsToPlay.map(({ wordTranslate }) => (
+            <span key={wordTranslate}>{wordTranslate}</span>
+          ))}
         </div>
       </div>
     </div>

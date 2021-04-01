@@ -19,7 +19,7 @@ const wordsFetchError = (error: Error): WordsAction => ({
 export const fetchWords = (
   wordsService: ServiceWordsType,
   group: string
-) => async (dispatch: Dispatch<WordsAction>) => {
+) => async (dispatch: Dispatch<WordsAction>): Promise<void> => {
   try {
     dispatch({ type: WordsActionTypes.FETCH_WORDS_REQUEST });
     const response = await wordsService.getWords(group);
