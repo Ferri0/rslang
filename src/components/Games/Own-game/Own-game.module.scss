@@ -4,3 +4,37 @@
   background-color: aqua;
   @include size(100%, 100%);
 }
+.linkWrapper {
+  min-height: 25px;
+  color: aliceblue;
+  background-color: deeppink;
+  @include size(100%, 5%);
+}
+
+.healthPointsWrapper {
+  min-height: 25px;
+  color: aliceblue;
+  background-color: brown;
+  @include size(100%, 5%);
+}
+
+.mainFieldWrapper {
+  min-height: 25px;
+  color: aliceblue;
+  background-color: chartreuse;
+  @include size(100%, 50%);
+}
+
+.taskWrapper {
+  min-height: 25px;
+  color: aliceblue;
+  background-color: darkcyan;
+  @include size(100%, 10%);
+}
+
+.taskBlocksWrapper {
+  min-height: 25px;
+  color: aliceblue;
+  background-color: darkorange;
+  @include size(100%, 30%);
+}
