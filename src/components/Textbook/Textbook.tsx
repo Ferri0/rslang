@@ -16,6 +16,8 @@ export function Textbook({ unit }: TextbookProps) {
   const [loading, setLoading] = useState(true);
   const [fetchedPage, setFetchedPage] = useState(null);
   const [wordCards, setWordCards] = useState(null);
+  // const [displayBtns, setDisplayBtns] = useState(true);
+  //const [displayTranslate, setDisplayTranslate] = useState(true);
 
   const unitStyle = getUnitStyle(unit);
 
