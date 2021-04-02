@@ -44,7 +44,7 @@ export function TextbookControls({
               type="checkbox"
               id="translate"
               checked={displayBtns.value}
-              onClick={handleBtnsClick}
+              onChange={handleBtnsClick}
             />
             <span className={style.checkmark}></span>
           </label>
@@ -60,7 +60,7 @@ export function TextbookControls({
               type="checkbox"
               id="translate"
               checked={displayTranslate.value}
-              onClick={handleTranslateClick}
+              onChange={handleTranslateClick}
             />
             <span className={style.checkmark}></span>
           </label>

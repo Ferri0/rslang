@@ -1,5 +1,7 @@
 import React from 'react';
 import style from './WordCard.module.scss';
+import { addToDeleted, removeUserWord } from '../../service/User-words-service';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { wait } from './util/wait';
 
 type WordCardProps = {
@@ -16,6 +18,8 @@ export function WordCard({
   displayTranslate,
 }: WordCardProps) {
   const apiUrl: string = 'https://yaia-team-rslang-api.herokuapp.com/';
+  // const { token } = useTypedSelector((state) => state.auth);
+  // console.log(token);
 
   const playAudio = (e: any) => {
     const audio: any = document.getElementById(`${wordInfo.id}-audio`);
@@ -59,8 +63,8 @@ export function WordCard({
       <section className={style.tabContent}>
         <div className={style.tabContent_header}>
           <p className={style.wordTitle}>
-            {`${wordInfo.word} - ${wordInfo.wordTranslate} - ${
-              displayTranslate ? `${wordInfo.wordTranslate}` : null
+            {`${wordInfo.word} - ${wordInfo.transcription} ${
+              displayTranslate ? `- ${wordInfo.wordTranslate}` : ''
             }`}
           </p>
           <div className={style.tabContent_header___btnsBlock}>
