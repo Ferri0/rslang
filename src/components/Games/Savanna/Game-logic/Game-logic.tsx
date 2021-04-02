@@ -1,46 +1,103 @@
 import React, { useEffect, useState } from 'react';
-import { Words } from '../../../../types';
+import { Word } from '../../../../types';
 import { GameMenu } from '.';
-import { Answers } from '../Answers';
-import { useTypedSelector } from '../../../../hooks';
+import { useTypedSelector, useAction } from '../../../../hooks';
 import { shuffle } from '../../../../utils';
 
 import style from './Game-logic.module.scss';
-import rightAnswerSound from '../../../../assets/sounds/right_answer.mp3';
+import rightAnswerSound from '../../../../assets/sounds/correct.mp3';
+import { GameWords } from '../Game-words';
 
-export const GameLogic = (): JSX.Element => {
+interface IWords {
+  words: Word[];
+}
+
+interface IProps {
+  onscrollToTop: () => void;
+  setQuestionWord: () => void;
+  wordsToPlay: Word[];
+}
+
+const TestComponent = ({
+  onscrollToTop,
+  setQuestionWord,
+  wordsToPlay,
+}: IProps): JSX.Element => {
+  const styles: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'black',
+    position: 'absolute',
+    top: '50%',
+  };
+  return (
+    <>
+      <button type="button" onClick={onscrollToTop} className={style.scrollBtn}>
+        Scroll
+      </button>
+      <button
+        type="button"
+        onClick={setQuestionWord}
+        className={style.play_word}
+      >
+        Play word
+      </button>
+      <div style={styles}>
+        {wordsToPlay.map(({ wordTranslate }) => (
+          <span key={wordTranslate}>{wordTranslate}</span>
+        ))}
+      </div>
+    </>
+  );
+};
+
+export const GameLogic = ({ words }: IWords): JSX.Element => {
   const [scrollBg, setScrollBg] = useState({ backgroundPositionY: '100%' });
-  const [heartsLeft, setHeartsLeft] = useState(5);
-  const [rightAnswer, setRightAnswer] = useState(false);
+  const {
+    hearts,
+    rightAnswer,
+    wordsToPlay,
+    wordsInButtons,
+    question,
+  } = useTypedSelector((state) => state.savannaState);
 
-  const { words } = useTypedSelector((state) => state.groupOfWords);
+  const {
+    setHearts,
+    setRightAnswerAction,
+    setWordsToPlayAction,
+    questionAction,
+    setButtonsAction,
+  } = useAction();
 
-  const getThreeRandomWord = (arr: Words): string[] =>
+  const getThreeRandomWord = (arr: Word[]): string[] =>
     shuffle(arr)
       .slice(0, 3)
       .map((item) => item.wordTranslate);
 
-  const [wordsToPlay, setWordsToPlay] = useState(shuffle(words));
-
-  const [question, setQuestion] = useState(wordsToPlay[wordsToPlay.length - 1]);
-  const [answersWords, setAnswersWords] = useState([
-    ...getThreeRandomWord(words),
-    wordsToPlay[wordsToPlay.length - 1].wordTranslate,
-  ]);
+  const sound = new Audio(rightAnswerSound);
 
   useEffect(() => {
-    setAnswersWords([
-      ...getThreeRandomWord(words),
-      wordsToPlay[wordsToPlay.length - 1].wordTranslate,
-    ]);
-  }, [words, wordsToPlay]);
-
-  useEffect(() => {
-    const timeId = setTimeout(() => console.log('Playing sound'), 2000);
-    return () => {
-      clearTimeout(timeId);
-    };
+    setWordsToPlayAction(shuffle(words));
+    setHearts(5);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (wordsToPlay.length !== 0) {
+      const newButtonsToPlay = shuffle([
+        ...getThreeRandomWord(words),
+        wordsToPlay[wordsToPlay.length - 1].wordTranslate,
+      ]);
+      setButtonsAction(newButtonsToPlay);
+      questionAction(wordsToPlay[wordsToPlay.length - 1]);
+    }
+
+    const timerID = setTimeout(() => setHearts(hearts - 1), 5000);
+    return () => {
+      clearTimeout(timerID);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [words, wordsToPlay]);
 
   const onscrollToTop = () => {
     setScrollBg(({ backgroundPositionY }) => ({
@@ -49,56 +106,42 @@ export const GameLogic = (): JSX.Element => {
   };
 
   const setQuestionWord = () => {
-    setQuestion(wordsToPlay.pop());
-  };
-
-  const styles: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: 'black',
-    position: 'absolute',
-    top: '50%',
+    questionAction(wordsToPlay[wordsToPlay.length - 1]);
+    setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
   };
 
   if (rightAnswer) {
-    const sound = new Audio(rightAnswerSound);
+    onscrollToTop();
     sound.play();
-    setQuestion(wordsToPlay.pop());
-    setRightAnswer(false);
+    sound.currentTime = 0;
+    questionAction(wordsToPlay[wordsToPlay.length - 1]);
+    setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
+    setRightAnswerAction(false);
+  }
+
+  if (wordsToPlay.length < 1) {
+    return (
+      <div>
+        <dialog open>TABLE WITH RESULTS</dialog>
+      </div>
+    );
   }
 
   return (
     <div className={style.game_wrapper}>
-      <GameMenu heartsLeft={heartsLeft} />
+      <GameMenu hearts={hearts} />
       <div className={style.game_main}>
         <div style={scrollBg} className={style.game_image} />
-        <div className={style.game_words}>
-          <div className={style.question}>{question.word}</div>
-          <Answers
-            setRightAnswer={setRightAnswer}
-            question={question.wordTranslate}
-            answersWords={answersWords}
-          />
-        </div>
-        <button
-          type="button"
-          onClick={onscrollToTop}
-          className={style.scrollBtn}
-        >
-          Scroll
-        </button>
-        <button
-          type="button"
-          onClick={setQuestionWord}
-          className={style.play_word}
-        >
-          Play word
-        </button>
-        <div style={styles}>
-          {wordsToPlay.map(({ wordTranslate }) => (
-            <span key={wordTranslate}>{wordTranslate}</span>
-          ))}
-        </div>
+        <GameWords
+          question={question}
+          wordsInButtons={wordsInButtons}
+          setRightAnswerAction={setRightAnswerAction}
+        />
+        <TestComponent
+          onscrollToTop={onscrollToTop}
+          setQuestionWord={setQuestionWord}
+          wordsToPlay={wordsToPlay}
+        />
       </div>
     </div>
   );

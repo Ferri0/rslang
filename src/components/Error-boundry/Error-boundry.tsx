@@ -1,8 +1,15 @@
-import React, { Component, ReactChild } from 'react';
+import React, { Component } from 'react';
 import { ErrorIndicator } from '../Error-indicator';
 
-class ErrorBoundry extends Component {
-  constructor(props: ReactChild) {
+type MyState = {
+  hasError: boolean;
+};
+type Children = {
+  children: React.ReactNode;
+};
+
+class ErrorBoundry extends Component<Children, Readonly<MyState>> {
+  constructor(props: Children) {
     super(props);
     this.state = {
       hasError: false,
@@ -13,7 +20,7 @@ class ErrorBoundry extends Component {
     this.setState({ hasError: true });
   }
 
-  render(): JSX.Element {
+  render(): React.ReactNode {
     const { hasError } = this.state;
 
     if (hasError) {

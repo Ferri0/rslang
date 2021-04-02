@@ -1,0 +1,23 @@
+.game_words {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.scrollBtn,
+.play_word {
+  position: absolute;
+  top: 50px;
+  width: 150px;
+  height: 25px;
+  background-color: tomato;
+  outline: none;
+  cursor: pointer;
+}
+
+.play_word {
+  top: 80px;
+}

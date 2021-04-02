@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
+import { useTypedSelector } from '../../../../hooks';
 import { GameLogic } from '../Game-logic/Game-logic';
 
 import style from './Intro.module.scss';
 
 export const Intro = (): JSX.Element => {
   const [startGame, setStartGame] = useState(false);
+  const { words } = useTypedSelector((state) => state.groupOfWords);
 
   const onStartGame = () => {
     setStartGame(true);
   };
 
   if (startGame) {
-    return <GameLogic />;
+    return <GameLogic words={words} />;
   }
 
   return (

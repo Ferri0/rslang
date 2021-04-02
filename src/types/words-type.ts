@@ -1,5 +1,3 @@
-import { AuthState } from './auth-types';
-
 export enum WordsActionTypes {
   FETCH_WORDS_REQUEST = 'FETCH_WORDS_REQUEST',
   FETCH_WORDS_SUCCESS = 'FETCH_WORDS_SUCCESS',
@@ -23,15 +21,13 @@ export interface Word {
   wordTranslate: string;
 }
 
-export type Words = Array<Word>;
-
 type wordsRequested = {
   type: WordsActionTypes.FETCH_WORDS_REQUEST;
 };
 
 type WordsLoadedAction = {
   type: WordsActionTypes.FETCH_WORDS_SUCCESS;
-  payload: Words;
+  payload: Word[];
 };
 
 type WordsFetchError = {
@@ -40,14 +36,9 @@ type WordsFetchError = {
 };
 
 export type WordState = {
-  words: Words;
+  words: Word[];
   loading: boolean;
   error: null | Error;
 };
-
-export interface RootState {
-  auth: AuthState;
-  words: WordState;
-}
 
 export type WordsAction = wordsRequested | WordsLoadedAction | WordsFetchError;

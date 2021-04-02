@@ -1,17 +1,17 @@
 import { Dispatch } from 'react';
 import {
   WordsActionTypes,
-  Words,
+  Word,
   WordsAction,
   ServiceWordsType,
 } from '../../types';
 
-const wordsLoaded = (words: Words): WordsAction => ({
+export const wordsLoaded = (words: Word[]): WordsAction => ({
   type: WordsActionTypes.FETCH_WORDS_SUCCESS,
   payload: words,
 });
 
-const wordsFetchError = (error: Error): WordsAction => ({
+export const wordsFetchError = (error: Error): WordsAction => ({
   type: WordsActionTypes.FETCH_WORDS_FAILUR,
   payload: error,
 });
@@ -28,5 +28,3 @@ export const fetchWords = (
     dispatch(wordsFetchError(error));
   }
 };
-
-export { wordsLoaded, wordsFetchError };

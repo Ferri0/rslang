@@ -1,5 +1,3 @@
-import { Words } from '../types';
-
-export const shuffle = (arr: Words): Words => [
+export const shuffle = <T>(arr: T[]): T[] => [
   ...arr.sort(() => Math.random() - 0.5),
 ];
