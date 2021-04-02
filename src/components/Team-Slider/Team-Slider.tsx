@@ -26,8 +26,7 @@ export function TeamSlider() {
           <div className={style.circle} />
 
           {/* generate team members mini photo */}
-          {teamInfo.map((member, i) => {
-            return (
+          {teamInfo.map((member, i) => (
               <div
                 key={`${member.id}-img`}
                 className={`${style.miniPhoto} ${style[cls[i]]}`}
@@ -39,36 +38,30 @@ export function TeamSlider() {
                 }}
                 onClick={() => memberClick(i)}
               />
-            );
-          })}
+            ))}
         </div>
         {/* generate team members main photo */}
-        {teamInfo.map((member, i) => {
-          return (
+        {teamInfo.map((member, i) => (
             <div
               key={`${member.id}-main-img`}
               className={`${style.photo} ${style[cls[i]]}`}
               style={{ background: `url("${member.img}")` }}
             />
-          );
-        })}
+          ))}
 
         {/* generate team members name */}
-        {teamInfo.map((member, i) => {
-          return (
+        {teamInfo.map((member, i) => (
             <div
               key={`${member.id}-name`}
               className={`${style.name} ${style[cls[i]]}`}
             >
               {member.title}
             </div>
-          );
-        })}
+          ))}
       </div>
       <div className={style.sliderInfo}>
         {/* generate team members status, desc */}
-        {teamInfo.map((member, i) => {
-          return (
+        {teamInfo.map((member, i) => (
             <div className={`${style.infoBlock} ${style[cls[i]]}`}>
               <div className={style.infoFirstLine}>
                 <a href={member.url} target="blank" className={style.url}>
@@ -87,8 +80,7 @@ export function TeamSlider() {
                 {member.desc}
               </span>
             </div>
-          );
-        })}
+          ))}
       </div>
     </div>
   );

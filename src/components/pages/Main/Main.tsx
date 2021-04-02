@@ -1,9 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../../Header';
 import { Games } from '../../Games';
 import { Footer } from '../../Footer';
 import style from './Main.module.scss';
-import { Link } from 'react-router-dom';
 import { TeamSlider } from '../../Team-Slider';
 
 export function MainPage() {

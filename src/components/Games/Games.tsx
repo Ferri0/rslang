@@ -16,16 +16,14 @@ export function Games() {
         изучении новых слов.
       </span>
       <div className={style.gameCards}>
-        {arrGame.map((game) => {
-          return (
+        {arrGame.map((game) => (
             <Link
               key={`game-card-${game}`}
               to={`/dashboard/games/${game.toLowerCase()}`}
             >
               <PromoGameCard title={game} />
             </Link>
-          );
-        })}
+          ))}
       </div>
     </div>
   );

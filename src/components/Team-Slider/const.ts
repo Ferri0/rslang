@@ -22,8 +22,8 @@ for (let i = 0; i < teamInfo.length; i += 1) {
   const x = circusRadius * Math.cos((angle * Math.PI) / 180);
   const right = -halfWidthMiniPhoto - x + circusRadius;
   const el = {
-    top: top,
-    right: right,
+    top,
+    right,
   };
   coord[i] = el;
   angle += angleH;

@@ -1,9 +1,7 @@
-const wait = (ms: number) => {
-  return new Promise((resolve) =>
+const wait = (ms: number) => new Promise((resolve) =>
     setTimeout(() => {
       resolve('DONE');
     }, ms * 1000)
   );
-};
 
 export { wait };

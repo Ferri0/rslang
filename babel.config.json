@@ -3,10 +3,21 @@
     [
       "@babel/preset-env",
       {
-        "exclude": ["transform-async-to-generator", "transform-regenerator"]
+        "exclude": [
+          "transform-async-to-generator",
+          "transform-regenerator"
+        ]
       }
     ],
-    "@babel/preset-react"
+    "@babel/preset-react",
+    "@babel/preset-flow"
   ],
-  "plugins": [["@babel/plugin-proposal-class-properties", { "loose": true }]]
+  "plugins": [
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ]
+  ]
 }

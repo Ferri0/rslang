@@ -8,7 +8,7 @@ export const Savanna = () => {
 
   const onscrollToTop = () => {
     setScrollBg(({ backgroundPositionY }) => ({
-      backgroundPositionY: parseInt(backgroundPositionY) - 10 + '%',
+      backgroundPositionY: `${parseInt(backgroundPositionY) - 10  }%`,
     }));
   };
 

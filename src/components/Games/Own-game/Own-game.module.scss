@@ -1,6 +1,8 @@
 @import '../../../scss/abstracts.scss';
 
 .ownGameWrapper {
+  display: flex;
+  flex-direction: column;
   background-color: aqua;
   @include size(100%, 100%);
 }
@@ -20,10 +22,18 @@
 
 .mainFieldWrapper {
   display: flex;
+  flex-direction: column;
   min-height: 25px;
+  overflow-y: auto;
   color: aliceblue;
   background-color: chartreuse;
-  @include size(100%, 50%);
+  @include size(100%, 65%);
+}
+
+.answerBlocksWrapper{
+  display: flex;
+  min-height: 25px;
+  @include size(100%, 5%);
 }
 
 .taskWrapper {
@@ -38,7 +48,7 @@
   min-height: 25px;
   color: aliceblue;
   background-color: darkorange;
-  @include size(100%, 30%);
+  @include size(100%, 15%);
 }
 
 .taskBlock {

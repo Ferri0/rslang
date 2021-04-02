@@ -44,7 +44,7 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
         className={[style.tabTitle, unitStyle.tabTitleHover].join(' ')}
       >
         <span>{wordInfo.word}</span>
-        <div className={style.starImg}></div>
+        <div className={style.starImg} />
       </label>
       <section className={style.tabContent}>
         <div className={style.tabContent_header}>
@@ -71,12 +71,12 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
           alt="word-img"
         />
         <h4>Meaning:</h4>
-        <div className={unitStyle.separator}></div>
-        <span dangerouslySetInnerHTML={{ __html: wordInfo.textMeaning }}></span>
+        <div className={unitStyle.separator} />
+        <span dangerouslySetInnerHTML={{ __html: wordInfo.textMeaning }} />
         <span>{wordInfo.textMeaningTranslate}</span>
         <h4>Example:</h4>
-        <div className={unitStyle.separator}></div>
-        <span dangerouslySetInnerHTML={{ __html: wordInfo.textExample }}></span>
+        <div className={unitStyle.separator} />
+        <span dangerouslySetInnerHTML={{ __html: wordInfo.textExample }} />
         <span className={style.lastLine}>{wordInfo.textExampleTranslate}</span>
         <audio src={apiUrl + wordInfo.audio} id={`${wordInfo.id}-audio`} />
         <audio

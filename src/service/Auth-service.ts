@@ -23,7 +23,7 @@ const login = async (email: string, password: string) => {
     email,
     password,
   };
-  let result = 'error';
+  const result = 'error';
   const response = await fetch(
     'https://yaia-team-rslang-api.herokuapp.com/signin',
     {

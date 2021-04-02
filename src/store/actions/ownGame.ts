@@ -5,9 +5,28 @@ const setCurrentSentence = (value: string): OwnGameAction => ({
     payload: value,
   });
 
-  const setArrayOfAnswerBlock = (value: string[]): OwnGameAction => ({
+  const setCurrentTaskSentence = (value: string): OwnGameAction => ({
+    type: OwnGameActionTypes.SET_CURRENT_TASK_SENTENCE,
+    payload: value,
+  });
+
+const setArrayOfAnswerBlock = (value: [string[]]): OwnGameAction => ({
     type: OwnGameActionTypes.SET_ARRAY_OF_ANSWER_BLOCKS,
     payload: value,
   });
 
-  export {setCurrentSentence, setArrayOfAnswerBlock}
+const setArrayOfTaskBlocks = (value: string[]): OwnGameAction => ({
+    type: OwnGameActionTypes.SET_ARRAY_OF_TASK_BLOCKS,
+    payload: value,
+  });
+
+const setAnswerCounter = (value: number): OwnGameAction => ({
+    type: OwnGameActionTypes.SET_ANSWER_COUNTER,
+    payload: value,
+  });
+
+  export {setCurrentSentence, 
+    setCurrentTaskSentence, 
+    setArrayOfAnswerBlock, 
+    setArrayOfTaskBlocks, 
+    setAnswerCounter}
