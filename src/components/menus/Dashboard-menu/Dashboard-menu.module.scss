@@ -1,14 +1,47 @@
 @import '../../../scss/abstracts.scss';
 
+.menuContainer {
+  padding-top: 30px;
+  background-color: rgb(255, 255, 255);
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+  @include flex(column, flex-start, center);
+  @include size(100%, 100%);
+}
+
 .menu {
-  background-color: rgb(91, 154, 170);
-  @include flex(column, flex-start, flex-start);
+  @include flex(column, flex-start, center);
 }
 
 .menuItem {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .menuItem:not(:last-child) {
-  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.logo {
+  margin-bottom: 30px;
+  background: url('../../../assets/images/logo.png') no-repeat;
+  background-size: contain;
+  border: 0;
+  outline: none;
+  @include size(140px, 30px);
+}
+
+.subMenu {
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  @include flex(column, flex-start, center);
+}
+
+.subMenu.close {
+  max-height: 0;
+}
+
+.subMenu.open {
+  max-height: 10em;
+  margin-bottom: 10px;
 }
