@@ -15,10 +15,24 @@ export function Dashboard() {
     <div className={style.dashboardPage}>
       <DashboardMenu />
       <div>
-        Dashboard Page
         <Switch>
-          <Route exact path="/dashboard/textbook">
-            <Textbook />
+          <Route exact path="/dashboard/textbook/unit1">
+            <Textbook unit={0} />
+          </Route>
+          <Route exact path="/dashboard/textbook/unit2">
+            <Textbook unit={1} />
+          </Route>
+          <Route exact path="/dashboard/textbook/unit3">
+            <Textbook unit={2} />
+          </Route>
+          <Route exact path="/dashboard/textbook/unit4">
+            <Textbook unit={3} />
+          </Route>
+          <Route exact path="/dashboard/textbook/unit5">
+            <Textbook unit={4} />
+          </Route>
+          <Route exact path="/dashboard/textbook/unit6">
+            <Textbook unit={5} />
           </Route>
           <Route path="/dashboard/games/savanna">
             <Savanna />
