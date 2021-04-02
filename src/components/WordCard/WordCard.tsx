@@ -59,8 +59,9 @@ export function WordCard({
       <section className={style.tabContent}>
         <div className={style.tabContent_header}>
           <p className={style.wordTitle}>
-            {wordInfo.word} - {wordInfo.transcription}
-            {displayTranslate ? ` - ${wordInfo.wordTranslate}` : null}
+            {`${wordInfo.word} - ${wordInfo.wordTranslate} - ${
+              displayTranslate ? `${wordInfo.wordTranslate}` : null
+            }`}
           </p>
           <div className={style.tabContent_header___btnsBlock}>
             {displayBtns ? (
