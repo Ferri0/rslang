@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Word } from '../../../../types';
 import { GameMenu } from '.';
 import { useTypedSelector, useAction } from '../../../../hooks';
@@ -14,52 +14,8 @@ interface IWords {
   words: Word[];
 }
 
-interface IProps {
-  setQuestionWord: () => void;
-  wordsToPlay: Word[];
-  setScrollToTop: () => void;
-}
-
-const TestComponent = ({
-  setQuestionWord,
-  wordsToPlay,
-  setScrollToTop,
-}: IProps): JSX.Element => {
-  const styles: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: 'black',
-    position: 'absolute',
-    top: '50%',
-  };
-  return (
-    <>
-      <button
-        type="button"
-        onClick={setScrollToTop}
-        className={style.scrollBtn}
-      >
-        Scroll
-      </button>
-      <button
-        type="button"
-        onClick={setQuestionWord}
-        className={style.play_word}
-      >
-        Play word
-      </button>
-      <div style={styles}>
-        {wordsToPlay.map(({ wordTranslate }) => (
-          <span key={wordTranslate}>{wordTranslate}</span>
-        ))}
-      </div>
-    </>
-  );
-};
-
 export const GameLogic = ({ words }: IWords): JSX.Element => {
   const clazzRef = useRef(style.question);
-  const [statisticWords, setStatisticWords] = useState<Word>();
   const errorSoundRef = useRef(new Audio(errorAnserSound));
   const {
     question,
@@ -69,6 +25,7 @@ export const GameLogic = ({ words }: IWords): JSX.Element => {
     wordsToPlay,
     wordsInButtons,
     scrollBg,
+    statics,
   } = useTypedSelector((state) => state.savannaState);
 
   const {
@@ -80,6 +37,8 @@ export const GameLogic = ({ words }: IWords): JSX.Element => {
     setButtonsAction,
     setScrollToTop,
     resetScrollBackground,
+    addRightWordToStatics,
+    addWrongWordToStatics,
   } = useAction();
 
   const getThreeRandomWord = (arr: Word[]): string[] =>
@@ -109,6 +68,7 @@ export const GameLogic = ({ words }: IWords): JSX.Element => {
 
     const timerID = setTimeout(() => {
       // errorSoundRef.current.play();
+      addWrongWordToStatics(question);
       questionAction(wordsToPlay[wordsToPlay.length - 1]);
       setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
       setHearts(hearts - 1);
@@ -120,13 +80,9 @@ export const GameLogic = ({ words }: IWords): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [words, wordsToPlay, hearts]);
 
-  const setQuestionWords = () => {
-    questionAction(wordsToPlay[wordsToPlay.length - 1]);
-    setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
-  };
-
   if (rightAnswer) {
     setScrollToTop();
+    addRightWordToStatics(question);
     rightSound.play();
     questionAction(wordsToPlay[wordsToPlay.length - 1]);
     setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
@@ -134,7 +90,8 @@ export const GameLogic = ({ words }: IWords): JSX.Element => {
   }
 
   if (wrongAnswer) {
-    errorSoundRef.current.play();
+    addWrongWordToStatics(question);
+    // errorSoundRef.current.play();
     questionAction(wordsToPlay[wordsToPlay.length - 1]);
     setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
     setHearts(hearts - 1);
@@ -143,7 +100,7 @@ export const GameLogic = ({ words }: IWords): JSX.Element => {
 
   if (wordsToPlay.length === 0 || hearts < 1) {
     errorSoundRef.current.pause();
-    return <Statistics statisticWords={statisticWords} />;
+    return <Statistics statics={statics} />;
   }
 
   return (

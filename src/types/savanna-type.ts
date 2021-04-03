@@ -9,6 +9,8 @@ export enum SavannaActionTypes {
   SET_BUTTONS_WORDS = 'SET_BUTTONS_WORDS',
   SET_SCROLL_BACKGROUND = 'SET_SCROLL_BACKGROUND',
   RESET_SCROLL_BACKGROUND = 'RESET_SCROLL_BACKGROUND',
+  ADD_RIGHT_WORD = 'ADD_RIGHT_WORD',
+  ADD_WRONG_WORD = 'ADD_WRONG_WORD',
 }
 
 interface SetHeartLeftAtrin {
@@ -49,19 +51,28 @@ interface ResetScroll {
   type: SavannaActionTypes.RESET_SCROLL_BACKGROUND;
 }
 
+export interface IRightWord {
+  type: SavannaActionTypes.ADD_RIGHT_WORD;
+  payload: Word;
+}
+
+export interface IWrongWord {
+  type: SavannaActionTypes.ADD_WRONG_WORD;
+  payload: Word;
+}
+
 export interface SavannaState {
   hearts: number;
   rightAnswer: boolean;
   wrongAnswer: boolean;
-  question:
-    | {
-        word: 'example';
-        wordTranslate: 'example';
-      }
-    | Word;
+  question: Word;
   wordsToPlay: Word[];
   wordsInButtons: string[];
   scrollBg: { backgroundPositionY: string };
+  statics: {
+    known: Word[];
+    unknown: Word[];
+  };
 }
 
 export type SavannaActions =
@@ -72,4 +83,6 @@ export type SavannaActions =
   | QuestionAction
   | SetButtonswersAction
   | ScrollAction
-  | ResetScroll;
+  | ResetScroll
+  | IRightWord
+  | IWrongWord;

@@ -37,3 +37,13 @@ export const setScrollToTop = (): SavannaActions => ({
 export const resetScrollBackground = (): SavannaActions => ({
   type: SavannaActionTypes.RESET_SCROLL_BACKGROUND,
 });
+
+export const addRightWordToStatics = (value: Word): SavannaActions => ({
+  type: SavannaActionTypes.ADD_RIGHT_WORD,
+  payload: value,
+});
+
+export const addWrongWordToStatics = (value: Word): SavannaActions => ({
+  type: SavannaActionTypes.ADD_WRONG_WORD,
+  payload: value,
+});
