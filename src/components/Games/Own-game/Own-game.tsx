@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { HashRouter as Router, Link } from 'react-router-dom';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
-
+import {shuffleArray} from './utils';
 import { wordObjects } from './local-state';
 import style from './Own-game.module.scss';
 
@@ -11,24 +11,22 @@ export const OwnGame = () => {
     currentSentence,
     currentTaskSentence,
     arrayOfTaskBlocks,
+    arrayOfTaskWords,
+    currentWordIndex,
     arrayOfAnswerBlocks,
     answerCounter,
   } = useTypedSelector((state) => state.ownGame);
   const {
     setArrayOfAnswerBlock,
     setArrayOfTaskBlocks,
+    setArrayOfTaskWords,
     setCurrentSentence,
     setCurrentTaskSentence,
+    setCurrentWordIndex,
     setAnswerCounter,
   } = useAction();
 
   let answerLastDiv: null | HTMLElement;
-
-  // useEffect(() => {
-  //   setCurrentSentence(wordObjects[0].textExampleTranslate);
-  //   setCurrentTaskSentence(wordObjects[0].textExample);
-
-  // }, []);
 
   useEffect(() => {
     if (answerCounter < wordObjects.length) {
@@ -36,24 +34,33 @@ export const OwnGame = () => {
       setCurrentTaskSentence(wordObjects[answerCounter].textExample);
       arrayOfAnswerBlocks.push([]);
       setArrayOfAnswerBlock(arrayOfAnswerBlocks);
+      setCurrentWordIndex(0);
       answerLastDiv.scrollIntoView({ behavior: 'smooth' });
     }
   }, [answerCounter]);
 
   useEffect(() => {
-    setArrayOfTaskBlocks(currentTaskSentence.split(' '));
+    setArrayOfTaskWords(currentTaskSentence.split(' '));
   }, [currentTaskSentence]);
+
+  useEffect(() => {
+    setArrayOfTaskBlocks(shuffleArray(arrayOfTaskWords));
+  }, [arrayOfTaskWords]);
+
 
   const taskBlocks = arrayOfTaskBlocks.map((item: string, index: number) => (
     <div
       className={style.taskBlock}
-      onClick={() => {
-        arrayOfTaskBlocks.splice(index, 1);
-        arrayOfAnswerBlocks[answerCounter].push(item);
-        setArrayOfTaskBlocks(arrayOfTaskBlocks);
-        setArrayOfAnswerBlock(arrayOfAnswerBlocks);
-        if (arrayOfTaskBlocks.length < 1) {
-          setAnswerCounter(answerCounter + 1);
+      onMouseUp={() => {
+        if (item === arrayOfTaskWords[currentWordIndex]) {
+          arrayOfTaskBlocks.splice(index, 1);
+          arrayOfAnswerBlocks[answerCounter].push(item);
+          setArrayOfTaskBlocks(arrayOfTaskBlocks);
+          setArrayOfAnswerBlock(arrayOfAnswerBlocks);
+          setCurrentWordIndex(currentWordIndex + 1);
+          if (arrayOfTaskBlocks.length < 1) {
+            setAnswerCounter(answerCounter + 1);
+          }
         }
       }}
     >

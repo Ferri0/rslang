@@ -3,8 +3,11 @@ import {OwnGameState, OwnGameActionTypes, OwnGameAction} from '../../types/own-g
 const initialState: OwnGameState = {
     currentSentence: "Человек не должен водить машину после того, как он выпил алкоголь",
     currentTaskSentence: "Человек не должен водить машину после того, как он выпил алкоголь",
+    arrayOfTaskWords: ["Человек", "не", "должен", "водить", "машину", "после", "того", "как", 
+    "он", "выпил", "алкоголь"],
     arrayOfTaskBlocks: ["Человек", "не", "должен", "водить", "машину", "после", "того", "как", 
 "он", "выпил", "алкоголь"],
+    currentWordIndex: 0,
     arrayOfAnswerBlocks: [[]],
     answerCounter: 0
   };
@@ -23,6 +26,12 @@ export const ownGameReducer = (state: OwnGameState = initialState, action: OwnGa
             currentTaskSentence: action.payload,
           };
         }
+        case OwnGameActionTypes.SET_ARRAY_OF_TASK_WORDS: {
+          return {
+            ...state,
+            arrayOfTaskWords: action.payload,
+          };
+        }
         case OwnGameActionTypes.SET_ARRAY_OF_TASK_BLOCKS: {
             return {
               ...state,
@@ -33,6 +42,12 @@ export const ownGameReducer = (state: OwnGameState = initialState, action: OwnGa
             return {
               ...state,
               answerCounter: action.payload,
+            };
+          }
+        case OwnGameActionTypes.SET_ANSWER_CURRENT_WORD_INDEX: {
+            return {
+              ...state,
+              currentWordIndex: action.payload,
             };
           }
         default: {

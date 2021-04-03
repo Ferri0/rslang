@@ -20,13 +20,25 @@ const setArrayOfTaskBlocks = (value: string[]): OwnGameAction => ({
     payload: value,
   });
 
+const setArrayOfTaskWords = (value: string[]): OwnGameAction => ({
+    type: OwnGameActionTypes.SET_ARRAY_OF_TASK_WORDS,
+    payload: value,
+  });
+
 const setAnswerCounter = (value: number): OwnGameAction => ({
     type: OwnGameActionTypes.SET_ANSWER_COUNTER,
     payload: value,
   });
 
+const setCurrentWordIndex = (value: number): OwnGameAction => ({
+    type: OwnGameActionTypes.SET_ANSWER_CURRENT_WORD_INDEX,
+    payload: value,
+  });
+
   export {setCurrentSentence, 
     setCurrentTaskSentence, 
-    setArrayOfAnswerBlock, 
+    setArrayOfAnswerBlock,
+    setArrayOfTaskWords,
+    setCurrentWordIndex, 
     setArrayOfTaskBlocks, 
     setAnswerCounter}

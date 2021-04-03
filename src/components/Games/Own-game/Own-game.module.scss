@@ -60,5 +60,6 @@
   text-align: center;
   background-color: yellow;
   border: 2px solid whitesmoke;
+  cursor: pointer;
   @include size(auto, auto);
 }
