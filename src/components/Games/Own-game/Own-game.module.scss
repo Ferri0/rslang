@@ -54,6 +54,12 @@
   @include size(100%, 5%);
 }
 
+.soundButton{
+  color:crimson;
+  background-color: chartreuse;
+  @include size(100px, 30px);
+}
+
 .taskWrapper {
   min-height: 25px;
   color: aliceblue;

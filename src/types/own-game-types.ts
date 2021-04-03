@@ -6,7 +6,8 @@ export enum OwnGameActionTypes {
   SET_ANSWER_CURRENT_WORD_INDEX = 'SET_ANSWER_CURRENT_WORD_INDEX',
   SET_ARRAY_OF_ANSWER_BLOCKS = 'SET_ARRAY_OF_ANSWER_BLOCKS',
   SET_ANSWER_COUNTER = 'SET_ANSWER_COUNTER',
-  SET_HEALTH_POINTS = 'SET_HEALTH_POINTS'
+  SET_HEALTH_POINTS = 'SET_HEALTH_POINTS',
+  SET_AUDIO_SRC = 'SET_AUDIO_SRC'
 } 
 
 export interface OwnGameState {
@@ -17,7 +18,8 @@ export interface OwnGameState {
     currentWordIndex: number,
     arrayOfAnswerBlocks: [string[]],
     answerCounter: number,
-    healthPoints: number[]
+    healthPoints: number[],
+    audioSrc: string
 }
 
 export type OwnGameAction = setCurrentSentenceAction
@@ -27,7 +29,8 @@ export type OwnGameAction = setCurrentSentenceAction
 |setcurrentWordIndexAction
 |setAnswerCounterAction
 |setHealthPointsAction
-|setArrayOfAnswerBlocksAction;
+|setArrayOfAnswerBlocksAction
+|setAudioSrcAction;
 
 interface setCurrentSentenceAction {
     type: OwnGameActionTypes.SET_CURRENT_SENTENCE;
@@ -67,4 +70,9 @@ interface setAnswerCounterAction {
 interface setHealthPointsAction {
     type: OwnGameActionTypes.SET_HEALTH_POINTS;
     payload: number[];
+  }
+
+interface setAudioSrcAction {
+    type: OwnGameActionTypes.SET_AUDIO_SRC;
+    payload: string;
   }

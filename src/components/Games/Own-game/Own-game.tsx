@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { HashRouter as Router, Link } from 'react-router-dom';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
-import {shuffleArray} from './utils';
+import {shuffleArray, wait} from './utils';
 import { wordObjects } from './local-state';
 import style from './Own-game.module.scss';
 
@@ -15,7 +15,8 @@ export const OwnGame = () => {
     currentWordIndex,
     arrayOfAnswerBlocks,
     answerCounter,
-    healthPoints
+    healthPoints,
+    audioSrc
   } = useTypedSelector((state) => state.ownGame);
   const {
     setArrayOfAnswerBlock,
@@ -25,10 +26,12 @@ export const OwnGame = () => {
     setCurrentTaskSentence,
     setCurrentWordIndex,
     setAnswerCounter,
-    setHealthPoints
+    setHealthPoints,
+    setAudioSrc
   } = useAction();
 
   let answerLastDiv: null | HTMLElement;
+  let audio: any;
 
   useEffect(() => {
     if (answerCounter < wordObjects.length) {
@@ -37,6 +40,7 @@ export const OwnGame = () => {
       arrayOfAnswerBlocks.push([]);
       setArrayOfAnswerBlock(arrayOfAnswerBlocks);
       setCurrentWordIndex(0);
+      setAudioSrc(wordObjects[answerCounter].audioExample);
       answerLastDiv.scrollIntoView({ behavior: 'smooth' });
     }
   }, [answerCounter]);
@@ -85,6 +89,13 @@ export const OwnGame = () => {
     <div className = {style.healthPointBlock}>{item}</div>
   )
   );
+  const playAudio = (e:any) => {
+    e.target.disabled = true;
+    audio.play();
+    wait(audio.duration).then(() => {
+      e.target.disabled = false;
+    });
+  }
   return (
     <div className={style.ownGameWrapper}>
       <div className={style.ownGameHeaderWrapper}>
@@ -105,7 +116,13 @@ export const OwnGame = () => {
           }}
         ></div>
       </div>
-      <div className={style.taskWrapper}>{currentSentence}</div>
+      <div className={style.taskWrapper}>
+        {currentSentence}
+        <button className = {style.soundButton} onClick = {(e: any) => playAudio(e)}>Прослушать</button>
+        <audio src={audioSrc}  ref={(el) => {
+            audio = el;
+          }}/>
+      </div>
       <div className={style.taskBlocksWrapper}>{taskBlocks}</div>
     </div>
   );

@@ -40,6 +40,11 @@ const setHealthPoints = (value: number[]): OwnGameAction => ({
     payload: value,
   });
 
+const setAudioSrc = (value: string): OwnGameAction => ({
+    type: OwnGameActionTypes.SET_AUDIO_SRC,
+    payload: `https://yaia-team-rslang-api.herokuapp.com/${value}`,
+  });
+
   export {
     setCurrentSentence, 
     setCurrentTaskSentence, 
@@ -48,5 +53,6 @@ const setHealthPoints = (value: number[]): OwnGameAction => ({
     setCurrentWordIndex, 
     setArrayOfTaskBlocks, 
     setAnswerCounter,
-    setHealthPoints
+    setHealthPoints,
+    setAudioSrc
   }

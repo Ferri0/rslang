@@ -10,7 +10,8 @@ const initialState: OwnGameState = {
     currentWordIndex: 0,
     arrayOfAnswerBlocks: [[]],
     answerCounter: 0,
-    healthPoints: [1,1,1,1,1]
+    healthPoints: [1,1,1,1,1],
+    audioSrc: "https://yaia-team-rslang-api.herokuapp.com/files/01_0002_example.mp3"
   };
 
 export const ownGameReducer = (state: OwnGameState = initialState, action: OwnGameAction) => {
@@ -55,6 +56,12 @@ export const ownGameReducer = (state: OwnGameState = initialState, action: OwnGa
             return {
               ...state,
               healthPoints: action.payload,
+            };
+          }
+        case OwnGameActionTypes.SET_AUDIO_SRC: {
+            return {
+              ...state,
+              audioSrc: action.payload,
             };
           }
         default: {

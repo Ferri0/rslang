@@ -9,3 +9,9 @@ export const shuffleArray = (arr: string[]) => {
     }
     return result;
 }
+
+export const wait = (ms: number) => new Promise((resolve) =>
+    setTimeout(() => {
+      resolve('DONE');
+    }, ms * 1000)
+  );
