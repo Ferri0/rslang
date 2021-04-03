@@ -87,3 +87,11 @@
   cursor: pointer;
   @include size(auto, auto);
 }
+
+.taskBlockRed {
+  background-color: crimson;
+}
+
+.taskBlockGreen {
+  background-color: darkgreen;
+}

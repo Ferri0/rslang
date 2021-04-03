@@ -55,10 +55,20 @@ export const OwnGame = () => {
 
 
   const taskBlocks = arrayOfTaskBlocks.map((item: string, index: number) => (
-    <div
+    <span
+      dangerouslySetInnerHTML={{ __html: item }}
       className={style.taskBlock}
-      onMouseUp={() => {
+      onMouseDown={(e:any) => {
         if (item === arrayOfTaskWords[currentWordIndex]) {
+          e.target.className = [style.taskBlock, style.taskBlockGreen].join(' ');
+        } else {
+          e.target.className = [style.taskBlock, style.taskBlockRed].join(' ');
+        }
+      }
+      }
+      onMouseUp={(e:any) => {
+        if (item === arrayOfTaskWords[currentWordIndex]) {
+          e.target.className = style.taskBlock;
           arrayOfTaskBlocks.splice(index, 1);
           arrayOfAnswerBlocks[answerCounter].push(item);
           setArrayOfTaskBlocks(arrayOfTaskBlocks);
@@ -70,11 +80,10 @@ export const OwnGame = () => {
         } else {
           healthPoints.pop();
           setHealthPoints(healthPoints);
+          e.target.className = style.taskBlock;
         }
       }}
-    >
-      <span dangerouslySetInnerHTML={{ __html: item }} />
-    </div>
+    />
   ));
   const answerBlocks = arrayOfAnswerBlocks.map((answerItem: string[]) => (
     <div className={style.answerBlocksWrapper}>
