@@ -110,10 +110,10 @@ export function Textbook({ unit }: TextbookProps) {
       <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
       <div className={style.wordsWrapper}>
         <div className={style.wordsBlock}>
-          {wordCards.filter((e: any, i: number) => i % 2 !== 0)}
+          {wordCards.filter((e: any, i: number) => i < 10)}
         </div>
         <div className={style.wordsBlock}>
-          {wordCards.filter((e: any, i: number) => i % 2 === 0)}
+          {wordCards.filter((e: any, i: number) => i >= 10)}
         </div>
         <PageControls currentPage={page} setCurrentPage={setPage} />
       </div>

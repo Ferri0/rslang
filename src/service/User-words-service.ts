@@ -58,7 +58,8 @@ const removeUserWord = async (
 };
 
 const addToDeleted = async (userId: string, wordId: string, token: string) => {
-  addWordToType(userId, wordId, token, 'deleted');
+  const x = await removeUserWord(userId, wordId, token);
+  const y = await addWordToType(userId, wordId, token, 'deleted');
 };
 
 const addToDifficult = async (

@@ -69,11 +69,11 @@ export function WordCard({
               ? [style.starImg, style.starImg_active].join(' ')
               : style.starImg
           }
-          onClick={(e) => {
-            if (userProps.isAuthorized && isDifficult) {
+          onClick={() => {
+            if (userProps.isAuthorized && !isDifficult) {
               addToDifficult(userProps.id, wordInfo.id, userProps.token);
               setIsDifficult(!isDifficult);
-            } else if (userProps.isAuthorized && !isDifficult) {
+            } else if (userProps.isAuthorized && isDifficult) {
               removeUserWord(userProps.id, wordInfo.id, userProps.token);
               setIsDifficult(!isDifficult);
             }
