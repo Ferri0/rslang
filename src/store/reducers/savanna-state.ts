@@ -3,12 +3,14 @@ import { SavannaActionTypes, SavannaState, SavannaActions } from '../../types';
 const initialState: SavannaState = {
   hearts: 5,
   rightAnswer: false,
+  wrongAnswer: false,
   question: {
     word: 'example',
     wordTranslate: 'example',
   },
   wordsToPlay: [],
   wordsInButtons: [],
+  scrollBg: { backgroundPositionY: '0%' },
 };
 
 export const savannaState = (
@@ -30,6 +32,13 @@ export const savannaState = (
       };
     }
 
+    case SavannaActionTypes.SET_WRONG_ANSWER: {
+      return {
+        ...state,
+        wrongAnswer: action.payload,
+      };
+    }
+
     case SavannaActionTypes.SET_WORDS_TO_PLAY: {
       return {
         ...state,
@@ -48,6 +57,26 @@ export const savannaState = (
       return {
         ...state,
         wordsInButtons: action.payload,
+      };
+    }
+
+    case SavannaActionTypes.SET_SCROLL_BACKGROUND: {
+      const newState = {
+        backgroundPositionY: `${
+          parseInt(state.scrollBg.backgroundPositionY, 10) - 5
+        }%`,
+      };
+      return {
+        ...state,
+        scrollBg: newState,
+      };
+    }
+
+    case SavannaActionTypes.RESET_SCROLL_BACKGROUND: {
+      const newState = { backgroundPositionY: '100%' };
+      return {
+        ...state,
+        scrollBg: newState,
       };
     }
 

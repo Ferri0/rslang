@@ -8,7 +8,12 @@ type Setter = {
   setGroup: (group: string) => void;
 };
 
-export const Form = ({ setOpen, setGroup, group, handleSubmit }: Setter) => (
+export const Form = ({
+  setOpen,
+  setGroup,
+  group,
+  handleSubmit,
+}: Setter): JSX.Element => (
   <form onSubmit={handleSubmit}>
     {['0', '1', '2', '3', '4', '5'].map((num) => (
       <label key={num} className={style.container} htmlFor={`level${num}`}>

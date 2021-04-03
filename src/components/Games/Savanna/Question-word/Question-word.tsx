@@ -1,11 +1,10 @@
 import React from 'react';
 
-import style from './Question-word.module.scss';
-
 type Question = {
   question: string;
+  clazz: string;
 };
 
-export const QuestionWord = ({ question }: Question): JSX.Element => (
-  <div className={style.question}>{question}</div>
+export const QuestionWord = ({ question, clazz }: Question): JSX.Element => (
+  <div className={clazz}>{question}</div>
 );

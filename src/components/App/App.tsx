@@ -10,7 +10,7 @@ import { RegistrationPage } from '../pages/Registration';
 import { LoginPage } from '../pages/Login';
 import style from './App.module.scss';
 
-export function App() {
+export function App(): JSX.Element {
   return (
     <Router>
       <div className={style.wrapper}>

@@ -10,6 +10,11 @@ export const setRightAnswerAction = (value: boolean): SavannaActions => ({
   payload: value,
 });
 
+export const setWrongAnswerAction = (value: boolean): SavannaActions => ({
+  type: SavannaActionTypes.SET_WRONG_ANSWER,
+  payload: value,
+});
+
 export const setWordsToPlayAction = (value: Word[]): SavannaActions => ({
   type: SavannaActionTypes.SET_WORDS_TO_PLAY,
   payload: value,
@@ -23,4 +28,12 @@ export const questionAction = (value: Word): SavannaActions => ({
 export const setButtonsAction = (value: string[]): SavannaActions => ({
   type: SavannaActionTypes.SET_BUTTONS_WORDS,
   payload: value,
+});
+
+export const setScrollToTop = (): SavannaActions => ({
+  type: SavannaActionTypes.SET_SCROLL_BACKGROUND,
+});
+
+export const resetScrollBackground = (): SavannaActions => ({
+  type: SavannaActionTypes.RESET_SCROLL_BACKGROUND,
 });
