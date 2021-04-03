@@ -9,7 +9,8 @@ const initialState: OwnGameState = {
 "он", "выпил", "алкоголь"],
     currentWordIndex: 0,
     arrayOfAnswerBlocks: [[]],
-    answerCounter: 0
+    answerCounter: 0,
+    healthPoints: [1,1,1,1,1]
   };
 
 export const ownGameReducer = (state: OwnGameState = initialState, action: OwnGameAction) => {
@@ -48,6 +49,12 @@ export const ownGameReducer = (state: OwnGameState = initialState, action: OwnGa
             return {
               ...state,
               currentWordIndex: action.payload,
+            };
+          }
+        case OwnGameActionTypes.SET_HEALTH_POINTS: {
+            return {
+              ...state,
+              healthPoints: action.payload,
             };
           }
         default: {

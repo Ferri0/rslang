@@ -15,6 +15,7 @@ export const OwnGame = () => {
     currentWordIndex,
     arrayOfAnswerBlocks,
     answerCounter,
+    healthPoints
   } = useTypedSelector((state) => state.ownGame);
   const {
     setArrayOfAnswerBlock,
@@ -24,6 +25,7 @@ export const OwnGame = () => {
     setCurrentTaskSentence,
     setCurrentWordIndex,
     setAnswerCounter,
+    setHealthPoints
   } = useAction();
 
   let answerLastDiv: null | HTMLElement;
@@ -61,6 +63,9 @@ export const OwnGame = () => {
           if (arrayOfTaskBlocks.length < 1) {
             setAnswerCounter(answerCounter + 1);
           }
+        } else {
+          healthPoints.pop();
+          setHealthPoints(healthPoints);
         }
       }}
     >
@@ -76,15 +81,21 @@ export const OwnGame = () => {
       ))}
     </div>
   ));
+  const healthPointsBlocks = healthPoints.map((item:number) => (
+    <div className = {style.healthPointBlock}>{item}</div>
+  )
+  );
   return (
     <div className={style.ownGameWrapper}>
+      <div className={style.ownGameHeaderWrapper}>
       <div className={style.linkWrapper}>
         <Router>
           <Link to="/">Back to home</Link>
         </Router>
       </div>
       <div className={style.healthPointsWrapper}>
-        This is health points wrapper
+       {healthPointsBlocks}
+      </div>
       </div>
       <div className={style.mainFieldWrapper}>
         {answerBlocks}

@@ -6,18 +6,36 @@
   background-color: aqua;
   @include size(100%, 100%);
 }
+
+.ownGameHeaderWrapper{
+  display: flex;
+  min-height: 25px;
+  color: aliceblue;
+  @include size(100%, 10%);
+}
+
 .linkWrapper {
   min-height: 25px;
   color: aliceblue;
   background-color: deeppink;
-  @include size(100%, 5%);
+  @include size(50%, 100%);
 }
 
 .healthPointsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   min-height: 25px;
   color: aliceblue;
   background-color: brown;
-  @include size(100%, 5%);
+  @include size(50%, 100%);
+}
+
+.healthPointBlock {
+  color: aliceblue;
+  background-color: red;
+  border: 2px solid whitesmoke;
+  @include size(20%, 100%);
 }
 
 .mainFieldWrapper {

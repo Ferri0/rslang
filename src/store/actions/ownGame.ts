@@ -35,10 +35,18 @@ const setCurrentWordIndex = (value: number): OwnGameAction => ({
     payload: value,
   });
 
-  export {setCurrentSentence, 
+const setHealthPoints = (value: number[]): OwnGameAction => ({
+    type: OwnGameActionTypes.SET_HEALTH_POINTS,
+    payload: value,
+  });
+
+  export {
+    setCurrentSentence, 
     setCurrentTaskSentence, 
     setArrayOfAnswerBlock,
     setArrayOfTaskWords,
     setCurrentWordIndex, 
     setArrayOfTaskBlocks, 
-    setAnswerCounter}
+    setAnswerCounter,
+    setHealthPoints
+  }

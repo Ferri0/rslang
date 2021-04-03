@@ -5,7 +5,8 @@ export enum OwnGameActionTypes {
   SET_ARRAY_OF_TASK_BLOCKS ='SET_ARRAY_OF_TASK_BLOCKS',
   SET_ANSWER_CURRENT_WORD_INDEX = 'SET_ANSWER_CURRENT_WORD_INDEX',
   SET_ARRAY_OF_ANSWER_BLOCKS = 'SET_ARRAY_OF_ANSWER_BLOCKS',
-  SET_ANSWER_COUNTER = 'SET_ANSWER_COUNTER'
+  SET_ANSWER_COUNTER = 'SET_ANSWER_COUNTER',
+  SET_HEALTH_POINTS = 'SET_HEALTH_POINTS'
 } 
 
 export interface OwnGameState {
@@ -15,7 +16,8 @@ export interface OwnGameState {
     arrayOfTaskBlocks: string[],
     currentWordIndex: number,
     arrayOfAnswerBlocks: [string[]],
-    answerCounter: number
+    answerCounter: number,
+    healthPoints: number[]
 }
 
 export type OwnGameAction = setCurrentSentenceAction
@@ -24,6 +26,7 @@ export type OwnGameAction = setCurrentSentenceAction
 |setArrayOfTaskBlocksAction
 |setcurrentWordIndexAction
 |setAnswerCounterAction
+|setHealthPointsAction
 |setArrayOfAnswerBlocksAction;
 
 interface setCurrentSentenceAction {
@@ -59,4 +62,9 @@ interface setArrayOfAnswerBlocksAction {
 interface setAnswerCounterAction {
     type: OwnGameActionTypes.SET_ANSWER_COUNTER;
     payload: number;
+  }
+
+interface setHealthPointsAction {
+    type: OwnGameActionTypes.SET_HEALTH_POINTS;
+    payload: number[];
   }
