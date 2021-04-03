@@ -5,6 +5,7 @@ import { getFetchUrl } from './util/getFetchUrl';
 import { WordCard } from '../WordCard';
 import { PageControls } from '../PageControls';
 import { TextbookControls } from '../TextbookControls';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 type TextbookProps = {
   unit: number;
@@ -21,6 +22,10 @@ export function Textbook({ unit }: TextbookProps) {
 
   const unitStyle = getUnitStyle(unit);
 
+  const { token, currentUserId, isAuthorized } = useTypedSelector(
+    (state) => state.auth
+  );
+
   useEffect(() => {
     setLoading(true);
     setGroup(unit);
@@ -30,9 +35,24 @@ export function Textbook({ unit }: TextbookProps) {
   useEffect(() => {
     const fetchPage = async () => {
       setLoading(true);
-      const resolve = await fetch(getFetchUrl(group, page));
-      const response = await resolve.json();
-      setFetchedPage(response);
+      if (isAuthorized) {
+        console.log('Authorized block');
+        const resolve = await fetch(getFetchUrl(group, page, currentUserId), {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        });
+        const response = await resolve.json();
+        setFetchedPage(response[0].paginatedResults);
+      } else {
+        console.log('Unauthorized block');
+        const resolve = await fetch(getFetchUrl(group, page));
+        const response = await resolve.json();
+        setFetchedPage(response);
+      }
     };
     fetchPage();
   }, [page, group]);
@@ -47,7 +67,10 @@ export function Textbook({ unit }: TextbookProps) {
             unitStyle={unitStyle}
             displayBtns={displayBtns}
             displayTranslate={displayTranslate}
-            key={element.id}
+            userProps={{ token, id: currentUserId, isAuthorized }}
+            isDeletedProp={element?.userWord?.difficulty === 'deleted'}
+            isDifficultProp={element?.userWord?.difficulty === 'difficult'}
+            key={element.word}
           />
         );
       });

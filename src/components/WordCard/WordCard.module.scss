@@ -71,7 +71,7 @@
 }
 
 .tab :checked ~ .tabContent {
-  max-height: 70rem;
+  max-height: 700px;
 }
 
 .wordImg {
@@ -127,6 +127,9 @@
 }
 
 .starImg {
+  position: absolute;
+  top: 11px;
+  right: 35px;
   width: 25px;
   height: 25px;
   background-image: url('../../assets/icons/textBook/starFalse.svg');
@@ -138,7 +141,12 @@
   }
 
   &:hover {
-    background-image: url('../../assets/icons/textBook/starTrue.svg');
+    transform: scale(1.15);
     cursor: pointer;
+    transition: transform 0.25s;
+  }
+
+  &:active:hover {
+    background-image: url('../../assets/icons/textBook/starTrue.svg');
   }
 }

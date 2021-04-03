@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './WordCard.module.scss';
-import { addToDeleted, removeUserWord } from '../../service/User-words-service';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { wait } from './util/wait';
+import {
+  addToDeleted,
+  addToDifficult,
+  removeUserWord,
+} from '../../service/User-words-service';
+import { useStore } from 'react-redux';
 
 type WordCardProps = {
   wordInfo: any;
   unitStyle: any;
   displayBtns: boolean;
   displayTranslate: boolean;
+  userProps: any;
+  isDeletedProp: boolean;
+  isDifficultProp: boolean;
 };
 
 export function WordCard({
@@ -16,10 +23,16 @@ export function WordCard({
   unitStyle,
   displayBtns,
   displayTranslate,
+  userProps,
+  isDeletedProp,
+  isDifficultProp,
 }: WordCardProps) {
   const apiUrl: string = 'https://yaia-team-rslang-api.herokuapp.com/';
-  // const { token } = useTypedSelector((state) => state.auth);
-  // console.log(token);
+
+  const [isDeleted, setIsDeleted] = useState(isDeletedProp);
+  const [isDifficult, setIsDifficult] = useState(isDifficultProp);
+
+  if (wordInfo._id) wordInfo.id = wordInfo._id;
 
   const playAudio = (e: any) => {
     const audio: any = document.getElementById(`${wordInfo.id}-audio`);
@@ -45,20 +58,39 @@ export function WordCard({
     );
   };
 
+  console.log(wordInfo);
+  if (isDeleted) return null;
   return (
     <div className={[style.tab, unitStyle.tab].join(' ')}>
+      {displayBtns ? (
+        <div
+          className={
+            isDifficult
+              ? [style.starImg, style.starImg_active].join(' ')
+              : style.starImg
+          }
+          onClick={(e) => {
+            if (userProps.isAuthorized && isDifficult) {
+              addToDifficult(userProps.id, wordInfo.id, userProps.token);
+              setIsDifficult(!isDifficult);
+            } else if (userProps.isAuthorized && !isDifficult) {
+              removeUserWord(userProps.id, wordInfo.id, userProps.token);
+              setIsDifficult(!isDifficult);
+            }
+          }}
+        ></div>
+      ) : null}
       <input
         type="checkbox"
-        id={wordInfo.id}
+        id={wordInfo.word}
         name="tab-group"
         className={[style.hidden, unitStyle.input].join(' ')}
       />
       <label
-        htmlFor={wordInfo.id}
+        htmlFor={wordInfo.word}
         className={[style.tabTitle, unitStyle.tabTitleHover].join(' ')}
       >
         <span>{wordInfo.word}</span>
-        {displayBtns ? <div className={style.starImg}></div> : null}
       </label>
       <section className={style.tabContent}>
         <div className={style.tabContent_header}>
@@ -72,7 +104,12 @@ export function WordCard({
               <button
                 className={style.deleteWordBtn}
                 type="button"
-                onClick={() => console.log('delete word function')}
+                onClick={() => {
+                  if (userProps.isAuthorized) {
+                    addToDeleted(userProps.id, wordInfo.id, userProps.token);
+                    setIsDeleted(!isDeleted);
+                  }
+                }}
               />
             ) : null}
 
