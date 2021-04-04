@@ -1,0 +1,12 @@
+@import '../../../scss/abstracts.scss';
+
+.bg {
+  background: url('../../../assets/images/textbookUnits/unit4/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit4/lower-left-bg.svg');
+  background-color: #faf0eb;
+  background-repeat: no-repeat;
+  background-position: top right, left bottom;
+  background-size: 100%, 100%;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}

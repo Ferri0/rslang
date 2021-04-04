@@ -1,0 +1,8 @@
+@import '../../scss/abstracts.scss';
+
+.root {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  @include flex(row, center, flex-end);
+}
