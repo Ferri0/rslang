@@ -2,8 +2,8 @@ import { Word } from './words-type';
 
 export interface ServiceWordsType {
   apiBaseUrl: string;
-  apiWords(groupe: string, page: string): string;
+  apiWords(groupe: number, page: number): string;
   getResource(url: string): Promise<Response>;
-  getWords(group: string, page?: string): Promise<Word[]>;
+  getWords(group: number, page: number): Promise<Word[]>;
   getSound(path: string): Promise<Response>;
 }

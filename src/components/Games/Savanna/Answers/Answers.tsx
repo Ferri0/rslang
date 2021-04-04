@@ -27,7 +27,7 @@ export const Answers = ({
     setWrongAnswerAction(question !== arr[+key - 1]);
   };
 
-  const elem = document.querySelector(`.${clazz}`);
+  const elem: HTMLElement = document.querySelector(`.${clazz}`);
   elem?.classList.remove(clazz);
   // eslint-disable-next-line no-unused-expressions
   elem?.offsetWidth;

@@ -20,7 +20,7 @@ export const setWordsToPlayAction = (value: Word[]): SavannaActions => ({
   payload: value,
 });
 
-export const questionAction = (value: Word): SavannaActions => ({
+export const setQuestionAction = (value: Word): SavannaActions => ({
   type: SavannaActionTypes.SET_QUESTION,
   payload: value,
 });

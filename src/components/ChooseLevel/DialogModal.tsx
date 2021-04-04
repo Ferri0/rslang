@@ -1,26 +1,25 @@
 import React, { useContext, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Form } from './Form';
 
 import style from './ChooseLevel.module.scss';
-import { useTypedSelector } from '../../hooks';
+import { useTypedSelector, useAction } from '../../hooks';
 import { Spinner } from '../Spinner';
 import { ErrorIndicator } from '../Error-indicator';
 import { Context } from '../word-service-context';
 import { ServiceWordsType } from '../../types';
-import { fetchWords } from '../../store/actions';
 
-export const DialogModal = () => {
+export const DialogModal = (): JSX.Element => {
   const [open, setOpen] = useState(true);
-  const [group, setGroup] = useState('');
+  const [group, setGroup] = useState<number>();
   const wordsService: ServiceWordsType = useContext(Context);
   const { error, loading } = useTypedSelector((state) => state.groupOfWords);
 
-  const dispatch = useDispatch();
+  const { fetchWords } = useAction();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(fetchWords(wordsService, group));
+    const randNum = Math.floor(Math.random() * 20);
+    fetchWords(wordsService, group, randNum);
   };
 
   if (loading) {

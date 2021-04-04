@@ -18,11 +18,12 @@ export const wordsFetchError = (error: Error): WordsAction => ({
 
 export const fetchWords = (
   wordsService: ServiceWordsType,
-  group: string
+  group: number,
+  page: number
 ) => async (dispatch: Dispatch<WordsAction>): Promise<void> => {
   try {
     dispatch({ type: WordsActionTypes.FETCH_WORDS_REQUEST });
-    const response = await wordsService.getWords(group);
+    const response = await wordsService.getWords(group, page);
     dispatch(wordsLoaded(response));
   } catch (error) {
     dispatch(wordsFetchError(error));

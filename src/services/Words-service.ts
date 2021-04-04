@@ -3,7 +3,7 @@ import { ServiceWordsType, Word } from '../types';
 export class WordsService implements ServiceWordsType {
   apiBaseUrl = 'https://yaia-team-rslang-api.herokuapp.com/';
 
-  apiWords = (group = '0', page = '0'): string =>
+  apiWords = (group = 0, page = 0): string =>
     `https://yaia-team-rslang-api.herokuapp.com/words?group=${group}&page=${page}`;
 
   getResource = async (url: string): Promise<Response> => {
@@ -16,7 +16,7 @@ export class WordsService implements ServiceWordsType {
     return res;
   };
 
-  getWords = async (group = '0', page = '0'): Promise<Word[]> =>
+  getWords = async (group = 1, page = 1): Promise<Word[]> =>
     (await this.getResource(this.apiWords(group, page))).json();
 
   getSound = async (path: string): Promise<Response> => {

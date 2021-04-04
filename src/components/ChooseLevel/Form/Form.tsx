@@ -4,8 +4,8 @@ import style from './Form.module.scss';
 type Setter = {
   setOpen: (setOpen: boolean) => void;
   handleSubmit: (handleSubmit: React.FormEvent<HTMLFormElement>) => void;
-  group: string;
-  setGroup: (group: string) => void;
+  group: number;
+  setGroup: (group: number) => void;
 };
 
 export const Form = ({
@@ -15,7 +15,7 @@ export const Form = ({
   handleSubmit,
 }: Setter): JSX.Element => (
   <form onSubmit={handleSubmit}>
-    {['0', '1', '2', '3', '4', '5'].map((num) => (
+    {[0, 1, 2, 3, 4, 5].map((num) => (
       <label key={num} className={style.container} htmlFor={`level${num}`}>
         Group {+num + 1}
         <input
