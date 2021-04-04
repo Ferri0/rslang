@@ -22,11 +22,12 @@ const initialState: SavannaState = {
   },
   wordsToPlay: [],
   wordsInButtons: [],
-  scrollBg: { backgroundPositionY: '0%' },
+  scrollBg: { backgroundPositionY: '100%' },
   statics: {
     known: [],
     unknown: [],
   },
+  isLoadingPlayWords: null,
 };
 
 export const savannaState = (
@@ -59,6 +60,7 @@ export const savannaState = (
       return {
         ...state,
         wordsToPlay: action.payload,
+        isLoadingPlayWords: true,
       };
     }
 

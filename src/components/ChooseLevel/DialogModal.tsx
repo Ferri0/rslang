@@ -8,19 +8,26 @@ import { ErrorIndicator } from '../Error-indicator';
 import { Context } from '../word-service-context';
 import { ServiceWordsType } from '../../types';
 
+type EventHandler = React.FormEvent<HTMLFormElement> | KeyboardEvent;
+
 export const DialogModal = (): JSX.Element => {
   const [open, setOpen] = useState(true);
   const [group, setGroup] = useState<number>();
   const wordsService: ServiceWordsType = useContext(Context);
   const { error, loading } = useTypedSelector((state) => state.groupOfWords);
-
   const { fetchWords } = useAction();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: EventHandler) => {
     e.preventDefault();
     const randNum = Math.floor(Math.random() * 20);
     fetchWords(wordsService, group, randNum);
   };
+
+  window.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e);
+    }
+  });
 
   if (loading) {
     return (

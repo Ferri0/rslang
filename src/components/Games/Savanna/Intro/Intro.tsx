@@ -1,19 +1,34 @@
 import React, { useState } from 'react';
 import { useTypedSelector } from '../../../../hooks';
-import { GameLogic } from '../Game-logic/Game-logic';
+import { Statistics } from '../../Statistics';
+import { Button } from '../Button';
+import { SavannahGame } from '../Savannah-game';
 
 import style from './Intro.module.scss';
 
 export const Intro = (): JSX.Element => {
   const [startGame, setStartGame] = useState(false);
-  const { words } = useTypedSelector((state) => state.groupOfWords);
+  const [gameEnd, setGameEnd] = useState(false);
+  const {
+    groupOfWords: { words },
+    savannaState: { statics },
+  } = useTypedSelector((state) => state);
 
   const onStartGame = () => {
     setStartGame(true);
   };
 
+  window.onkeyup = (e: KeyboardEvent) => {
+    if (e.key !== 'Enter') return;
+    onStartGame();
+  };
+
+  if (gameEnd) {
+    return <Statistics statics={statics} />;
+  }
+
   if (startGame) {
-    return <GameLogic words={words} />;
+    return <SavannahGame words={words} setGameEnd={setGameEnd} />;
   }
 
   return (
@@ -27,9 +42,7 @@ export const Intro = (): JSX.Element => {
         </h3>
         <p>1. Кликните по нему мышью;</p>
         <p>2. Используйте клавиши 1, 2, 3, 4.</p>
-        <button type="button" className={style.btn} onClick={onStartGame}>
-          Начать
-        </button>
+        <Button text="Начать" fn={onStartGame} />
       </div>
     </div>
   );

@@ -28,25 +28,3 @@
   letter-spacing: 2px;
   text-align: center;
 }
-
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 150px;
-  height: 40px;
-  margin-top: 20px;
-  color: #fff;
-  font-weight: 700;
-  font-size: 16px;
-  background-color: transparent;
-  border: 1px solid;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  transition: background 0.8s;
-
-  &:hover {
-    background-color: #407df4;
-  }
-}

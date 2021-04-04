@@ -73,6 +73,7 @@ export interface SavannaState {
     known: Word[];
     unknown: Word[];
   };
+  isLoadingPlayWords: boolean;
 }
 
 export type SavannaActions =

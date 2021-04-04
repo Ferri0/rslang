@@ -27,6 +27,12 @@ export const Answers = ({
     setWrongAnswerAction(question !== arr[+key - 1]);
   };
 
+  window.onkeyup = (e: KeyboardEvent) => {
+    if (e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4') {
+      keyHandler(e.key, wordsInButtons);
+    }
+  };
+
   const elem: HTMLElement = document.querySelector(`.${clazz}`);
   elem?.classList.remove(clazz);
   // eslint-disable-next-line no-unused-expressions
@@ -34,7 +40,7 @@ export const Answers = ({
   elem?.classList.add(clazz);
   return (
     <div className={style.attempt_words}>
-      {wordsInButtons.map((str: string, idx: number, arr: string[]) => (
+      {wordsInButtons.map((str: string, idx: number) => (
         <button
           type="button"
           // eslint-disable-next-line react/no-array-index-key
@@ -44,7 +50,6 @@ export const Answers = ({
           autoFocus
           tabIndex={0}
           onClick={() => handlerAnswerToggle(str)}
-          onKeyUp={({ key }) => keyHandler(key, arr)}
         >
           {idx + 1}.{str}
         </button>
