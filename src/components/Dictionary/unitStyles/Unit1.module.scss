@@ -10,3 +10,25 @@
   border-top-right-radius: $border-radius;
   border-bottom-right-radius: $border-radius;
 }
+
+.tab {
+  border: 1px solid #f7e98f;
+  border-left: 12px solid #f7e98f;
+}
+
+.input:checked + label {
+  background-color: #f7e98f;
+  border-radius: 0 8px 0 0;
+}
+
+.separator {
+  position: relative;
+  width: 100%;
+  min-height: 2px;
+  background-color: #f7e98f;
+}
+
+.tabTitleHover:hover {
+  background-color: #f7e98f;
+  cursor: pointer;
+}
