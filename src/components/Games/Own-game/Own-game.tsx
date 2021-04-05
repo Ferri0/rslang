@@ -32,6 +32,7 @@ export const OwnGame = () => {
 
   let answerLastDiv: null | HTMLElement;
   let audio: any;
+  let mistake: any;
 
   useEffect(() => {
     if (answerCounter < wordObjects.length) {
@@ -78,6 +79,7 @@ export const OwnGame = () => {
             setAnswerCounter(answerCounter + 1);
           }
         } else {
+          mistake.play();
           healthPoints.pop();
           setHealthPoints(healthPoints);
           e.target.className = style.taskBlock;
@@ -113,7 +115,15 @@ export const OwnGame = () => {
             to="/dashboard"
           />
         </div>
-        <div className={style.healthPointsWrapper}>{healthPointsBlocks}</div>
+        <div className={style.healthPointsWrapper}>
+          {healthPointsBlocks}
+          <audio
+            src={'../../../assets/sounds/mistake.mp3'}
+            ref={(el) => {
+              mistake = el;
+            }}
+          />
+        </div>
       </div>
       <div className={style.mainFieldWrapper}>
         {answerBlocks}
