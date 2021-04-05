@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
-import {shuffleArray, wait} from './utils';
+import { shuffleArray, wait } from './utils';
 import { wordObjects } from './local-state';
 import style from './Own-game.module.scss';
 
@@ -16,7 +16,7 @@ export const OwnGame = () => {
     arrayOfAnswerBlocks,
     answerCounter,
     healthPoints,
-    audioSrc
+    audioSrc,
   } = useTypedSelector((state) => state.ownGame);
   const {
     setArrayOfAnswerBlock,
@@ -27,7 +27,7 @@ export const OwnGame = () => {
     setCurrentWordIndex,
     setAnswerCounter,
     setHealthPoints,
-    setAudioSrc
+    setAudioSrc,
   } = useAction();
 
   let answerLastDiv: null | HTMLElement;
@@ -53,20 +53,20 @@ export const OwnGame = () => {
     setArrayOfTaskBlocks(shuffleArray(arrayOfTaskWords));
   }, [arrayOfTaskWords]);
 
-
   const taskBlocks = arrayOfTaskBlocks.map((item: string, index: number) => (
     <span
       dangerouslySetInnerHTML={{ __html: item }}
       className={style.taskBlock}
-      onMouseDown={(e:any) => {
+      onMouseDown={(e: any) => {
         if (item === arrayOfTaskWords[currentWordIndex]) {
-          e.target.className = [style.taskBlock, style.taskBlockGreen].join(' ');
+          e.target.className = [style.taskBlock, style.taskBlockGreen].join(
+            ' '
+          );
         } else {
           e.target.className = [style.taskBlock, style.taskBlockRed].join(' ');
         }
-      }
-      }
-      onMouseUp={(e:any) => {
+      }}
+      onMouseUp={(e: any) => {
         if (item === arrayOfTaskWords[currentWordIndex]) {
           e.target.className = style.taskBlock;
           arrayOfTaskBlocks.splice(index, 1);
@@ -94,28 +94,26 @@ export const OwnGame = () => {
       ))}
     </div>
   ));
-  const healthPointsBlocks = healthPoints.map((item:number) => (
-    <div className = {style.healthPointBlock}>{item}</div>
-  )
-  );
-  const playAudio = (e:any) => {
+  const healthPointsBlocks = healthPoints.map((item: number) => (
+    <div className={style.healthPointBlock}></div>
+  ));
+  const playAudio = (e: any) => {
     e.target.disabled = true;
     audio.play();
     wait(audio.duration).then(() => {
       e.target.disabled = false;
     });
-  }
+  };
   return (
     <div className={style.ownGameWrapper}>
       <div className={style.ownGameHeaderWrapper}>
-      <div className={style.linkWrapper}>
-        <Router>
-          <Link to="/">Back to home</Link>
-        </Router>
-      </div>
-      <div className={style.healthPointsWrapper}>
-       {healthPointsBlocks}
-      </div>
+        <div className={style.linkWrapper}>
+          <Link
+            className={[style.btn, style.btn_home].join(' ')}
+            to="/dashboard"
+          />
+        </div>
+        <div className={style.healthPointsWrapper}>{healthPointsBlocks}</div>
       </div>
       <div className={style.mainFieldWrapper}>
         {answerBlocks}
@@ -127,10 +125,17 @@ export const OwnGame = () => {
       </div>
       <div className={style.taskWrapper}>
         {currentSentence}
-        <button className = {style.soundButton} onClick = {(e: any) => playAudio(e)}>Прослушать</button>
-        <audio src={audioSrc}  ref={(el) => {
+        <button
+          className={style.playSoundBtn}
+          type="button"
+          onClick={(e: any) => playAudio(e)}
+        />
+        <audio
+          src={audioSrc}
+          ref={(el) => {
             audio = el;
-          }}/>
+          }}
+        />
       </div>
       <div className={style.taskBlocksWrapper}>{taskBlocks}</div>
     </div>
