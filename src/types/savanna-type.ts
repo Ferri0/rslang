@@ -11,57 +11,62 @@ export enum SavannaActionTypes {
   RESET_SCROLL_BACKGROUND = 'RESET_SCROLL_BACKGROUND',
   ADD_RIGHT_WORD = 'ADD_RIGHT_WORD',
   ADD_WRONG_WORD = 'ADD_WRONG_WORD',
+  RESET_STATISTICS_DATA = 'RESET_STATISTICS_DATA',
 }
 
-interface SetHeartLeftAtrin {
+type SetHeartLeftAtrin = {
   type: SavannaActionTypes.SET_HEARTS_LEFT;
   payload: number;
-}
+};
 
-interface RightAnswerAtion {
+type RightAnswerAtion = {
   type: SavannaActionTypes.SET_RIGHT_ANSWER;
   payload: boolean;
-}
+};
 
-interface WrongAnswerAction {
+type WrongAnswerAction = {
   type: SavannaActionTypes.SET_WRONG_ANSWER;
   payload: boolean;
-}
+};
 
-interface SetWordsToPlayAction {
+type SetWordsToPlayAction = {
   type: SavannaActionTypes.SET_WORDS_TO_PLAY;
   payload: Word[];
-}
+};
 
-interface QuestionAction {
+type QuestionAction = {
   type: SavannaActionTypes.SET_QUESTION;
   payload: Word;
-}
+};
 
-interface SetButtonswersAction {
+type SetButtonswersAction = {
   type: SavannaActionTypes.SET_BUTTONS_WORDS;
   payload: string[];
-}
+};
 
-interface ScrollAction {
+type ScrollAction = {
   type: SavannaActionTypes.SET_SCROLL_BACKGROUND;
-}
+};
 
-interface ResetScroll {
+type ResetScroll = {
   type: SavannaActionTypes.RESET_SCROLL_BACKGROUND;
-}
+};
 
-export interface IRightWord {
+type resetStatisticsData = {
+  type: SavannaActionTypes.RESET_STATISTICS_DATA;
+};
+
+export type IRightWord = {
   type: SavannaActionTypes.ADD_RIGHT_WORD;
   payload: Word;
-}
+};
 
-export interface IWrongWord {
+export type IWrongWord = {
   type: SavannaActionTypes.ADD_WRONG_WORD;
   payload: Word;
-}
+};
 
-export interface SavannaState {
+export type SavannaState = {
   hearts: number;
   rightAnswer: boolean;
   wrongAnswer: boolean;
@@ -69,12 +74,12 @@ export interface SavannaState {
   wordsToPlay: Word[];
   wordsInButtons: string[];
   scrollBg: { backgroundPositionY: string };
-  statics: {
+  statistics: {
     known: Word[];
     unknown: Word[];
   };
   isLoadingPlayWords: boolean;
-}
+};
 
 export type SavannaActions =
   | SetHeartLeftAtrin
@@ -85,5 +90,6 @@ export type SavannaActions =
   | SetButtonswersAction
   | ScrollAction
   | ResetScroll
+  | resetStatisticsData
   | IRightWord
   | IWrongWord;

@@ -47,3 +47,7 @@ export const addWrongWordToStatics = (value: Word): SavannaActions => ({
   type: SavannaActionTypes.ADD_WRONG_WORD,
   payload: value,
 });
+
+export const resetStatisticsData = (): SavannaActions => ({
+  type: SavannaActionTypes.RESET_STATISTICS_DATA,
+});

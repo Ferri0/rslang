@@ -4,16 +4,18 @@ import { Button } from '../Savanna/Button';
 
 import style from './Statistics.module.scss';
 
-interface IStatisticsWords {
+type IStatisticsWords = {
   statics: {
     known: Word[];
     unknown: Word[];
   };
-}
-function rew() {
-  console.log('done');
-}
-export const Statistics = ({ statics }: IStatisticsWords): JSX.Element => (
+  startNewGame: () => void;
+};
+
+export const Statistics = ({
+  statics,
+  startNewGame,
+}: IStatisticsWords): JSX.Element => (
   <div className={style.background}>
     <dialog className={style.dialog} open>
       <h1 className={style.title}>Статистика игры</h1>
@@ -50,7 +52,7 @@ export const Statistics = ({ statics }: IStatisticsWords): JSX.Element => (
         ))}
       </div>
       <div className={style.btn_wrapper}>
-        <Button text="Продолжить" fn={rew} />
+        <Button text="Продолжить" fn={startNewGame} />
       </div>
     </dialog>
   </div>

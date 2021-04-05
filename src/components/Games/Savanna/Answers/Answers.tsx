@@ -38,6 +38,7 @@ export const Answers = ({
   // eslint-disable-next-line no-unused-expressions
   elem?.offsetWidth;
   elem?.classList.add(clazz);
+
   return (
     <div className={style.attempt_words}>
       {wordsInButtons.map((str: string, idx: number) => (
@@ -46,9 +47,6 @@ export const Answers = ({
           // eslint-disable-next-line react/no-array-index-key
           key={idx}
           className={style.answer}
-          // eslint-disable-next-line jsx-a11y/no-autofocus
-          autoFocus
-          tabIndex={0}
           onClick={() => handlerAnswerToggle(str)}
         >
           {idx + 1}.{str}

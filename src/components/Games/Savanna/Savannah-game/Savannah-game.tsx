@@ -7,7 +7,7 @@ import { shuffle } from '../../../../utils';
 import style from './Savannah-game.module.scss';
 import rightAnswerSound from '../../../../assets/sounds/correct.mp3';
 import errorAnserSound from '../../../../assets/sounds/erro.mp3';
-import { GameWords } from '../Game-words';
+import { Answers } from '../Answers';
 
 type PropsType = {
   words: Word[];
@@ -38,15 +38,8 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
   const rightSound = new Audio(rightAnswerSound);
   // const errorSound = new Audio(errorAnserSound);
 
-  useEffect(() => {
-    actions.setWordsToPlayAction(shuffle(words));
-    actions.setHearts(5);
-    actions.resetScrollBackground();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const setStateIfWrongAnswer = () => {
-    // errorSoundRef.current.play();
+    errorSoundRef.current.play();
     actions.addWrongWordToStatics(question);
     actions.setQuestionAction(wordsToPlay[wordsToPlay.length - 1]);
     actions.setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
@@ -98,13 +91,16 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
       <GameMenu hearts={hearts} fullscreenRef={fullscreenRef} />
       <div className={style.game_main}>
         <div style={scrollBg} className={style.game_image} />
-        <GameWords
-          clazz={clazzRef.current}
-          question={question}
-          wordsInButtons={wordsInButtons}
-          setRightAnswerAction={actions.setRightAnswerAction}
-          setWrongAnswerAction={actions.setWrongAnswerAction}
-        />
+        <div className={style.game_words}>
+          <div className={clazzRef.current}>{question.word}</div>
+          <Answers
+            clazz={clazzRef.current}
+            setRightAnswerAction={actions.setRightAnswerAction}
+            question={question.wordTranslate}
+            wordsInButtons={wordsInButtons}
+            setWrongAnswerAction={actions.setWrongAnswerAction}
+          />
+        </div>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const initialState: SavannaState = {
   wordsToPlay: [],
   wordsInButtons: [],
   scrollBg: { backgroundPositionY: '100%' },
-  statics: {
+  statistics: {
     known: [],
     unknown: [],
   },
@@ -98,24 +98,34 @@ export const savannaState = (
       };
     }
 
+    case SavannaActionTypes.RESET_STATISTICS_DATA: {
+      return {
+        ...state,
+        statistics: {
+          known: [],
+          unknown: [],
+        },
+      };
+    }
+
     case SavannaActionTypes.ADD_RIGHT_WORD: {
-      const newState = [...state.statics.known, action.payload];
+      const newState = [...state.statistics.known, action.payload];
 
       return {
         ...state,
-        statics: {
-          ...state.statics,
+        statistics: {
+          ...state.statistics,
           known: newState,
         },
       };
     }
 
     case SavannaActionTypes.ADD_WRONG_WORD: {
-      const addWrongWord = [...state.statics.unknown, action.payload];
+      const addWrongWord = [...state.statistics.unknown, action.payload];
       return {
         ...state,
-        statics: {
-          ...state.statics,
+        statistics: {
+          ...state.statistics,
           unknown: addWrongWord,
         },
       };

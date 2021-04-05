@@ -2,21 +2,30 @@ import React from 'react';
 
 import style from './Game-menu.module.scss';
 import heart from '../../../../assets/icons/heart.svg';
+import heartFail from '../../../../assets/icons/heart-fail.svg';
 
-type heart = {
+type Props = {
   hearts: number;
   fullscreenRef: React.MutableRefObject<undefined>;
 };
 
-export const GameMenu = ({ hearts, fullscreenRef }: heart): JSX.Element => {
+export const GameMenu = ({ hearts, fullscreenRef }: Props): JSX.Element => {
   const headrtRender = (): JSX.Element[] => {
-    const headrts = [];
-    for (let i = 0; i < hearts; i += 1) {
-      headrts.push(
-        <img key={i} className={style.heart} src={heart} alt="heart" />
-      );
+    const countOfMistake = 5 - hearts;
+    const heartsArray = [];
+
+    for (let i = 0; i < hearts + countOfMistake; i += 1) {
+      if (i >= countOfMistake) {
+        heartsArray.push(
+          <img key={i} className={style.heart} src={heart} alt="heart" />
+        );
+      } else {
+        heartsArray.push(
+          <img key={i} className={style.heart} src={heartFail} alt="heart" />
+        );
+      }
     }
-    return headrts;
+    return heartsArray;
   };
 
   const toggleFullScreen = (elem: HTMLDivElement) => {
