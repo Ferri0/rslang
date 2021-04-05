@@ -1,10 +1,11 @@
 .background {
+  position: relative;
   height: 100vh;
   background-image: url('../../assets/images/savannah/afrika-savanna-zhirafy.jpg');
 }
 
 .dialog_modal {
-  position: fixed;
+  position: absolute;
   top: 50%;
   max-width: 500px;
   color: wheat;
