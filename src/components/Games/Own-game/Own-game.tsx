@@ -18,6 +18,7 @@ export const OwnGame = () => {
     healthPoints,
     audioSrc,
   } = useTypedSelector((state) => state.ownGame);
+  const { isWin, isLoose } = useTypedSelector((state) => state.gameStatus);
   const {
     setArrayOfAnswerBlock,
     setArrayOfTaskBlocks,
@@ -28,6 +29,8 @@ export const OwnGame = () => {
     setAnswerCounter,
     setHealthPoints,
     setAudioSrc,
+    setWin,
+    setLoose,
   } = useAction();
 
   let answerLastDiv: null | HTMLElement;
