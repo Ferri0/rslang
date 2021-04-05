@@ -154,7 +154,7 @@ export function MainPage(): JSX.Element {
                 слов за весь период изучения по дням.
               </span>
             </div>
-            <img src="./src/assets/images/stats-img.jpg" alt="stats" />
+            <img src="../../../assets/images/stats-img.jpg" alt="stats" />
           </div>
         </div>
         <div className={style.overlay} />
