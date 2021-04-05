@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import style from './TextbookControls.module.scss';
 import { Link } from 'react-router-dom';
+import style from './TextbookControls.module.scss';
 
 type TextbookControlsProps = {
   displayBtns: any;
@@ -24,12 +24,7 @@ export function TextbookControls({
 
   return (
     <div className={style.btnsBlock}>
-      <Link to="/">
-        <button
-          className={[style.btn, style.btn_home].join(' ')}
-          type="button"
-        />
-      </Link>
+      <Link className={[style.btn, style.btn_home].join(' ')} to="/dashboard" />
       <div
         className={
           settingsActive
