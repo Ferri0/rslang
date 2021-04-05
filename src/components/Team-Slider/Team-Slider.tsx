@@ -81,14 +81,6 @@ export function TeamSlider(): JSX.Element {
                 {member.title}
               </span>
             </div>
-
-            <span key={`${member.id}-status`} className={style.status}>
-              {member.status}
-            </span>
-
-            <span key={`${member.id}-desc`} className={style.desc}>
-              {member.desc}
-            </span>
             <span key={`${member.id}-status`} className={style.status}>
               {member.status}
             </span>
