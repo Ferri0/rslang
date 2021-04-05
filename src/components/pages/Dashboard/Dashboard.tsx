@@ -10,6 +10,7 @@ import { Sprint } from '../../Games/Sprint';
 import { AudioCall } from '../../Games/Audio-call';
 import { OwnGame } from '../../Games/Own-game';
 import { DashboardStartPage } from './Dasboard-start-page';
+import { Dictionary } from '../../Dictionary';
 
 export function Dashboard() {
   const location = useLocation();
@@ -41,9 +42,15 @@ export function Dashboard() {
             <Route path="/dashboard/textbook/unit6">
               <Textbook unit={5} />
             </Route>
-            <Route path="/dashboard/dictionary/learning">Изучаемые слова</Route>
-            <Route path="/dashboard/dictionary/difficult">Сложные слова</Route>
-            <Route path="/dashboard/dictionary/deleted">Удаленные слова</Route>
+            <Route path="/dashboard/dictionary/learning">
+              <Dictionary type="learning" />
+            </Route>
+            <Route path="/dashboard/dictionary/difficult">
+              <Dictionary type="difficult" />
+            </Route>
+            <Route path="/dashboard/dictionary/deleted">
+              <Dictionary type="deleted" />
+            </Route>
             <Route path="/dashboard/games/savanna">
               <Savanna />
             </Route>

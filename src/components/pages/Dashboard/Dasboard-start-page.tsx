@@ -6,7 +6,7 @@ import { gameInfo } from '../../Games/Promo-game-card/info';
 export function DashboardStartPage() {
   const arr = [
     { id: 'learning', title: 'Изучаемые' },
-    { id: 'diffcult', title: 'Сложные' },
+    { id: 'difficult', title: 'Сложные' },
     { id: 'deleted', title: 'Удаленные' },
   ];
 
