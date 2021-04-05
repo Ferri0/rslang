@@ -4,7 +4,9 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
 import { shuffleArray, wait } from './utils';
 import { wordObjects } from './local-state';
+import { LoosePage } from '../../pages/Loose';
 import style from './Own-game.module.scss';
+import { any } from 'prop-types';
 
 export const OwnGame = () => {
   const {
@@ -36,6 +38,7 @@ export const OwnGame = () => {
   let answerLastDiv: null | HTMLElement;
   let audio: any;
   let mistake: any;
+  let loose: any;
 
   useEffect(() => {
     if (answerCounter < wordObjects.length) {
@@ -82,10 +85,15 @@ export const OwnGame = () => {
             setAnswerCounter(answerCounter + 1);
           }
         } else {
-          mistake.play();
           healthPoints.pop();
-          setHealthPoints(healthPoints);
-          e.target.className = style.taskBlock;
+          if (healthPoints.length < 1) {
+            setLoose(true);
+            loose.play();
+          } else {
+            mistake.play();
+            setHealthPoints(healthPoints);
+            e.target.className = style.taskBlock;
+          }
         }
       }}
     />
@@ -111,6 +119,7 @@ export const OwnGame = () => {
   };
   return (
     <div className={style.ownGameWrapper}>
+      <LoosePage />
       <div className={style.ownGameHeaderWrapper}>
         <div className={style.linkWrapper}>
           <Link
@@ -124,6 +133,12 @@ export const OwnGame = () => {
             src={'../../../assets/sounds/mistake.mp3'}
             ref={(el) => {
               mistake = el;
+            }}
+          />
+          <audio
+            src={'../../../assets/sounds/loose.mp3'}
+            ref={(el) => {
+              loose = el;
             }}
           />
         </div>
