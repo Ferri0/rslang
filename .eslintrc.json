@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": [
     "plugin:react/recommended",
@@ -35,7 +36,8 @@
         "extensions": [".ts", ".tsx"]
       }
     ],
-    "import/extensions": ["off", "never", {"ignorePackages": true}]
+    "import/extensions": ["off", "never", { "ignorePackages": true }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   },
   "settings": {
     "import/parsers": {
