@@ -5,8 +5,8 @@ import { useAction } from '../../../hooks/useAction';
 import { shuffleArray, wait } from './utils';
 import { wordObjects } from './local-state';
 import { LoosePage } from '../../pages/Loose';
+import { WinPage } from '../../pages/Win';
 import style from './Own-game.module.scss';
-import { any } from 'prop-types';
 
 export const OwnGame = () => {
   const {
@@ -20,7 +20,6 @@ export const OwnGame = () => {
     healthPoints,
     audioSrc,
   } = useTypedSelector((state) => state.ownGame);
-  const { isWin, isLoose } = useTypedSelector((state) => state.gameStatus);
   const {
     setArrayOfAnswerBlock,
     setArrayOfTaskBlocks,
@@ -39,16 +38,29 @@ export const OwnGame = () => {
   let audio: any;
   let mistake: any;
   let loose: any;
+  let win: any;
+  const newElement: string[] = [];
 
   useEffect(() => {
-    if (answerCounter < wordObjects.length) {
+    if (answerCounter === 0) {
+      setCurrentWordIndex(0);
       setCurrentSentence(wordObjects[answerCounter].textExampleTranslate);
       setCurrentTaskSentence(wordObjects[answerCounter].textExample);
-      arrayOfAnswerBlocks.push([]);
-      setArrayOfAnswerBlock(arrayOfAnswerBlocks);
+      setAudioSrc(wordObjects[answerCounter].audioExample);
+      setArrayOfAnswerBlock([[]]);
+      setHealthPoints([1, 1, 1, 1, 1]);
+    }
+    if (answerCounter < wordObjects.length && answerCounter > 0) {
+      setCurrentSentence(wordObjects[answerCounter].textExampleTranslate);
+      setCurrentTaskSentence(wordObjects[answerCounter].textExample);
+      setArrayOfAnswerBlock([...arrayOfAnswerBlocks, newElement]);
       setCurrentWordIndex(0);
       setAudioSrc(wordObjects[answerCounter].audioExample);
       answerLastDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (answerCounter === wordObjects.length) {
+      setWin(true);
+      win.play();
     }
   }, [answerCounter]);
 
@@ -76,12 +88,14 @@ export const OwnGame = () => {
       onMouseUp={(e: any) => {
         if (item === arrayOfTaskWords[currentWordIndex]) {
           e.target.className = style.taskBlock;
-          arrayOfTaskBlocks.splice(index, 1);
-          arrayOfAnswerBlocks[answerCounter].push(item);
-          setArrayOfTaskBlocks(arrayOfTaskBlocks);
-          setArrayOfAnswerBlock(arrayOfAnswerBlocks);
+          const copyOfTaskArray = arrayOfTaskBlocks.slice();
+          copyOfTaskArray.splice(index, 1);
+          setArrayOfTaskBlocks(copyOfTaskArray);
+          const copyOfAnswerArray = arrayOfAnswerBlocks.slice();
+          copyOfAnswerArray[answerCounter].push(item);
+          setArrayOfAnswerBlock(copyOfAnswerArray);
           setCurrentWordIndex(currentWordIndex + 1);
-          if (arrayOfTaskBlocks.length < 1) {
+          if (copyOfTaskArray.length < 1) {
             setAnswerCounter(answerCounter + 1);
           }
         } else {
@@ -120,6 +134,7 @@ export const OwnGame = () => {
   return (
     <div className={style.ownGameWrapper}>
       <LoosePage />
+      <WinPage mistakesCounter={5 - healthPoints.length} />
       <div className={style.ownGameHeaderWrapper}>
         <div className={style.linkWrapper}>
           <Link
@@ -139,6 +154,12 @@ export const OwnGame = () => {
             src={'../../../assets/sounds/loose.mp3'}
             ref={(el) => {
               loose = el;
+            }}
+          />
+          <audio
+            src={'../../../assets/sounds/win.mp3'}
+            ref={(el) => {
+              win = el;
             }}
           />
         </div>

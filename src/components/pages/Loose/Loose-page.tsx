@@ -6,7 +6,12 @@ import style from './Loose-page.module.scss';
 
 export function LoosePage() {
   const { isLoose } = useTypedSelector((state) => state.gameStatus);
-  const { setLoose, setHealthPoints } = useAction();
+  const {
+    setLoose,
+    setHealthPoints,
+    setAnswerCounter,
+    setArrayOfAnswerBlock,
+  } = useAction();
   return (
     <div
       className={
@@ -20,8 +25,8 @@ export function LoosePage() {
           className={style.btn}
           to="/dashboard"
           onClick={() => {
+            setAnswerCounter(0);
             setLoose(false);
-            setHealthPoints([1, 1, 1, 1, 1]);
           }}
         >
           Закрыть
