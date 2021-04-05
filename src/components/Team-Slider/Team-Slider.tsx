@@ -8,7 +8,7 @@ export function TeamSlider() {
   const [angle, setAngle] = useState(0);
 
   const memberClick = (i: number) => {
-    const newArr = arr.map((el, ind) => {
+    const newArr = arr.map((_el, ind) => {
       if (ind === i) return 'active';
       return '';
     });
@@ -27,44 +27,56 @@ export function TeamSlider() {
 
           {/* generate team members mini photo */}
           {teamInfo.map((member, i) => (
-              <div
-                key={`${member.id}-img`}
-                className={`${style.miniPhoto} ${style[cls[i]]}`}
-                style={{
-                  background: `url("${member.img}")`,
-                  top: `${coord[i].top}px`,
-                  right: `${coord[i].right}px`,
-                  transform: `rotate(${-angle}deg)`,
-                }}
-                onClick={() => memberClick(i)}
-              />
-            ))}
+            <div
+              key={`${member.id}-img`}
+              className={`${style.miniPhoto} ${style[cls[i]]}`}
+              style={{
+                background: `url("${member.img}")`,
+                top: `${coord[i].top}px`,
+                right: `${coord[i].right}px`,
+                transform: `rotate(${-angle}deg)`,
+              }}
+              onClick={() => memberClick(i)}
+            />
+          ))}
         </div>
         {/* generate team members main photo */}
         {teamInfo.map((member, i) => (
-            <div
-              key={`${member.id}-main-img`}
-              className={`${style.photo} ${style[cls[i]]}`}
-              style={{ background: `url("${member.img}")` }}
-            />
-          ))}
+          <div
+            key={`${member.id}-main-img`}
+            className={`${style.photo} ${style[cls[i]]}`}
+            style={{ background: `url("${member.img}")` }}
+          />
+        ))}
 
         {/* generate team members name */}
         {teamInfo.map((member, i) => (
-            <div
-              key={`${member.id}-name`}
-              className={`${style.name} ${style[cls[i]]}`}
-            >
-              {member.title}
-            </div>
-          ))}
+          <div
+            key={`${member.id}-name`}
+            className={`${style.name} ${style[cls[i]]}`}
+          >
+            {member.title}
+          </div>
+        ))}
       </div>
       <div className={style.sliderInfo}>
         {/* generate team members status, desc */}
-        {teamInfo.map((member, i) => (
-            <div className={`${style.infoBlock} ${style[cls[i]]}`}>
-              <div className={style.infoFirstLine}>
-                <a href={member.url} target="blank" className={style.url}>
+        {teamInfo.map((member, i) => {
+          return (
+            <div
+              key={`${member.id}-info-block`}
+              className={`${style.infoBlock} ${style[cls[i]]}`}
+            >
+              <div
+                key={`${member.id}-info-line`}
+                className={style.infoFirstLine}
+              >
+                <a
+                  key={`${member.id}-url`}
+                  href={member.url}
+                  target="blank"
+                  className={style.url}
+                >
                   <i className="fab fa-github" />
                 </a>
                 <span key={`${member.id}-info-name`} className={style.infoName}>
@@ -80,7 +92,8 @@ export function TeamSlider() {
                 {member.desc}
               </span>
             </div>
-          ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export function App() {
           <Route path="/dashboard">
             <Dashboard />
           </Route>
-          <Route exact path="/savanna">
+          {/* <Route exact path="/savanna">
             <Savanna />
           </Route>
           <Route exact path="/sprint">
@@ -34,7 +34,7 @@ export function App() {
           </Route>
           <Route exact path="/owngame">
             <OwnGame />
-          </Route>
+          </Route> */}
           <Route
             render={() => <h2>Error, you made a mistake in the url path</h2>}
           />

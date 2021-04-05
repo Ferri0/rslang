@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import style from './TextbookControls.module.scss';
 
 export function TextbookControls() {
@@ -6,7 +7,7 @@ export function TextbookControls() {
   const [gamesActive, setGamesActive] = useState(false);
   return (
     <div className={style.btnsBlock}>
-      <button className={[style.btn, style.btn_home].join(' ')} type="button" />
+      <Link className={[style.btn, style.btn_home].join(' ')} to="/dashboard" />
       <div
         className={
           settingsActive

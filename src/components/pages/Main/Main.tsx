@@ -119,6 +119,9 @@ export function MainPage() {
               <span>настройки</span>
             </div>
           </div>
+          <Link to="/dashboard" className={style.greetingButton}>
+            Начать обучение
+          </Link>
         </div>
         <div className={style.overlay} />
       </div>

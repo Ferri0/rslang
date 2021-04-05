@@ -28,5 +28,3 @@ for (let i = 0; i < teamInfo.length; i += 1) {
   coord[i] = el;
   angle += angleH;
 }
-
-console.log(coord);
