@@ -1,27 +1,14 @@
-import React, { useState } from 'react';
-import { HashRouter as Router, Link } from 'react-router-dom';
+import React from 'react';
+import { useTypedSelector } from '../../../hooks';
+import { DialogModal } from '../../ChooseLevel';
+import { Intro } from './Intro';
 
-import style from './Savanna.module.scss';
+export const Savanna = (): JSX.Element => {
+  const { words } = useTypedSelector((state) => state.groupOfWords);
 
-export const Savanna = () => {
-  const [scrollBg, setScrollBg] = useState({ backgroundPositionY: '100%' });
+  if (words.length === 0) {
+    return <DialogModal />;
+  }
 
-  const onscrollToTop = () => {
-    setScrollBg(({ backgroundPositionY }) => ({
-      backgroundPositionY: parseInt(backgroundPositionY) - 10 + '%',
-    }));
-  };
-
-  return (
-    <div>
-      <Router>
-        <Link to="/">Back to home</Link>
-      </Router>
-      <div style={scrollBg} className={style.bg}>
-        <button onClick={onscrollToTop} className={style.button}>
-          Click
-        </button>
-      </div>
-    </div>
-  );
+  return <Intro />;
 };

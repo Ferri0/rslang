@@ -8,9 +8,10 @@
     "plugin:react/recommended",
     "airbnb",
     "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
-  "parser": "./node_modules/@babel/eslint-parser/lib/index.js",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "project": "./tsconfig.json",
@@ -26,8 +27,13 @@
     "sourceType": "module",
     "allowImportExportEverywhere": false
   },
-  "plugins": ["react"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "react/prop-types": 0,
     "import/prefer-default-export": "off",
     "import/no-unresolved": "off",
     "react/jsx-filename-extension": [
@@ -37,7 +43,8 @@
       }
     ],
     "import/extensions": ["off", "never", { "ignorePackages": true }],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "@typescript-eslint/no-var-requires": 0
   },
   "settings": {
     "import/parsers": {

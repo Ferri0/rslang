@@ -17,7 +17,7 @@ export function Textbook({ unit }: TextbookProps) {
   const [fetchedPage, setFetchedPage] = useState(null);
   const [wordCards, setWordCards] = useState(null);
   // const [displayBtns, setDisplayBtns] = useState(true);
-  //const [displayTranslate, setDisplayTranslate] = useState(true);
+  // const [displayTranslate, setDisplayTranslate] = useState(true);
 
   const unitStyle = getUnitStyle(unit);
 
@@ -56,7 +56,7 @@ export function Textbook({ unit }: TextbookProps) {
         <TextbookControls />
         <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
         <div className={style.wordsWrapper}>
-          {'Загрузка...'}
+          Загрузка...
           <PageControls currentPage={page} setCurrentPage={setPage} />
         </div>
       </div>

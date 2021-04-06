@@ -1,3 +1,5 @@
 import React from 'react';
+import { WordsService } from '../../service';
 
-export const Context = React.createContext({});
+const wordsService = new WordsService();
+export const Context = React.createContext(wordsService);

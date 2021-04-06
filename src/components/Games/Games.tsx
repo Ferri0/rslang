@@ -5,7 +5,7 @@ import { PromoGameCard } from './Promo-game-card';
 import style from './Games.module.scss';
 import { arrGame } from './Promo-game-card/info';
 
-export function Games() {
+export function Games(): JSX.Element {
   return (
     <div className={style.gamesWrapper}>
       <h2 className={style.gamesTitle}>Мини-игры</h2>
@@ -16,16 +16,14 @@ export function Games() {
         изучении новых слов.
       </span>
       <div className={style.gameCards}>
-        {arrGame.map((game) => {
-          return (
-            <Link
-              key={`game-card-${game}`}
-              to={`/dashboard/games/${game.toLowerCase()}`}
-            >
-              <PromoGameCard title={game} />
-            </Link>
-          );
-        })}
+        {arrGame.map((game) => (
+          <Link
+            key={`game-card-${game}`}
+            to={`/dashboard/games/${game.toLowerCase()}`}
+          >
+            <PromoGameCard title={game} />
+          </Link>
+        ))}
       </div>
     </div>
   );
