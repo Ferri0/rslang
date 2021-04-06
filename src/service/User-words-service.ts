@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { CategoryType } from '../types/words';
 
 const getWordsOfType = async (userId: string, token: string, type: string) => {
@@ -44,7 +46,7 @@ const removeUserWord = async (
   userId: string,
   wordId: string,
   token: string
-) => {
+): Promise<Response> => {
   const response = await fetch(
     `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/words/${wordId}`,
     {
@@ -59,7 +61,11 @@ const removeUserWord = async (
   return response;
 };
 
-const addToDeleted = async (userId: string, wordId: string, token: string) => {
+const addToDeleted = async (
+  userId: string,
+  wordId: string,
+  token: string
+): Promise<void> => {
   addWordToType(userId, wordId, token, 'deleted');
 };
 
@@ -67,11 +73,14 @@ const addToDifficult = async (
   userId: string,
   wordId: string,
   token: string
-) => {
+): Promise<void> => {
   addWordToType(userId, wordId, token, 'difficult');
 };
 
-const getAllDifficult = async (userId: string, token: string) => {
+const getAllDifficult = async (
+  userId: string,
+  token: string
+): Promise<Response> => {
   const type = 'difficult';
   const rawResponse = await getWordsOfType(userId, token, type);
   const response = await rawResponse.json();
@@ -79,7 +88,10 @@ const getAllDifficult = async (userId: string, token: string) => {
   return result;
 };
 
-const getAllDeleted = async (userId: string, token: string) => {
+const getAllDeleted = async (
+  userId: string,
+  token: string
+): Promise<Response> => {
   const type = 'deleted';
   const rawResponse = await getWordsOfType(userId, token, type);
   const response = await rawResponse.json();
@@ -107,8 +119,10 @@ export const getWordsOfCategoryByPage = async (
     let count = 0
 
     if (response) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       words = json[0]?.paginatedResults || [];
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       count = json[0]?.totalCount[0]?.count || 0;
     }

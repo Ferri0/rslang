@@ -2,15 +2,11 @@ import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { MainPage } from '../pages/Main';
 import { Dashboard } from '../pages/Dashboard';
-import { Savanna } from '../Games/Savanna';
-import { Sprint } from '../Games/Sprint';
-import { AudioCall } from '../Games/Audio-call';
-import { OwnGame } from '../Games/Own-game';
 import { RegistrationPage } from '../pages/Registration';
 import { LoginPage } from '../pages/Login';
 import style from './App.module.scss';
 
-export function App() {
+export function App(): JSX.Element {
   return (
     <Router>
       <div className={style.wrapper}>

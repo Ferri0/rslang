@@ -25,10 +25,10 @@ export function TextbookControls() {
         <div className={style.settingWrapper}>
           <label className={style.container}>
             <input type="checkbox" id="translate" />
-            <span className={style.checkmark}></span>
+            <span className={style.checkmark} />
           </label>
           <div className={style.settingWrapperIcons}>
-            <div>{'Кнопки'}</div>
+            <div>Кнопки</div>
             <div className={style.settingsIconStar} />
             <div className={style.settingsIconDel} />
           </div>
@@ -36,9 +36,9 @@ export function TextbookControls() {
         <div className={style.settingWrapper}>
           <label className={style.container}>
             <input type="checkbox" id="translate" />
-            <span className={style.checkmark}></span>
+            <span className={style.checkmark} />
           </label>
-          {'Перевод слов'}
+          Перевод слов
         </div>
       </div>
       <div

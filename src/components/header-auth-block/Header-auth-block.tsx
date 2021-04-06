@@ -3,7 +3,7 @@ import { useAction } from '../../hooks/useAction';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import style from './Header-auth-block.module.scss';
 
-export function HeaderAuthBlock() {
+export function HeaderAuthBlock(): JSX.Element {
   const {
     setShowLogin,
     setAuthorized,
