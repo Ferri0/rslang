@@ -5,12 +5,13 @@ import { getFetchUrl } from './util/getFetchUrl';
 import { WordCard } from '../WordCard';
 import { PageControls } from '../PageControls';
 import { TextbookControls } from '../TextBookControls';
+import { Word } from '../../types';
 
 type TextbookProps = {
   unit: number;
 };
 
-export function Textbook({ unit }: TextbookProps) {
+export function Textbook({ unit }: TextbookProps): JSX.Element {
   const [group, setGroup] = useState(unit);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -39,13 +40,13 @@ export function Textbook({ unit }: TextbookProps) {
 
   useEffect(() => {
     if (fetchedPage !== null) {
-      const wordCards: any[] = [];
-      fetchedPage.forEach((element: any, i: number) => {
-        wordCards.push(
+      const wordCardsArr: JSX.Element[] = [];
+      fetchedPage.forEach((element: Word) => {
+        wordCardsArr.push(
           <WordCard wordInfo={element} unitStyle={unitStyle} key={element.id} />
         );
       });
-      setWordCards(wordCards);
+      setWordCards(wordCardsArr);
       setLoading(false);
     }
   }, [fetchedPage]);
@@ -69,10 +70,10 @@ export function Textbook({ unit }: TextbookProps) {
       <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
       <div className={style.wordsWrapper}>
         <div className={style.wordsBlock}>
-          {wordCards.filter((e: any, i: number) => i % 2 !== 0)}
+          {wordCards.filter((_: JSX.Element, i: number) => i % 2 !== 0)}
         </div>
         <div className={style.wordsBlock}>
-          {wordCards.filter((e: any, i: number) => i % 2 === 0)}
+          {wordCards.filter((_: JSX.Element, i: number) => i % 2 === 0)}
         </div>
         <PageControls currentPage={page} setCurrentPage={setPage} />
       </div>
