@@ -21,9 +21,7 @@ export function DashboardMenu() {
         newObj[key] = menuStatus[item] === 'open' ? 'close' : 'open';
       else newObj[key] = 'close';
     });
-    setStatusMenu((prev) => {
-      return { ...prev, newObj };
-    });
+    setStatusMenu((prev) => ({ ...prev, newObj }));
   };
 
   const activeStyle = {

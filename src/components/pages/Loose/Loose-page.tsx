@@ -6,12 +6,7 @@ import style from './Loose-page.module.scss';
 
 export function LoosePage() {
   const { isLoose } = useTypedSelector((state) => state.gameStatus);
-  const {
-    setLoose,
-    setHealthPoints,
-    setAnswerCounter,
-    setArrayOfAnswerBlock,
-  } = useAction();
+  const { setLoose, setAnswerCounter } = useAction();
   return (
     <div
       className={
@@ -19,7 +14,7 @@ export function LoosePage() {
       }
     >
       <div className={style.loosePageContainer}>
-        <div className={style.loosePageHeader}></div>
+        <div className={style.loosePageHeader} />
         Вы проиграли
         <Link
           className={style.btn}

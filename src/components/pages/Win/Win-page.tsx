@@ -15,7 +15,7 @@ export function WinPage(props: any) {
   return (
     <div className={isWin ? style.winPageWrapper : style.winPageWrapperHidden}>
       <div className={style.winPageContainer}>
-        <div className={style.winPageHeader}></div>
+        <div className={style.winPageHeader} />
         Вы выиграли! Количество ошибок: {props.mistakesCounter}
         <Link
           className={style.btn}

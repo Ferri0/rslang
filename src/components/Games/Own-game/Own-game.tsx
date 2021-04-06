@@ -122,7 +122,7 @@ export const OwnGame = () => {
     </div>
   ));
   const healthPointsBlocks = healthPoints.map((item: number) => (
-    <div className={style.healthPointBlock}></div>
+    <div className={style.healthPointBlock} />
   ));
   const playAudio = (e: any) => {
     e.target.disabled = true;
@@ -145,19 +145,19 @@ export const OwnGame = () => {
         <div className={style.healthPointsWrapper}>
           {healthPointsBlocks}
           <audio
-            src={'../../../assets/sounds/mistake.mp3'}
+            src="../../../assets/sounds/mistake.mp3"
             ref={(el) => {
               mistake = el;
             }}
           />
           <audio
-            src={'../../../assets/sounds/loose.mp3'}
+            src="../../../assets/sounds/loose.mp3"
             ref={(el) => {
               loose = el;
             }}
           />
           <audio
-            src={'../../../assets/sounds/win.mp3'}
+            src="../../../assets/sounds/win.mp3"
             ref={(el) => {
               win = el;
             }}
@@ -170,7 +170,7 @@ export const OwnGame = () => {
           ref={(el) => {
             answerLastDiv = el;
           }}
-        ></div>
+        />
       </div>
       <div className={style.taskWrapper}>
         {currentSentence}

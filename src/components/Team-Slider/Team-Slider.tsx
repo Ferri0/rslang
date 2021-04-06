@@ -61,39 +61,34 @@ export function TeamSlider() {
       </div>
       <div className={style.sliderInfo}>
         {/* generate team members status, desc */}
-        {teamInfo.map((member, i) => {
-          return (
-            <div
-              key={`${member.id}-info-block`}
-              className={`${style.infoBlock} ${style[cls[i]]}`}
-            >
-              <div
-                key={`${member.id}-info-line`}
-                className={style.infoFirstLine}
+        {teamInfo.map((member, i) => (
+          <div
+            key={`${member.id}-info-block`}
+            className={`${style.infoBlock} ${style[cls[i]]}`}
+          >
+            <div key={`${member.id}-info-line`} className={style.infoFirstLine}>
+              <a
+                key={`${member.id}-url`}
+                href={member.url}
+                target="blank"
+                className={style.url}
               >
-                <a
-                  key={`${member.id}-url`}
-                  href={member.url}
-                  target="blank"
-                  className={style.url}
-                >
-                  <i className="fab fa-github" />
-                </a>
-                <span key={`${member.id}-info-name`} className={style.infoName}>
-                  {member.title}
-                </span>
-              </div>
-
-              <span key={`${member.id}-status`} className={style.status}>
-                {member.status}
-              </span>
-
-              <span key={`${member.id}-desc`} className={style.desc}>
-                {member.desc}
+                <i className="fab fa-github" />
+              </a>
+              <span key={`${member.id}-info-name`} className={style.infoName}>
+                {member.title}
               </span>
             </div>
-          );
-        })}
+
+            <span key={`${member.id}-status`} className={style.status}>
+              {member.status}
+            </span>
+
+            <span key={`${member.id}-desc`} className={style.desc}>
+              {member.desc}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );
