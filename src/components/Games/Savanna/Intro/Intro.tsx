@@ -13,7 +13,7 @@ export const Intro = (): JSX.Element => {
   const currentRef = useRef();
   const {
     groupOfWords: { words },
-    savannaState: { statistics: statics },
+    savannaState: { statistics },
   } = useTypedSelector((state) => state);
 
   const actions = useAction();
@@ -38,7 +38,7 @@ export const Intro = (): JSX.Element => {
   };
 
   if (gameEnd) {
-    return <Statistics statics={statics} startNewGame={startNewGame} />;
+    return <Statistics statics={statistics} startNewGame={startNewGame} />;
   }
 
   if (startGame) {

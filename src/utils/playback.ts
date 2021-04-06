@@ -1,4 +1,4 @@
-import { WordsService } from '../services';
+import { WordsService } from '../service';
 
 const wordsService = new WordsService();
 
