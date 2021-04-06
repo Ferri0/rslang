@@ -14,8 +14,7 @@ export const teamInfo: Array<IType> = [
     status: 'Team Lead',
     img: './assets/images/team/abrasimov.jpg',
     url: 'https://github.com/Ferri0',
-    desc:
-      'Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. ',
+    desc: 'Добавить описание вклада в разработку приложения.',
   },
   {
     id: 'oleksiuk',
@@ -23,8 +22,7 @@ export const teamInfo: Array<IType> = [
     status: 'Software Engineer',
     img: './assets/images/team/oleksiuk.jpg',
     url: 'https://github.com/DenisOleksiuk',
-    desc:
-      'Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. ',
+    desc: 'Добавить описание вклада в разработку приложения.',
   },
   {
     id: 'tytova',
@@ -32,8 +30,7 @@ export const teamInfo: Array<IType> = [
     status: 'Experience Designer',
     img: './assets/images/team/tytova.jpg',
     url: 'https://github.com/kattitova',
-    desc:
-      'Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. ',
+    desc: 'Добавить описание вклада в разработку приложения.',
   },
   {
     id: 'alekseyenko',
@@ -41,8 +38,7 @@ export const teamInfo: Array<IType> = [
     status: 'Software Engineer',
     img: './assets/images/team/alekseyenko.jpg',
     url: 'https://github.com/IgorAleks88',
-    desc:
-      'Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. ',
+    desc: 'Добавить описание вклада в разработку приложения.',
   },
   {
     id: 'tur',
@@ -50,7 +46,6 @@ export const teamInfo: Array<IType> = [
     status: 'Software Engineer',
     img: './assets/images/team/tur.jpg',
     url: 'https://github.com/buiiz',
-    desc:
-      'Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. Добавить описание вклада в разработку приложения. ',
+    desc: 'Добавить описание вклада в разработку приложения.',
   },
 ];

@@ -8,6 +8,7 @@ export enum AuthActionTypes {
   SET_TOKEN = 'SET_TOKEN',
   SET_REFRESH_TOKEN = 'SET_REFRESH_TOKEN',
 }
+
 export interface AuthState {
   isShowLogin: boolean;
   isShowRegister: boolean;
@@ -67,5 +68,5 @@ interface SetRefreshTokenAction {
 
 interface SetLoadingAction {
   type: AuthActionTypes.SET_LOADING;
-  payload: string;
+  payload: boolean;
 }

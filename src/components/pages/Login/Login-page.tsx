@@ -5,7 +5,7 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
 import style from './Login-page.module.scss';
 
-export function LoginPage() {
+export function LoginPage(): JSX.Element {
   const {
     setShowLogin,
     setAuthorized,
@@ -29,7 +29,7 @@ export function LoginPage() {
 
   function loginHandler() {
     setLoading(true);
-    login(email, password).then((res: any) => {
+    login(email, password).then((res) => {
       setLoading(false);
       const error = res.statusText;
       if (error === 'Not Found') {
@@ -39,7 +39,7 @@ export function LoginPage() {
         setErrorText('Неправильный пароль');
       }
       if (res.ok) {
-        res.json().then((data: any) => {
+        res.json().then((data) => {
           if (data.message === 'Authenticated') {
             setErrorText('');
             setCurrentUser(data.name);

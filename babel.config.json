@@ -3,14 +3,10 @@
     [
       "@babel/preset-env",
       {
-        "exclude": [
-          "transform-async-to-generator",
-          "transform-regenerator"
-        ]
+        "exclude": ["transform-async-to-generator", "transform-regenerator"]
       }
     ],
-    "@babel/preset-react",
-    "@babel/preset-flow"
+    "@babel/preset-react"
   ],
   "plugins": [
     [

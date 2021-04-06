@@ -8,7 +8,7 @@ export const ErrorIndicator = () => (
     <img src={error} alt="error" className={style.error__img} />
     <div className={style.text_wrap}>
       <span>Sorry</span>
-      <span>something has go wrong</span>
+      <span>Something went wrong</span>
       <span>(but we already check what&apos;s going on)</span>
     </div>
   </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import style from './Main-menu.module.scss';
 
-export function MainMenu() {
+export function MainMenu(): JSX.Element {
   return (
     <nav className={style.menu}>
       <Link className={style.menuItem} to="#promo">

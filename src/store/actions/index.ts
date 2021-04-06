@@ -1,9 +1,5 @@
-import * as UserActionCreators from './auth';
-import * as OwnGameActionCreators from './ownGame';
-import * as GameStatusActionCreators from './game-status';
-
-export default {
-  ...UserActionCreators,
-  ...OwnGameActionCreators,
-  ...GameStatusActionCreators,
-};
+export * from './auth';
+export * from './words';
+export * from './savanna-action';
+export * from './ownGame';
+export * from './game-status';

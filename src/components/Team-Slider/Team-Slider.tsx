@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import style from './Team-Slider.module.scss';
 import { teamInfo } from './team-info';
 import { arr, coord, angleH } from './const';
 
-export function TeamSlider() {
+export function TeamSlider(): JSX.Element {
   const [cls, setCls] = useState(arr);
   const [angle, setAngle] = useState(0);
 
@@ -79,7 +81,6 @@ export function TeamSlider() {
                 {member.title}
               </span>
             </div>
-
             <span key={`${member.id}-status`} className={style.status}>
               {member.status}
             </span>

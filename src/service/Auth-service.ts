@@ -1,4 +1,8 @@
-const register = async (name: string, email: string, pass: string) => {
+const register = async (
+  name: string,
+  email: string,
+  pass: string
+): Promise<Response> => {
   const data = {
     name,
     email,
@@ -18,12 +22,11 @@ const register = async (name: string, email: string, pass: string) => {
   return response;
 };
 
-const login = async (email: string, password: string) => {
+const login = async (email: string, password: string): Promise<Response> => {
   const data = {
     email,
     password,
   };
-  const result = 'error';
   const response = await fetch(
     'https://yaia-team-rslang-api.herokuapp.com/signin',
     {

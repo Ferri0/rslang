@@ -6,7 +6,7 @@ import { Footer } from '../../Footer';
 import style from './Main.module.scss';
 import { TeamSlider } from '../../Team-Slider';
 
-export function MainPage() {
+export function MainPage(): JSX.Element {
   return (
     <div className={style.mainPage}>
       <Header />
@@ -154,7 +154,7 @@ export function MainPage() {
                 слов за весь период изучения по дням.
               </span>
             </div>
-            <img src="./src/assets/images/stats-img.jpg" />
+            <img src="../../../assets/images/stats-img.jpg" alt="stats" />
           </div>
         </div>
         <div className={style.overlay} />

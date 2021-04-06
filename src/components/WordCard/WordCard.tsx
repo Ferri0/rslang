@@ -5,7 +5,7 @@ import { wait } from './util/wait';
 type WordCardProps = { wordInfo: any; unitStyle: any };
 
 export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
-  const apiUrl: string = 'https://yaia-team-rslang-api.herokuapp.com/';
+  const apiUrl = 'https://yaia-team-rslang-api.herokuapp.com/';
 
   const playAudio = (e: any) => {
     const audio: any = document.getElementById(`${wordInfo.id}-audio`);

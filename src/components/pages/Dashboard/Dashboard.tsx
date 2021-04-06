@@ -12,7 +12,7 @@ import { OwnGame } from '../../Games/Own-game';
 import { DashboardStartPage } from './Dasboard-start-page';
 import { Dictionary } from '../../Dictionary';
 
-export function Dashboard() {
+export function Dashboard(): JSX.Element {
   const location = useLocation();
   let startPage;
   if (location.pathname === '/dashboard') startPage = <DashboardStartPage />;
