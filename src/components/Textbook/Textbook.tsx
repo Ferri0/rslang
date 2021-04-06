@@ -6,6 +6,7 @@ import { WordCard } from '../WordCard';
 import { PageControls } from '../PageControls';
 import { TextbookControls } from '../TextBookControls';
 import { Word } from '../../types';
+import { useAction } from '../../hooks';
 
 type TextbookProps = {
   unit: number;
@@ -17,6 +18,7 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
   const [loading, setLoading] = useState(true);
   const [fetchedPage, setFetchedPage] = useState(null);
   const [wordCards, setWordCards] = useState(null);
+  const { setIsLocation } = useAction();
   // const [displayBtns, setDisplayBtns] = useState(true);
   // const [displayTranslate, setDisplayTranslate] = useState(true);
 
@@ -26,6 +28,7 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
     setLoading(true);
     setGroup(unit);
     setPage(0);
+    setIsLocation(false);
   }, [group, unit]);
 
   useEffect(() => {

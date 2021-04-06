@@ -4,9 +4,9 @@ import { DialogModal } from '../../ChooseLevel';
 import { Intro } from './Intro';
 
 export const Savanna = (): JSX.Element => {
-  const { words } = useTypedSelector((state) => state.groupOfWords);
+  const { isMainPage } = useTypedSelector((state) => state.savannaState);
 
-  if (words.length === 0) {
+  if (isMainPage) {
     return <DialogModal />;
   }
 

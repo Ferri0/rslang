@@ -15,12 +15,12 @@ export const DialogModal = (): JSX.Element => {
   const [group, setGroup] = useState<number>();
   const wordsService: ServiceWordsType = useContext(Context);
   const { error, loading } = useTypedSelector((state) => state.groupOfWords);
-  const { fetchWords } = useAction();
-
+  const { fetchWords, setIsLocation } = useAction();
   const handleSubmit = (e: EventHandler) => {
     e.preventDefault();
     const randNum = Math.floor(Math.random() * 20);
     fetchWords(wordsService, group, randNum);
+    setIsLocation(false);
   };
 
   window.addEventListener('keyup', (e) => {
