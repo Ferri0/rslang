@@ -1,4 +1,4 @@
-const wait = (ms: number): Promise<unknown> =>
+const wait = (ms: number) =>
   new Promise((resolve) =>
     setTimeout(() => {
       resolve('DONE');

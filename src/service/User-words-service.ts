@@ -129,7 +129,7 @@ export const getWordsOfCategoryByPage = async (
 
     return {words, count};
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 
