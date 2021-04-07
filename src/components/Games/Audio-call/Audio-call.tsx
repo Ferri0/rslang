@@ -6,8 +6,8 @@ export const AudioCall = (): JSX.Element => {
   const { isMainPage } = useTypedSelector((state) => state.savannaState);
 
   if (isMainPage) {
-    return <ChooseLvl />;
+    return <ChooseLvl bg="Headphones.jpg" />;
   }
 
-  return <div>Game</div>;
+  return <div>Intro</div>;
 };
