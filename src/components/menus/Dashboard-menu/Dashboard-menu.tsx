@@ -13,7 +13,6 @@ export function DashboardMenu(): JSX.Element {
   });
 
   type IType = 'textbox' | 'games' | 'dictionary';
-
   const menuItemClick = (item: IType) => {
     const newObj = menuStatus;
     Object.keys(newObj).forEach((key: IType) => {
@@ -142,6 +141,7 @@ export function DashboardMenu(): JSX.Element {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/savanna"
+            onClick={() => setIsLocation(true)}
           >
             Саванна
           </NavLink>
@@ -149,6 +149,7 @@ export function DashboardMenu(): JSX.Element {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/sprint"
+            onClick={() => setIsLocation(true)}
           >
             Спринт
           </NavLink>
@@ -156,6 +157,7 @@ export function DashboardMenu(): JSX.Element {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/audiocall"
+            onClick={() => setIsLocation(true)}
           >
             Аудиовызов
           </NavLink>
@@ -163,6 +165,7 @@ export function DashboardMenu(): JSX.Element {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/owngame"
+            onClick={() => setIsLocation(true)}
           >
             Своя игра
           </NavLink>
@@ -171,6 +174,7 @@ export function DashboardMenu(): JSX.Element {
           className={style.menuItem}
           activeStyle={activeStyle}
           to="/dashboard/stats"
+          onClick={() => setIsLocation(true)}
         >
           Статистика
         </NavLink>

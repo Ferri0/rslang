@@ -1,7 +1,9 @@
 .background {
   position: relative;
   height: 100vh;
-  background-image: url('../../assets/images/savannah/afrika-savanna-zhirafy.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .dialog_modal {
