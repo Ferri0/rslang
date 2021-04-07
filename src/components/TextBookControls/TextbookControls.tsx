@@ -47,10 +47,10 @@ export function TextbookControls({
               checked={displayBtns.value}
               onChange={handleBtnsClick}
             />
-            <span className={style.checkmark}></span>
+            <span className={style.checkmark} />
           </label>
           <div className={style.settingWrapperIcons}>
-            <div>{'Кнопки'}</div>
+            <div>Кнопки</div>
             <div className={style.settingsIconStar} />
             <div className={style.settingsIconDel} />
           </div>
@@ -63,9 +63,9 @@ export function TextbookControls({
               checked={displayTranslate.value}
               onChange={handleTranslateClick}
             />
-            <span className={style.checkmark}></span>
+            <span className={style.checkmark} />
           </label>
-          {'Перевод слов'}
+          Перевод слов
         </div>
       </div>
       <div

@@ -1,2 +1,3 @@
 export * from './words-service-type';
-export * from './test';
+export * from './words-type';
+export * from './savanna-type';

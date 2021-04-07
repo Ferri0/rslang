@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useStore } from 'react-redux';
 import style from './WordCard.module.scss';
 import { wait } from './util/wait';
 import {
@@ -6,16 +7,15 @@ import {
   addToDifficult,
   removeUserWord,
 } from '../../service/User-words-service';
-import { useStore } from 'react-redux';
 
 type WordCardProps = {
-  wordInfo: any;
-  unitStyle: any;
-  displayBtns: boolean;
-  displayTranslate: boolean;
-  userProps: any;
-  isDeletedProp: boolean;
-  isDifficultProp: boolean;
+  wordInfo?: any;
+  unitStyle?: any;
+  displayBtns?: boolean;
+  displayTranslate?: boolean;
+  userProps?: any;
+  isDeletedProp?: boolean;
+  isDifficultProp?: boolean;
 };
 
 export function WordCard({
@@ -27,7 +27,7 @@ export function WordCard({
   isDeletedProp,
   isDifficultProp,
 }: WordCardProps) {
-  const apiUrl: string = 'https://yaia-team-rslang-api.herokuapp.com/';
+  const apiUrl = 'https://yaia-team-rslang-api.herokuapp.com/';
 
   const [isDeleted, setIsDeleted] = useState(isDeletedProp);
   const [isDifficult, setIsDifficult] = useState(isDifficultProp);
@@ -58,7 +58,6 @@ export function WordCard({
     );
   };
 
-  console.log(wordInfo);
   if (isDeleted) return null;
   return (
     <div className={[style.tab, unitStyle.tab].join(' ')}>
@@ -78,7 +77,7 @@ export function WordCard({
               setIsDifficult(!isDifficult);
             }
           }}
-        ></div>
+        />
       ) : null}
       <input
         type="checkbox"
@@ -126,12 +125,12 @@ export function WordCard({
           alt="word-img"
         />
         <h4>Meaning:</h4>
-        <div className={unitStyle.separator}></div>
-        <span dangerouslySetInnerHTML={{ __html: wordInfo.textMeaning }}></span>
+        <div className={unitStyle.separator} />
+        <span dangerouslySetInnerHTML={{ __html: wordInfo.textMeaning }} />
         {displayTranslate ? <span>{wordInfo.textMeaningTranslate}</span> : null}
         <h4>Example:</h4>
-        <div className={unitStyle.separator}></div>
-        <span dangerouslySetInnerHTML={{ __html: wordInfo.textExample }}></span>
+        <div className={unitStyle.separator} />
+        <span dangerouslySetInnerHTML={{ __html: wordInfo.textExample }} />
         {displayTranslate ? (
           <span className={style.lastLine}>
             {wordInfo.textExampleTranslate}

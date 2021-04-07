@@ -50,7 +50,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|webp|mp3)$/i,
         type: 'asset',
       },
       {

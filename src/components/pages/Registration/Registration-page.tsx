@@ -5,13 +5,8 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
 import style from './Registration-page.module.scss';
 
-export function RegistrationPage() {
-  const {
-    setShowRegister,
-    setAuthorized,
-    setCurrentUser,
-    setLoading,
-  } = useAction();
+export function RegistrationPage(): JSX.Element {
+  const { setShowRegister, setLoading } = useAction();
   const { isShowRegister, loading } = useTypedSelector((state) => state.auth);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -39,7 +34,6 @@ export function RegistrationPage() {
         if (error === 'Expectation Failed') {
           setErrorText('Такой пользователь существует');
         }
-        console.log(error);
         if (res.ok) {
           setErrorText('Пользователь успешно зарегистрирован');
         }

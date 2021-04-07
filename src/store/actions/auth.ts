@@ -15,27 +15,27 @@ const setAuthorized = (value: boolean): AuthAction => ({
   payload: value,
 });
 
-const setCurrentUser = (value: null | string) => ({
+const setCurrentUser = (value: null | string): AuthAction => ({
   type: AuthActionTypes.SET_CURRENT_USER,
   payload: value,
 });
 
-const setCurrentUserID = (value: null | string) => ({
+const setCurrentUserID = (value: null | string): AuthAction => ({
   type: AuthActionTypes.SET_CURRENT_USERID,
   payload: value,
 });
 
-const setToken = (value: null | string) => ({
+const setToken = (value: null | string): AuthAction => ({
   type: AuthActionTypes.SET_TOKEN,
   payload: value,
 });
 
-const setRefreshToken = (value: null | string) => ({
+const setRefreshToken = (value: null | string): AuthAction => ({
   type: AuthActionTypes.SET_REFRESH_TOKEN,
   payload: value,
 });
 
-const setLoading = (value: boolean) => ({
+const setLoading = (value: boolean): AuthAction => ({
   type: AuthActionTypes.SET_LOADING,
   payload: value,
 });

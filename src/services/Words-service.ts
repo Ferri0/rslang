@@ -18,11 +18,8 @@ export class WordsService implements ServiceWordsType {
     return res;
   };
 
-  getWords = async () => {
-    return (await this.getResource(this.apiWords())).json();
-  };
+  getWords = async () => (await this.getResource(this.apiWords())).json();
 
-  getSound = async (path: string) => {
-    return await this.getResource(`${this.apiBaseUrl}${path}`);
-  };
+  getSound = async (path: string) =>
+    await this.getResource(`${this.apiBaseUrl}${path}`);
 }

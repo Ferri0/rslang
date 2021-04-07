@@ -1,27 +1,17 @@
-import React, { useState } from 'react';
-import { HashRouter as Router, Link } from 'react-router-dom';
+import React from 'react';
+import { useTypedSelector } from '../../../hooks';
+import { ChooseLvl } from '../../ChooseLvl';
+import { Intro } from '../Intro';
+import info from '../info-games.json';
 
-import style from './Savanna.module.scss';
-
-export const Savanna = () => {
-  const [scrollBg, setScrollBg] = useState({ backgroundPositionY: '100%' });
-
-  const onscrollToTop = () => {
-    setScrollBg(({ backgroundPositionY }) => ({
-      backgroundPositionY: parseInt(backgroundPositionY) - 10 + '%',
-    }));
-  };
+export const Savanna = (): JSX.Element => {
+  const infoGame = info.find((item) => item.name === 'САВАННА');
+  const { isMainPage } = useTypedSelector((state) => state.savannaState);
+  if (isMainPage) {
+    return <ChooseLvl bg="savanna.jpg" />;
+  }
 
   return (
-    <div>
-      <Router>
-        <Link to="/">Back to home</Link>
-      </Router>
-      <div style={scrollBg} className={style.bg}>
-        <button onClick={onscrollToTop} className={style.button}>
-          Click
-        </button>
-      </div>
-    </div>
+    <Intro name={infoGame.name} text={infoGame.text} bg="savannah-intro.png" />
   );
 };

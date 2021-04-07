@@ -6,12 +6,14 @@ import { WordCard } from '../WordCard';
 import { PageControls } from '../PageControls';
 import { TextbookControls } from '../TextbookControls';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { Word } from '../../types/words-type';
+import { useAction } from '../../hooks';
 
 type TextbookProps = {
   unit: number;
 };
 
-export function Textbook({ unit }: TextbookProps) {
+export function Textbook({ unit }: TextbookProps): JSX.Element {
   const [group, setGroup] = useState(unit);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -19,6 +21,7 @@ export function Textbook({ unit }: TextbookProps) {
   const [wordCards, setWordCards] = useState(null);
   const [displayBtns, setDisplayBtns] = useState(true);
   const [displayTranslate, setDisplayTranslate] = useState(true);
+  // const { setIsLocation } = useAction();
 
   const unitStyle = getUnitStyle(unit);
 
@@ -30,6 +33,7 @@ export function Textbook({ unit }: TextbookProps) {
     setLoading(true);
     setGroup(unit);
     setPage(0);
+    // setIsLocation(false);
   }, [group, unit]);
 
   useEffect(() => {
@@ -91,7 +95,7 @@ export function Textbook({ unit }: TextbookProps) {
         />
         <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
         <div className={style.wordsWrapper}>
-          {'Загрузка...'}
+          Загрузка...
           <PageControls currentPage={page} setCurrentPage={setPage} />
         </div>
       </div>
@@ -110,10 +114,10 @@ export function Textbook({ unit }: TextbookProps) {
       <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
       <div className={style.wordsWrapper}>
         <div className={style.wordsBlock}>
-          {wordCards.filter((e: any, i: number) => i < 10)}
+          {wordCards.filter((_: JSX.Element, i: number) => i < 10)}
         </div>
         <div className={style.wordsBlock}>
-          {wordCards.filter((e: any, i: number) => i >= 10)}
+          {wordCards.filter((_: JSX.Element, i: number) => i >= 10)}
         </div>
         <PageControls currentPage={page} setCurrentPage={setPage} />
       </div>
