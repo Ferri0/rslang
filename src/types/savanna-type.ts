@@ -12,6 +12,7 @@ export enum SavannaActionTypes {
   ADD_RIGHT_WORD = 'ADD_RIGHT_WORD',
   ADD_WRONG_WORD = 'ADD_WRONG_WORD',
   RESET_STATISTICS_DATA = 'RESET_STATISTICS_DATA',
+  TOGGLE_KNOWLEDGE_ABOUT_LOCATION = 'TOGGLE_KNOWLEDGE_ABOUT_LOCATION',
 }
 
 type SetHeartLeftAtrin = {
@@ -66,6 +67,11 @@ export type IWrongWord = {
   payload: Word;
 };
 
+export type SetIsLocation = {
+  type: SavannaActionTypes.TOGGLE_KNOWLEDGE_ABOUT_LOCATION;
+  payload: boolean;
+};
+
 export type SavannaState = {
   hearts: number;
   rightAnswer: boolean;
@@ -79,6 +85,7 @@ export type SavannaState = {
     unknown: Word[];
   };
   isLoadingPlayWords: boolean;
+  isMainPage: boolean;
 };
 
 export type SavannaActions =
@@ -92,4 +99,5 @@ export type SavannaActions =
   | ResetScroll
   | resetStatisticsData
   | IRightWord
-  | IWrongWord;
+  | IWrongWord
+  | SetIsLocation;

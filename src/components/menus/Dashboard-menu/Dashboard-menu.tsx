@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { useTypedSelector } from '../../../hooks';
+import { useAction, useTypedSelector } from '../../../hooks';
 import style from './Dashboard-menu.module.scss';
 
-export function DashboardMenu() {
+export function DashboardMenu(): JSX.Element {
   const { isAuthorized, currentUser } = useTypedSelector((state) => state.auth);
-
+  const { setIsLocation } = useAction();
   const [menuStatus, setStatusMenu] = useState({
     textbox: 'close',
     games: 'close',
@@ -34,12 +34,17 @@ export function DashboardMenu() {
 
   return (
     <div className={style.menuContainer}>
-      <Link className={style.logo} to="/" />
+      <Link className={style.logo} to="/" onClick={() => setIsLocation(true)} />
       {welcome}
       <nav className={style.menu}>
         <div
           className={`${style.menuItem} ${style[menuStatus.textbox]}`}
           onClick={() => menuItemClick('textbox')}
+          onKeyUp={({ key }) =>
+            key !== 'Enter' ? false : menuItemClick('textbox')
+          }
+          role="button"
+          tabIndex={0}
         >
           Учебник
         </div>
@@ -90,6 +95,11 @@ export function DashboardMenu() {
         <div
           className={`${style.menuItem} ${style[menuStatus.dictionary]}`}
           onClick={() => menuItemClick('dictionary')}
+          onKeyUp={({ key }) =>
+            key !== 'Enter' ? false : menuItemClick('textbox')
+          }
+          role="button"
+          tabIndex={0}
         >
           Словарь
         </div>
@@ -119,6 +129,11 @@ export function DashboardMenu() {
         <div
           className={`${style.menuItem} ${style[menuStatus.games]}`}
           onClick={() => menuItemClick('games')}
+          onKeyUp={({ key }) =>
+            key !== 'Enter' ? false : menuItemClick('textbox')
+          }
+          role="button"
+          tabIndex={0}
         >
           Мини-игры
         </div>
