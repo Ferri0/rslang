@@ -36,7 +36,6 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
       .map((item) => item.wordTranslate);
 
   const rightSound = new Audio(rightAnswerSound);
-  // const errorSound = new Audio(errorAnserSound);
 
   const setStateIfWrongAnswer = () => {
     errorSoundRef.current.play();
