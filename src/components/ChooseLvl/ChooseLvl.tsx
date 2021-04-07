@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Form } from './Form';
 
-import style from './ChooseLevel.module.scss';
+import style from './ChooseLvl.module.scss';
 import { useTypedSelector, useAction } from '../../hooks';
 import { Spinner } from '../Spinner';
 import { ErrorIndicator } from '../Error-indicator';
@@ -10,7 +10,7 @@ import { ServiceWordsType } from '../../types';
 
 type EventHandler = React.FormEvent<HTMLFormElement> | KeyboardEvent;
 
-export const DialogModal = (): JSX.Element => {
+export const ChooseLvl = (): JSX.Element => {
   const [open, setOpen] = useState(true);
   const [group, setGroup] = useState<number>();
   const wordsService: ServiceWordsType = useContext(Context);
