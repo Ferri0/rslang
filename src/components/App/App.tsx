@@ -19,18 +19,6 @@ export function App(): JSX.Element {
           <Route path="/dashboard">
             <Dashboard />
           </Route>
-          {/* <Route exact path="/savanna">
-            <Savanna />
-          </Route>
-          <Route exact path="/sprint">
-            <Sprint />
-          </Route>
-          <Route exact path="/audiocall">
-            <AudioCall />
-          </Route>
-          <Route exact path="/owngame">
-            <OwnGame />
-          </Route> */}
           <Route
             render={() => <h2>Error, you made a mistake in the url path</h2>}
           />

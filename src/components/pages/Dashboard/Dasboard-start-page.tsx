@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import style from './Dasboard-start-page.module.scss';
 import { gameInfo } from '../../Games/Promo-game-card/info';
 
-export function DashboardStartPage() {
+export function DashboardStartPage(): JSX.Element {
   const arr = [
     { id: 'learning', title: 'Изучаемые' },
     { id: 'difficult', title: 'Сложные' },
