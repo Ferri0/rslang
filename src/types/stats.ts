@@ -1,5 +1,19 @@
 export interface StatsState {
-  value: any;
+  day: {
+    learnedWords: number; // count
+    correctAnswers: number; // percentage
+  };
+  allTime: {
+    learnedWords: number; // count
+    correctAnswers: number; // percentage
+  };
+  series: {
+    puzzle: number;
+    sprint: number;
+    savanna: number;
+    audiocall: number;
+  };
+  wordsData: Array<any>;
   loading: boolean;
   error: string | null;
 }

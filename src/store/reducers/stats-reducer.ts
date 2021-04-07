@@ -1,7 +1,21 @@
 import { StatsActionType, StatsTypes, StatsState } from '../../types';
 
 const initialState: StatsState = {
-  value: 0,
+  day: {
+    learnedWords: 0, // count
+    correctAnswers: 0, // percentage
+  },
+  allTime: {
+    learnedWords: 0, // count
+    correctAnswers: 0, // percentage
+  },
+  series: {
+    puzzle: 0,
+    sprint: 0,
+    savanna: 0,
+    audiocall: 0,
+  },
+  wordsData: [],
   loading: false,
   error: null,
 };
@@ -23,7 +37,7 @@ export const statsReducer = (
         ...state,
         loading: false,
         error: null,
-        value: action.payload,
+        wordsData: action.payload,
       };
 
     case StatsTypes.FETCH_STATS_FAILURE:
