@@ -2,6 +2,45 @@ import React, { useEffect } from 'react';
 import style from './Stats.module.scss';
 import { useAction, useTypedSelector } from '../../hooks';
 import { Unit } from './Unit';
+import { Chart } from './Chart';
+
+const data = [
+  {
+    name: 'Page A',
+    uv: 4000,
+    amt: 2400,
+  },
+  {
+    name: 'Page B',
+    uv: 3000,
+    amt: 2210,
+  },
+  {
+    name: 'Page C',
+    uv: 2000,
+    amt: 2290,
+  },
+  {
+    name: 'Page D',
+    uv: 2780,
+    amt: 2000,
+  },
+  {
+    name: 'Page E',
+    uv: 1890,
+    amt: 2181,
+  },
+  {
+    name: 'Page F',
+    uv: 2390,
+    amt: 2500,
+  },
+  {
+    name: 'Page G',
+    uv: 3490,
+    amt: 2100,
+  },
+];
 
 export const Stats: React.FC = () => {
   const { day, allTime, series, loading } = useTypedSelector(
@@ -56,7 +95,16 @@ export const Stats: React.FC = () => {
             />
           </ul>
         )}
-        {/* <div>graphs</div> */}
+        <div className={style.container}>
+          <Chart
+            data={data}
+            title="Количество изученных слов за каждый день изучения"
+          />
+          <Chart
+            data={data}
+            title="Количества изученных слов за весь период изучения по дням"
+          />
+        </div>
       </div>
     </div>
   );
