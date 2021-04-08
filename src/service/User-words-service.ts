@@ -66,6 +66,7 @@ const addToDeleted = async (
   wordId: string,
   token: string
 ): Promise<void> => {
+  removeUserWord(userId, wordId, token);
   addWordToType(userId, wordId, token, 'deleted');
 };
 
@@ -129,7 +130,7 @@ export const getWordsOfCategoryByPage = async (
 
     return {words, count};
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 

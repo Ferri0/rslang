@@ -28,6 +28,7 @@ const initialState: SavannaState = {
     unknown: [],
   },
   isLoadingPlayWords: null,
+  isMainPage: true,
 };
 
 export const savannaState = (
@@ -128,6 +129,13 @@ export const savannaState = (
           ...state.statistics,
           unknown: addWrongWord,
         },
+      };
+    }
+
+    case SavannaActionTypes.TOGGLE_KNOWLEDGE_ABOUT_LOCATION: {
+      return {
+        ...state,
+        isMainPage: action.payload,
       };
     }
 

@@ -9,8 +9,9 @@
     "sourceMap": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop" : true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
-  "include": [ "src/**/*", "global.d.ts" ],
-  "exclude": [ "node_modules" ],
+  "include": ["src/**/*", "global.d.ts"],
+  "exclude": ["node_modules"]
 }

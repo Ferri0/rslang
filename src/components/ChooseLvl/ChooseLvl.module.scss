@@ -1,7 +1,9 @@
 .background {
   position: relative;
   height: 100vh;
-  background-image: url('../../assets/images/savannah/afrika-savanna-zhirafy.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .dialog_modal {
@@ -19,22 +21,6 @@
   padding: 10px;
   border: 2px solid #f4b609d1;
   user-select: none;
-}
-
-input[type='submit'] {
-  width: 150px;
-  font-size: 20px;
-  font-family: cursive;
-  background-color: burlywood;
-  border-color: black;
-  border-radius: 15px;
-  outline: none;
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: 0px 2px 6px 2px rgb(255 255 255 / 50%);
-    transition: 0.3s;
-  }
 }
 
 @keyframes load {

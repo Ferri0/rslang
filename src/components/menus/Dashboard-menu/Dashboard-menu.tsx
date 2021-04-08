@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { useTypedSelector } from '../../../hooks';
+import { useAction, useTypedSelector } from '../../../hooks';
 import style from './Dashboard-menu.module.scss';
 
-export function DashboardMenu() {
+export function DashboardMenu(): JSX.Element {
   const { isAuthorized, currentUser } = useTypedSelector((state) => state.auth);
-
+  const { setIsLocation } = useAction();
   const [menuStatus, setStatusMenu] = useState({
     textbox: 'close',
     games: 'close',
@@ -13,7 +13,6 @@ export function DashboardMenu() {
   });
 
   type IType = 'textbox' | 'games' | 'dictionary';
-
   const menuItemClick = (item: IType) => {
     const newObj = menuStatus;
     Object.keys(newObj).forEach((key: IType) => {
@@ -34,12 +33,17 @@ export function DashboardMenu() {
 
   return (
     <div className={style.menuContainer}>
-      <Link className={style.logo} to="/" />
+      <Link className={style.logo} to="/" onClick={() => setIsLocation(true)} />
       {welcome}
       <nav className={style.menu}>
         <div
           className={`${style.menuItem} ${style[menuStatus.textbox]}`}
           onClick={() => menuItemClick('textbox')}
+          onKeyUp={({ key }) =>
+            key !== 'Enter' ? false : menuItemClick('textbox')
+          }
+          role="button"
+          tabIndex={0}
         >
           Учебник
         </div>
@@ -90,6 +94,11 @@ export function DashboardMenu() {
         <div
           className={`${style.menuItem} ${style[menuStatus.dictionary]}`}
           onClick={() => menuItemClick('dictionary')}
+          onKeyUp={({ key }) =>
+            key !== 'Enter' ? false : menuItemClick('textbox')
+          }
+          role="button"
+          tabIndex={0}
         >
           Словарь
         </div>
@@ -119,6 +128,11 @@ export function DashboardMenu() {
         <div
           className={`${style.menuItem} ${style[menuStatus.games]}`}
           onClick={() => menuItemClick('games')}
+          onKeyUp={({ key }) =>
+            key !== 'Enter' ? false : menuItemClick('textbox')
+          }
+          role="button"
+          tabIndex={0}
         >
           Мини-игры
         </div>
@@ -127,6 +141,7 @@ export function DashboardMenu() {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/savanna"
+            onClick={() => setIsLocation(true)}
           >
             Саванна
           </NavLink>
@@ -134,6 +149,7 @@ export function DashboardMenu() {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/sprint"
+            onClick={() => setIsLocation(true)}
           >
             Спринт
           </NavLink>
@@ -141,6 +157,7 @@ export function DashboardMenu() {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/audiocall"
+            onClick={() => setIsLocation(true)}
           >
             Аудиовызов
           </NavLink>
@@ -148,6 +165,7 @@ export function DashboardMenu() {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/owngame"
+            onClick={() => setIsLocation(true)}
           >
             Своя игра
           </NavLink>
@@ -156,6 +174,7 @@ export function DashboardMenu() {
           className={style.menuItem}
           activeStyle={activeStyle}
           to="/dashboard/stats"
+          onClick={() => setIsLocation(true)}
         >
           Статистика
         </NavLink>
