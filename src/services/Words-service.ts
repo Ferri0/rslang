@@ -20,5 +20,6 @@ export class WordsService implements ServiceWordsType {
 
   getWords = async () => (await this.getResource(this.apiWords())).json();
 
-  getSound = async (path: string) => await this.getResource(`${this.apiBaseUrl}${path}`);
+  getSound = async (path: string) =>
+    await this.getResource(`${this.apiBaseUrl}${path}`);
 }

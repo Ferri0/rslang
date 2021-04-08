@@ -66,6 +66,7 @@ const addToDeleted = async (
   wordId: string,
   token: string
 ): Promise<void> => {
+  removeUserWord(userId, wordId, token);
   addWordToType(userId, wordId, token, 'deleted');
 };
 

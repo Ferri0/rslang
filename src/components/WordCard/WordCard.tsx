@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useStore } from 'react-redux';
 import style from './WordCard.module.scss';
 import { wait } from './util/wait';
+import {
+  addToDeleted,
+  addToDifficult,
+  removeUserWord,
+} from '../../service/User-words-service';
 
-type WordCardProps = { wordInfo: any; unitStyle: any };
+type WordCardProps = {
+  wordInfo?: any;
+  unitStyle?: any;
+  displayBtns?: boolean;
+  displayTranslate?: boolean;
+  userProps?: any;
+  isDeletedProp?: boolean;
+  isDifficultProp?: boolean;
+};
 
-export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
+export function WordCard({
+  wordInfo,
+  unitStyle,
+  displayBtns,
+  displayTranslate,
+  userProps,
+  isDeletedProp,
+  isDifficultProp,
+}: WordCardProps) {
   const apiUrl = 'https://yaia-team-rslang-api.herokuapp.com/';
+
+  const [isDeleted, setIsDeleted] = useState(isDeletedProp);
+  const [isDifficult, setIsDifficult] = useState(isDifficultProp);
+
+  if (wordInfo._id) wordInfo.id = wordInfo._id;
 
   const playAudio = (e: any) => {
     const audio: any = document.getElementById(`${wordInfo.id}-audio`);
@@ -31,33 +58,60 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
     );
   };
 
+  if (isDeleted) return null;
   return (
     <div className={[style.tab, unitStyle.tab].join(' ')}>
+      {displayBtns ? (
+        <div
+          className={
+            isDifficult
+              ? [style.starImg, style.starImg_active].join(' ')
+              : style.starImg
+          }
+          onClick={() => {
+            if (userProps.isAuthorized && !isDifficult) {
+              addToDifficult(userProps.id, wordInfo.id, userProps.token);
+              setIsDifficult(!isDifficult);
+            } else if (userProps.isAuthorized && isDifficult) {
+              removeUserWord(userProps.id, wordInfo.id, userProps.token);
+              setIsDifficult(!isDifficult);
+            }
+          }}
+        />
+      ) : null}
       <input
         type="checkbox"
-        id={wordInfo.id}
+        id={wordInfo.word}
         name="tab-group"
         className={[style.hidden, unitStyle.input].join(' ')}
       />
       <label
-        htmlFor={wordInfo.id}
+        htmlFor={wordInfo.word}
         className={[style.tabTitle, unitStyle.tabTitleHover].join(' ')}
       >
         <span>{wordInfo.word}</span>
-        <div className={style.starImg} />
       </label>
       <section className={style.tabContent}>
         <div className={style.tabContent_header}>
           <p className={style.wordTitle}>
-            {wordInfo.word} - {wordInfo.transcription} -{' '}
-            {wordInfo.wordTranslate}
+            {`${wordInfo.word} - ${wordInfo.transcription} ${
+              displayTranslate ? `- ${wordInfo.wordTranslate}` : ''
+            }`}
           </p>
           <div className={style.tabContent_header___btnsBlock}>
-            <button
-              className={style.deleteWordBtn}
-              type="button"
-              onClick={() => console.log('delete word function')}
-            />
+            {displayBtns ? (
+              <button
+                className={style.deleteWordBtn}
+                type="button"
+                onClick={() => {
+                  if (userProps.isAuthorized) {
+                    addToDeleted(userProps.id, wordInfo.id, userProps.token);
+                    setIsDeleted(!isDeleted);
+                  }
+                }}
+              />
+            ) : null}
+
             <button
               className={style.playSoundBtn}
               type="button"
@@ -73,11 +127,15 @@ export function WordCard({ wordInfo, unitStyle }: WordCardProps) {
         <h4>Meaning:</h4>
         <div className={unitStyle.separator} />
         <span dangerouslySetInnerHTML={{ __html: wordInfo.textMeaning }} />
-        <span>{wordInfo.textMeaningTranslate}</span>
+        {displayTranslate ? <span>{wordInfo.textMeaningTranslate}</span> : null}
         <h4>Example:</h4>
         <div className={unitStyle.separator} />
         <span dangerouslySetInnerHTML={{ __html: wordInfo.textExample }} />
-        <span className={style.lastLine}>{wordInfo.textExampleTranslate}</span>
+        {displayTranslate ? (
+          <span className={style.lastLine}>
+            {wordInfo.textExampleTranslate}
+          </span>
+        ) : null}
         <audio src={apiUrl + wordInfo.audio} id={`${wordInfo.id}-audio`} />
         <audio
           src={apiUrl + wordInfo.audioMeaning}

@@ -19,12 +19,6 @@
     "source.fixAll.stylelint": true,
     "source.fixAll.eslint": true
   },
-  "spellright.language": [
-    "en"
-  ],
-  "spellright.documentTypes": [
-    "latex",
-    "plaintext",
-    "javascriptreact"
-  ]
+  "spellright.language": ["en"],
+  "spellright.documentTypes": ["latex", "plaintext", "javascriptreact"]
 }

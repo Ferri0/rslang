@@ -2,9 +2,26 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './TextbookControls.module.scss';
 
-export function TextbookControls() {
+type TextbookControlsProps = {
+  displayBtns: any;
+  displayTranslate: any;
+};
+
+export function TextbookControls({
+  displayBtns,
+  displayTranslate,
+}: TextbookControlsProps) {
   const [settingsActive, setSettingsActive] = useState(false);
   const [gamesActive, setGamesActive] = useState(false);
+
+  const handleBtnsClick = () => {
+    displayBtns.set(!displayBtns.value);
+  };
+
+  const handleTranslateClick = () => {
+    displayTranslate.set(!displayTranslate.value);
+  };
+
   return (
     <div className={style.btnsBlock}>
       <Link className={[style.btn, style.btn_home].join(' ')} to="/dashboard" />
@@ -24,7 +41,12 @@ export function TextbookControls() {
         />
         <div className={style.settingWrapper}>
           <label className={style.container}>
-            <input type="checkbox" id="translate" />
+            <input
+              type="checkbox"
+              id="translate"
+              checked={displayBtns.value}
+              onChange={handleBtnsClick}
+            />
             <span className={style.checkmark} />
           </label>
           <div className={style.settingWrapperIcons}>
@@ -35,7 +57,12 @@ export function TextbookControls() {
         </div>
         <div className={style.settingWrapper}>
           <label className={style.container}>
-            <input type="checkbox" id="translate" />
+            <input
+              type="checkbox"
+              id="translate"
+              checked={displayTranslate.value}
+              onChange={handleTranslateClick}
+            />
             <span className={style.checkmark} />
           </label>
           Перевод слов
