@@ -14,7 +14,12 @@ export const teamInfo: Array<IType> = [
     status: 'Team Lead',
     img: './assets/images/team/abrasimov.jpg',
     url: 'https://github.com/Ferri0',
-    desc: `Концепция, дизайн и функционал электронного учебника:
+    desc: `Настройка проекта:
+    - Конфигурация eslint, prettier, stylelint
+    - Конфигурация pre-commit hook (husky + lint-staged)
+    - Конфигурация Webpack
+
+    Концепция, дизайн и функционал электронного учебника:
     - Разработка авторского дизайна
     - Адаптивная верстка, свой стиль для каждого раздела
     - Воспроизведение аудио-файлов
