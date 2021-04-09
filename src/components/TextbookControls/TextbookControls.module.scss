@@ -1,0 +1,230 @@
+@import '../../scss/abstracts.scss';
+
+.btnsBlock {
+  position: absolute;
+  top: 35px;
+  left: 2.5%;
+  height: 35px;
+  @include flex(row, space-between, center);
+}
+
+.btn {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &_home {
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+    background-image: url('../../assets/icons/textBook/home.svg');
+
+    &:hover {
+      background-image: url('../../assets/icons/textBook/homeHover.svg');
+    }
+  }
+}
+
+.settingsBlock {
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
+  overflow: hidden;
+  background-image: url('../../assets/icons/textBook/settings.svg');
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: contain;
+  border-radius: 10px;
+  transition: all 0.5s;
+  @include flex(row, space-between, center);
+
+  &_active {
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.75);
+    background-image: url('../../assets/icons/textBook/settingsHover.svg');
+  }
+
+  &:hover {
+    background-image: url('../../assets/icons/textBook/settingsHover.svg');
+  }
+}
+
+.settingsClickZone {
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.settingWrapper {
+  flex-shrink: 1;
+  width: 105px;
+  height: 50px;
+  color: #848994;
+  font-size: 16px;
+  @include flex(row, flex-start, center);
+
+  &:last-child {
+    margin-right: 8px;
+  }
+}
+
+.settingsIconStar {
+  position: absolute;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  background-image: url('../../assets/icons/textBook/starTrue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.settingsIconDel {
+  position: absolute;
+  top: 17px;
+  left: 30px;
+  width: 16px;
+  height: 16px;
+  background-image: url('../../assets/icons/textBook/delete.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.settingWrapperIcons {
+  position: relative;
+  height: 35px;
+  padding-bottom: 3px;
+  @include flex(row, flex-start, flex-start);
+}
+
+.container {
+  position: relative;
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  cursor: pointer;
+  user-select: none;
+
+  &:first-child {
+    margin-right: 10px;
+  }
+}
+
+.container input {
+  display: none;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #2196f3;
+  border-radius: 4px;
+}
+
+.checkmark:after {
+  position: absolute;
+  display: none;
+  content: '';
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  top: 3px;
+  left: 8px;
+  width: 9px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
+
+.gamesBlock {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  background-image: url('../../assets/icons/textBook/games.svg');
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: contain;
+  border-radius: 10px;
+  transition: all 0.5s;
+  @include flex(row, space-between, center);
+
+  &_active {
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.75);
+    background-image: url('../../assets/icons/textBook/gamesHover.svg');
+  }
+
+  &:hover {
+    background-image: url('../../assets/icons/textBook/gamesHover.svg');
+  }
+}
+
+.gamesClickZone {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.gameIcon {
+  flex-shrink: 1;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+
+  &_game1 {
+    background-image: url('../../assets/icons/textBook/number1.svg');
+  }
+
+  &_game2 {
+    background-image: url('../../assets/icons/textBook/number2.svg');
+  }
+
+  &_game3 {
+    background-image: url('../../assets/icons/textBook/number3.svg');
+  }
+
+  &_game4 {
+    background-image: url('../../assets/icons/textBook/number4.svg');
+  }
+}
