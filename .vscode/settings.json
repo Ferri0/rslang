@@ -20,5 +20,14 @@
     "source.fixAll.eslint": true
   },
   "spellright.language": ["en"],
-  "spellright.documentTypes": ["latex", "plaintext", "javascriptreact"]
+  "spellright.documentTypes": ["latex", "plaintext", "javascriptreact"],
+  "cSpell.words": [
+    "audiocall",
+    "clazz",
+    "webp",
+    "АУДИОВЫЗОВ",
+    "САВАННА",
+    "СПРИНТ"
+  ],
+  "cSpell.enabled": true
 }

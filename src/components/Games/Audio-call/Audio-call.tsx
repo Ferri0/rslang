@@ -6,10 +6,10 @@ import info from '../info-games.json';
 
 export const AudioCall = (): JSX.Element => {
   const infoGame = info.find((item) => item.name === 'АУДИОВЫЗОВ');
-  const { isMainPage } = useTypedSelector((state) => state.savannaState);
+  const { isMainPage } = useTypedSelector((state) => state.gameState);
 
   if (isMainPage) {
-    return <ChooseLvl bg="Headphones.jpg" />;
+    return <ChooseLvl background="Headphones.jpg" />;
   }
 
   return (

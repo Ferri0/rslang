@@ -9,10 +9,10 @@ import { Context } from '../word-service-context';
 import { ServiceWordsType } from '../../types';
 
 type EventHandler = React.FormEvent<HTMLFormElement> | KeyboardEvent;
-type Backgroud = {
-  bg: string;
+type Background = {
+  background: string;
 };
-export const ChooseLvl = ({ bg }: Backgroud): JSX.Element => {
+export const ChooseLvl = ({ background }: Background): JSX.Element => {
   const [open, setOpen] = useState(true);
   const [group, setGroup] = useState<number>();
   const wordsService: ServiceWordsType = useContext(Context);
@@ -47,7 +47,7 @@ export const ChooseLvl = ({ bg }: Backgroud): JSX.Element => {
     <div
       className={style.background}
       style={{
-        backgroundImage: `url(../../assets/images/choose-level-bg/${bg})`,
+        backgroundImage: `url(../../assets/images/choose-level-bg/${background})`,
       }}
     >
       <dialog className={style.dialog_modal} open={open}>

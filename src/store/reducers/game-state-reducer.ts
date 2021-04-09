@@ -31,7 +31,7 @@ const initialState: SavannaState = {
   isMainPage: true,
 };
 
-export const savannaState = (
+export const gameStateReducer = (
   state: SavannaState = initialState,
   action: SavannaActions
 ): SavannaState => {

@@ -10,7 +10,7 @@ export class WordsService implements ServiceWordsType {
     const res = await fetch(url);
 
     if (!res.ok) {
-      throw new Error(`Ooops, Could not fetch ${url}, received ${res.status}`);
+      throw new Error(`Oops, Could not fetch ${url}, received ${res.status}`);
     }
 
     return res;

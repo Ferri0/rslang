@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const GameMenu = ({ hearts, fullscreenRef }: Props): JSX.Element => {
-  const headrtRender = (): JSX.Element[] => {
+  const heartsRender = (): JSX.Element[] => {
     const countOfMistake = 5 - hearts;
     const heartsArray = [];
 
@@ -45,7 +45,7 @@ export const GameMenu = ({ hearts, fullscreenRef }: Props): JSX.Element => {
       >
         fullscreen
       </button>
-      <div className={style.heart_wrapper}>{headrtRender()}</div>
+      <div className={style.heart_wrapper}>{heartsRender()}</div>
     </div>
   );
 };
