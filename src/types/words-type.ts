@@ -10,6 +10,7 @@ export interface Word {
   audioMeaning: string;
   group: number;
   id: string;
+  _id?: string;
   image: string;
   page: number;
   textExample: string;

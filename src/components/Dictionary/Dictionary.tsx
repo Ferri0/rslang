@@ -7,6 +7,7 @@ import { WordCard } from '../WordCard';
 import { getWordsOfCategoryByPage } from '../../service';
 import style from './Dictionary.module.scss';
 import { CategoryType } from '../../types/words';
+import { Word } from '../../types';
 
 enum Category {
   'learning' = 'Изучаемые слова',
@@ -44,7 +45,7 @@ export const Dictionary: React.FC<DictionaryProps> = ({ type }) => {
         setWordsCount(count);
 
         setWordCards(
-          words.map((word: any) => (
+          words.map((word: Word) => (
             <WordCard wordInfo={word} unitStyle={unitStyle} key={word._id} />
           ))
         );
@@ -52,7 +53,7 @@ export const Dictionary: React.FC<DictionaryProps> = ({ type }) => {
 
       setLoading(false);
     })();
-  }, [page, type]);
+  }, [currentUserId, page, token, type, unitStyle]);
 
   return (
     <div className={[style.root, unitStyle.bg].join(' ')}>
@@ -67,10 +68,10 @@ export const Dictionary: React.FC<DictionaryProps> = ({ type }) => {
           <>
             {wordCards.length === 0 && 'Список пуст'}
             <div className={style.wordsBlock}>
-              {wordCards.filter((e: any, i: number) => i % 2 !== 0)}
+              {wordCards.filter((e: Word, i: number) => i < 10)}
             </div>
             <div className={style.wordsBlock}>
-              {wordCards.filter((e: any, i: number) => i % 2 === 0)}
+              {wordCards.filter((e: Word, i: number) => i >= 10)}
             </div>
           </>
         )}
