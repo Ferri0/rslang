@@ -1,0 +1,15 @@
+.root {
+  padding: 2rem 0;
+  background: white;
+  border: 1px solid #a2f2ea;
+  border-radius: 1rem;
+
+  .title {
+    margin: 0 0 1rem;
+    word-wrap: normal;
+  }
+
+  .chart {
+    height: 25rem;
+  }
+}
