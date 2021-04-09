@@ -34,6 +34,17 @@ export const AudioGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
     );
     actions.setWrongAnswerAction(false);
   };
+  const setStateIfRightAnswer = () => {
+    rightSound.play();
+    actions.addRightWordToStatics(gameState.question);
+    actions.setQuestionAction(
+      gameState.wordsToPlay[gameState.wordsToPlay.length - 1]
+    );
+    actions.setWordsToPlayAction(
+      gameState.wordsToPlay.slice(0, gameState.wordsToPlay.length - 1)
+    );
+    actions.setRightAnswerAction(false);
+  };
 
   useEffect(() => {
     if (gameState.wordsToPlay.length !== 0) {
@@ -57,15 +68,7 @@ export const AudioGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
   }, [gameState.question]);
 
   if (gameState.rightAnswer) {
-    rightSound.play();
-    actions.addRightWordToStatics(gameState.question);
-    actions.setQuestionAction(
-      gameState.wordsToPlay[gameState.wordsToPlay.length - 1]
-    );
-    actions.setWordsToPlayAction(
-      gameState.wordsToPlay.slice(0, gameState.wordsToPlay.length - 1)
-    );
-    actions.setRightAnswerAction(false);
+    setStateIfRightAnswer();
     audioElement.current.play();
   }
 
