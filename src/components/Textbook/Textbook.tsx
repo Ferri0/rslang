@@ -6,8 +6,8 @@ import { WordCard } from '../WordCard';
 import { PageControls } from '../PageControls';
 import { TextbookControls } from '../TextbookControls';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { Word } from '../../types/words-type';
-import { useAction } from '../../hooks';
+// import { Word } from '../../types/words-type';
+// import { useAction } from '../../hooks';
 
 type TextbookProps = {
   unit: number;
@@ -40,7 +40,6 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
     const fetchPage = async () => {
       setLoading(true);
       if (isAuthorized) {
-        console.log('Authorized block');
         const resolve = await fetch(getFetchUrl(group, page, currentUserId), {
           method: 'GET',
           headers: {
@@ -52,19 +51,20 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
         const response = await resolve.json();
         setFetchedPage(response[0].paginatedResults);
       } else {
-        console.log('Unauthorized block');
         const resolve = await fetch(getFetchUrl(group, page));
         const response = await resolve.json();
         setFetchedPage(response);
       }
     };
     fetchPage();
-  }, [page, group]);
+  }, [page, group, isAuthorized, currentUserId, token]);
 
   useEffect(() => {
     if (fetchedPage !== null) {
-      const wordCards: any[] = [];
-      fetchedPage.forEach((element: any, i: number) => {
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      const wordCards: unknown[] = [];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      fetchedPage.forEach((element: any) => {
         wordCards.push(
           <WordCard
             wordInfo={element}
@@ -81,7 +81,15 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
       setWordCards(wordCards);
       setLoading(false);
     }
-  }, [fetchedPage, displayBtns, displayTranslate]);
+  }, [
+    fetchedPage,
+    displayBtns,
+    displayTranslate,
+    unitStyle,
+    token,
+    currentUserId,
+    isAuthorized,
+  ]);
 
   if (loading) {
     return (
