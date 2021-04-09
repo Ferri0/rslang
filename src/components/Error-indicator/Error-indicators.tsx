@@ -3,7 +3,7 @@ import React from 'react';
 import error from './language-errors-social.png';
 import style from './Error-indicator.module.scss';
 
-export const ErrorIndicator = (): React.ReactNode => (
+export const ErrorIndicator = (): React.ReactElement => (
   <div className={style.error__indicator}>
     <img src={error} alt="error" className={style.error__img} />
     <div className={style.text_wrap}>

@@ -8,7 +8,7 @@ import { LoosePage } from '../../pages/Loose';
 import { WinPage } from '../../pages/Win';
 import style from './Own-game.module.scss';
 
-export const OwnGame = () => {
+export const OwnGame = (): React.ReactElement => {
   const {
     currentSentence,
     currentTaskSentence,
@@ -35,10 +35,10 @@ export const OwnGame = () => {
   } = useAction();
 
   let answerLastDiv: null | HTMLElement;
-  let audio: any;
-  let mistake: any;
-  let loose: any;
-  let win: any;
+  let audio: HTMLAudioElement;
+  let mistake: HTMLAudioElement;
+  let loose: HTMLAudioElement;
+  let win: HTMLAudioElement;
   const newElement: string[] = [];
 
   useEffect(() => {
@@ -74,20 +74,26 @@ export const OwnGame = () => {
 
   const taskBlocks = arrayOfTaskBlocks.map((item: string, index: number) => (
     <span
+      key={item}
+      role="presentation"
       dangerouslySetInnerHTML={{ __html: item }}
       className={style.taskBlock}
-      onMouseDown={(e: any) => {
+      onMouseDown={(e) => {
         if (item === arrayOfTaskWords[currentWordIndex]) {
-          e.target.className = [style.taskBlock, style.taskBlockGreen].join(
-            ' '
-          );
+          (e.target as Element).className = [
+            style.taskBlock,
+            style.taskBlockGreen,
+          ].join(' ');
         } else {
-          e.target.className = [style.taskBlock, style.taskBlockRed].join(' ');
+          (e.target as Element).className = [
+            style.taskBlock,
+            style.taskBlockRed,
+          ].join(' ');
         }
       }}
-      onMouseUp={(e: any) => {
+      onMouseUp={(e) => {
         if (item === arrayOfTaskWords[currentWordIndex]) {
-          e.target.className = style.taskBlock;
+          (e.target as Element).className = style.taskBlock;
           const copyOfTaskArray = arrayOfTaskBlocks.slice();
           copyOfTaskArray.splice(index, 1);
           setArrayOfTaskBlocks(copyOfTaskArray);
@@ -106,14 +112,15 @@ export const OwnGame = () => {
           } else {
             mistake.play();
             setHealthPoints(healthPoints);
-            e.target.className = style.taskBlock;
+            (e.target as Element).className = style.taskBlock;
           }
         }
       }}
     />
   ));
-  const answerBlocks = arrayOfAnswerBlocks.map((answerItem: string[]) => (
-    <div className={style.answerBlocksWrapper}>
+  const answerBlocks = arrayOfAnswerBlocks.map((answerItem: string[], num) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <div className={style.answerBlocksWrapper} key={num}>
       {answerItem.map((blockItem) => (
         <div className={style.taskBlock}>
           <span dangerouslySetInnerHTML={{ __html: blockItem }} />
@@ -121,14 +128,15 @@ export const OwnGame = () => {
       ))}
     </div>
   ));
-  const healthPointsBlocks = healthPoints.map((item: number) => (
-    <div className={style.healthPointBlock} />
+  const healthPointsBlocks = healthPoints.map((item: number, num: number) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <div key={num} className={style.healthPointBlock} />
   ));
-  const playAudio = (e: any) => {
-    e.target.disabled = true;
+  const playAudio = (e: React.MouseEvent) => {
+    (e.target as HTMLInputElement).disabled = true;
     audio.play();
     wait(audio.duration).then(() => {
-      e.target.disabled = false;
+      (e.target as HTMLInputElement).disabled = false;
     });
   };
   return (
@@ -149,19 +157,25 @@ export const OwnGame = () => {
             ref={(el) => {
               mistake = el;
             }}
-          />
+          >
+            <track src="mistake-sound" kind="captions" />
+          </audio>
           <audio
             src="../../../assets/sounds/loose.mp3"
             ref={(el) => {
               loose = el;
             }}
-          />
+          >
+            <track src="lose-sound" kind="captions" />
+          </audio>
           <audio
             src="../../../assets/sounds/win.mp3"
             ref={(el) => {
               win = el;
             }}
-          />
+          >
+            <track src="lose-sound" kind="captions" />
+          </audio>
         </div>
       </div>
       <div className={style.mainFieldWrapper}>
@@ -175,16 +189,19 @@ export const OwnGame = () => {
       <div className={style.taskWrapper}>
         {currentSentence}
         <button
-          className={style.playSoundBtn}
           type="button"
-          onClick={(e: any) => playAudio(e)}
+          aria-label="Play sound"
+          className={style.playSoundBtn}
+          onClick={(e) => playAudio(e)}
         />
         <audio
           src={audioSrc}
           ref={(el) => {
             audio = el;
           }}
-        />
+        >
+          <track src="Text-sound" kind="captions" />
+        </audio>
       </div>
       <div className={style.taskBlocksWrapper}>{taskBlocks}</div>
     </div>
