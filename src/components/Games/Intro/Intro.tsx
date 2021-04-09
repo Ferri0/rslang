@@ -23,7 +23,7 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
   const currentRef = useRef();
   const {
     groupOfWords: { words },
-    savannaState: { statistics },
+    gameState: { statistics },
   } = useTypedSelector((state) => state);
   const location = useLocation();
   const [, pathOfGame] = location.pathname

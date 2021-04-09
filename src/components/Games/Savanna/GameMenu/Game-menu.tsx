@@ -3,13 +3,14 @@ import React from 'react';
 import style from './Game-menu.module.scss';
 import heart from '../../../../assets/icons/heart.svg';
 import heartFail from '../../../../assets/icons/heart-fail.svg';
+import { FullscreenBtn } from '../../FullscreenBtn';
 
 type Props = {
-  hearts: number;
   fullscreenRef: React.MutableRefObject<undefined>;
+  hearts?: number;
 };
 
-export const GameMenu = ({ hearts, fullscreenRef }: Props): JSX.Element => {
+export const GameMenu = ({ fullscreenRef, hearts }: Props): JSX.Element => {
   const heartsRender = (): JSX.Element[] => {
     const countOfMistake = 5 - hearts;
     const heartsArray = [];
@@ -28,23 +29,9 @@ export const GameMenu = ({ hearts, fullscreenRef }: Props): JSX.Element => {
     return heartsArray;
   };
 
-  const toggleFullScreen = (elem: HTMLDivElement) => {
-    if (!document.fullscreenElement) {
-      elem.requestFullscreen();
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
-  };
-
   return (
     <div className={style.game_menu}>
-      <button
-        className={style.button}
-        type="button"
-        onClick={() => toggleFullScreen(fullscreenRef.current)}
-      >
-        fullscreen
-      </button>
+      <FullscreenBtn fullscreenRef={fullscreenRef} />
       <div className={style.heart_wrapper}>{heartsRender()}</div>
     </div>
   );

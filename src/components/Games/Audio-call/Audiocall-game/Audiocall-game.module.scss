@@ -1,3 +1,57 @@
-.testClass {
-  font-size: 1px;
+@import '../../../../scss/abstracts/mixins.scss';
+
+.main {
+  background-image: url('../../../../assets/images/intro-bg/audiocall-intro.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @include size(100%, 100%);
+}
+
+.game_main {
+  justify-content: space-between;
+  height: calc(100% - 80px);
+  padding: 20px;
+}
+
+.question_wrapper {
+  font-size: 150px;
+  cursor: pointer;
+  @include size(40%, 40%);
+  @include flex(row, center, center);
+}
+
+.game_words {
+  @include flex(column, center, center);
+  @include size(100%, 100%);
+}
+
+.attempt_words {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  justify-content: center;
+  margin: 40px 0;
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.answer {
+  z-index: 2;
+  padding: 10px 5px;
+  color: #ffffffff;
+  font-size: 20px;
+  font-family: monospace;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.5s;
+
+  &:hover {
+    border-color: #c9cdd2;
+  }
 }

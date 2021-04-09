@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { Word } from '../../../../types';
 import { GameMenu } from '../GameMenu';
 import { useTypedSelector, useAction } from '../../../../hooks';
-import { shuffle } from '../../../../utils';
+import { getTRandomWords, shuffle } from '../../../../utils';
 
 import style from './Savannah-game.module.scss';
 import rightAnswerSound from '../../../../assets/sounds/correct.mp3';
-import errorAnserSound from '../../../../assets/sounds/erro.mp3';
-import { Answers } from '../Answers';
+import errorAnswerSound from '../../../../assets/sounds/error.mp3';
+import { Answers } from '../../Answers';
 
 type PropsType = {
   words: Word[];
@@ -17,7 +17,8 @@ type PropsType = {
 export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
   const clazzRef = useRef(style.question);
   const fullscreenRef = useRef();
-  const errorSoundRef = useRef(new Audio(errorAnserSound));
+  const errorSoundRef = new Audio(errorAnswerSound);
+  const rightSound = new Audio(rightAnswerSound);
   const {
     question,
     hearts,
@@ -27,18 +28,11 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
     wordsInButtons,
     scrollBg,
     isLoadingPlayWords,
-  } = useTypedSelector((state) => state.savannaState);
+  } = useTypedSelector((state) => state.gameState);
   const actions = useAction();
 
-  const getThreeRandomWord = (arr: Word[], except: string): string[] =>
-    shuffle(arr.filter((word) => word.wordTranslate !== except))
-      .slice(0, 3)
-      .map((item) => item.wordTranslate);
-
-  const rightSound = new Audio(rightAnswerSound);
-
   const setStateIfWrongAnswer = () => {
-    errorSoundRef.current.play();
+    errorSoundRef.play();
     actions.addWrongWordToStatics(question);
     actions.setQuestionAction(wordsToPlay[wordsToPlay.length - 1]);
     actions.setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
@@ -51,11 +45,11 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
       const lastIdx = wordsToPlay.length - 1;
       const wordToPlay = wordsToPlay[lastIdx].wordTranslate;
       const newWordsToPlay = shuffle([
-        ...getThreeRandomWord(words, wordToPlay),
+        ...getTRandomWords(words, wordToPlay, 3),
         wordToPlay,
       ]);
 
-      actions.setButtonsAction(newWordsToPlay);
+      actions.setWordsInButtons(newWordsToPlay);
       actions.setQuestionAction(wordsToPlay[lastIdx]);
     }
 
@@ -87,9 +81,9 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
 
   return (
     <div className={style.game_wrapper} ref={fullscreenRef}>
-      <GameMenu hearts={hearts} fullscreenRef={fullscreenRef} />
+      <GameMenu fullscreenRef={fullscreenRef} hearts={hearts} />
       <div className={style.game_main}>
-        <div style={scrollBg} className={style.game_image} />
+        <div className={style.game_image} style={scrollBg} />
         <div className={style.game_words}>
           <div className={clazzRef.current}>{question.word}</div>
           <Answers
