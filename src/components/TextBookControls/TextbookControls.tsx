@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './TextbookControls.module.scss';
@@ -40,10 +44,10 @@ export function TextbookControls({
           }}
         />
         <div className={style.settingWrapper}>
-          <label className={style.container}>
+          <label htmlFor="settings-btn" className={style.container}>
             <input
               type="checkbox"
-              id="translate"
+              id="settings-btn"
               checked={displayBtns.value}
               onChange={handleBtnsClick}
             />
@@ -56,10 +60,10 @@ export function TextbookControls({
           </div>
         </div>
         <div className={style.settingWrapper}>
-          <label className={style.container}>
+          <label htmlFor="translate-btn" className={style.container}>
             <input
               type="checkbox"
-              id="translate"
+              id="translate-btn"
               checked={displayTranslate.value}
               onChange={handleTranslateClick}
             />

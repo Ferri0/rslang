@@ -1,6 +1,6 @@
 import React from 'react';
 import { Word } from '../../../../types';
-import style from './Audioncall-game.module.scss';
+import style from './Audiocall-game.module.scss';
 
 type PropsType = {
   words: Word[];
