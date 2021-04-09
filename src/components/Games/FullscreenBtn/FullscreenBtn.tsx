@@ -14,12 +14,17 @@ export const FullscreenBtn = ({ fullscreenRef }: Props): JSX.Element => {
     }
   };
   return (
-    <button
-      className={style.button}
-      type="button"
+    <i
+      className={`fas fa-expand ${style.newBtn}`}
       onClick={() => toggleFullScreen(fullscreenRef.current)}
-    >
-      fullscreen
-    </button>
+      onKeyUp={({ key }) => {
+        if (key === 'Enter') {
+          toggleFullScreen(fullscreenRef.current);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label="fullscreen"
+    />
   );
 };

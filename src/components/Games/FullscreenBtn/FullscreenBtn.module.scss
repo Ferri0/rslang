@@ -1,3 +1,15 @@
+.newBtn {
+  color: cadetblue;
+  font-size: 35px;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #f3dcdc;
+  }
+}
+
 .button {
   position: relative;
   width: 115px;

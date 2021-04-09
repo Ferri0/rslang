@@ -1,4 +1,5 @@
 import { WordsService } from '../service';
+import { Word } from '../types';
 
 const wordsService = new WordsService();
 
@@ -16,7 +17,7 @@ const audioBuffer = async (url: string): Promise<void> => {
   }
 };
 
-export const playback = async (url: string): Promise<void> => {
+export const playback = async (url: Word['audio']): Promise<void> => {
   audioBuffer(url);
   const ps = ctx.createBufferSource();
   ps.buffer = audio;
@@ -24,4 +25,4 @@ export const playback = async (url: string): Promise<void> => {
   ps.start(ctx.currentTime);
 };
 
-window.addEventListener('click', () => playback('files/01_0009.mp3'));
+// window.addEventListener('click', () => playback('files/01_0009.mp3'));

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Form } from './Form';
 
 import style from './ChooseLvl.module.scss';
@@ -18,18 +18,30 @@ export const ChooseLvl = ({ background }: Background): JSX.Element => {
   const wordsService: ServiceWordsType = useContext(Context);
   const { error, loading } = useTypedSelector((state) => state.groupOfWords);
   const { fetchWords, setIsLocation } = useAction();
-  const handleSubmit = (e: EventHandler) => {
-    e.preventDefault();
-    const randNum = Math.floor(Math.random() * 20);
-    fetchWords(wordsService, group, randNum);
-    setIsLocation(false);
-  };
 
-  window.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-      handleSubmit(e);
-    }
-  });
+  const submitCallback = useCallback(
+    (e: EventHandler) => {
+      e.preventDefault();
+      const randNum = Math.floor(Math.random() * 20);
+      fetchWords(wordsService, group, randNum);
+      setIsLocation(false);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  useEffect(() => {
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        submitCallback(e);
+      }
+    };
+
+    window.addEventListener('keyup', keyHandler);
+    return () => {
+      window.removeEventListener('keyup', keyHandler);
+    };
+  }, [submitCallback]);
 
   if (loading) {
     return (
@@ -53,7 +65,7 @@ export const ChooseLvl = ({ background }: Background): JSX.Element => {
       <dialog className={style.dialog_modal} open={open}>
         <h2 className={style.title}>Choose group of words</h2>
         <Form
-          handleSubmit={handleSubmit}
+          handleSubmit={submitCallback}
           setOpen={setOpen}
           group={group}
           setGroup={setGroup}

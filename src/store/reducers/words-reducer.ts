@@ -26,7 +26,7 @@ export const wordsReducer = (
       };
     }
 
-    case WordsActionTypes.FETCH_WORDS_FAILUR: {
+    case WordsActionTypes.FETCH_WORDS_FAILURE: {
       return {
         ...state,
         error: action.payload,

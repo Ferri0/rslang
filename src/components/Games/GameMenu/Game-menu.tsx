@@ -1,9 +1,9 @@
 import React from 'react';
 
 import style from './Game-menu.module.scss';
-import heart from '../../../../assets/icons/heart.svg';
-import heartFail from '../../../../assets/icons/heart-fail.svg';
-import { FullscreenBtn } from '../../FullscreenBtn';
+import heart from '../../../assets/icons/heart.svg';
+import heartFail from '../../../assets/icons/heart-fail.svg';
+import { FullscreenBtn } from '../FullscreenBtn';
 
 type Props = {
   fullscreenRef: React.MutableRefObject<undefined>;

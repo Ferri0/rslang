@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Word } from '../../../../types';
-import { GameMenu } from '../GameMenu';
+import { GameMenu } from '../../GameMenu';
 import { useTypedSelector, useAction } from '../../../../hooks';
 import { getTRandomWords, shuffle } from '../../../../utils';
 

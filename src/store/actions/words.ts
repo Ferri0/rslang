@@ -12,7 +12,7 @@ export const wordsLoaded = (words: Word[]): WordsAction => ({
 });
 
 export const wordsFetchError = (error: Error): WordsAction => ({
-  type: WordsActionTypes.FETCH_WORDS_FAILUR,
+  type: WordsActionTypes.FETCH_WORDS_FAILURE,
   payload: error,
 });
 
