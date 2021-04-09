@@ -4,7 +4,7 @@ import { getUnitStyle } from './util/getUnitStyle';
 import { getFetchUrl } from './util/getFetchUrl';
 import { WordCard } from '../WordCard';
 import { PageControls } from '../PageControls';
-import { TextbookControls } from '../TextbookControls';
+import { TextbookControl } from '../TextbookControl';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 // import { Word } from '../../types/words-type';
 // import { useAction } from '../../hooks';
@@ -94,7 +94,7 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
   if (loading) {
     return (
       <div className={[style.textbook, unitStyle.bg].join(' ')}>
-        <TextbookControls
+        <TextbookControl
           displayBtns={{ value: displayBtns, set: setDisplayBtns }}
           displayTranslate={{
             value: displayTranslate,
@@ -112,7 +112,7 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
 
   return (
     <div className={[style.textbook, unitStyle.bg].join(' ')}>
-      <TextbookControls
+      <TextbookControl
         displayBtns={{ value: displayBtns, set: setDisplayBtns }}
         displayTranslate={{
           value: displayTranslate,

@@ -4,14 +4,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import style from './TextbookControls.module.scss';
+import style from './TextbookControl.module.scss';
 
 type TextbookControlsProps = {
   displayBtns: any;
   displayTranslate: any;
 };
 
-export function TextbookControls({
+export function TextbookControl({
   displayBtns,
   displayTranslate,
 }: TextbookControlsProps) {
