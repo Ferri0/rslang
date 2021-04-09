@@ -1,4 +1,4 @@
-export const shuffleArray = (arr: string[]) => {
+export const shuffleArray = (arr: string[]): Array<string> => {
   const copyArr = arr.slice();
   const result = [];
   for (let i = 0; i < arr.length; i += 1) {
@@ -10,7 +10,7 @@ export const shuffleArray = (arr: string[]) => {
   return result;
 };
 
-export const wait = (ms: number) =>
+export const wait = (ms: number): unknown =>
   new Promise((resolve) =>
     setTimeout(() => {
       resolve('DONE');
