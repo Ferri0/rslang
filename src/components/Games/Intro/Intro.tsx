@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAction, useTypedSelector } from '../../../hooks';
 import { shuffle } from '../../../utils';
@@ -21,9 +21,10 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
   const [startGame, setStartGame] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
   const currentRef = useRef();
+  const audioElementRef = useRef<HTMLAudioElement>();
   const {
     groupOfWords: { words },
-    gameState: { statistics },
+    gameState: { statistics, question },
   } = useTypedSelector((state) => state);
   const location = useLocation();
   const [, pathOfGame] = location.pathname
@@ -34,12 +35,23 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
   const actions = useAction();
 
   const onStartGame = () => {
-    setStartGame(true);
     actions.setHearts(5);
     actions.resetScrollBackground();
     actions.resetStatisticsData();
     actions.setWordsToPlayAction(shuffle(words));
+    setStartGame(true);
   };
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (audioElementRef.current) {
+        audioElementRef.current.play();
+      }
+    }, 500);
+    return () => {
+      clearTimeout(id);
+    };
+  }, [question]);
 
   const startNewGame = () => {
     setStartGame(false);
@@ -61,7 +73,13 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
   }
 
   if (startGame && pathOfGame === 'audiocall') {
-    return <AudioGame words={words} setGameEnd={setGameEnd} />;
+    return (
+      <AudioGame
+        words={words}
+        setGameEnd={setGameEnd}
+        audioElementRef={audioElementRef}
+      />
+    );
   }
 
   if (startGame && pathOfGame === 'sprint') {

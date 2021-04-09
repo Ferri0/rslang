@@ -23,6 +23,7 @@
   "spellright.documentTypes": ["latex", "plaintext", "javascriptreact"],
   "cSpell.words": [
     "audiocall",
+    "checkmark",
     "clazz",
     "mixins",
     "owngame",

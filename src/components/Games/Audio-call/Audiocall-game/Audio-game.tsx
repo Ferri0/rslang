@@ -5,19 +5,23 @@ import { GameMenu } from '../../GameMenu';
 import style from './Audiocall-game.module.scss';
 import rightAnswerSound from '../../../../assets/sounds/correct.mp3';
 import errorAnswerSound from '../../../../assets/sounds/error.mp3';
-import { getTRandomWords, playback, shuffle } from '../../../../utils';
+import { getTRandomWords, shuffle } from '../../../../utils';
 import { Answers } from '../../Answers';
 import { Context } from '../../../word-service-context';
 
 type PropsType = {
   words: Word[];
   setGameEnd: (arg: boolean) => void;
+  audioElementRef: React.MutableRefObject<HTMLAudioElement>;
 };
 
-export const AudioGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
+export const AudioGame = ({
+  words,
+  setGameEnd,
+  audioElementRef,
+}: PropsType): JSX.Element => {
   const context = useContext(Context);
   const fullscreenRef = useRef();
-  const audioElement = useRef<HTMLAudioElement>();
   const errorSoundRef = new Audio(errorAnswerSound);
   const rightSound = new Audio(rightAnswerSound);
   const { gameState } = useTypedSelector((state) => state);
@@ -61,20 +65,12 @@ export const AudioGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [words, gameState.wordsToPlay]);
 
-  useEffect(() => {
-    if (gameState.question.audio) {
-      playback(gameState.question.audio);
-    }
-  }, [gameState.question]);
-
   if (gameState.rightAnswer) {
     setStateIfRightAnswer();
-    audioElement.current.play();
   }
 
   if (gameState.wrongAnswer) {
     setStateIfWrongAnswer();
-    audioElement.current.play();
   }
 
   if (!gameState.wordsToPlay.length && gameState.isLoadingPlayWords) {
@@ -83,7 +79,7 @@ export const AudioGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
 
   const keyHandler = (key: string) => {
     if (key === 'Enter') {
-      audioElement.current.play();
+      audioElementRef.current.play();
     }
   };
 
@@ -94,18 +90,18 @@ export const AudioGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
         <div className={style.game_words}>
           <div
             className={style.question_wrapper}
-            onClick={() => audioElement.current.play()}
+            onClick={() => audioElementRef.current.play()}
             onKeyUp={({ key }) => keyHandler(key)}
             role="button"
             tabIndex={0}
           >
             <audio
               src={`${context.apiPath}${gameState.question.audio}`}
-              ref={audioElement}
+              ref={audioElementRef}
             >
               <track kind="captions" />
             </audio>
-            <i className="fas fa-volume-up" />
+            <i className={`fas fa-volume-up ${style.icon}`} />
           </div>
           <Answers
             setRightAnswerAction={actions.setRightAnswerAction}
