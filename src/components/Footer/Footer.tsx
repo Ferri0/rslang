@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Footer.module.scss';
 
-export function Footer() {
+export function Footer(): React.ReactNode {
   return (
     <div className={style.footer}>
       2021
