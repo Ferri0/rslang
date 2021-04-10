@@ -10,7 +10,8 @@ export const shuffleArray = (arr: string[]): Array<string> => {
   return result;
 };
 
-export const wait = (ms: number): unknown =>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const wait = (ms: number): any =>
   new Promise((resolve) =>
     setTimeout(() => {
       resolve('DONE');

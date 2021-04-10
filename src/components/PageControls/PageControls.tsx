@@ -3,6 +3,7 @@ import style from './PageControls.module.scss';
 
 type PageControlsProps = {
   currentPage: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setCurrentPage: any;
   maxPage?: number;
 };
@@ -10,8 +11,8 @@ type PageControlsProps = {
 export function PageControls({
   currentPage,
   setCurrentPage,
-  maxPage = 30,
-}: PageControlsProps) {
+  maxPage,
+}: PageControlsProps): React.ReactElement {
   const GROUP_LENGTH = maxPage;
 
   const setPrevPage = () => {
@@ -33,11 +34,15 @@ export function PageControls({
   return (
     <div className={style.pageControls}>
       <button
+        type="button"
+        aria-label="go-to-first-page"
         className={[style.btn, style.btn_firstPage].join(' ')}
         onClick={setFirstPage}
         disabled={currentPage === 0}
       />
       <button
+        type="button"
+        aria-label="go-to-previous-page"
         className={[style.btn, style.btn_prevPage].join(' ')}
         onClick={setPrevPage}
         disabled={currentPage === 0}
@@ -46,11 +51,15 @@ export function PageControls({
         {currentPage + 1}/{GROUP_LENGTH}
       </div>
       <button
+        type="button"
+        aria-label="go-to-next-page"
         className={[style.btn, style.btn_nextPage].join(' ')}
         onClick={setNextPage}
         disabled={currentPage === GROUP_LENGTH - 1}
       />
       <button
+        type="button"
+        aria-label="go-to-last-page"
         className={[style.btn, style.btn_lastPage].join(' ')}
         onClick={setLastPage}
         disabled={currentPage === GROUP_LENGTH - 1}
@@ -58,3 +67,7 @@ export function PageControls({
     </div>
   );
 }
+
+PageControls.defaultProps = {
+  maxPage: 30,
+};
