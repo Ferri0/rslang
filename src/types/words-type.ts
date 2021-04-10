@@ -1,7 +1,7 @@
 export enum WordsActionTypes {
   FETCH_WORDS_REQUEST = 'FETCH_WORDS_REQUEST',
   FETCH_WORDS_SUCCESS = 'FETCH_WORDS_SUCCESS',
-  FETCH_WORDS_FAILUR = 'FETCH_WORDS_FAILUR',
+  FETCH_WORDS_FAILURE = 'FETCH_WORDS_FAILURE',
 }
 
 export interface Word {
@@ -32,7 +32,7 @@ type WordsLoadedAction = {
 };
 
 type WordsFetchError = {
-  type: WordsActionTypes.FETCH_WORDS_FAILUR;
+  type: WordsActionTypes.FETCH_WORDS_FAILURE;
   payload: Error;
 };
 

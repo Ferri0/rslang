@@ -1,3 +1,31 @@
-.testClass {
-  font-size: 1px;
+@import '../../../../scss/abstracts/mixins.scss';
+
+.main {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('../../../../assets/images/intro-bg/audiocall-intro.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @include size(100%, 100%);
+}
+
+.game_main {
+  justify-content: space-between;
+  height: calc(100% - 80px);
+  padding: 20px;
+}
+
+.game_words {
+  @include flex(column, center, center);
+  @include size(100%, 100%);
+}
+
+.icon {
+  color: dimgrey;
+  transition: color 0.5s;
+}
+
+.active_icon {
+  color: aliceblue;
+  transition: color 0.5s;
 }

@@ -25,7 +25,7 @@ export const setQuestionAction = (value: Word): SavannaActions => ({
   payload: value,
 });
 
-export const setButtonsAction = (value: string[]): SavannaActions => ({
+export const setWordsInButtons = (value: string[]): SavannaActions => ({
   type: SavannaActionTypes.SET_BUTTONS_WORDS,
   payload: value,
 });

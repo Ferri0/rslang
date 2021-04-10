@@ -6,10 +6,10 @@ import info from '../info-games.json';
 
 export const Sprint = (): JSX.Element => {
   const infoGame = info.find((item) => item.name === 'СПРИНТ');
-  const { isMainPage } = useTypedSelector((state) => state.savannaState);
+  const { isMainPage } = useTypedSelector((state) => state.gameState);
 
   if (isMainPage) {
-    return <ChooseLvl bg="sprint.webp" />;
+    return <ChooseLvl background="sprint.webp" />;
   }
 
   return (

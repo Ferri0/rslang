@@ -20,5 +20,20 @@
     "source.fixAll.eslint": true
   },
   "spellright.language": ["en"],
-  "spellright.documentTypes": ["latex", "plaintext", "javascriptreact"]
+  "spellright.documentTypes": ["latex", "plaintext", "javascriptreact"],
+  "cSpell.words": [
+    "audiocall",
+    "checkmark",
+    "clazz",
+    "mixins",
+    "owngame",
+    "webp",
+    "АУДИОВЫЗОВ",
+    "Незнаю",
+    "Продолжить",
+    "САВАННА",
+    "СПРИНТ",
+    "знаю"
+  ],
+  "cSpell.enabled": true
 }
