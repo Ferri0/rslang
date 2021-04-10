@@ -2,14 +2,12 @@ import React from 'react';
 import style from './Form.module.scss';
 
 type Setter = {
-  setOpen: (setOpen: boolean) => void;
   handleSubmit: (handleSubmit: React.FormEvent<HTMLFormElement>) => void;
   group: number;
   setGroup: (group: number) => void;
 };
 
 export const Form = ({
-  setOpen,
   setGroup,
   group,
   handleSubmit,
@@ -28,6 +26,6 @@ export const Form = ({
         <span className={style.checkmark} />
       </label>
     ))}
-    <input type="submit" value="OK" onClick={() => setOpen(false)} />
+    <input type="submit" value="OK" />
   </form>
 );

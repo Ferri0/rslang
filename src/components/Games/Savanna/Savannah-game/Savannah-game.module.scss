@@ -1,22 +1,22 @@
+@import '../../../../scss/abstracts/mixins.scss';
+
 .game_wrapper {
   position: relative;
-  width: 100%;
-  height: 100vh;
   color: #fff;
+  @include size(100%, 100vh);
 }
 
 .game_image {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('../../../../assets/images/games/savannah/savannah.jpg');
   background-repeat: no-repeat;
   background-position-x: left;
   background-position-y: 100%;
   transition: background 1.5s;
+  @include size(100%, 100%);
 }
 
 .game_main {
@@ -44,23 +44,18 @@
 }
 
 .game_words {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+  @include flex(column, center, center);
+  @include size(100%, 100%);
 }
 
 .scrollBtn,
 .play_word {
   position: absolute;
   top: 50px;
-  width: 150px;
-  height: 25px;
   background-color: tomato;
   outline: none;
   cursor: pointer;
+  @include size(150px, 25px);
 }
 
 .play_word {

@@ -7,7 +7,7 @@ interface ArrayOfWords {
   question: string;
   setRightAnswerAction: (str: boolean) => void;
   setWrongAnswerAction: (value: boolean) => void;
-  clazz: string;
+  clazz?: string;
 }
 
 export const Answers = ({

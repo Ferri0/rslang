@@ -6,9 +6,9 @@ import info from '../info-games.json';
 
 export const Savanna = (): JSX.Element => {
   const infoGame = info.find((item) => item.name === 'САВАННА');
-  const { isMainPage } = useTypedSelector((state) => state.savannaState);
+  const { isMainPage } = useTypedSelector((state) => state.gameState);
   if (isMainPage) {
-    return <ChooseLvl bg="savanna.jpg" />;
+    return <ChooseLvl background="savanna.jpg" />;
   }
 
   return (

@@ -15,12 +15,12 @@ export enum SavannaActionTypes {
   TOGGLE_KNOWLEDGE_ABOUT_LOCATION = 'TOGGLE_KNOWLEDGE_ABOUT_LOCATION',
 }
 
-type SetHeartLeftAtrin = {
+type SetHeartLeftAction = {
   type: SavannaActionTypes.SET_HEARTS_LEFT;
   payload: number;
 };
 
-type RightAnswerAtion = {
+type RightAnswerAction = {
   type: SavannaActionTypes.SET_RIGHT_ANSWER;
   payload: boolean;
 };
@@ -40,7 +40,7 @@ type QuestionAction = {
   payload: Word;
 };
 
-type SetButtonswersAction = {
+type SetButtonsAction = {
   type: SavannaActionTypes.SET_BUTTONS_WORDS;
   payload: string[];
 };
@@ -89,12 +89,12 @@ export type SavannaState = {
 };
 
 export type SavannaActions =
-  | SetHeartLeftAtrin
-  | RightAnswerAtion
+  | SetHeartLeftAction
+  | RightAnswerAction
   | WrongAnswerAction
   | SetWordsToPlayAction
   | QuestionAction
-  | SetButtonswersAction
+  | SetButtonsAction
   | ScrollAction
   | ResetScroll
   | resetStatisticsData
