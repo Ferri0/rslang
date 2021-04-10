@@ -13,11 +13,11 @@ import { Word } from '../../types/words-type';
 type WordCardProps = {
   wordInfo: Word;
   unitStyle: { [className: string]: string };
-  displayBtns: boolean;
-  displayTranslate: boolean;
-  userProps: { token: string; id: string; isAuthorized: boolean };
-  isDeletedProp: boolean;
-  isDifficultProp: boolean;
+  displayBtns?: boolean;
+  displayTranslate?: boolean;
+  userProps?: { token: string; id: string; isAuthorized: boolean };
+  isDeletedProp?: boolean;
+  isDifficultProp?: boolean;
 };
 
 export function WordCard({
@@ -165,3 +165,11 @@ export function WordCard({
     </div>
   );
 }
+
+WordCard.defaultProps = {
+  displayBtns: true,
+  displayTranslate: true,
+  userProps: { token: null, id: null, isAuthorized: false },
+  isDeletedProp: false,
+  isDifficultProp: false,
+};
