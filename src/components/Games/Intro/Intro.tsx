@@ -20,14 +20,16 @@ type Props = {
 export const Intro = ({ name, text, bg }: Props): JSX.Element => {
   const [startGame, setStartGame] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
+  const [isWrong, setIsWrong] = useState(false);
   const currentRef = useRef();
-  const audioElementRef = useRef<HTMLAudioElement>();
+  const audioRef = useRef<HTMLAudioElement>();
+  const exampleAudioRef = useRef<HTMLAudioElement>();
   const {
     groupOfWords: { words },
-    gameState: { statistics, question },
+    gameState: { statistics, question, wrongAnswer },
   } = useTypedSelector((state) => state);
   const location = useLocation();
-  const [, pathOfGame] = location.pathname
+  const [, gamePath] = location.pathname
     .match(/games.+/g)
     .join()
     .split('/');
@@ -44,14 +46,14 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
 
   useEffect(() => {
     const id = setTimeout(() => {
-      if (audioElementRef.current) {
-        audioElementRef.current.play();
+      if (audioRef.current) {
+        audioRef.current.play();
       }
     }, 500);
     return () => {
       clearTimeout(id);
     };
-  }, [question]);
+  }, [question, wrongAnswer]);
 
   const startNewGame = () => {
     setStartGame(false);
@@ -68,34 +70,39 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
     return <Statistics statics={statistics} startNewGame={startNewGame} />;
   }
 
-  if (startGame && pathOfGame === 'savanna') {
+  if (startGame && gamePath === 'savanna') {
     return <SavannahGame words={words} setGameEnd={setGameEnd} />;
   }
 
-  if (startGame && pathOfGame === 'audiocall') {
+  if (startGame && gamePath === 'audiocall') {
     return (
       <AudioGame
+        setIsWrong={setIsWrong}
+        isWrong={isWrong}
         words={words}
         setGameEnd={setGameEnd}
-        audioElementRef={audioElementRef}
+        audioRef={audioRef}
+        exampleAudioRef={exampleAudioRef}
       />
     );
   }
 
-  if (startGame && pathOfGame === 'sprint') {
+  if (startGame && gamePath === 'sprint') {
     return <SprintGame words={words} setGameEnd={setGameEnd} />;
   }
 
-  if (startGame && pathOfGame === 'owngame') {
+  if (startGame && gamePath === 'owngame') {
     return <OwnGame />;
   }
+
+  const backgroundImagePath = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../../../assets/images/intro-bg/${bg})`;
 
   return (
     <div
       className={style.Intro}
       ref={currentRef}
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../../../assets/images/intro-bg/${bg})`,
+        backgroundImage: backgroundImagePath,
       }}
     >
       <div className={style.text}>
