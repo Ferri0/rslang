@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { useStore } from 'react-redux';
+// import { useStore } from 'react-redux';
 import style from './WordCard.module.scss';
 import { wait } from './util/wait';
 import {
@@ -7,15 +8,16 @@ import {
   addToDifficult,
   removeUserWord,
 } from '../../service/User-words-service';
+import { Word } from '../../types/words-type';
 
 type WordCardProps = {
-  wordInfo?: any;
-  unitStyle?: any;
-  displayBtns?: boolean;
-  displayTranslate?: boolean;
-  userProps?: any;
-  isDeletedProp?: boolean;
-  isDifficultProp?: boolean;
+  wordInfo: Word;
+  unitStyle: { [className: string]: string };
+  displayBtns: boolean;
+  displayTranslate: boolean;
+  userProps: { token: string; id: string; isAuthorized: boolean };
+  isDeletedProp: boolean;
+  isDifficultProp: boolean;
 };
 
 export function WordCard({
@@ -26,24 +28,27 @@ export function WordCard({
   userProps,
   isDeletedProp,
   isDifficultProp,
-}: WordCardProps) {
+}: WordCardProps): React.ReactElement {
   const apiUrl = 'https://yaia-team-rslang-api.herokuapp.com/';
 
   const [isDeleted, setIsDeleted] = useState(isDeletedProp);
   const [isDifficult, setIsDifficult] = useState(isDifficultProp);
 
-  if (wordInfo._id) wordInfo.id = wordInfo._id;
+  // if (wordInfo._id) wordInfo.id = wordInfo._id;
 
-  const playAudio = (e: any) => {
+  const playAudio = (e: React.SyntheticEvent) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const audio: any = document.getElementById(`${wordInfo.id}-audio`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const audioMeaning: any = document.getElementById(
-      `${wordInfo.id}-audioMeaning`
+      `${wordInfo._id || wordInfo.id}-audioMeaning`
     );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const audioExample: any = document.getElementById(
-      `${wordInfo.id}-audioExample`
+      `${wordInfo._id || wordInfo.id}-audioExample`
     );
 
-    e.target.disabled = true;
+    (e.target as HTMLInputElement).disabled = true;
     audio.play();
     wait(audio.duration).then(() => {
       audioMeaning.play();
@@ -53,7 +58,7 @@ export function WordCard({
     });
     wait(audioExample.duration + audioMeaning.duration + audio.duration).then(
       () => {
-        e.target.disabled = false;
+        (e.target as HTMLInputElement).disabled = false;
       }
     );
   };
@@ -63,6 +68,9 @@ export function WordCard({
     <div className={[style.tab, unitStyle.tab].join(' ')}>
       {displayBtns ? (
         <div
+          aria-label="Add-to-difficult-words"
+          role="button"
+          tabIndex={0}
           className={
             isDifficult
               ? [style.starImg, style.starImg_active].join(' ')
@@ -101,6 +109,7 @@ export function WordCard({
           <div className={style.tabContent_header___btnsBlock}>
             {displayBtns ? (
               <button
+                aria-label="Delete-word-from-page"
                 className={style.deleteWordBtn}
                 type="button"
                 onClick={() => {
@@ -113,9 +122,10 @@ export function WordCard({
             ) : null}
 
             <button
+              aria-label="Play-sound"
               className={style.playSoundBtn}
               type="button"
-              onClick={(e: any) => playAudio(e)}
+              onClick={(e: React.SyntheticEvent) => playAudio(e)}
             />
           </div>
         </div>
@@ -136,15 +146,21 @@ export function WordCard({
             {wordInfo.textExampleTranslate}
           </span>
         ) : null}
-        <audio src={apiUrl + wordInfo.audio} id={`${wordInfo.id}-audio`} />
+        <audio src={apiUrl + wordInfo.audio} id={`${wordInfo.id}-audio`}>
+          <track src="word-audio" kind="captions" />
+        </audio>
         <audio
           src={apiUrl + wordInfo.audioMeaning}
           id={`${wordInfo.id}-audioMeaning`}
-        />
+        >
+          <track src="word-meaning-audio" kind="captions" />
+        </audio>
         <audio
           src={apiUrl + wordInfo.audioExample}
           id={`${wordInfo.id}-audioExample`}
-        />
+        >
+          <track src="word-usage-example-audio" kind="captions" />
+        </audio>
       </section>
     </div>
   );
