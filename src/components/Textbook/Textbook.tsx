@@ -95,6 +95,7 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
     return (
       <div className={[style.textbook, unitStyle.bg].join(' ')}>
         <TextbookControl
+          currentPageWords={wordCards}
           displayBtns={{ value: displayBtns, set: setDisplayBtns }}
           displayTranslate={{
             value: displayTranslate,
@@ -113,6 +114,7 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
   return (
     <div className={[style.textbook, unitStyle.bg].join(' ')}>
       <TextbookControl
+        currentPageWords={wordCards}
         displayBtns={{ value: displayBtns, set: setDisplayBtns }}
         displayTranslate={{
           value: displayTranslate,
