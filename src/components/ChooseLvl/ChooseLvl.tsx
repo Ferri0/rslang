@@ -20,7 +20,7 @@ export const ChooseLvl = ({ background }: Background): JSX.Element => {
   const { fetchWords, setIsLocation } = useAction();
 
   const handleSubmit = (e: EventHandler) => {
-    if (group) {
+    if (group !== undefined) {
       e.preventDefault();
       const randNum = Math.floor(Math.random() * 20);
       fetchWords(wordsService, group, randNum);
