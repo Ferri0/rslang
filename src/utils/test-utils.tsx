@@ -8,6 +8,7 @@ import { store } from '../store';
 
 const wordsService = new WordsService();
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const render = (ui: JSX.Element): any => {
   const Wrapper: React.FC = ({ children }) => (
     <Provider store={store}>

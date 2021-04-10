@@ -12,7 +12,8 @@ const initialState: GameStatusState = {
 export const gameStatusReducer = (
   state: GameStatusState = initialState,
   action: GameStatusAction
-) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): any => {
   switch (action.type) {
     case GameStatusActionTypes.SET_WIN: {
       return {

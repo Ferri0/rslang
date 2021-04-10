@@ -46,7 +46,8 @@ const initialState: OwnGameState = {
 export const ownGameReducer = (
   state: OwnGameState = initialState,
   action: OwnGameAction
-) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): any => {
   switch (action.type) {
     case OwnGameActionTypes.SET_CURRENT_SENTENCE: {
       return {
