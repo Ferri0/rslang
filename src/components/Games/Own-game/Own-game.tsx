@@ -118,16 +118,18 @@ export const OwnGame = (): React.ReactElement => {
       }}
     />
   ));
-  const answerBlocks = arrayOfAnswerBlocks.map((answerItem: string[], num) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <div className={style.answerBlocksWrapper} key={num}>
-      {answerItem.map((blockItem) => (
-        <div className={style.taskBlock}>
-          <span dangerouslySetInnerHTML={{ __html: blockItem }} />
-        </div>
-      ))}
-    </div>
-  ));
+  const answerBlocks = arrayOfAnswerBlocks.map(
+    (answerItem: string[], num: React.Key) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <div className={style.answerBlocksWrapper} key={num}>
+        {answerItem.map((blockItem) => (
+          <div className={style.taskBlock}>
+            <span dangerouslySetInnerHTML={{ __html: blockItem }} />
+          </div>
+        ))}
+      </div>
+    )
+  );
   const healthPointsBlocks = healthPoints.map((item: number, num: number) => (
     // eslint-disable-next-line react/no-array-index-key
     <div key={num} className={style.healthPointBlock} />
