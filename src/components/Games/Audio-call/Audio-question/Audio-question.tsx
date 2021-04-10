@@ -1,5 +1,5 @@
 import React from 'react';
-import { SavannaState } from '../../../../types';
+import { SavannaActions, SavannaState } from '../../../../types';
 import { Answers } from '../../Answers';
 import { AudioIcon } from '../Audio-icon';
 
@@ -12,7 +12,8 @@ type ViewQuestionType = {
   audioRef: React.MutableRefObject<HTMLAudioElement>;
   audioWord: (audio: React.MutableRefObject<HTMLAudioElement>) => void;
   keyHandler: (key: string) => void;
-  actions: typeof import('d:/Front-end/Projects/rslang/src/store/actions/index');
+  setRightAnswerAction: (value: boolean) => SavannaActions;
+  setWrongAnswerAction: (value: boolean) => SavannaActions;
 };
 
 export const ViewQuestion = ({
@@ -22,7 +23,8 @@ export const ViewQuestion = ({
   audioWord,
   keyHandler,
   mainActiveClass,
-  actions,
+  setRightAnswerAction,
+  setWrongAnswerAction,
 }: ViewQuestionType): JSX.Element => (
   <>
     <AudioIcon
@@ -34,10 +36,10 @@ export const ViewQuestion = ({
       activeClass={mainActiveClass}
     />
     <Answers
-      setRightAnswerAction={actions.setRightAnswerAction}
+      setRightAnswerAction={setRightAnswerAction}
       question={gameState.question.wordTranslate}
       wordsInButtons={gameState.wordsInButtons}
-      setWrongAnswerAction={actions.setWrongAnswerAction}
+      setWrongAnswerAction={setWrongAnswerAction}
     />
   </>
 );

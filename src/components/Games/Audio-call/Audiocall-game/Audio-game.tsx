@@ -152,7 +152,8 @@ export const AudioGame = ({
       audioWord={audioWord}
       keyHandler={keyHandler}
       mainActiveClass={mainActiveClass}
-      actions={actions}
+      setRightAnswerAction={actions.setRightAnswerAction}
+      setWrongAnswerAction={actions.setWrongAnswerAction}
     />
   );
 
