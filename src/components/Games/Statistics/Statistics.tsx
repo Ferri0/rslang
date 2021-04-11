@@ -1,5 +1,6 @@
 import React from 'react';
 import { Word } from '../../../types';
+import { playSound } from '../../../utils/play-sound';
 import { Button } from '../Savanna/Button';
 
 import style from './Statistics.module.scss';
@@ -23,31 +24,31 @@ export const Statistics = ({
         <p className={style.answers}>Верные ответы: </p>
         {statics.known.map((word) => (
           <div className={style.mistake} key={word.id}>
-            <audio
-              className={style.audio}
-              controls
-              src={`https://yaia-team-rslang-api.herokuapp.com/${word.audio}`}
-            >
-              <track kind="captions" />
-            </audio>
             <em>
               {word.word} - {word.wordTranslate}
             </em>
+            <button
+              className={style.audio}
+              type="button"
+              onClick={() => playSound(word.audio)}
+            >
+              <i className="fas fa-volume-up" />
+            </button>
           </div>
         ))}
         <p className={style.answers}>Неверные ответы: </p>
         {statics.unknown.map((word) => (
           <div className={style.mistake} key={word.id}>
-            <audio
-              className={style.audio}
-              controls
-              src={`https://yaia-team-rslang-api.herokuapp.com/${word.audio}`}
-            >
-              <track kind="captions" />
-            </audio>
             <em>
               {word.word} - {word.wordTranslate}
             </em>
+            <button
+              className={style.audio}
+              type="button"
+              onClick={() => playSound(word.audio)}
+            >
+              <i className="fas fa-volume-up" />
+            </button>
           </div>
         ))}
       </div>

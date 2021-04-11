@@ -1,1 +1,3 @@
-export * from './Sprint';
+import { Sprint } from './Sprint';
+
+export { Sprint };

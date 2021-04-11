@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
 import { shuffleArray, wait } from './utils';
@@ -7,6 +6,8 @@ import { wordObjects } from './local-state';
 import { LoosePage } from '../../pages/Loose';
 import { WinPage } from '../../pages/Win';
 import style from './Own-game.module.scss';
+import { FullscreenBtn } from '../FullscreenBtn';
+import { HomeButton } from '../Home-button';
 
 export const OwnGame = (): React.ReactElement => {
   const {
@@ -40,6 +41,7 @@ export const OwnGame = (): React.ReactElement => {
   let loose: HTMLAudioElement;
   let win: HTMLAudioElement;
   const newElement: string[] = [];
+  const fullscreenRef = useRef();
 
   useEffect(() => {
     if (answerCounter === 0) {
@@ -142,15 +144,13 @@ export const OwnGame = (): React.ReactElement => {
     });
   };
   return (
-    <div className={style.ownGameWrapper}>
+    <div className={style.ownGameWrapper} ref={fullscreenRef}>
       <LoosePage />
       <WinPage mistakesCounter={5 - healthPoints.length} />
       <div className={style.ownGameHeaderWrapper}>
         <div className={style.linkWrapper}>
-          <Link
-            className={[style.btn, style.btn_home].join(' ')}
-            to="/dashboard"
-          />
+          <HomeButton />
+          <FullscreenBtn fullscreenRef={fullscreenRef} />
         </div>
         <div className={style.healthPointsWrapper}>
           {healthPointsBlocks}

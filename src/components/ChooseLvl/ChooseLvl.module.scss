@@ -1,9 +1,13 @@
+@import '../../scss/abstracts.scss';
+
 .background {
   position: relative;
-  height: 100vh;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
 }
 
 .dialog_modal {

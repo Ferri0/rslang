@@ -1,0 +1,21 @@
+.btn {
+  display: block;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &_home {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    background-image: url('../../../assets/icons/textBook/home.svg');
+
+    &:hover {
+      background-image: url('../../../assets/icons/textBook/homeHover.svg');
+    }
+  }
+}

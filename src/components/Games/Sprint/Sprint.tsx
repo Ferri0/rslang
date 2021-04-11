@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Rules } from './Rules';
+import { SprintGame } from './Sprint-game';
 import { useTypedSelector } from '../../../hooks';
 import { ChooseLvl } from '../../ChooseLvl';
-import { Intro } from '../Intro';
-import info from '../info-games.json';
+import style from './Sprint.module.scss';
 
-export const Sprint = (): JSX.Element => {
-  const infoGame = info.find((item) => item.name === 'СПРИНТ');
+export const Sprint: React.FC = () => {
+  const [rulesCls, setRulesCls] = useState('open');
+  const [startGame, setStartGame] = useState(false);
+
+  const clickStart = () => {
+    setStartGame(true);
+    setRulesCls('close');
+  };
+
   const { isMainPage } = useTypedSelector((state) => state.gameState);
-
   if (isMainPage) {
-    return <ChooseLvl background="sprint.webp" />;
+    return <ChooseLvl background="sprint.jpg" />;
+  }
+
+  if (rulesCls === 'close') {
+    return (
+      <SprintGame
+        startGame={startGame}
+        setStartGame={setStartGame}
+        setRulesCls={setRulesCls}
+      />
+    );
   }
 
   return (
-    <Intro name={infoGame.name} text={infoGame.text} bg="sprint-intro.jpg" />
+    <div className={style.wrapper}>
+      <Rules clickStart={clickStart} cls={rulesCls} />
+    </div>
   );
 };

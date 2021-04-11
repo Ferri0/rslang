@@ -1,0 +1,58 @@
+@import '../../../../scss/abstracts.scss';
+
+.rulesWrapper {
+  z-index: 3;
+  background: url('../../../../assets/images/sprint-card.jpg');
+  background-size: cover;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include size(100%, 100%);
+  @include absolute-center;
+
+  &.open {
+    @include flex(column, center, center);
+  }
+
+  &.close {
+    display: none;
+  }
+}
+
+.rules {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include size(100%, 100%);
+  @include flex(column, center, center);
+}
+
+.title {
+  margin-bottom: 15px;
+  font-weight: 800;
+  font-size: 38px;
+}
+
+.rules button {
+  min-height: 25px;
+  margin-top: 45px;
+  padding-bottom: 2px;
+  color: #fff;
+  text-decoration: none;
+  background: #297ab9;
+  border: 1px solid #297ab9;
+  border-radius: 8px;
+  outline: none;
+  transition: font-weight 0.5s ease;
+  @include size(120px, 35px);
+  @include flex(row, center, center);
+}
+
+.rules button:hover {
+  font-weight: 600;
+}
+
+.text {
+  width: 70%;
+  text-align: center;
+}
