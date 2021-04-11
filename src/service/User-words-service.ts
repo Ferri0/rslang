@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { Word } from '../types';
 import { CategoryType } from '../types/words';
 
 const getWordsOfType = async (userId: string, token: string, type: string) => {
@@ -116,7 +117,7 @@ export const getWordsOfCategoryByPage = async (
   try {
     const response = await fetch(URL, options);
     const json = await response.json();
-    let words: any[] = [];
+    let words: Word[] = [];
     let count = 0
 
     if (response) {

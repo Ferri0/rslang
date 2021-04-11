@@ -4,7 +4,7 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
 import style from './Loose-page.module.scss';
 
-export function LoosePage() {
+export function LoosePage(): React.ReactElement {
   const { isLoose } = useTypedSelector((state) => state.gameStatus);
   const { setLoose, setAnswerCounter } = useAction();
   return (

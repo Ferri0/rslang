@@ -5,6 +5,7 @@ const fetchStatsStarted = (): StatsActionType => ({
   type: StatsTypes.FETCH_STATS_STARTED,
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const fetchStatsSuccess = (data: any): StatsActionType => ({
   type: StatsTypes.FETCH_STATS_SUCCESS,
   payload: data,

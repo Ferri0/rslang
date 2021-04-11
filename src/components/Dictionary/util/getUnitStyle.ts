@@ -3,7 +3,9 @@ import u1s from '../unitStyles/Unit1.module.scss';
 import u2s from '../unitStyles/Unit2.module.scss';
 import u3s from '../unitStyles/Unit3.module.scss';
 
-export function getUnitStyle(unit: CategoryType) {
+export function getUnitStyle(
+  unit: CategoryType
+): { [className: string]: string } {
   switch (unit) {
     case 'learning':
       return u1s;

@@ -5,7 +5,7 @@ import u4s from '../unitStyles/Unit4.module.scss';
 import u5s from '../unitStyles/Unit5.module.scss';
 import u6s from '../unitStyles/Unit6.module.scss';
 
-export function getUnitStyle(unit: number) {
+export function getUnitStyle(unit: number): { [className: string]: string } {
   switch (unit) {
     case 0:
       return u1s;

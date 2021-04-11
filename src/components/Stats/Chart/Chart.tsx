@@ -11,6 +11,7 @@ import {
 import style from './Chart.module.scss';
 
 export interface ChartProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: Array<any>;
   title: string;
 }

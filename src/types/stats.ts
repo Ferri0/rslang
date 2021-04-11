@@ -1,3 +1,5 @@
+import { Word } from './words-type';
+
 export interface StatsState {
   day: {
     learnedWords: number; // count
@@ -13,7 +15,7 @@ export interface StatsState {
     savanna: number;
     audiocall: number;
   };
-  wordsData: Array<any>;
+  wordsData: Array<Word>;
   loading: boolean;
   error: string | null;
 }
@@ -29,6 +31,7 @@ export type FetchStatsStartedType = {
 };
 export type FetchStatsSuccessType = {
   type: StatsTypes.FETCH_STATS_SUCCESS;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload: any;
 };
 export type FetchStatsFailureType = {

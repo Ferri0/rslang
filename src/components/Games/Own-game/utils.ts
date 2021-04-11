@@ -1,4 +1,4 @@
-export const shuffleArray = (arr: string[]) => {
+export const shuffleArray = (arr: string[]): Array<string> => {
   const copyArr = arr.slice();
   const result = [];
   for (let i = 0; i < arr.length; i += 1) {
@@ -10,7 +10,8 @@ export const shuffleArray = (arr: string[]) => {
   return result;
 };
 
-export const wait = (ms: number) =>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const wait = (ms: number): any =>
   new Promise((resolve) =>
     setTimeout(() => {
       resolve('DONE');

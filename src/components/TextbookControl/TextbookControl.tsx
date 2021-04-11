@@ -1,20 +1,22 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './TextbookControl.module.scss';
+import { Word } from '../../types/words-type';
+// import { Button } from '../Games/Savanna/Button';
 
 type TextbookControlsProps = {
-  displayBtns: any;
-  displayTranslate: any;
+  displayBtns: { set: (value: boolean) => void; value: boolean };
+  displayTranslate: { set: (value: boolean) => void; value: boolean };
+  currentPageWords: Array<Word>;
 };
 
 export function TextbookControl({
   displayBtns,
   displayTranslate,
-}: TextbookControlsProps) {
+  currentPageWords,
+}: TextbookControlsProps): React.ReactElement {
   const [settingsActive, setSettingsActive] = useState(false);
   const [gamesActive, setGamesActive] = useState(false);
 
@@ -37,6 +39,9 @@ export function TextbookControl({
         }
       >
         <div
+          aria-label="Settings"
+          role="button"
+          tabIndex={0}
           className={style.settingsClickZone}
           onClick={() => {
             if (gamesActive) setGamesActive(!gamesActive);
@@ -80,6 +85,9 @@ export function TextbookControl({
         }
       >
         <div
+          aria-label="Games"
+          role="button"
+          tabIndex={0}
           className={style.gamesClickZone}
           onClick={() => {
             if (settingsActive) setSettingsActive(!settingsActive);
@@ -87,20 +95,32 @@ export function TextbookControl({
           }}
         />
         <div
+          aria-label="Start-game-1"
+          role="button"
+          tabIndex={0}
           className={[style.gameIcon, style.gameIcon_game1].join(' ')}
-          onClick={() => console.log(`Game 1, array: ${[]}`)}
+          onClick={() => console.log(`Game 1, array: ${currentPageWords}`)}
         />
         <div
+          aria-label="Start-game-2"
+          role="button"
+          tabIndex={0}
           className={[style.gameIcon, style.gameIcon_game2].join(' ')}
-          onClick={() => console.log(`Game 2, array: ${[]}`)}
+          onClick={() => console.log(`Game 2, array: ${currentPageWords}`)}
         />
         <div
+          aria-label="Start-game-3"
+          role="button"
+          tabIndex={0}
           className={[style.gameIcon, style.gameIcon_game3].join(' ')}
-          onClick={() => console.log(`Game 3, array: ${[]}`)}
+          onClick={() => console.log(`Game 3, array: ${currentPageWords}`)}
         />
         <div
+          aria-label="Start-game-4"
+          role="button"
+          tabIndex={0}
           className={[style.gameIcon, style.gameIcon_game4].join(' ')}
-          onClick={() => console.log(`Game 4, array: ${[]}`)}
+          onClick={() => console.log(`Game 4, array: ${currentPageWords}`)}
         />
       </div>
     </div>
