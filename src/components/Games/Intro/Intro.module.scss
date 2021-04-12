@@ -1,11 +1,15 @@
+@import '../../../scss/abstracts.scss';
+
 .Intro {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
 }
 
 .text {
@@ -25,4 +29,10 @@
   line-height: 140%;
   letter-spacing: 2px;
   text-align: center;
+}
+
+@media (max-width: 599px) {
+  .Intro {
+    border-radius: $border-radius;
+  }
 }

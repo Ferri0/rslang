@@ -1,9 +1,11 @@
-@import '../../../../scss/abstracts/mixins.scss';
+@import '../../../../scss/abstracts.scss';
 
 .game_wrapper {
   position: relative;
   color: #fff;
-  @include size(100%, 100vh);
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include size(100%, 100%);
 }
 
 .game_image {
@@ -15,6 +17,8 @@
   background-repeat: no-repeat;
   background-position-x: left;
   background-position-y: 100%;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
   transition: background 1.5s;
   @include size(100%, 100%);
 }
@@ -60,4 +64,11 @@
 
 .play_word {
   top: 80px;
+}
+
+@media (max-width: 599px) {
+  .game_wrapper,
+  .game_image {
+    border-radius: $border-radius;
+  }
 }

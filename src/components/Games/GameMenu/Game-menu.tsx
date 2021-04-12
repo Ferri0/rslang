@@ -4,6 +4,7 @@ import style from './Game-menu.module.scss';
 import heart from '../../../assets/icons/heart.svg';
 import heartFail from '../../../assets/icons/heart-fail.svg';
 import { FullscreenBtn } from '../FullscreenBtn';
+import { HomeButton } from '../Home-button';
 
 type Props = {
   fullscreenRef: React.MutableRefObject<undefined>;
@@ -31,7 +32,10 @@ export const GameMenu = ({ fullscreenRef, hearts }: Props): JSX.Element => {
 
   return (
     <div className={style.game_menu}>
-      <FullscreenBtn fullscreenRef={fullscreenRef} />
+      <div className={style.nav_btn}>
+        <HomeButton />
+        <FullscreenBtn fullscreenRef={fullscreenRef} />
+      </div>
       <div className={style.heart_wrapper}>{heartsRender()}</div>
     </div>
   );

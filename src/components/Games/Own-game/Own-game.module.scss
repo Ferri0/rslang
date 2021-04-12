@@ -64,7 +64,7 @@
   background-color: rgba(0, 0, 0, 0);
   background-image: url('../../../assets/icons/games/health-point.svg');
 
-  @include size(50px, 50px);
+  @include size(35px, 35px);
 }
 
 .mainFieldWrapper {
@@ -153,4 +153,31 @@
 
 .taskBlockGreen {
   background-color: darkgreen;
+}
+
+@media (max-width: 599px) {
+  .ownGameWrapper {
+    border-radius: $border-radius;
+  }
+
+  .linkWrapper {
+    padding-left: 40px;
+  }
+
+  .taskWrapper {
+    height: auto;
+  }
+
+  .taskBlocksWrapper {
+    flex-wrap: wrap;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .answerBlocksWrapper {
+    flex-wrap: wrap;
+    height: auto;
+    margin-bottom: 20px;
+  }
 }

@@ -63,7 +63,7 @@ export const ChooseLvl = ({ background }: Background): JSX.Element => {
       }}
     >
       <dialog className={style.dialog_modal} open={open}>
-        <h2 className={style.title}>Choose group of words</h2>
+        <h2 className={style.title}>Выберите уровень</h2>
         <Form handleSubmit={handleSubmit} group={group} setGroup={setGroup} />
       </dialog>
     </div>

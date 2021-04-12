@@ -1,9 +1,17 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAction, useTypedSelector } from '../../../hooks';
 import style from './Dashboard-menu.module.scss';
 
-export function DashboardMenu(): JSX.Element {
+interface Props {
+  clickBurgerMenu: () => void;
+  cls: string;
+}
+
+export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
   const { isAuthorized, currentUser } = useTypedSelector((state) => state.auth);
   const { setIsLocation } = useAction();
   const [menuStatus, setStatusMenu] = useState({
@@ -32,7 +40,7 @@ export function DashboardMenu(): JSX.Element {
   if (isAuthorized) welcome = <div>{currentUser}</div>;
 
   return (
-    <div className={style.menuContainer}>
+    <div className={`${style.menuContainer} ${style[cls]}`}>
       <Link className={style.logo} to="/" onClick={() => setIsLocation(true)} />
       {welcome}
       <nav className={style.menu}>
@@ -47,7 +55,10 @@ export function DashboardMenu(): JSX.Element {
         >
           Учебник
         </div>
-        <div className={`${style.subMenu} ${style[menuStatus.textbox]}`}>
+        <div
+          className={`${style.subMenu} ${style[menuStatus.textbox]}`}
+          onClick={clickBurgerMenu}
+        >
           <NavLink
             className={style.menuItem}
             activeStyle={activeStyle}
@@ -102,7 +113,10 @@ export function DashboardMenu(): JSX.Element {
         >
           Словарь
         </div>
-        <div className={`${style.subMenu} ${style[menuStatus.dictionary]}`}>
+        <div
+          className={`${style.subMenu} ${style[menuStatus.dictionary]}`}
+          onClick={clickBurgerMenu}
+        >
           <NavLink
             className={style.menuItem}
             activeStyle={activeStyle}
@@ -136,7 +150,10 @@ export function DashboardMenu(): JSX.Element {
         >
           Мини-игры
         </div>
-        <div className={`${style.subMenu} ${style[menuStatus.games]}`}>
+        <div
+          className={`${style.subMenu} ${style[menuStatus.games]}`}
+          onClick={clickBurgerMenu}
+        >
           <NavLink
             className={style.menuItem}
             activeStyle={activeStyle}
@@ -174,11 +191,14 @@ export function DashboardMenu(): JSX.Element {
           className={style.menuItem}
           activeStyle={activeStyle}
           to="/dashboard/stats"
-          onClick={() => setIsLocation(true)}
+          onClick={() => {
+            setIsLocation(true);
+            clickBurgerMenu();
+          }}
         >
           Статистика
         </NavLink>
       </nav>
     </div>
   );
-}
+};

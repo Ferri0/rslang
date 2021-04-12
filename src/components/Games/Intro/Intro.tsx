@@ -9,7 +9,7 @@ import { SavannahGame } from '../Savanna/Savannah-game';
 
 import style from './Intro.module.scss';
 import { AudioGame } from '../Audio-call/Audiocall-game';
-import { SprintGame } from '../Sprint/Sprint-game';
+// import { SprintGame } from '../Sprint/Sprint-game';
 
 type Props = {
   name: string;
@@ -87,9 +87,9 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
     );
   }
 
-  if (startGame && gamePath === 'sprint') {
-    return <SprintGame words={words} setGameEnd={setGameEnd} />;
-  }
+  // if (startGame && gamePath === 'sprint') {
+  //   return <SprintGame words={words} setGameEnd={setGameEnd} />;
+  // }
 
   if (startGame && gamePath === 'owngame') {
     return <OwnGame />;

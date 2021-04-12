@@ -15,7 +15,7 @@ export const Form = ({
   <form onSubmit={handleSubmit}>
     {[0, 1, 2, 3, 4, 5].map((num) => (
       <label key={num} className={style.container} htmlFor={`level${num}`}>
-        Group {+num + 1}
+        Уровень {+num + 1}
         <input
           type="radio"
           id={`level${num}`}

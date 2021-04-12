@@ -1,0 +1,38 @@
+@import '../../../../scss/abstracts.scss';
+
+.timer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+
+.timer_time {
+  font-weight: 600;
+  font-size: 20px;
+  @include absolute-center;
+}
+
+.timer_circle {
+  fill: none;
+  stroke: none;
+}
+
+.timer_path {
+  stroke-width: 7px;
+  stroke: #b7b5b5;
+}
+
+.timer_path_remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+}
+
+.timer_svg {
+  transform: scaleX(-1);
+}

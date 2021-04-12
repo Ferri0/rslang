@@ -1,0 +1,277 @@
+@import '../../../../scss/abstracts.scss';
+
+.sprintWrapper {
+  position: relative;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  grid-template-columns: 1fr;
+  background: url('../../../../assets/images/sprint/sprint-bg.jpg');
+  background-color: #e4f8e1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include size(100%, 100%);
+}
+
+.sprintOverlay {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include size(100%, 100%);
+  @include absolute-center;
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
+  border-top-right-radius: $border-radius;
+}
+
+.sprintGame {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  justify-self: center;
+  width: 430px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  box-shadow: 0 0 2px 1px #fff;
+  transition: border 0.5s ease;
+
+  &.error {
+    animation: error 0.5s ease;
+  }
+
+  &.correct {
+    animation: correct 0.5s ease;
+  }
+}
+
+@keyframes correct {
+  0% {
+    border: 3px solid rgba(255, 255, 255, 0.9);
+  }
+  50% {
+    border: 3px solid #008507;
+  }
+  100% {
+    border: 3px solid rgba(255, 255, 255, 0.9);
+  }
+}
+
+@keyframes error {
+  0% {
+    border: 3px solid rgba(255, 255, 255, 0.9);
+  }
+  50% {
+    border: 3px solid #d00202;
+  }
+  100% {
+    border: 3px solid rgba(255, 255, 255, 0.9);
+  }
+}
+
+.sprintHeader {
+  padding: 20px 30px;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  transition: background-color 0.5s ease;
+
+  &.score-10 {
+    background-color: none;
+  }
+
+  &.score-20 {
+    background-color: #f4f775;
+  }
+
+  &.score-40 {
+    background-color: #fdcd7c;
+  }
+
+  &.score-80 {
+    background-color: #b961a6;
+  }
+}
+
+.wordSuccessBlock {
+  margin-bottom: 20px;
+  @include size(100%, auto);
+  @include flex(row, center, center);
+
+  .wordSuccess {
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+    @include size(20px, 20px);
+
+    &::before {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      content: '';
+    }
+
+    &.no-active {
+      background-color: #b9b9b9;
+      border: 1px solid #8f8f8f;
+    }
+
+    &.active {
+      background-color: #008507;
+      border: 1px solid #015705;
+      @include flex(row, center, center);
+
+      &::before {
+        color: #fff;
+        font-weight: 600;
+        font-size: 12px;
+        opacity: 0.7;
+        content: '✓';
+      }
+    }
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+.sprintInfo {
+  padding: 30px 30px 20px;
+  @include flex(row, space-between, center);
+
+  .sprintScore {
+    font-weight: 600;
+    font-size: 20px;
+  }
+}
+
+.sprintWords {
+  padding: 20px 30px;
+  font-size: 28px;
+  text-align: center;
+  text-transform: uppercase;
+  @include flex(column, center, center);
+
+  .eng {
+    margin-bottom: 10px;
+    font-weight: 600;
+    @include flex(row, center, center);
+
+    &::before {
+      display: block;
+      margin-right: 10px;
+      background: url('../../../../assets/images/sprint/eng-flag.png') no-repeat
+        center;
+      background-size: contain;
+      content: '';
+      @include size(30px, 30px);
+    }
+  }
+
+  .rus {
+    @include flex(row, center, center);
+
+    &::before {
+      display: block;
+      margin-right: 10px;
+      background: url('../../../../assets/images/sprint/rus-flag.png') no-repeat
+        center;
+      background-size: contain;
+      content: '';
+      @include size(30px, 30px);
+    }
+  }
+}
+
+.sprintImg {
+  padding: 20px 0;
+  @include flex(row, center, center);
+
+  .imgSuccess {
+    background-size: cover !important;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.8));
+    @include size(100px, 70px);
+  }
+
+  .imgSuccess.active {
+    display: block;
+  }
+
+  .imgSuccess.no-active {
+    display: none;
+  }
+
+  .img0 {
+    display: block;
+    background: url('../../../../assets/images/sprint/img-0.png');
+  }
+
+  .img1 {
+    background: url('../../../../assets/images/sprint/img-1.png');
+  }
+
+  .img2 {
+    background: url('../../../../assets/images/sprint/img-2.png');
+  }
+
+  .img3 {
+    background: url('../../../../assets/images/sprint/img-3.png');
+  }
+}
+
+.buttonBlock {
+  padding: 20px 30px 30px;
+  @include size(100%, auto);
+  @include flex(row, space-around, center);
+
+  button {
+    min-height: 25px;
+    padding-bottom: 2px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    outline: none;
+    transition: font-weight 0.5s ease;
+    @include size(120px, 35px);
+    @include flex(row, center, center);
+  }
+
+  .buttonCorrect {
+    background: #008507;
+    border: 1px solid #015705;
+
+    &:hover {
+      font-weight: 600;
+    }
+  }
+
+  .buttonError {
+    background: #d00202;
+    border: 1px solid #880101;
+
+    &:hover {
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .sprintWrapper,
+  .sprintOverlay {
+    border-radius: $border-radius;
+  }
+
+  .header {
+    padding-left: 50px;
+    border-top-left-radius: $border-radius;
+  }
+}
