@@ -154,3 +154,30 @@
 .taskBlockGreen {
   background-color: darkgreen;
 }
+
+@media (max-width: 599px) {
+  .ownGameWrapper {
+    border-radius: $border-radius;
+  }
+
+  .linkWrapper {
+    padding-left: 40px;
+  }
+
+  .taskWrapper {
+    height: auto;
+  }
+
+  .taskBlocksWrapper {
+    flex-wrap: wrap;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .answerBlocksWrapper {
+    flex-wrap: wrap;
+    height: auto;
+    margin-bottom: 20px;
+  }
+}

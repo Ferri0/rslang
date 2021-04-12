@@ -263,3 +263,15 @@
     }
   }
 }
+
+@media (max-width: 599px) {
+  .sprintWrapper,
+  .sprintOverlay {
+    border-radius: $border-radius;
+  }
+
+  .header {
+    padding-left: 50px;
+    border-top-left-radius: $border-radius;
+  }
+}

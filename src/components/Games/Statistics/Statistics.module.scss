@@ -82,3 +82,9 @@
   display: flex;
   justify-content: center;
 }
+
+@media (max-width: 599px) {
+  .background {
+    border-radius: $border-radius;
+  }
+}

@@ -23,6 +23,12 @@
   @include flex(column, space-between, center);
 }
 
+.textbookUnits {
+  margin-top: 20px;
+  @include size(100%, 100%);
+  @include flex(column, space-between, center);
+}
+
 .textbook .unit {
   padding: 10px;
   text-decoration: none;
@@ -147,6 +153,7 @@
 }
 
 .dictTitle {
+  text-align: center;
   border: 1px dashed #3b506b;
   border-radius: $border-radius;
   @include flex(column, space-around, center);
@@ -160,4 +167,63 @@
 .stats {
   grid-area: stats;
   @include flex(column, center, center);
+}
+
+@media (max-width: 1000px) {
+  .dashboardStartPage {
+    grid-template-areas:
+      'textbook'
+      'games'
+      'dictionary'
+      'stats';
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: 1fr;
+  }
+
+  .textbook {
+    border-top-right-radius: $border-radius;
+  }
+
+  .textbookUnits {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .unit {
+      width: auto;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .gamesBlock {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 10px;
+
+    .game {
+      min-width: 120px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .dictionaryBlock {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 10px;
+
+    .dict {
+      min-width: 120px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .dashboardStartWrapper {
+    border-radius: $border-radius;
+  }
+  .textbook {
+    border-top-left-radius: $border-radius;
+  }
 }

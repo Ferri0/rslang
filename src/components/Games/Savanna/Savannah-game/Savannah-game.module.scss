@@ -65,3 +65,10 @@
 .play_word {
   top: 80px;
 }
+
+@media (max-width: 599px) {
+  .game_wrapper,
+  .game_image {
+    border-radius: $border-radius;
+  }
+}

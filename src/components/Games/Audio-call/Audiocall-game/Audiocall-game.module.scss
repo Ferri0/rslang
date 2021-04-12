@@ -1,4 +1,4 @@
-@import '../../../../scss/abstracts/mixins.scss';
+@import '../../../../scss/abstracts.scss';
 
 .main {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -21,11 +21,17 @@
 }
 
 .icon {
-  color: dimgrey;
+  color: #efefef;
   transition: color 0.5s;
 }
 
 .active_icon {
   color: aliceblue;
   transition: color 0.5s;
+}
+
+@media (max-width: 599px) {
+  .main {
+    border-radius: $border-radius;
+  }
 }

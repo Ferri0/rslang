@@ -30,3 +30,9 @@
   letter-spacing: 2px;
   text-align: center;
 }
+
+@media (max-width: 599px) {
+  .Intro {
+    border-radius: $border-radius;
+  }
+}

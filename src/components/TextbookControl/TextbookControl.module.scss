@@ -211,6 +211,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  outline: none;
 
   &:hover {
     transform: scale(1.05);
@@ -232,5 +233,11 @@
 
   &_game4 {
     background-image: url('../../assets/icons/textBook/number4.svg');
+  }
+}
+
+@media (max-width: 599px) {
+  .btnsBlock {
+    top: 50px;
   }
 }

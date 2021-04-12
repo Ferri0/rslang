@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { DashboardMenu } from '../../menus/Dashboard-menu';
 import { Textbook } from '../../Textbook';
@@ -11,16 +11,26 @@ import { AudioCall } from '../../Games/Audio-call';
 import { OwnGame } from '../../Games/Own-game';
 import { DashboardStartPage } from './Dasboard-start-page';
 import { Dictionary } from '../../Dictionary';
+import { BurgerIcon } from '../Burger-icon';
 
 export function Dashboard(): JSX.Element {
   const location = useLocation();
   let startPage;
   if (location.pathname === '/dashboard') startPage = <DashboardStartPage />;
 
+  const [cls, setCls] = useState('close');
+
+  const clickBurgerMenu = () => {
+    const status = cls === 'close' ? 'open' : 'close';
+    setCls(status);
+  };
+
   return (
     <div className={style.dashboardContainer}>
       <div className={style.dashboardPage}>
-        <DashboardMenu />
+        <BurgerIcon clickBurgerMenu={clickBurgerMenu} cls={cls} />
+        <div className={`${style.overlay} ${style[cls]}`} />
+        <DashboardMenu clickBurgerMenu={clickBurgerMenu} cls={cls} />
         <div>
           {startPage}
           <Switch>

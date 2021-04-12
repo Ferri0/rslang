@@ -50,3 +50,9 @@
   height: 100vh;
   animation: 3s linear infinite alternate load;
 }
+
+@media (max-width: 599px) {
+  .background {
+    border-radius: $border-radius;
+  }
+}

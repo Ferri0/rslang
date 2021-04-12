@@ -32,3 +32,9 @@
   background-color: #a2f2ea;
   cursor: pointer;
 }
+
+@media (max-width: 599px) {
+  .bg {
+    border-radius: $border-radius;
+  }
+}

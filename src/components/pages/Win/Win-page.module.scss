@@ -27,6 +27,7 @@
   color: steelblue;
   font: 2rem/1.2 Arial, sans-serif;
   font-weight: 700;
+  text-align: center;
   background-color: #fff;
   border-radius: 10px;
   @include size(25%, 25%);
@@ -49,4 +50,10 @@
   border: steelblue 2px solid;
   border-radius: 10px;
   @include size(50%, 30px);
+}
+
+@media (max-width: 599px) {
+  .winPageContainer {
+    @include size(70%, 50%);
+  }
 }

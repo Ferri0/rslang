@@ -15,17 +15,22 @@ export function DashboardStartPage(): JSX.Element {
       <div className={style.dashboardStartPage}>
         <div className={style.textbook}>
           Учебник
-          {[1, 2, 3, 4, 5, 6].map((unit) => (
-            <Link
-              key={`start-unit-${unit}`}
-              className={`${style.unit} ${style[`unit-${unit}`]}`}
-              to={`/dashboard/textbook/unit${unit}`}
-            >
-              <div key={`start-unit-title-${unit}`} className={style.unitTitle}>
-                {`Раздел ${unit}`}
-              </div>
-            </Link>
-          ))}
+          <div className={style.textbookUnits}>
+            {[1, 2, 3, 4, 5, 6].map((unit) => (
+              <Link
+                key={`start-unit-${unit}`}
+                className={`${style.unit} ${style[`unit-${unit}`]}`}
+                to={`/dashboard/textbook/unit${unit}`}
+              >
+                <div
+                  key={`start-unit-title-${unit}`}
+                  className={style.unitTitle}
+                >
+                  {`Раздел ${unit}`}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
         <div className={style.games}>
           Мини-игры

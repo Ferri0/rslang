@@ -136,3 +136,9 @@
     }
   }
 }
+
+@media (max-width: 599px) {
+  .resultWrapper {
+    border-radius: $border-radius;
+  }
+}
