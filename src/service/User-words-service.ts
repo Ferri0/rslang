@@ -131,7 +131,6 @@ const updateUserWord = async (
   token: string,
   data: UserWordType
 ): Promise<Response> => {
-  console.log(data);
   const response = await fetch(
     `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/words/${wordId}`,
     {
@@ -140,11 +139,10 @@ const updateUserWord = async (
         Authorization: `Bearer ${token}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        body: JSON.stringify(data),
       },
+      body: JSON.stringify(data),
     }
   );
-
   return response;
 };
 
@@ -163,29 +161,13 @@ const updateUserWordStatisitic = async (
     if (answer === 'wrong') {
       response.optional.wrongAnswers += 1;
     }
-    // console.log(response);
     const updateBody = {
       difficulty: JSON.parse(JSON.stringify(response.difficulty)),
       optional: JSON.parse(JSON.stringify(response.optional)),
     };
-    const updateResponse = await updateUserWord(
-      userId,
-      wordId,
-      token,
-      updateBody
-    );
-    // console.log(updateResponse.status);
-    const updateResponseBody = await updateResponse.json();
-    console.log(updateResponseBody);
+    await updateUserWord(userId, wordId, token, updateBody);
   } else {
-    const addWordResponse = await addWordToType(
-      userId,
-      wordId,
-      token,
-      'learning',
-      answer
-    );
-    // console.log(addWordResponse);
+    await addWordToType(userId, wordId, token, 'learning', answer);
   }
   return rawResponse;
 };
