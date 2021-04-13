@@ -80,15 +80,6 @@ export function WordCard({
           }
           onClick={() => {
             if (userProps.isAuthorized && !isDifficult) {
-              console.log('we are in add to difficult');
-              console.log('word info obj:');
-              console.log(wordInfo);
-              console.log('user id:');
-              console.log(userProps.id);
-              console.log('word id:');
-              console.log(wordInfo.id);
-              console.log('user token:');
-              console.log(userProps.token);
               addToDifficult(
                 userProps.id,
                 wordInfo._id || wordInfo.id,
