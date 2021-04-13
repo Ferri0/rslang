@@ -1,17 +1,19 @@
 import React, { useEffect, useRef } from 'react';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { useAction } from '../../../hooks/useAction';
+import { useTypedSelector } from '../../../../hooks/useTypedSelector';
+import { useAction } from '../../../../hooks/useAction';
 import { shuffleArray, wait } from './utils';
-import { wordObjects } from './local-state';
-import { updateUserWordStatisitic } from '../../../service/User-words-service';
-import { updateUserStats } from '../../../service/player-stats-service';
-import { LoosePage } from '../../pages/Loose';
-import { WinPage } from '../../pages/Win';
+import { updateUserWordStatisitic } from '../../../../service/User-words-service';
+import { updateUserStats } from '../../../../service/player-stats-service';
+import { LoosePage } from '../../../pages/Loose';
+import { WinPage } from '../../../pages/Win';
 import style from './Own-game.module.scss';
-import { FullscreenBtn } from '../FullscreenBtn';
-import { HomeButton } from '../Home-button';
+import { FullscreenBtn } from '../../FullscreenBtn';
+import { HomeButton } from '../../Home-button';
 
 export const OwnGame = (): React.ReactElement => {
+  const {
+    groupOfWords: { words },
+  } = useTypedSelector((state) => state);
   const {
     currentSentence,
     currentTaskSentence,
@@ -49,21 +51,21 @@ export const OwnGame = (): React.ReactElement => {
   useEffect(() => {
     if (answerCounter === 0) {
       setCurrentWordIndex(0);
-      setCurrentSentence(wordObjects[answerCounter].textExampleTranslate);
-      setCurrentTaskSentence(wordObjects[answerCounter].textExample);
-      setAudioSrc(wordObjects[answerCounter].audioExample);
+      setCurrentSentence(words[answerCounter].textExampleTranslate);
+      setCurrentTaskSentence(words[answerCounter].textExample);
+      setAudioSrc(words[answerCounter].audioExample);
       setArrayOfAnswerBlock([[]]);
       setHealthPoints([1, 1, 1, 1, 1]);
     }
-    if (answerCounter < wordObjects.length && answerCounter > 0) {
-      setCurrentSentence(wordObjects[answerCounter].textExampleTranslate);
-      setCurrentTaskSentence(wordObjects[answerCounter].textExample);
+    if (answerCounter < words.length && answerCounter > 0) {
+      setCurrentSentence(words[answerCounter].textExampleTranslate);
+      setCurrentTaskSentence(words[answerCounter].textExample);
       setArrayOfAnswerBlock([...arrayOfAnswerBlocks, newElement]);
       setCurrentWordIndex(0);
-      setAudioSrc(wordObjects[answerCounter].audioExample);
+      setAudioSrc(words[answerCounter].audioExample);
       answerLastDiv.scrollIntoView({ behavior: 'smooth' });
     }
-    if (answerCounter === wordObjects.length) {
+    if (answerCounter === words.length) {
       setWin(true);
       win.play();
     }
@@ -111,7 +113,7 @@ export const OwnGame = (): React.ReactElement => {
             if (isAuthorized) {
               updateUserWordStatisitic(
                 JSON.parse(localStorage.getItem('yaia-team-rslang-userID')),
-                wordObjects[answerCounter].id,
+                words[answerCounter].id,
                 JSON.parse(localStorage.getItem('yaia-team-rslang-token')),
                 'right'
               );
@@ -128,7 +130,7 @@ export const OwnGame = (): React.ReactElement => {
           if (isAuthorized) {
             updateUserWordStatisitic(
               JSON.parse(localStorage.getItem('yaia-team-rslang-userID')),
-              wordObjects[answerCounter].id,
+              words[answerCounter].id,
               JSON.parse(localStorage.getItem('yaia-team-rslang-token')),
               'wrong'
             );
