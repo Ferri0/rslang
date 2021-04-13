@@ -9,7 +9,9 @@ import { SavannahGame } from '../Savanna/Savannah-game';
 
 import style from './Intro.module.scss';
 import { AudioGame } from '../Audio-call/Audiocall-game';
-// import { SprintGame } from '../Sprint/Sprint-game';
+import { SprintGame } from '../Sprint/Sprint-game';
+import { Spinner } from '../../Spinner';
+import { ErrorIndicator } from '../../Error-indicator';
 
 type Props = {
   name: string;
@@ -25,7 +27,7 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
   const audioRef = useRef<HTMLAudioElement>();
   const exampleAudioRef = useRef<HTMLAudioElement>();
   const {
-    groupOfWords: { words },
+    groupOfWords: { words, loading, error },
     gameState: { statistics, question, wrongAnswer },
   } = useTypedSelector((state) => state);
   const location = useLocation();
@@ -93,6 +95,18 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
 
   if (startGame && gamePath === 'owngame') {
     return <OwnGame />;
+  }
+
+  if (loading) {
+    return (
+      <div className={style.loading}>
+        <Spinner />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <ErrorIndicator />;
   }
 
   const backgroundImagePath = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../../../assets/images/intro-bg/${bg})`;

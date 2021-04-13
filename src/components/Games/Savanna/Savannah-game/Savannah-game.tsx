@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Word } from '../../../../types';
 import { GameMenu } from '../../GameMenu';
 import { useTypedSelector, useAction } from '../../../../hooks';
-import { getTRandomWords, shuffle } from '../../../../utils';
+import { getRandomWords, shuffle } from '../../../../utils';
 
 import style from './Savannah-game.module.scss';
 import rightAnswerSound from '../../../../assets/sounds/correct.mp3';
@@ -45,7 +45,7 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
       const lastIdx = wordsToPlay.length - 1;
       const wordToPlay = wordsToPlay[lastIdx].wordTranslate;
       const newWordsToPlay = shuffle([
-        ...getTRandomWords(words, wordToPlay, 3),
+        ...getRandomWords(words, wordToPlay, 3),
         wordToPlay,
       ]);
 

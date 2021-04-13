@@ -5,7 +5,7 @@ import { GameMenu } from '../../GameMenu';
 import style from './Audiocall-game.module.scss';
 import rightAnswerSound from '../../../../assets/sounds/correct.mp3';
 import errorAnswerSound from '../../../../assets/sounds/error.mp3';
-import { getTRandomWords, shuffle } from '../../../../utils';
+import { getRandomWords, shuffle } from '../../../../utils';
 import { Context } from '../../../word-service-context';
 import { ViewAnswer } from '../View-answer';
 import { ViewQuestion } from '../Audio-question';
@@ -42,6 +42,7 @@ export const AudioGame = ({
     setIsWrong(true);
     actions.setWrongAnswerAction(false);
   };
+
   const continueAfterMistake = () => {
     actions.setWrongAnswerAction(false);
     actions.addWrongWordToStatics(gameState.question);
@@ -53,6 +54,7 @@ export const AudioGame = ({
     );
     setIsWrong(false);
   };
+
   const setStateIfRightAnswer = () => {
     rightSound.play();
     actions.addRightWordToStatics(gameState.question);
@@ -92,7 +94,7 @@ export const AudioGame = ({
       const lastIdx = gameState.wordsToPlay.length - 1;
       const wordToPlay = gameState.wordsToPlay[lastIdx].wordTranslate;
       const newWordsToPlay = shuffle([
-        ...getTRandomWords(words, wordToPlay, 3),
+        ...getRandomWords(words, wordToPlay, 3),
         wordToPlay,
       ]);
 
