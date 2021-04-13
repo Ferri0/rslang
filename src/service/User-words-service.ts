@@ -30,6 +30,7 @@ export const addWordToType = async (
     optional: {
       rightAnswers: answer === 'right' ? 1 : 0,
       wrongAnswers: answer === 'wrong' ? 1 : 0,
+      date: new Date(),
     },
   };
   const response = await fetch(
@@ -103,6 +104,24 @@ const getAllDeleted = async (
   const response = await rawResponse.json();
   const result = response[0].paginatedResults;
   return result;
+};
+
+export const getAllUserWords = async (
+  userId: string,
+  token: string
+): Promise<Response> => {
+  const response = await fetch(
+    `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/words`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  return response;
 };
 
 const getUserWord = async (

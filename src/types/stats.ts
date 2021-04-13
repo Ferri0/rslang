@@ -1,5 +1,18 @@
 import { Word } from './words-type';
 
+export type GameType = 'puzzle' | 'sprint' | 'savanna' | 'audiocall';
+export type UserStatsType = {
+  learnedWords: number;
+  optional: {
+    series: {
+      puzzle: number;
+      sprint: number;
+      savanna: number;
+      audiocall: number;
+    };
+  };
+};
+
 export interface StatsState {
   day: {
     learnedWords: number; // count
