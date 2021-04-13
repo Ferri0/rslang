@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAction, useTypedSelector } from '../../../hooks';
 import { shuffle } from '../../../utils';
-import { OwnGame } from '../Own-game';
+// import { OwnGame } from '../Own-game/index';
 import { Statistics } from '../Statistics';
 import { Button } from '../Savanna/Button';
 import { SavannahGame } from '../Savanna/Savannah-game';
@@ -86,10 +86,6 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
         exampleAudioRef={exampleAudioRef}
       />
     );
-  }
-
-  if (startGame && gamePath === 'owngame') {
-    return <OwnGame />;
   }
 
   if (loading) {
