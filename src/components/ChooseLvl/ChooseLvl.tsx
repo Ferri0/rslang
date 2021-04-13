@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Form } from './Form';
-
-import style from './ChooseLvl.module.scss';
-import { useTypedSelector, useAction } from '../../hooks';
-import { Spinner } from '../Spinner';
-import { ErrorIndicator } from '../Error-indicator';
+import { useAction } from '../../hooks';
 import { Context } from '../word-service-context';
 import { ServiceWordsType } from '../../types';
+
+import style from './ChooseLvl.module.scss';
 
 type EventHandler = React.FormEvent<HTMLFormElement> | KeyboardEvent;
 type Background = {
@@ -16,15 +14,14 @@ export const ChooseLvl = ({ background }: Background): JSX.Element => {
   const [open, setOpen] = useState(true);
   const [group, setGroup] = useState<number>();
   const wordsService: ServiceWordsType = useContext(Context);
-  const { error, loading } = useTypedSelector((state) => state.groupOfWords);
-  const { fetchWords, setIsLocation } = useAction();
+  const { fetchWords, setIsMainPage } = useAction();
 
   const handleSubmit = (e: EventHandler) => {
     if (group !== undefined) {
       e.preventDefault();
       const randNum = Math.floor(Math.random() * 20);
       fetchWords(wordsService, group, randNum);
-      setIsLocation(false);
+      setIsMainPage(false);
       setOpen(false);
     }
   };
@@ -42,18 +39,6 @@ export const ChooseLvl = ({ background }: Background): JSX.Element => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (loading) {
-    return (
-      <div className={style.loading}>
-        <Spinner />
-      </div>
-    );
-  }
-
-  if (error) {
-    return <ErrorIndicator />;
-  }
 
   return (
     <div

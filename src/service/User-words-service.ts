@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Word } from '../types';
-import { CategoryType } from '../types/words';
+import { CategoryType, AnswerType, UserWordType } from '../types/words';
 
 const getWordsOfType = async (userId: string, token: string, type: string) => {
   const response = await fetch(
@@ -22,11 +22,16 @@ export const addWordToType = async (
   userId: string,
   wordId: string,
   token: string,
-  type: CategoryType
+  type: CategoryType,
+  answer?: AnswerType
 ) => {
   const data = {
     difficulty: type,
-    optional: {},
+    optional: {
+      rightAnswers: answer === 'right' ? 1 : 0,
+      wrongAnswers: answer === 'wrong' ? 1 : 0,
+      date: new Date(),
+    },
   };
   const response = await fetch(
     `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/words/${wordId}`,
@@ -101,6 +106,91 @@ const getAllDeleted = async (
   return result;
 };
 
+export const getAllUserWords = async (
+  userId: string,
+  token: string
+): Promise<Response> => {
+  const response = await fetch(
+    `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/words`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  return response;
+};
+
+const getUserWord = async (
+  userId: string,
+  wordId: string,
+  token: string
+): Promise<Response> => {
+  const response = await fetch(
+    `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/words/${wordId}`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+
+  return response;
+};
+
+const updateUserWord = async (
+  userId: string,
+  wordId: string,
+  token: string,
+  data: UserWordType
+): Promise<Response> => {
+  const response = await fetch(
+    `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/words/${wordId}`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }
+  );
+  return response;
+};
+
+const updateUserWordStatisitic = async (
+  userId: string,
+  wordId: string,
+  token: string,
+  answer: AnswerType
+): Promise<Response> => {
+  const rawResponse = await getUserWord(userId, wordId, token);
+  if (rawResponse.status === 200) {
+    const response = await rawResponse.json();
+    if (answer === 'right') {
+      response.optional.rightAnswers += 1;
+    }
+    if (answer === 'wrong') {
+      response.optional.wrongAnswers += 1;
+    }
+    const updateBody = {
+      difficulty: JSON.parse(JSON.stringify(response.difficulty)),
+      optional: JSON.parse(JSON.stringify(response.optional)),
+    };
+    await updateUserWord(userId, wordId, token, updateBody);
+  } else {
+    await addWordToType(userId, wordId, token, 'learning', answer);
+  }
+  return rawResponse;
+};
+
 // prettier-ignore
 export const getWordsOfCategoryByPage = async (
   userId: string, token: string, category: CategoryType, page: number, pages?: number
@@ -136,6 +226,7 @@ export const getWordsOfCategoryByPage = async (
 };
 
 export {
+  updateUserWordStatisitic,
   addToDeleted,
   addToDifficult,
   removeUserWord,

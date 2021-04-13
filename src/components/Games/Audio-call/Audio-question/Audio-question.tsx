@@ -16,7 +16,7 @@ type ViewQuestionType = {
   setWrongAnswerAction: (value: boolean) => SavannaActions;
 };
 
-export const ViewQuestion = ({
+export const ViewQuestion: React.FC<ViewQuestionType> = ({
   apiPath,
   gameState,
   audioRef,
@@ -25,7 +25,7 @@ export const ViewQuestion = ({
   mainActiveClass,
   setRightAnswerAction,
   setWrongAnswerAction,
-}: ViewQuestionType): JSX.Element => (
+}) => (
   <>
     <AudioIcon
       clazz={style.audio_icon}

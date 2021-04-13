@@ -13,7 +13,7 @@ interface Props {
 
 export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
   const { isAuthorized, currentUser } = useTypedSelector((state) => state.auth);
-  const { setIsLocation } = useAction();
+  const { setIsMainPage } = useAction();
   const [menuStatus, setStatusMenu] = useState({
     textbox: 'close',
     games: 'close',
@@ -40,8 +40,8 @@ export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
   if (isAuthorized) welcome = <div>{currentUser}</div>;
 
   return (
-    <div className={`${style.menuContainer} ${style[cls]}`}>
-      <Link className={style.logo} to="/" onClick={() => setIsLocation(true)} />
+    <div className={style.menuContainer}>
+      <Link className={style.logo} to="/" onClick={() => setIsMainPage(true)} />
       {welcome}
       <nav className={style.menu}>
         <div
@@ -158,7 +158,7 @@ export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/savanna"
-            onClick={() => setIsLocation(true)}
+            onClick={() => setIsMainPage(true)}
           >
             Саванна
           </NavLink>
@@ -166,7 +166,7 @@ export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/sprint"
-            onClick={() => setIsLocation(true)}
+            onClick={() => setIsMainPage(true)}
           >
             Спринт
           </NavLink>
@@ -174,7 +174,7 @@ export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/audiocall"
-            onClick={() => setIsLocation(true)}
+            onClick={() => setIsMainPage(true)}
           >
             Аудиовызов
           </NavLink>
@@ -182,7 +182,7 @@ export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
             className={style.menuItem}
             activeStyle={activeStyle}
             to="/dashboard/games/owngame"
-            onClick={() => setIsLocation(true)}
+            onClick={() => setIsMainPage(true)}
           >
             Своя игра
           </NavLink>
@@ -192,7 +192,7 @@ export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
           activeStyle={activeStyle}
           to="/dashboard/stats"
           onClick={() => {
-            setIsLocation(true);
+            setIsMainPage(true);
             clickBurgerMenu();
           }}
         >

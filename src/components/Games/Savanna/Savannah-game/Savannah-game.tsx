@@ -2,34 +2,31 @@ import React, { useEffect, useRef } from 'react';
 import { Word } from '../../../../types';
 import { GameMenu } from '../../GameMenu';
 import { useTypedSelector, useAction } from '../../../../hooks';
-import { getTRandomWords, shuffle } from '../../../../utils';
+import { getRandomWords, shuffle } from '../../../../utils';
 
 import style from './Savannah-game.module.scss';
 import rightAnswerSound from '../../../../assets/sounds/correct.mp3';
 import errorAnswerSound from '../../../../assets/sounds/error.mp3';
 import { Answers } from '../../Answers';
+import { updateUserStats, updateUserWordStatisitic } from '../../../../service';
+import { addWordsToDB } from '../../../../utils/addWordsToDB';
 
 type PropsType = {
   words: Word[];
-  setGameEnd: (arg: boolean) => void;
+  setGameOver: (arg: boolean) => void;
 };
 
-export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
+export const SavannahGame: React.FC<PropsType> = ({ words, setGameOver }) => {
   const clazzRef = useRef(style.question);
   const fullscreenRef = useRef();
   const errorSoundRef = new Audio(errorAnswerSound);
   const rightSound = new Audio(rightAnswerSound);
   const {
-    question,
-    hearts,
-    rightAnswer,
-    wrongAnswer,
-    wordsToPlay,
-    wordsInButtons,
-    scrollBg,
-    isLoadingPlayWords,
-  } = useTypedSelector((state) => state.gameState);
+    gameState,
+    auth: { isAuthorized },
+  } = useTypedSelector((state) => state);
   const actions = useAction();
+  const { wordsToPlay, hearts, question } = gameState;
 
   const setStateIfWrongAnswer = () => {
     errorSoundRef.play();
@@ -38,6 +35,11 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
     actions.setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
     actions.setHearts(hearts - 1);
     actions.setWrongAnswerAction(false);
+
+    if (isAuthorized) {
+      addWordsToDB(updateUserWordStatisitic, 'wrong', question.id);
+      addWordsToDB(updateUserStats, 'wrong', question.id, 'audiocall');
+    }
   };
 
   useEffect(() => {
@@ -45,7 +47,7 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
       const lastIdx = wordsToPlay.length - 1;
       const wordToPlay = wordsToPlay[lastIdx].wordTranslate;
       const newWordsToPlay = shuffle([
-        ...getTRandomWords(words, wordToPlay, 3),
+        ...getRandomWords(words, wordToPlay, 3),
         wordToPlay,
       ]);
 
@@ -62,7 +64,7 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [words, wordsToPlay, hearts]);
 
-  if (rightAnswer) {
+  if (gameState.rightAnswer) {
     rightSound.play();
     actions.setScrollToTop();
     actions.addRightWordToStatics(question);
@@ -71,26 +73,26 @@ export const SavannahGame = ({ words, setGameEnd }: PropsType): JSX.Element => {
     actions.setRightAnswerAction(false);
   }
 
-  if (wrongAnswer) {
+  if (gameState.wrongAnswer) {
     setStateIfWrongAnswer();
   }
 
-  if ((!wordsToPlay.length || !hearts) && isLoadingPlayWords) {
-    setGameEnd(true);
+  if ((!wordsToPlay.length || !hearts) && gameState.isLoadingPlayWords) {
+    setGameOver(true);
   }
 
   return (
     <div className={style.game_wrapper} ref={fullscreenRef}>
       <GameMenu fullscreenRef={fullscreenRef} hearts={hearts} />
       <div className={style.game_main}>
-        <div className={style.game_image} style={scrollBg} />
+        <div className={style.game_image} style={gameState.scrollBg} />
         <div className={style.game_words}>
           <div className={clazzRef.current}>{question.word}</div>
           <Answers
             clazz={clazzRef.current}
             setRightAnswerAction={actions.setRightAnswerAction}
             question={question.wordTranslate}
-            wordsInButtons={wordsInButtons}
+            wordsInButtons={gameState.wordsInButtons}
             setWrongAnswerAction={actions.setWrongAnswerAction}
           />
         </div>

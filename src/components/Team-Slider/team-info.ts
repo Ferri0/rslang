@@ -28,11 +28,17 @@ export const teamInfo: Array<IType> = [
   },
   {
     id: 'oleksiuk',
-    title: 'Денис Олексиюк',
+    title: 'Денис Олексюк',
     status: 'Software Engineer',
     img: './assets/images/team/oleksiuk.jpg',
     url: 'https://github.com/DenisOleksiuk',
-    desc: 'Добавить описание вклада в разработку приложения.',
+    desc: `Разработка гейм стейта и игр:
+      - Саванна
+      - Аудиовызов
+
+    Разработка компонентов:
+      - ErrorBoundry
+      - Spinner(индикатор загрузки)`,
   },
   {
     id: 'tytova',
@@ -48,7 +54,9 @@ export const teamInfo: Array<IType> = [
     status: 'Software Engineer',
     img: './assets/images/team/alekseyenko.jpg',
     url: 'https://github.com/IgorAleks88',
-    desc: 'Добавить описание вклада в разработку приложения.',
+    desc: ` - Разработка и реализация мини-игры "Паззл"
+     - Настройка и деплой АПИ проекта
+     - Разработка и реализация бэкенда`,
   },
   {
     id: 'tur',

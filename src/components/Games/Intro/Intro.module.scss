@@ -36,3 +36,27 @@
     border-radius: $border-radius;
   }
 }
+
+@keyframes load {
+  0% {
+    background-color: rgb(8, 100, 238);
+  }
+  25% {
+    background-color: rgb(100, 146, 247);
+  }
+  50% {
+    background-color: rgb(8, 100, 238);
+  }
+  100% {
+    background-color: rgb(100, 146, 247);
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  animation: 3s linear infinite alternate load;
+}
