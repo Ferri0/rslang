@@ -9,30 +9,36 @@ import { getRandomWords, shuffle } from '../../../../utils';
 import { Context } from '../../../word-service-context';
 import { ViewAnswer } from '../View-answer';
 import { ViewQuestion } from '../Audio-question';
+import { updateUserStats, updateUserWordStatisitic } from '../../../../service';
+import { addWordsToDB } from '../../../../utils/addWordsToDB';
 
 type PropsType = {
   words: Word[];
-  setGameEnd: (arg: boolean) => void;
+  setGameOver: (arg: boolean) => void;
   setIsWrong: React.Dispatch<React.SetStateAction<boolean>>;
   isWrong: boolean;
   audioRef: React.MutableRefObject<HTMLAudioElement>;
   exampleAudioRef: React.MutableRefObject<HTMLAudioElement>;
 };
 
-export const AudioGame = ({
+export const AudioGame: React.FC<PropsType> = ({
   words,
-  setGameEnd,
+  setGameOver,
   setIsWrong,
   isWrong,
   audioRef,
   exampleAudioRef,
-}: PropsType): JSX.Element => {
+}) => {
   const context = useContext(Context);
   const fullscreenRef = useRef();
   const [mainActiveClass, setMainActiveClass] = useState(style.icon);
   const [exampleActiveClass, setExampleActiveClass] = useState(style.icon);
-  const { gameState } = useTypedSelector((state) => state);
+  const {
+    gameState,
+    auth: { isAuthorized },
+  } = useTypedSelector((state) => state);
   const actions = useAction();
+  const { wordsToPlay, question } = gameState;
 
   const errorSoundRef = new Audio(errorAnswerSound);
   const rightSound = new Audio(rightAnswerSound);
@@ -41,16 +47,19 @@ export const AudioGame = ({
     errorSoundRef.play();
     setIsWrong(true);
     actions.setWrongAnswerAction(false);
+
+    if (isAuthorized) {
+      addWordsToDB(updateUserWordStatisitic, 'wrong', question.id);
+      addWordsToDB(updateUserStats, 'wrong', question.id, 'audiocall');
+    }
   };
 
   const continueAfterMistake = () => {
     actions.setWrongAnswerAction(false);
     actions.addWrongWordToStatics(gameState.question);
-    actions.setQuestionAction(
-      gameState.wordsToPlay[gameState.wordsToPlay.length - 1]
-    );
+    actions.setQuestionAction(gameState.wordsToPlay[wordsToPlay.length - 1]);
     actions.setWordsToPlayAction(
-      gameState.wordsToPlay.slice(0, gameState.wordsToPlay.length - 1)
+      gameState.wordsToPlay.slice(0, wordsToPlay.length - 1)
     );
     setIsWrong(false);
   };
@@ -58,13 +67,14 @@ export const AudioGame = ({
   const setStateIfRightAnswer = () => {
     rightSound.play();
     actions.addRightWordToStatics(gameState.question);
-    actions.setQuestionAction(
-      gameState.wordsToPlay[gameState.wordsToPlay.length - 1]
-    );
-    actions.setWordsToPlayAction(
-      gameState.wordsToPlay.slice(0, gameState.wordsToPlay.length - 1)
-    );
+    actions.setQuestionAction(wordsToPlay[wordsToPlay.length - 1]);
+    actions.setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
     actions.setRightAnswerAction(false);
+
+    if (isAuthorized) {
+      addWordsToDB(updateUserWordStatisitic, 'right', question.id);
+      addWordsToDB(updateUserStats, 'right', question.id, 'audiocall');
+    }
   };
 
   const toggleActiveClass = () => {
@@ -90,9 +100,9 @@ export const AudioGame = ({
   }, [exampleActiveClass]);
 
   useEffect(() => {
-    if (gameState.wordsToPlay.length !== 0) {
-      const lastIdx = gameState.wordsToPlay.length - 1;
-      const wordToPlay = gameState.wordsToPlay[lastIdx].wordTranslate;
+    if (wordsToPlay.length !== 0) {
+      const lastIdx = wordsToPlay.length - 1;
+      const wordToPlay = wordsToPlay[lastIdx].wordTranslate;
       const newWordsToPlay = shuffle([
         ...getRandomWords(words, wordToPlay, 3),
         wordToPlay,
@@ -102,7 +112,7 @@ export const AudioGame = ({
       actions.setQuestionAction(gameState.wordsToPlay[lastIdx]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [words, gameState.wordsToPlay]);
+  }, [words, wordsToPlay]);
 
   if (gameState.rightAnswer) {
     setStateIfRightAnswer();
@@ -112,8 +122,8 @@ export const AudioGame = ({
     setStateIfWrongAnswer();
   }
 
-  if (!gameState.wordsToPlay.length && gameState.isLoadingPlayWords) {
-    setGameEnd(true);
+  if (!wordsToPlay.length && gameState.isLoadingPlayWords) {
+    setGameOver(true);
   }
 
   const audioWord = (audio: React.MutableRefObject<HTMLAudioElement>) => {
