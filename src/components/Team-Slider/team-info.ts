@@ -48,7 +48,9 @@ export const teamInfo: Array<IType> = [
     status: 'Software Engineer',
     img: './assets/images/team/alekseyenko.jpg',
     url: 'https://github.com/IgorAleks88',
-    desc: 'Добавить описание вклада в разработку приложения.',
+    desc: ` - Разработка и реализация мини-игры "Паззл"
+     - Настройка и деплой АПИ проекта
+     - Разработка и реализация бэкенда`,
   },
   {
     id: 'tur',

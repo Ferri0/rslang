@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAction, useTypedSelector } from '../../../hooks';
 import { shuffle } from '../../../utils';
-import { OwnGame } from '../Own-game';
+// import { OwnGame } from '../Own-game/index';
 import { Statistics } from '../Statistics';
 import { Button } from '../Savanna/Button';
 import { SavannahGame } from '../Savanna/Savannah-game';
@@ -91,9 +91,9 @@ export const Intro = ({ name, text, bg }: Props): JSX.Element => {
   //   return <SprintGame words={words} setGameEnd={setGameEnd} />;
   // }
 
-  if (startGame && gamePath === 'owngame') {
-    return <OwnGame />;
-  }
+  // if (startGame && gamePath === 'owngame') {
+  //   return <OwnGame />;
+  // }
 
   const backgroundImagePath = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../../../assets/images/intro-bg/${bg})`;
 

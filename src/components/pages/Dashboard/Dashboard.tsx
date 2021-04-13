@@ -8,7 +8,7 @@ import style from './Dashboard.module.scss';
 import { Savanna } from '../../Games/Savanna';
 import { Sprint } from '../../Games/Sprint';
 import { AudioCall } from '../../Games/Audio-call';
-import { OwnGame } from '../../Games/Own-game';
+import { Puzzle } from '../../Games/Own-game';
 import { DashboardStartPage } from './Dasboard-start-page';
 import { Dictionary } from '../../Dictionary';
 import { BurgerIcon } from '../Burger-icon';
@@ -71,7 +71,7 @@ export function Dashboard(): JSX.Element {
               <AudioCall />
             </Route>
             <Route path="/dashboard/games/owngame">
-              <OwnGame />
+              <Puzzle />
             </Route>
             <Route path="/dashboard/games">
               <Games />
