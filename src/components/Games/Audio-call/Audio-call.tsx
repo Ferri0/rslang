@@ -4,7 +4,7 @@ import { ChooseLvl } from '../../ChooseLvl';
 import { Intro } from '../Intro';
 import info from '../info-games.json';
 
-export const AudioCall = (): JSX.Element => {
+export const AudioCall: React.FC = () => {
   const infoGame = info.find((item) => item.name === 'АУДИОВЫЗОВ');
   const { isMainPage } = useTypedSelector((state) => state.gameState);
 
