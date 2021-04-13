@@ -135,6 +135,7 @@
   background-image: url('../../assets/icons/textBook/starFalse.svg');
   background-position: center;
   background-size: contain;
+  outline: none;
 
   &_active {
     background-image: url('../../assets/icons/textBook/starTrue.svg');

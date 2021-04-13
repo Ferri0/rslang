@@ -12,6 +12,11 @@
   position: relative;
 }
 
+.sliderRightBar {
+  align-self: center;
+  @include size(300px, 300px);
+}
+
 .circleSlider {
   transition: all 1s ease;
 }
@@ -128,4 +133,42 @@
 .infoBlock .desc {
   white-space: pre-line;
   text-align: left;
+}
+
+@media (max-width: 850px) {
+  .sliderWrapper {
+    grid-gap: 30px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .name {
+    background: #e9ebee;
+  }
+
+  .infoBlock .status {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 680px) {
+  .sliderWrapper {
+    justify-items: start;
+    margin-left: calc((100% - 300px) / 2);
+  }
+
+  .sliderRightBar {
+    align-self: start;
+  }
+
+  .name.active {
+    max-width: 80px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 530px) {
+  .sliderWrapper {
+    margin-left: 0;
+  }
 }

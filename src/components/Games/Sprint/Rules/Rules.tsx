@@ -3,11 +3,11 @@ import style from './Rules.module.scss';
 
 interface Props {
   clickStart: React.MouseEventHandler<HTMLButtonElement>;
-  cls: string;
+  rulesCls: string;
 }
 
-export const Rules: React.FC<Props> = ({ clickStart, cls }) => (
-  <div className={`${style.rulesWrapper} ${style[cls]}`}>
+export const Rules: React.FC<Props> = ({ clickStart, rulesCls }) => (
+  <div className={`${style.rulesWrapper} ${style[rulesCls]}`}>
     <div className={style.rules}>
       <div className={style.title}>Спринт</div>
       <div className={style.text}>

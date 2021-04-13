@@ -3,13 +3,14 @@
 .header {
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 4;
   width: calc(100% - 100px);
   height: 60px;
   margin: 30px 50px;
   background: #fff;
   border-radius: $border-radius;
   box-shadow: 0px 2px 5px -2px #1c2542;
+  transition: left 0.5s ease;
   @include flex(row, space-around, center);
 }
 
@@ -19,4 +20,23 @@
   border: 0;
   outline: none;
   @include size(140px, 30px);
+}
+
+@media (max-width: 850px) {
+  .header {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 30px;
+    border-radius: 0;
+    @include size(250px, 100vh);
+
+    &.close {
+      left: -280px;
+    }
+
+    &.open {
+      left: 0px;
+    }
+  }
 }

@@ -1,5 +1,24 @@
 @import '../../../scss/abstracts.scss';
 
+.menuOverlay {
+  position: absolute;
+  z-index: 4;
+  display: none;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: $border-radius;
+  transition: opacity 0.5s ease;
+  @include size(100%, 100%);
+
+  &.close {
+    z-index: -1;
+    opacity: 0;
+  }
+
+  &.open {
+    opacity: 1;
+  }
+}
+
 .mainPage {
   @include flex(column, center, flex-start);
 }
@@ -209,4 +228,73 @@
 
 .statsInfo span:not(:last-child) {
   margin-bottom: 10px;
+}
+
+@media (max-width: 850px) {
+  .menuOverlay {
+    display: block;
+  }
+
+  .greeting {
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 750px) {
+  .greeting {
+    height: auto;
+  }
+
+  .greetingImg {
+    height: 300px;
+    background-position: top;
+    background-size: cover;
+  }
+
+  .greetingText {
+    position: relative;
+    top: 0;
+    left: 0;
+    order: 2;
+    width: 100%;
+    margin-top: 10px;
+    transform: none;
+
+    .greetingTextTitle {
+      font-size: 32px;
+    }
+
+    .greetingButton {
+      align-self: center;
+      margin-top: 30px;
+    }
+  }
+
+  .promoWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .textbookFeatures {
+    width: 100%;
+  }
+
+  .statsInfo {
+    flex-direction: column;
+
+    img {
+      width: 60%;
+      margin-top: 20px;
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 590px) {
+  .textbookFeatures {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
