@@ -3,6 +3,8 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useAction } from '../../../hooks/useAction';
 import { shuffleArray, wait } from './utils';
 import { wordObjects } from './local-state';
+import { updateUserWordStatisitic } from '../../../service/User-words-service';
+import { updateUserStats } from '../../../service/player-stats-service';
 import { LoosePage } from '../../pages/Loose';
 import { WinPage } from '../../pages/Win';
 import style from './Own-game.module.scss';
@@ -21,6 +23,7 @@ export const OwnGame = (): React.ReactElement => {
     healthPoints,
     audioSrc,
   } = useTypedSelector((state) => state.ownGame);
+  const { isAuthorized } = useTypedSelector((state) => state.auth);
   const {
     setArrayOfAnswerBlock,
     setArrayOfTaskBlocks,
@@ -105,9 +108,37 @@ export const OwnGame = (): React.ReactElement => {
           setCurrentWordIndex(currentWordIndex + 1);
           if (copyOfTaskArray.length < 1) {
             setAnswerCounter(answerCounter + 1);
+            if (isAuthorized) {
+              updateUserWordStatisitic(
+                JSON.parse(localStorage.getItem('yaia-team-rslang-userID')),
+                wordObjects[answerCounter].id,
+                JSON.parse(localStorage.getItem('yaia-team-rslang-token')),
+                'right'
+              );
+              updateUserStats(
+                JSON.parse(localStorage.getItem('yaia-team-rslang-userID')),
+                JSON.parse(localStorage.getItem('yaia-team-rslang-token')),
+                'puzzle',
+                'right'
+              );
+            }
           }
         } else {
           healthPoints.pop();
+          if (isAuthorized) {
+            updateUserWordStatisitic(
+              JSON.parse(localStorage.getItem('yaia-team-rslang-userID')),
+              wordObjects[answerCounter].id,
+              JSON.parse(localStorage.getItem('yaia-team-rslang-token')),
+              'wrong'
+            );
+            updateUserStats(
+              JSON.parse(localStorage.getItem('yaia-team-rslang-userID')),
+              JSON.parse(localStorage.getItem('yaia-team-rslang-token')),
+              'puzzle',
+              'wrong'
+            );
+          }
           if (healthPoints.length < 1) {
             setLoose(true);
             loose.play();
@@ -124,8 +155,9 @@ export const OwnGame = (): React.ReactElement => {
     (answerItem: string[], num: React.Key) => (
       // eslint-disable-next-line react/no-array-index-key
       <div className={style.answerBlocksWrapper} key={num}>
-        {answerItem.map((blockItem) => (
-          <div className={style.taskBlock}>
+        {answerItem.map((blockItem, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <div className={style.taskBlock} key={blockItem + index}>
             <span dangerouslySetInnerHTML={{ __html: blockItem }} />
           </div>
         ))}
