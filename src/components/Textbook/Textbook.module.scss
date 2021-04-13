@@ -48,6 +48,11 @@
   @media (max-width: 1024px) {
     @include flex(column, flex-start, center);
   }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    border-radius: 0;
+  }
 }
 
 .wordsBlock {

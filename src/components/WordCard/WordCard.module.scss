@@ -41,6 +41,10 @@
   background-color: rgba(255, 255, 255, 0.65);
   border-radius: 10px;
   box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.25);
+
+  @media (max-width: 500px) {
+    min-width: 340px;
+  }
 }
 
 .tabTitle {
@@ -77,6 +81,10 @@
 .wordImg {
   align-self: left;
   width: 350px;
+
+  @media (max-width: 500px) {
+    width: 300px;
+  }
 }
 
 .wordTitle {
