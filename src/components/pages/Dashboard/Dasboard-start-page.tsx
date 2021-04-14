@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import style from './Dasboard-start-page.module.scss';
 import { gameInfo } from '../../Games/Promo-game-card/info';
+import { useAction } from '../../../hooks';
 
 export function DashboardStartPage(): JSX.Element {
   const arr = [
@@ -9,6 +10,7 @@ export function DashboardStartPage(): JSX.Element {
     { id: 'difficult', title: 'Сложные' },
     { id: 'deleted', title: 'Удаленные' },
   ];
+  const { setIsMainPage } = useAction();
 
   return (
     <div className={style.dashboardStartWrapper}>
@@ -21,6 +23,7 @@ export function DashboardStartPage(): JSX.Element {
                 key={`start-unit-${unit}`}
                 className={`${style.unit} ${style[`unit-${unit}`]}`}
                 to={`/dashboard/textbook/unit${unit}`}
+                onClick={() => setIsMainPage(false)}
               >
                 <div
                   key={`start-unit-title-${unit}`}
