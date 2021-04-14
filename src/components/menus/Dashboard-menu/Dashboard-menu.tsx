@@ -57,7 +57,10 @@ export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
         </div>
         <div
           className={`${style.subMenu} ${style[menuStatus.textbox]}`}
-          onClick={clickBurgerMenu}
+          onClick={() => {
+            clickBurgerMenu();
+            setIsMainPage(false);
+          }}
         >
           <NavLink
             className={style.menuItem}

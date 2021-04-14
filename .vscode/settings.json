@@ -22,6 +22,8 @@
   "spellright.language": ["en"],
   "spellright.documentTypes": ["latex", "plaintext", "javascriptreact"],
   "cSpell.words": [
+    "Btns",
+    "Dasboard",
     "Statisitic",
     "abrasimov",
     "alekseyenko",
