@@ -139,6 +139,10 @@
   background: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
   box-shadow: 2px 2px 5px -3px #1c2542;
+
+  .video {
+    @include size(100%, 100%);
+  }
 }
 
 .title {
@@ -271,6 +275,7 @@
   }
 
   .promoWrapper {
+    grid-template-rows: 300px auto;
     grid-template-columns: 1fr;
   }
 
