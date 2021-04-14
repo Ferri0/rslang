@@ -43,14 +43,15 @@ const data = [
 ];
 
 export const Stats: React.FC = () => {
+  const { currentUserId, token } = useTypedSelector((state) => state.auth);
   const { day, allTime, series, loading } = useTypedSelector(
     (state) => state.stats
   );
   const { fetchStats } = useAction();
 
   useEffect(() => {
-    fetchStats();
-  }, []);
+    fetchStats(currentUserId, token);
+  }, [currentUserId, token]);
 
   return (
     <div className={style.root}>
@@ -74,7 +75,7 @@ export const Stats: React.FC = () => {
             />
             <Unit
               text="Процент правильных ответов за все время"
-              value={`${allTime.learnedWords} %`}
+              value={`${allTime.correctAnswers} %`}
             />
 
             <Unit

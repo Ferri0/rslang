@@ -37,7 +37,29 @@ export const statsReducer = (
         ...state,
         loading: false,
         error: null,
-        wordsData: action.payload,
+        day: {
+          learnedWords:
+            action.payload.learnedWordsToday || state.day.learnedWords,
+          correctAnswers:
+            action.payload.correctAnswersToday || state.day.correctAnswers,
+        },
+        allTime: {
+          learnedWords:
+            action.payload.learnedWords || state.allTime.learnedWords,
+          correctAnswers:
+            action.payload.correctAnswers || state.allTime.correctAnswers,
+        },
+        series: {
+          puzzle:
+            action.payload?.optional?.series?.puzzle || state.series.puzzle,
+          sprint:
+            action.payload?.optional?.series?.sprint || state.series.sprint,
+          savanna:
+            action.payload?.optional?.series?.savanna || state.series.savanna,
+          audiocall:
+            action.payload?.optional?.series?.audiocall ||
+            state.series.audiocall,
+        },
       };
 
     case StatsTypes.FETCH_STATS_FAILURE:

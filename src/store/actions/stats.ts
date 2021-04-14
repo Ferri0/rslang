@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import { getUserStats } from '../../service';
 import { StatsTypes, StatsActionType } from '../../types';
 
 const fetchStatsStarted = (): StatsActionType => ({
@@ -16,12 +17,12 @@ const fetchStatsFailure = (): StatsActionType => ({
   payload: 'Fetch stats error',
 });
 
-export const fetchStats = () => async (
+export const fetchStats = (userId: string, token: string) => async (
   dispatch: Dispatch<StatsActionType>
 ): Promise<void> => {
   try {
     dispatch(fetchStatsStarted());
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    const response = await getUserStats(userId, token);
     const json = await response.json();
     dispatch(fetchStatsSuccess(json));
   } catch (e) {
