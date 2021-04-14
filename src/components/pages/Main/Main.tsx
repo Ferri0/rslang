@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 import { Header } from '../../Header';
 import { Games } from '../../Games';
 import { Footer } from '../../Footer';
@@ -46,7 +47,14 @@ export function MainPage(): JSX.Element {
       </div>
       <div className={style.promo} id="promo">
         <div className={style.promoWrapper}>
-          <div>Video</div>
+          <div className={style.video}>
+            <ReactPlayer
+              url="https://www.youtube.com/watch?v=ysz5S6PUM-U" // TODO add promo video link
+              controls
+              width="100%"
+              height="100%"
+            />
+          </div>
           <div className={style.promoText}>
             <p>
               Представляем лучшее приложение для запоминания английских слов!*
