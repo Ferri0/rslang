@@ -74,7 +74,7 @@ export function TextbookControl({
             />
             <span className={style.checkmark} />
           </label>
-          Перевод слов
+          <span className={style.settingsTranslateText}>Перевод слов</span>
         </div>
       </div>
       <div

@@ -6,6 +6,10 @@
   left: 2.5%;
   height: 35px;
   @include flex(row, space-between, center);
+
+  @media (max-width: 699px) {
+    top: 50px;
+  }
 }
 
 .btn {
@@ -24,6 +28,10 @@
     height: 35px;
     margin-right: 20px;
     background-image: url('../../assets/icons/textBook/home.svg');
+
+    @media (max-width: 699px) {
+      margin-right: 10px;
+    }
 
     &:hover {
       background-image: url('../../assets/icons/textBook/homeHover.svg');
@@ -45,10 +53,18 @@
   transition: all 0.5s;
   @include flex(row, space-between, center);
 
+  @media (max-width: 699px) {
+    margin-right: 10px;
+  }
+
   &_active {
     width: 300px;
     background-color: rgba(255, 255, 255, 0.75);
     background-image: url('../../assets/icons/textBook/settingsHover.svg');
+
+    @media (max-width: 699px) {
+      width: 220px;
+    }
   }
 
   &:hover {
@@ -74,6 +90,10 @@
 
   &:last-child {
     margin-right: 8px;
+
+    @media (max-width: 699px) {
+      margin-right: 0;
+    }
   }
 }
 
@@ -112,6 +132,12 @@
   @include flex(row, flex-start, flex-start);
 }
 
+.settingsTranslateText {
+  @media (max-width: 699px) {
+    padding-left: 10px;
+  }
+}
+
 .container {
   position: relative;
   display: block;
@@ -123,6 +149,10 @@
 
   &:first-child {
     margin-right: 10px;
+    @media (max-width: 699px) {
+      margin-right: 2px;
+      margin-left: 3px;
+    }
   }
 }
 
@@ -187,6 +217,10 @@
     width: 300px;
     background-color: rgba(255, 255, 255, 0.75);
     background-image: url('../../assets/icons/textBook/gamesHover.svg');
+
+    @media (max-width: 900px) {
+      width: 220px;
+    }
   }
 
   &:hover {
@@ -233,11 +267,5 @@
 
   &_game4 {
     background-image: url('../../assets/icons/textBook/number4.svg');
-  }
-}
-
-@media (max-width: 599px) {
-  .btnsBlock {
-    top: 50px;
   }
 }
