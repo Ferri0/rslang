@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Header } from '../../Header';
 import { Games } from '../../Games';
 import { Footer } from '../../Footer';
 import style from './Main.module.scss';
 import { TeamSlider } from '../../Team-Slider';
+import { BurgerIcon } from '../Burger-icon';
 
 export function MainPage(): JSX.Element {
+  const [cls, setCls] = useState('close');
+
+  const clickBurgerMenu = () => {
+    const status = cls === 'close' ? 'open' : 'close';
+    setCls(status);
+  };
+
   return (
     <div className={style.mainPage}>
-      <Header />
+      <BurgerIcon
+        clickBurgerMenu={clickBurgerMenu}
+        cls={cls}
+        parent="startPage"
+      />
+      <div className={`${style.menuOverlay} ${style[cls]}`} />
+      <Header clickBurgerMenu={clickBurgerMenu} cls={cls} />
       <div className={style.greeting} id="top">
         <div className={style.greetingText}>
           <span className={style.greetingTextTitle}>

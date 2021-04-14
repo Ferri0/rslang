@@ -28,7 +28,11 @@ export function Dashboard(): JSX.Element {
   return (
     <div className={style.dashboardContainer}>
       <div className={style.dashboardPage}>
-        <BurgerIcon clickBurgerMenu={clickBurgerMenu} cls={cls} />
+        <BurgerIcon
+          clickBurgerMenu={clickBurgerMenu}
+          cls={cls}
+          parent="dashboardPage"
+        />
         <div className={`${style.overlay} ${style[cls]}`} />
         <DashboardMenu clickBurgerMenu={clickBurgerMenu} cls={cls} />
         <div>

@@ -25,3 +25,19 @@
   font-weight: 800;
   font-size: 38px;
 }
+
+@media (max-width: 850px) {
+  .gameCards {
+    width: 100%;
+  }
+
+  .gamesTitle {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 760px) {
+  .gameCards {
+    grid-template-columns: 1fr;
+  }
+}

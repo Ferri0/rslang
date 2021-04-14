@@ -31,7 +31,7 @@ export const Sprint: React.FC = () => {
 
   return (
     <div className={style.wrapper}>
-      <Rules clickStart={clickStart} cls={rulesCls} />
+      <Rules clickStart={clickStart} rulesCls={rulesCls} />
     </div>
   );
 };

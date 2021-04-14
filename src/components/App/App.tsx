@@ -17,6 +17,8 @@ export function App(): JSX.Element {
             <MainPage />
           </Route>
           <Route path="/dashboard">
+            <RegistrationPage />
+            <LoginPage />
             <Dashboard />
           </Route>
           <Route

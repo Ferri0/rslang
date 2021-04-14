@@ -3,7 +3,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { useAction, useTypedSelector } from '../../../hooks';
+import { useAction } from '../../../hooks';
+import { HeaderAuthBlock } from '../../header-auth-block';
 import style from './Dashboard-menu.module.scss';
 
 interface Props {
@@ -12,7 +13,6 @@ interface Props {
 }
 
 export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
-  const { isAuthorized, currentUser } = useTypedSelector((state) => state.auth);
   const { setIsMainPage } = useAction();
   const [menuStatus, setStatusMenu] = useState({
     textbox: 'close',
@@ -36,13 +36,9 @@ export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
     color: '#c42b28',
   };
 
-  let welcome;
-  if (isAuthorized) welcome = <div>{currentUser}</div>;
-
   return (
-    <div className={style.menuContainer}>
+    <div className={`${style.menuContainer} ${style[cls]}`}>
       <Link className={style.logo} to="/" onClick={() => setIsMainPage(true)} />
-      {welcome}
       <nav className={style.menu}>
         <div
           className={`${style.menuItem} ${style[menuStatus.textbox]}`}
@@ -202,6 +198,7 @@ export const DashboardMenu: React.FC<Props> = ({ clickBurgerMenu, cls }) => {
           Статистика
         </NavLink>
       </nav>
+      <HeaderAuthBlock parent="dashboardPage" />
     </div>
   );
 };
