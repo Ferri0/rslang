@@ -1,14 +1,19 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './TextbookControl.module.scss';
 import { Word } from '../../types/words-type';
+import { useAction } from '../../hooks';
 
 type TextbookControlsProps = {
   displayBtns: { set: (value: boolean) => void; value: boolean };
   displayTranslate: { set: (value: boolean) => void; value: boolean };
-  currentPageWords: Array<Word>;
+  currentPageWords: Array<{
+    props: {
+      wordInfo: Word;
+    };
+  }>;
 };
 
 export function TextbookControl({
@@ -18,6 +23,7 @@ export function TextbookControl({
 }: TextbookControlsProps): React.ReactElement {
   const [settingsActive, setSettingsActive] = useState(false);
   const [gamesActive, setGamesActive] = useState(false);
+  const { wordsLoaded } = useAction();
 
   const handleBtnsClick = () => {
     displayBtns.set(!displayBtns.value);
@@ -27,7 +33,12 @@ export function TextbookControl({
     displayTranslate.set(!displayTranslate.value);
   };
 
-  console.log(currentPageWords);
+  useEffect(() => {
+    if (currentPageWords) {
+      const words = currentPageWords.map(({ props }) => props.wordInfo);
+      wordsLoaded(words);
+    }
+  }, [currentPageWords]);
 
   return (
     <div className={style.btnsBlock}>
