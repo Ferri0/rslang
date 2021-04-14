@@ -3,7 +3,11 @@ import { useAction } from '../../hooks/useAction';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import style from './Header-auth-block.module.scss';
 
-export function HeaderAuthBlock(): JSX.Element {
+interface Props {
+  parent: string;
+}
+
+export const HeaderAuthBlock: React.FC<Props> = ({ parent }) => {
   const {
     setShowLogin,
     setAuthorized,
@@ -43,7 +47,7 @@ export function HeaderAuthBlock(): JSX.Element {
 
   if (isAuthorized === false) {
     return (
-      <div className={style.headerAuthBlockWrapper}>
+      <div className={`${style[parent]} ${style.headerAuthBlockWrapper}`}>
         <button
           type="button"
           className={`${style.headerAuthBlockButton} ${style.headerAuthBlockLoginButton}`}
@@ -62,7 +66,7 @@ export function HeaderAuthBlock(): JSX.Element {
     );
   }
   return (
-    <div className={style.headerAuthBlockWrapper}>
+    <div className={`${style[parent]} ${style.headerAuthBlockWrapper}`}>
       <span
         className={style.headerAuthBlockText}
       >{`Добро пожаловать, ${currentUser}`}</span>
@@ -92,4 +96,4 @@ export function HeaderAuthBlock(): JSX.Element {
       </button>
     </div>
   );
-}
+};

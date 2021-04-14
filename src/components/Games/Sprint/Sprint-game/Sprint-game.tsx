@@ -3,12 +3,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import style from './Sprint-game.module.scss';
 import { Timer } from '../Timer';
 import { Result } from '../Result';
-import { getAllWords, rand } from '../utils';
+import { getAllWords, getWord, rand, userId, userToken } from '../utils';
 import rightAnswerSound from '../../../../assets/sounds/correct.mp3';
 import errorAnserSound from '../../../../assets/sounds/error.mp3';
 import { HomeButton } from '../../Home-button';
 import { FullscreenBtn } from '../../FullscreenBtn';
 import { useTypedSelector } from '../../../../hooks';
+import { updateUserStats, updateUserWordStatisitic } from '../../../../service';
 
 interface Props {
   startGame: boolean;
@@ -49,6 +50,7 @@ export const SprintGame: React.FC<Props> = ({
   const correctSound = new Audio(rightAnswerSound);
   const errorSound = new Audio(errorAnserSound);
   const fullscreenRef = useRef();
+  const { isAuthorized } = useTypedSelector((state) => state.auth);
 
   useEffect(() => {
     if (endGame) setResultCls('open');
@@ -64,6 +66,16 @@ export const SprintGame: React.FC<Props> = ({
         setBorder('correct');
         setCorrect((prev) => [...prev, enWord]);
         correctSound.play();
+
+        if (isAuthorized) {
+          updateUserWordStatisitic(
+            userId,
+            getWord(enWord, words).id,
+            userToken,
+            'right'
+          );
+          updateUserStats(userId, userToken, 'sprint', 'right');
+        }
       } else {
         setNumCorrectAns(0);
         setScoreH(10);
@@ -72,6 +84,16 @@ export const SprintGame: React.FC<Props> = ({
         setBorder('error');
         setError((prev) => [...prev, enWord]);
         errorSound.play();
+
+        if (isAuthorized) {
+          updateUserWordStatisitic(
+            userId,
+            getWord(enWord, words).id,
+            userToken,
+            'wrong'
+          );
+          updateUserStats(userId, userToken, 'sprint', 'wrong');
+        }
       }
       setInd(ind + 1);
     }

@@ -80,9 +80,10 @@
 
 .answerBlocksWrapper {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 5px;
-  @include size(100%, 12%);
+  @include size(100%, auto);
 }
 
 .playSoundBtn {
@@ -119,11 +120,13 @@
 
 .taskBlocksWrapper {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  margin-bottom: 20px;
   padding: 30px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 30px;
-  @include size(95%, 10%);
+  @include size(95%, auto);
 }
 
 .taskBlock {

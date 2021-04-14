@@ -32,6 +32,7 @@ export const rand = (arr: string[], min: number, max: number): number => {
 interface GWType {
   wordTranslate: string;
   audio: string;
+  id: string;
 }
 
 export const getWord = (eng: string, words: Word[]): GWType => {
@@ -39,5 +40,14 @@ export const getWord = (eng: string, words: Word[]): GWType => {
   return {
     wordTranslate: obj.wordTranslate,
     audio: obj.audio,
+    id: obj.id,
   };
 };
+
+export const userId = JSON.parse(
+  localStorage.getItem('yaia-team-rslang-userID')
+);
+
+export const userToken = JSON.parse(
+  localStorage.getItem('yaia-team-rslang-token')
+);
