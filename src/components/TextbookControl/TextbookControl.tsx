@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './TextbookControl.module.scss';
 import { Word } from '../../types/words-type';
-// import { Button } from '../Games/Savanna/Button';
 
 type TextbookControlsProps = {
   displayBtns: { set: (value: boolean) => void; value: boolean };
@@ -27,6 +26,8 @@ export function TextbookControl({
   const handleTranslateClick = () => {
     displayTranslate.set(!displayTranslate.value);
   };
+
+  console.log(currentPageWords);
 
   return (
     <div className={style.btnsBlock}>
@@ -74,7 +75,7 @@ export function TextbookControl({
             />
             <span className={style.checkmark} />
           </label>
-          Перевод слов
+          <span className={style.settingsTranslateText}>Перевод слов</span>
         </div>
       </div>
       <div
@@ -94,33 +95,33 @@ export function TextbookControl({
             setGamesActive(!gamesActive);
           }}
         />
-        <div
+        <Link
+          to="/dashboard/games/savanna"
           aria-label="Start-game-1"
           role="button"
           tabIndex={0}
           className={[style.gameIcon, style.gameIcon_game1].join(' ')}
-          onClick={() => console.log(`Game 1, array: ${currentPageWords}`)}
         />
-        <div
-          aria-label="Start-game-2"
+        <Link
+          to="/dashboard/games/sprint"
+          aria-label="Start-game-1"
           role="button"
           tabIndex={0}
           className={[style.gameIcon, style.gameIcon_game2].join(' ')}
-          onClick={() => console.log(`Game 2, array: ${currentPageWords}`)}
         />
-        <div
-          aria-label="Start-game-3"
+        <Link
+          to="/dashboard/games/audiocall"
+          aria-label="Start-game-1"
           role="button"
           tabIndex={0}
           className={[style.gameIcon, style.gameIcon_game3].join(' ')}
-          onClick={() => console.log(`Game 3, array: ${currentPageWords}`)}
         />
-        <div
-          aria-label="Start-game-4"
+        <Link
+          to="/dashboard/games/owngame"
+          aria-label="Start-game-1"
           role="button"
           tabIndex={0}
           className={[style.gameIcon, style.gameIcon_game4].join(' ')}
-          onClick={() => console.log(`Game 4, array: ${currentPageWords}`)}
         />
       </div>
     </div>

@@ -1,1 +1,1 @@
-export * from './Own-game';
+export * from './Puzzle';

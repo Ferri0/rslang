@@ -1,12 +1,12 @@
-@import '../../../scss/abstracts.scss';
+@import '../../../../scss/abstracts.scss';
 
 .ownGameWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url('../../../assets/images/textbookUnits/unit1/upper-right-bg.svg'),
-    url('../../../assets/images/textbookUnits/unit1/lower-left-bg.svg');
+  background: url('../../../../assets/images/textbookUnits/unit1/upper-right-bg.svg'),
+    url('../../../../assets/images/textbookUnits/unit1/lower-left-bg.svg');
   background-color: rgb(229, 255, 251);
   background-repeat: no-repeat;
   background-position: top right, left bottom;
@@ -43,10 +43,10 @@
     width: 50px;
     height: 50px;
     margin-left: 20px;
-    background-image: url('../../../assets/icons/textBook/home.svg');
+    background-image: url('../../../../assets/icons/textBook/home.svg');
 
     &:hover {
-      background-image: url('../../../assets/icons/textBook/homeHover.svg');
+      background-image: url('../../../../assets/icons/textBook/homeHover.svg');
     }
   }
 }
@@ -62,7 +62,7 @@
 
 .healthPointBlock {
   background-color: rgba(0, 0, 0, 0);
-  background-image: url('../../../assets/icons/games/health-point.svg');
+  background-image: url('../../../../assets/icons/games/health-point.svg');
 
   @include size(35px, 35px);
 }
@@ -90,7 +90,7 @@
   height: 30px;
   margin-bottom: 6px;
   background-color: rgba(0, 0, 0, 0);
-  background-image: url('../../../assets/icons/textBook/speakingBlack.svg');
+  background-image: url('../../../../assets/icons/textBook/speakingBlack.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -98,7 +98,7 @@
   outline: none;
 
   &:hover {
-    background-image: url('../../../assets/icons/textBook/speakingBlue.svg');
+    background-image: url('../../../../assets/icons/textBook/speakingBlue.svg');
     transform: scale(1.05);
     cursor: pointer;
     transition: transform 0.5s;

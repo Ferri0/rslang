@@ -38,7 +38,9 @@ export function WordCard({
 
   const playAudio = (e: React.SyntheticEvent) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const audio: any = document.getElementById(`${wordInfo.id}-audio`);
+    const audio: any = document.getElementById(
+      `${wordInfo._id || wordInfo.id}-audio`
+    );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const audioMeaning: any = document.getElementById(
       `${wordInfo._id || wordInfo.id}-audioMeaning`
@@ -78,10 +80,18 @@ export function WordCard({
           }
           onClick={() => {
             if (userProps.isAuthorized && !isDifficult) {
-              addToDifficult(userProps.id, wordInfo.id, userProps.token);
+              addToDifficult(
+                userProps.id,
+                wordInfo._id || wordInfo.id,
+                userProps.token
+              );
               setIsDifficult(!isDifficult);
             } else if (userProps.isAuthorized && isDifficult) {
-              removeUserWord(userProps.id, wordInfo.id, userProps.token);
+              removeUserWord(
+                userProps.id,
+                wordInfo._id || wordInfo.id,
+                userProps.token
+              );
               setIsDifficult(!isDifficult);
             }
           }}
@@ -114,7 +124,11 @@ export function WordCard({
                 type="button"
                 onClick={() => {
                   if (userProps.isAuthorized) {
-                    addToDeleted(userProps.id, wordInfo.id, userProps.token);
+                    addToDeleted(
+                      userProps.id,
+                      wordInfo._id || wordInfo.id,
+                      userProps.token
+                    );
                     setIsDeleted(!isDeleted);
                   }
                 }}
@@ -146,18 +160,21 @@ export function WordCard({
             {wordInfo.textExampleTranslate}
           </span>
         ) : null}
-        <audio src={apiUrl + wordInfo.audio} id={`${wordInfo.id}-audio`}>
+        <audio
+          src={apiUrl + wordInfo.audio}
+          id={`${wordInfo._id || wordInfo.id}-audio`}
+        >
           <track src="word-audio" kind="captions" />
         </audio>
         <audio
           src={apiUrl + wordInfo.audioMeaning}
-          id={`${wordInfo.id}-audioMeaning`}
+          id={`${wordInfo._id || wordInfo.id}-audioMeaning`}
         >
           <track src="word-meaning-audio" kind="captions" />
         </audio>
         <audio
           src={apiUrl + wordInfo.audioExample}
-          id={`${wordInfo.id}-audioExample`}
+          id={`${wordInfo._id || wordInfo.id}-audioExample`}
         >
           <track src="word-usage-example-audio" kind="captions" />
         </audio>

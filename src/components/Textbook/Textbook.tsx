@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import style from './Textbook.module.scss';
+import { Spinner } from '../Spinner';
 import { getUnitStyle } from './util/getUnitStyle';
 import { getFetchUrl } from './util/getFetchUrl';
 import { WordCard } from '../WordCard';
@@ -104,7 +105,7 @@ export function Textbook({ unit }: TextbookProps): JSX.Element {
         />
         <div className={style.unitTitle}>{`Раздел ${group + 1}`}</div>
         <div className={style.wordsWrapper}>
-          Загрузка...
+          <Spinner />
           <PageControls currentPage={page} setCurrentPage={setPage} />
         </div>
       </div>

@@ -31,7 +31,8 @@ export const gameInfo: Array<IType> = [
     id: 'OwnGame',
     title: 'Своя игра',
     img: './assets/images/owngame-card.jpg',
-    desc: 'Добавить описание',
+    desc:
+      'Это тренировка навыков перевода и восприятия на слух. Запускай игру и собирай предложение из слов как паззл.',
   },
 ];
 

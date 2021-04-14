@@ -52,7 +52,7 @@ export const resetStatisticsData = (): SavannaActions => ({
   type: SavannaActionTypes.RESET_STATISTICS_DATA,
 });
 
-export const setIsLocation = (value: boolean): SavannaActions => ({
+export const setIsMainPage = (value: boolean): SavannaActions => ({
   type: SavannaActionTypes.TOGGLE_KNOWLEDGE_ABOUT_LOCATION,
   payload: value,
 });
