@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import style from './Dasboard-start-page.module.scss';
 import { gameInfo } from '../../Games/Promo-game-card/info';
-import { useAction } from '../../../hooks';
+import { useAction, useTypedSelector } from '../../../hooks';
+import { Unit } from '../../Stats/Unit';
+import { fetchStats } from '../../../store/actions';
 
 export function DashboardStartPage(): JSX.Element {
+  const { currentUserId, token } = useTypedSelector((state) => state.auth);
+  const { day, allTime } = useTypedSelector((state) => state.stats);
   const arr = [
     { id: 'learning', title: 'Изучаемые' },
     { id: 'difficult', title: 'Сложные' },
     { id: 'deleted', title: 'Удаленные' },
   ];
   const { setIsMainPage } = useAction();
+
+  useEffect(() => {
+    fetchStats(currentUserId, token);
+  }, [currentUserId, token]);
 
   return (
     <div className={style.dashboardStartWrapper}>
@@ -72,7 +80,23 @@ export function DashboardStartPage(): JSX.Element {
             ))}
           </div>
         </div>
-        <div className={style.stats}>Stats</div>
+        <div className={style.stats}>
+          Статистика
+          <div className={style.statsBlock}>
+            <Link to="/dashboard/stats" className={style.stat}>
+              <Unit
+                text="Количество изученных слов сегодня"
+                value={day.learnedWords}
+              />
+            </Link>
+            <Link to="/dashboard/stats" className={style.stat}>
+              <Unit
+                text="Процент правильных ответов сегодня"
+                value={`${day.correctAnswers} %`}
+              />
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

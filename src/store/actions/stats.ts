@@ -1,5 +1,13 @@
 import { Dispatch } from 'redux';
+import { getAllUserWords, getUserStats } from '../../service';
 import { StatsTypes, StatsActionType } from '../../types';
+import {
+  formAllChartData,
+  formDayChartData,
+  getCorrectAnswers,
+  getCorrectAnswersToday,
+  getLearnedWordsToday,
+} from '../../utils/stats';
 
 const fetchStatsStarted = (): StatsActionType => ({
   type: StatsTypes.FETCH_STATS_STARTED,
@@ -16,14 +24,21 @@ const fetchStatsFailure = (): StatsActionType => ({
   payload: 'Fetch stats error',
 });
 
-export const fetchStats = () => async (
+export const fetchStats = (userId: string, token: string) => async (
   dispatch: Dispatch<StatsActionType>
 ): Promise<void> => {
   try {
     dispatch(fetchStatsStarted());
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    const json = await response.json();
-    dispatch(fetchStatsSuccess(json));
+    const allWordsResponse = await getAllUserWords(userId, token);
+    const statsResponse = await getUserStats(userId, token);
+    const allWords = await allWordsResponse.json();
+    const stats = await statsResponse.json();
+    stats.learnedWordsToday = getLearnedWordsToday(allWords);
+    stats.correctAnswersToday = getCorrectAnswersToday(allWords);
+    stats.correctAnswers = getCorrectAnswers(allWords);
+    stats.dayData = formDayChartData(allWords);
+    stats.allData = formAllChartData(allWords);
+    dispatch(fetchStatsSuccess(stats));
   } catch (e) {
     dispatch(fetchStatsFailure());
   }

@@ -36,7 +36,7 @@ export const Chart: React.FC<ChartProps> = ({ data, title }) => (
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="words" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
     </div>

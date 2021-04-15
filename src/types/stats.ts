@@ -15,12 +15,12 @@ export type UserStatsType = {
 
 export interface StatsState {
   day: {
-    learnedWords: number; // count
-    correctAnswers: number; // percentage
+    learnedWords: number;
+    correctAnswers: number;
   };
   allTime: {
-    learnedWords: number; // count
-    correctAnswers: number; // percentage
+    learnedWords: number;
+    correctAnswers: number;
   };
   series: {
     puzzle: number;
@@ -28,7 +28,8 @@ export interface StatsState {
     savanna: number;
     audiocall: number;
   };
-  wordsData: Array<Word>;
+  dayData: Array<Word>;
+  allData: Array<Word>;
   loading: boolean;
   error: string | null;
 }

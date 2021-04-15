@@ -166,7 +166,31 @@
 
 .stats {
   grid-area: stats;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 20px;
   @include flex(column, center, center);
+}
+
+.statsBlock {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+
+  @media (min-width: 800px) {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.stat {
+  color: black;
+  font-weight: normal;
+  font-size: initial;
+  text-decoration: none;
 }
 
 @media (max-width: 1000px) {

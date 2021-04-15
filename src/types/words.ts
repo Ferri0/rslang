@@ -5,5 +5,6 @@ export type UserWordType = {
   optional: {
     rightAnswers: number;
     wrongAnswers: number;
+    date: string;
   };
 };
