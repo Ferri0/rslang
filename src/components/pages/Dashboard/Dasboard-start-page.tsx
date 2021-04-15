@@ -4,17 +4,16 @@ import style from './Dasboard-start-page.module.scss';
 import { gameInfo } from '../../Games/Promo-game-card/info';
 import { useAction, useTypedSelector } from '../../../hooks';
 import { Unit } from '../../Stats/Unit';
-import { fetchStats } from '../../../store/actions';
 
 export function DashboardStartPage(): JSX.Element {
   const { currentUserId, token } = useTypedSelector((state) => state.auth);
-  const { day, allTime } = useTypedSelector((state) => state.stats);
+  const { day, words } = useTypedSelector((state) => state.stats);
   const arr = [
-    { id: 'learning', title: 'Изучаемые' },
-    { id: 'difficult', title: 'Сложные' },
-    { id: 'deleted', title: 'Удаленные' },
+    { id: 'learning', title: 'Изучаемые', count: words.learning },
+    { id: 'difficult', title: 'Сложные', count: words.difficult },
+    { id: 'deleted', title: 'Удаленные', count: words.deleted },
   ];
-  const { setIsMainPage } = useAction();
+  const { setIsMainPage, fetchStats } = useAction();
 
   useEffect(() => {
     fetchStats(currentUserId, token);
@@ -74,7 +73,7 @@ export function DashboardStartPage(): JSX.Element {
               >
                 <div key={`start-${dict.id}-title`} className={style.dictTitle}>
                   <span>{`${dict.title} слова`}</span>
-                  <span>N слов</span>
+                  <span>{dict.count} слов</span>
                 </div>
               </Link>
             ))}

@@ -17,6 +17,11 @@ const initialState: StatsState = {
   },
   dayData: [],
   allData: [],
+  words: {
+    learning: 0,
+    difficult: 0,
+    deleted: 0,
+  },
   loading: false,
   error: null,
 };
@@ -63,6 +68,11 @@ export const statsReducer = (
         },
         dayData: action.payload.dayData,
         allData: action.payload.allData,
+        words: {
+          learning: action.payload.learningWords,
+          difficult: action.payload.difficultWords,
+          deleted: action.payload.deletedWords,
+        },
       };
 
     case StatsTypes.FETCH_STATS_FAILURE:

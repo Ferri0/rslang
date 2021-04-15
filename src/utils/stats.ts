@@ -31,7 +31,8 @@ export const getCorrectAnswers = (words: Array<UserWordType>): string => {
     wrong += word.optional.wrongAnswers;
   });
   const all = right + wrong;
-  return ((right * 100) / all).toFixed(1);
+  const res = (right * 100) / all;
+  return (res || 0).toFixed(1);
 };
 
 export const getCorrectAnswersToday = (words: Array<UserWordType>): string => {
