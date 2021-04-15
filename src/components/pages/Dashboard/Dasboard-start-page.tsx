@@ -7,11 +7,11 @@ import { Unit } from '../../Stats/Unit';
 
 export function DashboardStartPage(): JSX.Element {
   const { currentUserId, token } = useTypedSelector((state) => state.auth);
-  const { day } = useTypedSelector((state) => state.stats);
+  const { day, words } = useTypedSelector((state) => state.stats);
   const arr = [
-    { id: 'learning', title: 'Изучаемые' },
-    { id: 'difficult', title: 'Сложные' },
-    { id: 'deleted', title: 'Удаленные' },
+    { id: 'learning', title: 'Изучаемые', count: words.learning },
+    { id: 'difficult', title: 'Сложные', count: words.difficult },
+    { id: 'deleted', title: 'Удаленные', count: words.deleted },
   ];
   const { setIsMainPage, fetchStats } = useAction();
 
@@ -73,7 +73,7 @@ export function DashboardStartPage(): JSX.Element {
               >
                 <div key={`start-${dict.id}-title`} className={style.dictTitle}>
                   <span>{`${dict.title} слова`}</span>
-                  <span>N слов</span>
+                  <span>{dict.count} слов</span>
                 </div>
               </Link>
             ))}

@@ -30,6 +30,11 @@ export interface StatsState {
   };
   dayData: Array<Word>;
   allData: Array<Word>;
+  words: {
+    learning: number;
+    difficult: number;
+    deleted: number;
+  };
   loading: boolean;
   error: string | null;
 }

@@ -1,5 +1,9 @@
 import { Dispatch } from 'redux';
-import { getAllUserWords, getUserStats } from '../../service';
+import {
+  getAllUserWords,
+  getUserStats,
+  getWordsOfCategoryByPage,
+} from '../../service';
 import { StatsTypes, StatsActionType } from '../../types';
 import {
   formAllChartData,
@@ -33,11 +37,32 @@ export const fetchStats = (userId: string, token: string) => async (
     const statsResponse = await getUserStats(userId, token);
     const allWords = await allWordsResponse.json();
     const stats = await statsResponse.json();
+    const learningWords = await getWordsOfCategoryByPage(
+      userId,
+      token,
+      'learning',
+      1
+    );
+    const difficultWords = await getWordsOfCategoryByPage(
+      userId,
+      token,
+      'difficult',
+      1
+    );
+    const deletedWords = await getWordsOfCategoryByPage(
+      userId,
+      token,
+      'deleted',
+      1
+    );
     stats.learnedWordsToday = getLearnedWordsToday(allWords);
     stats.correctAnswersToday = getCorrectAnswersToday(allWords);
     stats.correctAnswers = getCorrectAnswers(allWords);
     stats.dayData = formDayChartData(allWords);
     stats.allData = formAllChartData(allWords);
+    stats.learningWords = learningWords.count;
+    stats.difficultWords = difficultWords.count;
+    stats.deletedWords = deletedWords.count;
     dispatch(fetchStatsSuccess(stats));
   } catch (e) {
     dispatch(fetchStatsFailure());

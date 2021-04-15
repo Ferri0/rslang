@@ -3,7 +3,11 @@
 import { Word } from '../types';
 import { CategoryType, AnswerType, UserWordType } from '../types/words';
 
-const getWordsOfType = async (userId: string, token: string, type: string) => {
+export const getWordsOfType = async (
+  userId: string,
+  token: string,
+  type: string
+) => {
   const response = await fetch(
     `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/aggregatedWords?filter=%7B%22%24and%22%3A%5B%7B%22userWord.difficulty%22%3A%22${type}%22%7D%5D%7D`,
     {
@@ -193,9 +197,9 @@ const updateUserWordStatisitic = async (
 
 // prettier-ignore
 export const getWordsOfCategoryByPage = async (
-  userId: string, token: string, category: CategoryType, page: number, pages?: number
+  userId: string, token: string, category: CategoryType, page: number, wordsPerPage = 20
 ) => {
-  const URL = `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/aggregatedWords?page=${page}&wordsPerPage=${pages}&filter=%7B%22userWord.difficulty%22%3A%22${category}%22%7D`
+  const URL = `https://yaia-team-rslang-api.herokuapp.com/users/${userId}/aggregatedWords?page=${page}&wordsPerPage=${wordsPerPage}&filter=%7B%22userWord.difficulty%22%3A%22${category}%22%7D`
   const options = {
     method: 'GET',
     headers: {
