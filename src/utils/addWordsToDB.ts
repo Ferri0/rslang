@@ -15,15 +15,15 @@ export const addWordsToDB: addWordsToDBType = (cb, answer, wordID, game) => {
   if (game) {
     cb(
       JSON.parse(localStorage.getItem('yaia-team-rslang-userID')),
-      wordID,
       JSON.parse(localStorage.getItem('yaia-team-rslang-token')),
+      game,
       answer
     );
   } else {
     cb(
       JSON.parse(localStorage.getItem('yaia-team-rslang-userID')),
+      wordID,
       JSON.parse(localStorage.getItem('yaia-team-rslang-token')),
-      game,
       answer
     );
   }
