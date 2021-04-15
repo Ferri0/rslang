@@ -38,7 +38,7 @@ export const SavannahGame: React.FC<PropsType> = ({ words, setGameOver }) => {
 
     if (isAuthorized) {
       addWordsToDB(updateUserWordStatisitic, 'wrong', question.id);
-      addWordsToDB(updateUserStats, 'wrong', question.id, 'audiocall');
+      addWordsToDB(updateUserStats, 'wrong', question.id, 'savanna');
     }
   };
 
@@ -71,6 +71,10 @@ export const SavannahGame: React.FC<PropsType> = ({ words, setGameOver }) => {
     actions.setQuestionAction(wordsToPlay[wordsToPlay.length - 1]);
     actions.setWordsToPlayAction(wordsToPlay.slice(0, wordsToPlay.length - 1));
     actions.setRightAnswerAction(false);
+    if (isAuthorized) {
+      addWordsToDB(updateUserWordStatisitic, 'right', question.id);
+      addWordsToDB(updateUserStats, 'right', question.id, 'savanna');
+    }
   }
 
   if (gameState.wrongAnswer) {
