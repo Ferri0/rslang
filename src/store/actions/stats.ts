@@ -2,6 +2,8 @@ import { Dispatch } from 'redux';
 import { getAllUserWords, getUserStats } from '../../service';
 import { StatsTypes, StatsActionType } from '../../types';
 import {
+  formAllChartData,
+  formDayChartData,
   getCorrectAnswers,
   getCorrectAnswersToday,
   getLearnedWordsToday,
@@ -34,6 +36,8 @@ export const fetchStats = (userId: string, token: string) => async (
     stats.learnedWordsToday = getLearnedWordsToday(allWords);
     stats.correctAnswersToday = getCorrectAnswersToday(allWords);
     stats.correctAnswers = getCorrectAnswers(allWords);
+    stats.dayData = formDayChartData(allWords);
+    stats.allData = formAllChartData(allWords);
     dispatch(fetchStatsSuccess(stats));
   } catch (e) {
     dispatch(fetchStatsFailure());

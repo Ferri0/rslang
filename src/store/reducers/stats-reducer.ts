@@ -2,12 +2,12 @@ import { StatsActionType, StatsTypes, StatsState } from '../../types';
 
 const initialState: StatsState = {
   day: {
-    learnedWords: 0, // count
-    correctAnswers: 0, // percentage
+    learnedWords: 0,
+    correctAnswers: 0,
   },
   allTime: {
-    learnedWords: 0, // count
-    correctAnswers: 0, // percentage
+    learnedWords: 0,
+    correctAnswers: 0,
   },
   series: {
     puzzle: 0,
@@ -15,7 +15,8 @@ const initialState: StatsState = {
     savanna: 0,
     audiocall: 0,
   },
-  wordsData: [],
+  dayData: [],
+  allData: [],
   loading: false,
   error: null,
 };
@@ -60,6 +61,8 @@ export const statsReducer = (
             action.payload?.optional?.series?.audiocall ||
             state.series.audiocall,
         },
+        dayData: action.payload.dayData,
+        allData: action.payload.allData,
       };
 
     case StatsTypes.FETCH_STATS_FAILURE:
