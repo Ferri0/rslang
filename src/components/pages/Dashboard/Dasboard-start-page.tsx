@@ -4,17 +4,16 @@ import style from './Dasboard-start-page.module.scss';
 import { gameInfo } from '../../Games/Promo-game-card/info';
 import { useAction, useTypedSelector } from '../../../hooks';
 import { Unit } from '../../Stats/Unit';
-import { fetchStats } from '../../../store/actions';
 
 export function DashboardStartPage(): JSX.Element {
   const { currentUserId, token } = useTypedSelector((state) => state.auth);
-  const { day, allTime } = useTypedSelector((state) => state.stats);
+  const { day } = useTypedSelector((state) => state.stats);
   const arr = [
     { id: 'learning', title: 'Изучаемые' },
     { id: 'difficult', title: 'Сложные' },
     { id: 'deleted', title: 'Удаленные' },
   ];
-  const { setIsMainPage } = useAction();
+  const { setIsMainPage, fetchStats } = useAction();
 
   useEffect(() => {
     fetchStats(currentUserId, token);
