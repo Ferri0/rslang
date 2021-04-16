@@ -76,8 +76,16 @@ const addToDeleted = async (
   wordId: string,
   token: string
 ): Promise<void> => {
-  removeUserWord(userId, wordId, token);
-  addWordToType(userId, wordId, token, 'deleted');
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  const userWord = await getUserWord(userId, wordId, token);
+  if (userWord.status !== 404) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const response1 = await removeUserWord(userId, wordId, token);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const response2 = await addWordToType(userId, wordId, token, 'deleted');
+  } else {
+    addWordToType(userId, wordId, token, 'deleted');
+  }
 };
 
 const addToDifficult = async (
