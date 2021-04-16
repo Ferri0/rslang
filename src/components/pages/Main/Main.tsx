@@ -49,7 +49,7 @@ export function MainPage(): JSX.Element {
         <div className={style.promoWrapper}>
           <div className={style.video}>
             <ReactPlayer
-              url="https://www.youtube.com/watch?v=ysz5S6PUM-U" // TODO add promo video link
+              url="https://www.youtube.com/watch?v=Ordo-TK0rfM"
               controls
               width="100%"
               height="100%"
