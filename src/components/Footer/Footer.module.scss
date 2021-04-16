@@ -1,0 +1,28 @@
+@import '../../scss/abstracts.scss';
+
+.footer {
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  background: rgba(59, 80, 107, 0.5);
+  @include flex(row, space-around, center);
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer img {
+  width: 70px;
+}
+
+@media (max-width: 680px) {
+  .footer {
+    font-size: 12px;
+
+    img {
+      width: 50px;
+    }
+  }
+}

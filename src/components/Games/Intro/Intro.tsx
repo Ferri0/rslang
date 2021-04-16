@@ -1,0 +1,122 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useAction, useTypedSelector } from '../../../hooks';
+import { shuffle } from '../../../utils';
+// import { OwnGame } from '../Own-game/index';
+import { Statistics } from '../Statistics';
+import { Button } from '../Savanna/Button';
+import { SavannahGame } from '../Savanna/Savannah-game';
+
+import style from './Intro.module.scss';
+import { AudioGame } from '../Audio-call/Audiocall-game';
+import { Spinner } from '../../Spinner';
+import { ErrorIndicator } from '../../Error-indicator';
+
+type Props = {
+  name: string;
+  text: string;
+  bg: string;
+};
+
+export const Intro = ({ name, text, bg }: Props): JSX.Element => {
+  const [startGame, setStartGame] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [isWrong, setIsWrong] = useState(false);
+  const currentRef = useRef();
+  const audioRef = useRef<HTMLAudioElement>();
+  const exampleAudioRef = useRef<HTMLAudioElement>();
+  const {
+    groupOfWords: { words, loading, error },
+    gameState: { statistics, question, wrongAnswer },
+  } = useTypedSelector((state) => state);
+  const location = useLocation();
+  const [, gamePath] = location.pathname
+    .match(/games.+/g)
+    .join()
+    .split('/');
+
+  const actions = useAction();
+
+  const onStartGame = () => {
+    actions.setHearts(5);
+    actions.resetScrollBackground();
+    actions.resetStatisticsData();
+    actions.setWordsToPlayAction(shuffle(words));
+    setStartGame(true);
+  };
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
+    }, 500);
+    return () => {
+      clearTimeout(id);
+    };
+  }, [question, wrongAnswer]);
+
+  const startNewGame = () => {
+    setStartGame(false);
+    setGameOver(false);
+  };
+
+  window.onkeyup = (e: KeyboardEvent) => {
+    if (e.key === 'Enter' && currentRef.current) {
+      onStartGame();
+    }
+  };
+
+  if (gameOver) {
+    return <Statistics statics={statistics} startNewGame={startNewGame} />;
+  }
+
+  if (startGame && gamePath === 'savanna') {
+    return <SavannahGame words={words} setGameOver={setGameOver} />;
+  }
+
+  if (startGame && gamePath === 'audiocall') {
+    return (
+      <AudioGame
+        setIsWrong={setIsWrong}
+        isWrong={isWrong}
+        words={words}
+        setGameOver={setGameOver}
+        audioRef={audioRef}
+        exampleAudioRef={exampleAudioRef}
+      />
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className={style.loading}>
+        <Spinner />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <ErrorIndicator />;
+  }
+
+  const backgroundImagePath = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../../../assets/images/intro-bg/${bg})`;
+
+  return (
+    <div
+      className={style.Intro}
+      ref={currentRef}
+      style={{
+        backgroundImage: backgroundImagePath,
+      }}
+    >
+      <div className={style.text}>
+        <h1 className={style.title}>{name}</h1>
+        <h3 className={style.subtitle}>{text}</h3>
+        <p>1. Кликните по нему мышью;</p>
+        <p>2. Используйте клавиши 1, 2, 3, 4.</p>
+        <Button text="Начать" fn={onStartGame} />
+      </div>
+    </div>
+  );
+};

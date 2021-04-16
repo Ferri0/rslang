@@ -1,0 +1,54 @@
+@import '../../../scss/abstracts.scss';
+
+.overlay {
+  position: absolute;
+  z-index: 4;
+  display: none;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: $border-radius;
+  transition: opacity 0.5s ease;
+  @include size(100%, 100%);
+
+  &.close {
+    z-index: -1;
+    opacity: 0;
+  }
+
+  &.open {
+    opacity: 1;
+  }
+}
+
+.dashboardContainer {
+  padding: 20px;
+  background: rgb(244, 244, 244);
+  background: linear-gradient(
+    150deg,
+    rgba(227, 231, 243, 1) 0%,
+    rgba(214, 218, 230, 1) 100%
+  );
+}
+
+.dashboardPage {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 160px calc(100% - 160px);
+  width: 100%;
+  height: calc(100% - 40px);
+  min-height: calc(100vh - 40px);
+  background: #eff0f5;
+  border-radius: $border-radius;
+  box-shadow: 1px 1px 3px -2px #000;
+}
+
+@media (max-width: 599px) {
+  .overlay {
+    display: block;
+  }
+
+  .dashboardPage {
+    grid-template-columns: 100%;
+    border-radius: $border-radius;
+  }
+}

@@ -1,0 +1,59 @@
+@import '../../../scss/abstracts.scss';
+
+.winPageWrapper {
+  // position: fixed;
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include size(100%, 100%);
+}
+
+.winPageWrapperHidden {
+  display: none;
+}
+
+.winPageContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  // padding: 60px 40px;
+  color: steelblue;
+  font: 2rem/1.2 Arial, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  @include size(25%, 25%);
+}
+
+.winPageHeader {
+  background-color: steelblue;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  @include size(100%, 25%);
+}
+
+.btn {
+  display: block;
+  align-items: center;
+  margin-bottom: 30px;
+  color: steelblue;
+  text-align: center;
+  text-decoration: none;
+  border: steelblue 2px solid;
+  border-radius: 10px;
+  @include size(50%, 30px);
+}
+
+@media (max-width: 599px) {
+  .winPageContainer {
+    @include size(70%, 50%);
+  }
+}

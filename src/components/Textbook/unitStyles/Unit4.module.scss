@@ -1,0 +1,40 @@
+@import '../../../scss/abstracts.scss';
+
+.bg {
+  background: url('../../../assets/images/textbookUnits/unit4/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit4/lower-left-bg.svg');
+  background-color: #faf0eb;
+  background-repeat: no-repeat;
+  background-position: top right, left bottom;
+  background-size: 100%, 100%;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}
+
+.tab {
+  border: 1px solid #f0ac8d;
+  border-left: 12px solid #f0ac8d;
+}
+
+.input:checked + label {
+  background-color: #f0ac8d;
+  border-radius: 0 8px 0 0;
+}
+
+.separator {
+  position: relative;
+  width: 100%;
+  min-height: 2px;
+  background-color: #f0ac8d;
+}
+
+.tabTitleHover:hover {
+  background-color: #f0ac8d;
+  cursor: pointer;
+}
+
+@media (max-width: 599px) {
+  .bg {
+    border-radius: $border-radius;
+  }
+}

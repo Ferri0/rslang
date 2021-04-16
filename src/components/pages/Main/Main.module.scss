@@ -1,0 +1,305 @@
+@import '../../../scss/abstracts.scss';
+
+.menuOverlay {
+  position: absolute;
+  z-index: 4;
+  display: none;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: $border-radius;
+  transition: opacity 0.5s ease;
+  @include size(100%, 100%);
+
+  &.close {
+    z-index: -1;
+    opacity: 0;
+  }
+
+  &.open {
+    opacity: 1;
+  }
+}
+
+.mainPage {
+  @include flex(column, center, flex-start);
+}
+
+.greeting,
+.textbook,
+.games,
+.stats,
+.promo,
+.info {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 40px;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    15deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(59, 80, 107, 0.5) 100%
+  );
+  @include flex(column, center, center);
+}
+
+.greeting {
+  display: flex;
+  justify-content: flex-end;
+  height: 100vh;
+  padding: 30px 50px;
+  padding-top: $main_page-padding;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    15deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(59, 80, 107, 0.5) 100%
+  );
+}
+
+.greetingImg {
+  background: url('../../../assets/images/greeting-img.png') no-repeat right,
+    rgba(255, 255, 255, 0.6);
+  background-size: auto 100%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px -3px #1c2542;
+  @include size(100%, 100%);
+}
+
+.greetingText {
+  position: absolute;
+  top: 50%;
+  left: 70px;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px -4px #1c2542;
+  transform: translateY(-50%);
+}
+
+.greetingTextTitle {
+  margin-bottom: 15px;
+  color: #297ab9;
+  font-size: 38px;
+}
+
+.greetingText span {
+  font-weight: 800;
+}
+
+.greetingButton {
+  min-height: 25px;
+  margin-top: 45px;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(41, 122, 185, 1);
+  border: 1px solid #297ab9;
+  border-radius: 8px;
+  outline: none;
+  transition: font-weight 0.5s ease;
+  @include size(150px, 35px);
+  @include flex(row, center, center);
+}
+
+.greetingButton:hover {
+  font-weight: 800;
+}
+
+.overlay {
+  z-index: -1;
+  background: url('../../../assets/images/pattern.png');
+  opacity: 0.1;
+  @include absolute-center;
+  @include size(100%, 100%);
+}
+
+.games {
+  height: auto;
+  padding: 30px 50px;
+  text-align: center;
+  @include flex(column, center, center);
+}
+
+.promo {
+  height: auto;
+  padding: 30px 50px;
+}
+
+.promoTip {
+  font-size: 10px;
+}
+
+.promoWrapper {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px 20px 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px -3px #1c2542;
+
+  .video {
+    @include size(100%, 100%);
+  }
+}
+
+.title {
+  color: #297ab9;
+  font-weight: 800;
+  font-size: 38px;
+}
+
+.textbook {
+  height: auto;
+  padding: 30px 50px;
+}
+
+.textbookWrapper {
+  width: 100%;
+  padding: 10px 20px 50px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px -3px #1c2542;
+  @include flex(column, center, center);
+}
+
+.textbookFeatures {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  width: 60%;
+}
+
+.textbookFeaturesItem {
+  padding: 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid #297ab9;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px -3px #1c2542;
+  @include size(130px, 120px);
+  @include flex(column, space-around, center);
+}
+
+.textbookFeaturesItem span {
+  display: block;
+}
+
+.textbookFeaturesItem .icon {
+  width: 100%;
+  color: #297ab9;
+  font-size: 30px;
+  text-align: center;
+}
+
+.stats,
+.info {
+  height: auto;
+  padding: 30px 50px;
+}
+
+.statsWrapper,
+.infoWrapper {
+  width: 100%;
+  padding: 10px 20px 50px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px -3px #1c2542;
+  @include flex(column, center, center);
+}
+
+.statsInfo {
+  width: 95%;
+  text-align: left;
+  @include flex(row, space-between, center);
+}
+
+.statsInfo img {
+  margin-left: 20px;
+  border-radius: 10px;
+  @include size(40%, auto);
+}
+
+.statsInfo span {
+  display: block;
+}
+
+.statsInfo span:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 850px) {
+  .menuOverlay {
+    display: block;
+  }
+
+  .greeting {
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 750px) {
+  .greeting {
+    height: auto;
+  }
+
+  .greetingImg {
+    height: 300px;
+    background-position: top;
+    background-size: cover;
+  }
+
+  .greetingText {
+    position: relative;
+    top: 0;
+    left: 0;
+    order: 2;
+    width: 100%;
+    margin-top: 10px;
+    transform: none;
+
+    .greetingTextTitle {
+      font-size: 32px;
+    }
+
+    .greetingButton {
+      align-self: center;
+      margin-top: 30px;
+    }
+  }
+
+  .promoWrapper {
+    grid-template-rows: 300px auto;
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .textbookFeatures {
+    width: 100%;
+  }
+
+  .statsInfo {
+    flex-direction: column;
+
+    img {
+      width: 60%;
+      margin-top: 20px;
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 590px) {
+  .textbookFeatures {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,144 @@
+@import '../../../../scss/abstracts.scss';
+
+.resultWrapper {
+  z-index: 3;
+  background: url('../../../../assets/images/sprint-card.jpg');
+  background-size: cover;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include size(100%, 100%);
+  @include absolute-center;
+
+  &.open {
+    display: flex;
+  }
+
+  &.close {
+    display: none;
+  }
+}
+
+.result {
+  padding: 15px 25px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 3px solid #fff;
+  border-radius: 30px;
+  box-shadow: 0 0 7px -2px rgba(0, 0, 0, 0.6) inset;
+  @include flex(column, center, center);
+  @include size(440px, auto);
+  @include absolute-center;
+
+  div:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.title {
+  color: #297ab9;
+  font-weight: 600;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+
+.info {
+  width: 100%;
+  font-weight: 600;
+  @include flex(row, space-around, center);
+
+  .correctNum {
+    margin: 0 !important;
+    color: #008507;
+  }
+
+  .errorNum {
+    color: #d00202;
+  }
+}
+
+.result button {
+  min-height: 25px;
+  margin-top: 10px;
+  padding-bottom: 2px;
+  color: #fff;
+  text-decoration: none;
+  background: #297ab9;
+  border: 1px solid #297ab9;
+  border-radius: 8px;
+  outline: none;
+  transition: font-weight 0.5s ease;
+  @include size(120px, 35px);
+  @include flex(row, center, center);
+
+  &:hover {
+    font-weight: 600;
+  }
+}
+
+.words {
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 2px;
+    box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #297bb96b;
+    border-radius: 2px;
+  }
+
+  button {
+    margin: 0;
+    color: #000;
+    background: none;
+    border: 0;
+    outline: none;
+    transition: scale 0.5s ease;
+    @include size(auto, auto);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .correctBlock,
+  .errorBlock {
+    padding: 10px 0;
+    border-radius: 10px;
+    @include flex(column, center, center);
+  }
+
+  .correctBlock {
+    background-color: #00850742;
+    border-top-right-radius: 0;
+  }
+
+  .errorBlock {
+    background-color: #d0020236;
+    border-bottom-right-radius: 0;
+  }
+
+  .correctWord,
+  .errorWord {
+    display: grid;
+    grid-template-columns: 1fr 1fr 50px;
+    width: 90%;
+    text-transform: capitalize;
+
+    span:first-child {
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .resultWrapper {
+    border-radius: $border-radius;
+  }
+}

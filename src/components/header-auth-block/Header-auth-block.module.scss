@@ -1,0 +1,59 @@
+.headerAuthBlockWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.startPage.headerAuthBlockWrapper {
+  flex-direction: row;
+}
+
+.dashboardPage.headerAuthBlockWrapper {
+  flex-direction: column;
+  margin-top: 20px;
+
+  button {
+    margin: 0;
+    margin-top: 10px;
+  }
+}
+
+.headerAuthBlockText {
+  color: #297ab9;
+  font-size: 12px;
+}
+
+.headerAuthBlockButton {
+  width: 130px;
+  height: 35px;
+  min-height: 25px;
+  margin-left: 5px;
+  color: #297ab9;
+  background: rgba(41, 122, 185, 0.2);
+  border: 1px solid #297ab9;
+  border-radius: 8px;
+  outline: none;
+}
+
+.headerAuthBlockButton:hover {
+  font-weight: 800;
+}
+
+.headerAuthBlockLoginButton {
+  width: 60px;
+  margin-right: 25px;
+  background: none;
+  border: 0;
+}
+
+@media (max-width: 850px) {
+  .startPage.headerAuthBlockWrapper {
+    flex-direction: column;
+    margin-top: 20px;
+
+    button {
+      margin: 0;
+      margin-top: 10px;
+    }
+  }
+}

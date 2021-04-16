@@ -1,0 +1,107 @@
+@import '../../../scss/abstracts.scss';
+
+.registrationPageWrapper {
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  @include size(100%, 100%);
+}
+
+.registrationPageContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 60px 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  @include size(350px, 500px);
+}
+
+.registrationPageWrapperHidden {
+  display: none;
+}
+
+.registrationPageHeader {
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
+.registrationPageError {
+  color: rgb(201, 10, 4);
+  font-size: 14px;
+  text-align: center;
+}
+
+.registrationPageInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.registrationPageInput {
+  width: 190px;
+  height: 45px;
+  margin-bottom: 10px;
+  padding: 0 15px;
+  font-size: 14px;
+  background: rgb(211, 211, 211);
+  border: 0;
+  border-radius: 50px;
+  outline: none;
+}
+
+.registrationPageInput::placeholder {
+  font-size: 14px;
+}
+
+.registrationPageButton {
+  width: 70%;
+  height: 45px;
+  color: #fff;
+  font-weight: 600;
+  background: rgb(145, 182, 197);
+  background: linear-gradient(
+    180deg,
+    rgba(145, 182, 197, 1) 0%,
+    rgba(38, 81, 135, 1) 100%
+  );
+  border: 0;
+  border-radius: 50px;
+  outline: none;
+
+  &:hover {
+    border: 1px solid #fff;
+  }
+}
+
+.registrationPageText {
+  color: #00f;
+  font-size: 14px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: #8a8a8a;
+  background: none;
+  border: 2px solid #8a8a8a;
+  border-radius: 50px;
+  outline: none;
+}
+
+.closeButton:hover {
+  color: rgb(74, 74, 75);
+  border: 2px solid rgb(74, 74, 75);
+}

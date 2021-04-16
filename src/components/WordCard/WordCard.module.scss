@@ -1,0 +1,183 @@
+@import '../../scss/abstracts.scss';
+
+.hidden {
+  display: none;
+}
+.tabContent {
+  position: relative;
+  max-height: 0;
+  padding: 0 20px;
+  overflow: hidden;
+  transition: 0.5s ease-in-out;
+  @include flex(column, flex-start, flex-start);
+
+  @media (max-width: 450px) {
+    padding: 0 10px;
+  }
+
+  h4 {
+    margin: 0.5rem 0 0 0;
+  }
+
+  &:last-child span {
+    margin-bottom: 10px;
+  }
+
+  &_header {
+    width: 100%;
+    @include flex(row, space-between, center);
+
+    &___btnsBlock {
+      position: relative;
+      width: 70px;
+      height: 30px;
+      @include flex(row, space-between, center);
+    }
+  }
+}
+
+.tab {
+  position: relative;
+  min-width: 402px;
+  margin-bottom: 1rem;
+  color: #848994;
+  font: 2rem/1.2 Arial, sans-serif;
+  background-color: rgba(255, 255, 255, 0.65);
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.25);
+
+  @media (max-width: 699px) {
+    min-width: 260px;
+  }
+}
+
+.tabTitle {
+  display: block;
+  height: 50px;
+  margin: -0.1rem; // hotfix 1px empty line which apperas on some res
+  padding: 0 40px 0 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 0 10px 10px 0;
+  transition: 0.5s ease-in-out;
+  @include flex(row, space-between, center);
+
+  & span {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+.tabTitle::after {
+  position: absolute;
+  right: 10px;
+  content: '+';
+}
+
+.tab :checked + .tabTitle::after {
+  content: '−';
+}
+
+.tab :checked ~ .tabContent {
+  max-height: 700px;
+}
+
+.wordImg {
+  align-self: left;
+  width: 350px;
+
+  @media (max-width: 699px) {
+    width: 300px;
+  }
+
+  @media (max-width: 450px) {
+    width: 250px;
+  }
+
+  @media (max-width: 375px) {
+    width: 200px;
+  }
+}
+
+.wordTitle {
+  min-width: 260px;
+  font-size: 2.2rem;
+
+  @media (max-width: 550px) {
+    width: 200px;
+    min-width: 200px;
+  }
+
+  @media (max-width: 374px) {
+    width: 160px;
+    min-width: 160px;
+  }
+}
+
+.deleteWordBtn {
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url('../../assets/icons/textBook/delete.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 0;
+  outline: none;
+
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
+}
+
+.playSoundBtn {
+  position: absolute;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 6px;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url('../../assets/icons/textBook/speakingBlack.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 0;
+  outline: none;
+
+  &:hover {
+    background-image: url('../../assets/icons/textBook/speakingBlue.svg');
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
+}
+
+.starImg {
+  position: absolute;
+  top: 11px;
+  right: 35px;
+  width: 25px;
+  height: 25px;
+  background-image: url('../../assets/icons/textBook/starFalse.svg');
+  background-position: center;
+  background-size: contain;
+  outline: none;
+
+  &_active {
+    background-image: url('../../assets/icons/textBook/starTrue.svg');
+  }
+
+  &:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+    transition: transform 0.25s;
+  }
+
+  &:active:hover {
+    background-image: url('../../assets/icons/textBook/starTrue.svg');
+  }
+}

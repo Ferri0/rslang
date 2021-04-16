@@ -1,0 +1,253 @@
+@import '../../../scss/abstracts.scss';
+
+.dashboardStartWrapper {
+  @include size(100%, 100%);
+}
+.dashboardStartPage {
+  display: grid;
+  grid-template-areas:
+    'textbook games'
+    'textbook dictionary'
+    'textbook stats';
+  grid-template-rows: 1fr 1fr 1.3fr;
+  grid-template-columns: 0.5fr 1fr;
+  @include size(100%, 100%);
+}
+
+.textbook {
+  grid-area: textbook;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  background: #e9e9f1;
+  @include flex(column, space-between, center);
+}
+
+.textbookUnits {
+  margin-top: 20px;
+  @include size(100%, 100%);
+  @include flex(column, space-between, center);
+}
+
+.textbook .unit {
+  padding: 10px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-position: top right, left bottom;
+  background-size: 70%;
+  border-radius: $border-radius;
+  box-shadow: 1px 1px 3px -2px #000;
+  @include size(100%, 80px);
+}
+
+.unit-1 {
+  background: url('../../../assets/images/textbookUnits/unit1/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit1/lower-left-bg.svg');
+  background-color: rgb(229, 255, 251);
+}
+
+.unit-2 {
+  background: url('../../../assets/images/textbookUnits/unit2/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit2/lower-left-bg.svg');
+  background-color: #ebebeb;
+}
+
+.unit-3 {
+  background: url('../../../assets/images/textbookUnits/unit3/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit3/lower-left-bg.svg');
+  background-color: #e4f8e1;
+}
+
+.unit-4 {
+  background: url('../../../assets/images/textbookUnits/unit4/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit4/lower-left-bg.svg');
+  background-color: #faf0eb;
+}
+
+.unit-5 {
+  background: url('../../../assets/images/textbookUnits/unit5/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit5/lower-left-bg.svg');
+  background-color: #fcf8de;
+}
+
+.unit-6 {
+  background: url('../../../assets/images/textbookUnits/unit6/upper-right-bg.svg'),
+    url('../../../assets/images/textbookUnits/unit6/lower-left-bg.svg');
+  background-color: #f5e9f1;
+}
+
+.unitTitle {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  color: #000;
+  border: 1px dashed #fff;
+  border-radius: $border-radius;
+  @include size(100%, 100%);
+}
+
+.textbook .unit:hover .unitTitle {
+  border: 1px dashed #c42b28;
+}
+
+.games {
+  grid-area: games;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  border-bottom: 1px solid #fff;
+  @include flex(column, space-between, center);
+}
+
+.gamesBlock {
+  width: 100%;
+  @include flex(row, space-between, center);
+}
+
+.game {
+  width: calc(100% / 4 - 10px);
+  height: 100px;
+  color: #fff;
+  text-decoration: none;
+  background-size: cover !important;
+  border-radius: $border-radius;
+  box-shadow: 1px 1px 3px -2px #000;
+  @include flex(row, center, center);
+}
+
+.gameTitle {
+  width: 100%;
+  padding: 5px 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.game:hover {
+  color: #c42b28;
+}
+
+.dictionary {
+  grid-area: dictionary;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  border-bottom: 1px solid #fff;
+  @include flex(column, space-between, center);
+}
+
+.dictionaryBlock {
+  width: 100%;
+  @include flex(row, space-around, center);
+}
+
+.dict {
+  width: calc(100% / 3 - 10px);
+  height: 100px;
+  padding: 10px;
+  color: #3b506b;
+  text-decoration: none;
+  background: #aed9e0;
+  border-radius: $border-radius;
+  box-shadow: 1px 1px 3px -2px #000;
+  @include flex(row, center, center);
+}
+
+.dictTitle {
+  text-align: center;
+  border: 1px dashed #3b506b;
+  border-radius: $border-radius;
+  @include flex(column, space-around, center);
+  @include size(100%, 100%);
+}
+
+.dict:hover .dictTitle {
+  border: 1px dashed #c42b28;
+}
+
+.stats {
+  grid-area: stats;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  @include flex(column, center, center);
+}
+
+.statsBlock {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+
+  @media (min-width: 800px) {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.stat {
+  color: black;
+  font-weight: normal;
+  font-size: initial;
+  text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+  .dashboardStartPage {
+    grid-template-areas:
+      'textbook'
+      'games'
+      'dictionary'
+      'stats';
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: 1fr;
+  }
+
+  .textbook {
+    border-top-right-radius: $border-radius;
+  }
+
+  .textbookUnits {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .unit {
+      width: auto;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .gamesBlock {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 10px;
+
+    .game {
+      min-width: 120px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .dictionaryBlock {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 10px;
+
+    .dict {
+      min-width: 120px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .dashboardStartWrapper {
+    border-radius: $border-radius;
+  }
+  .textbook {
+    border-top-left-radius: $border-radius;
+  }
+}

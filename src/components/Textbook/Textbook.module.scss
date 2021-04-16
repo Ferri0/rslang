@@ -1,0 +1,86 @@
+@import '../../scss/abstracts.scss';
+
+.textbook {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  @include flex(row, center, flex-end);
+}
+
+.unitTitle {
+  position: absolute;
+  top: 27.5px;
+  right: 2.5%;
+  height: 40px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 40px;
+
+  @media (max-width: 699px) {
+    top: 5px;
+  }
+}
+
+.btn {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.wordsWrapper {
+  position: relative;
+  width: 95%;
+  min-height: calc(100vh - 130px);
+  margin-top: 100px;
+  margin-bottom: 3%;
+  padding: 20px;
+  padding-bottom: 60px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 30px;
+  @include flex(row, space-between, flex-start);
+
+  @media (max-width: 1124px) {
+    @include flex(column, flex-start, center);
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+.wordsBlock {
+  width: 100%;
+  min-width: 402px;
+  max-width: 50%;
+  height: 100%;
+
+  @media (max-width: 1124px) {
+    max-width: 100%;
+  }
+
+  @media (min-width: 1125px) {
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+
+  @media (max-width: 599px) {
+    min-width: 280px;
+  }
+
+  @media (max-width: 374px) {
+    min-width: 260px;
+  }
+}
+
+.pageBlock {
+  color: #848994;
+  font-size: 25px;
+}

@@ -1,0 +1,38 @@
+.menu {
+  display: flex;
+  justify-content: space-evenly;
+  width: calc(100% - 500px);
+}
+
+.menuItem {
+  color: #0b122c;
+  text-decoration: none;
+  transition: font-weight 0.5s ease;
+}
+
+.menuItem:hover {
+  font-weight: 800;
+}
+
+.menuItem:not(:last-child) {
+  margin-right: 10px;
+}
+
+@media (max-width: 970px) {
+  .menu {
+    width: auto;
+  }
+}
+
+@media (max-width: 850px) {
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+
+    .menuItem {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+  }
+}

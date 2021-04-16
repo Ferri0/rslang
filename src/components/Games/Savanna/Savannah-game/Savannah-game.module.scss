@@ -1,0 +1,74 @@
+@import '../../../../scss/abstracts.scss';
+
+.game_wrapper {
+  position: relative;
+  color: #fff;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include size(100%, 100%);
+}
+
+.game_image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../../../../assets/images/games/savannah/savannah.jpg');
+  background-repeat: no-repeat;
+  background-position-x: left;
+  background-position-y: 100%;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  transition: background 1.5s;
+  @include size(100%, 100%);
+}
+
+.game_main {
+  justify-content: space-between;
+  height: calc(100% - 80px);
+  padding: 20px;
+}
+
+@keyframes question {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(400px);
+  }
+}
+
+.question {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  font-size: 20px;
+  transition: width 0.3s;
+  animation: 6s linear question;
+}
+
+.game_words {
+  @include flex(column, center, center);
+  @include size(100%, 100%);
+}
+
+.scrollBtn,
+.play_word {
+  position: absolute;
+  top: 50px;
+  background-color: tomato;
+  outline: none;
+  cursor: pointer;
+  @include size(150px, 25px);
+}
+
+.play_word {
+  top: 80px;
+}
+
+@media (max-width: 599px) {
+  .game_wrapper,
+  .game_image {
+    border-radius: $border-radius;
+  }
+}

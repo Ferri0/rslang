@@ -1,0 +1,186 @@
+@import '../../../../scss/abstracts.scss';
+
+.ownGameWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url('../../../../assets/images/textbookUnits/unit1/upper-right-bg.svg'),
+    url('../../../../assets/images/textbookUnits/unit1/lower-left-bg.svg');
+  background-color: rgb(229, 255, 251);
+  background-repeat: no-repeat;
+  background-position: top right, left bottom;
+  background-size: 100%, 100%;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include size(100%, 100%);
+}
+
+.ownGameHeaderWrapper {
+  display: flex;
+  @include size(95%, 10%);
+}
+
+.linkWrapper {
+  display: flex;
+  align-items: center;
+  @include size(50%, 100%);
+}
+
+.btn {
+  // display: block;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &_home {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    background-image: url('../../../../assets/icons/textBook/home.svg');
+
+    &:hover {
+      background-image: url('../../../../assets/icons/textBook/homeHover.svg');
+    }
+  }
+}
+
+.healthPointsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 25px;
+
+  @include size(50%, 100%);
+}
+
+.healthPointBlock {
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url('../../../../assets/icons/games/health-point.svg');
+
+  @include size(35px, 35px);
+}
+
+.mainFieldWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 25px;
+  padding: 30px;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 30px;
+  @include size(95%, 65%);
+}
+
+.answerBlocksWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 5px;
+  @include size(100%, auto);
+}
+
+.playSoundBtn {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 6px;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url('../../../../assets/icons/textBook/speakingBlack.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 0;
+  outline: none;
+
+  &:hover {
+    background-image: url('../../../../assets/icons/textBook/speakingBlue.svg');
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
+}
+
+.taskWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 30px;
+  padding-left: 30px;
+  font: 2rem/1.2 Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  @include size(95%, 10%);
+}
+
+.taskBlocksWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 30px;
+  @include size(95%, auto);
+}
+
+.taskBlock {
+  display: block;
+  min-width: 50px;
+  min-height: 30px;
+  max-height: 50px;
+  margin-right: 10px;
+  padding: 5px 15px 5px 15px;
+  color: steelblue;
+  font: 2rem/1.2 Arial, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.65);
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.25);
+  cursor: pointer;
+  @include size(auto, auto);
+
+  &:focus {
+  }
+}
+
+.taskBlockRed {
+  background-color: crimson;
+}
+
+.taskBlockGreen {
+  background-color: darkgreen;
+}
+
+@media (max-width: 599px) {
+  .ownGameWrapper {
+    border-radius: $border-radius;
+  }
+
+  .linkWrapper {
+    padding-left: 40px;
+  }
+
+  .taskWrapper {
+    height: auto;
+  }
+
+  .taskBlocksWrapper {
+    flex-wrap: wrap;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .answerBlocksWrapper {
+    flex-wrap: wrap;
+    height: auto;
+    margin-bottom: 20px;
+  }
+}
